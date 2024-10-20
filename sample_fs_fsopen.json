@@ -1,0 +1,1287 @@
+[
+    {
+        "sha": "cb787f4ac0c2e439ea8d7e6387b925f74576bdf8",
+        "node_id": "C_kwDOACN7MtoAKGNiNzg3ZjRhYzBjMmU0MzllYThkN2U2Mzg3YjkyNWY3NDU3NmJkZjg",
+        "commit": {
+            "author": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2024-09-27T01:56:11Z"
+            },
+            "committer": {
+                "name": "Linus Torvalds",
+                "email": "torvalds@linux-foundation.org",
+                "date": "2024-09-27T15:18:43Z"
+            },
+            "message": "[tree-wide] finally take no_llseek out\n\nno_llseek had been defined to NULL two years ago, in commit 868941b14441\n(\"fs: remove no_llseek\")\n\nTo quote that commit,\n\n  At -rc1 we'll need do a mechanical removal of no_llseek -\n\n  git grep -l -w no_llseek | grep -v porting.rst | while read i; do\n\tsed -i '/\\<no_llseek\\>/d' $i\n  done\n\n  would do it.\n\nUnfortunately, that hadn't been done.  Linus, could you do that now, so\nthat we could finally put that thing to rest? All instances are of the\nform\n\t.llseek = no_llseek,\nso it's obviously safe.\n\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>\nSigned-off-by: Linus Torvalds <torvalds@linux-foundation.org>",
+            "tree": {
+                "sha": "a1f750efef3171e0205c2a785003b593fe26255c",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/a1f750efef3171e0205c2a785003b593fe26255c"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/cb787f4ac0c2e439ea8d7e6387b925f74576bdf8",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/cb787f4ac0c2e439ea8d7e6387b925f74576bdf8",
+        "html_url": "https://github.com/torvalds/linux/commit/cb787f4ac0c2e439ea8d7e6387b925f74576bdf8",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/cb787f4ac0c2e439ea8d7e6387b925f74576bdf8/comments",
+        "author": null,
+        "committer": {
+            "login": "torvalds",
+            "id": 1024025,
+            "node_id": "MDQ6VXNlcjEwMjQwMjU=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1024025?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/torvalds",
+            "html_url": "https://github.com/torvalds",
+            "followers_url": "https://api.github.com/users/torvalds/followers",
+            "following_url": "https://api.github.com/users/torvalds/following{/other_user}",
+            "gists_url": "https://api.github.com/users/torvalds/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/torvalds/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/torvalds/subscriptions",
+            "organizations_url": "https://api.github.com/users/torvalds/orgs",
+            "repos_url": "https://api.github.com/users/torvalds/repos",
+            "events_url": "https://api.github.com/users/torvalds/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/torvalds/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "075dbe9f6e3c21596c5245826a4ee1f1c1676eb8",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/075dbe9f6e3c21596c5245826a4ee1f1c1676eb8",
+                "html_url": "https://github.com/torvalds/linux/commit/075dbe9f6e3c21596c5245826a4ee1f1c1676eb8"
+            }
+        ]
+    },
+    {
+        "sha": "1da91ea87aefe2c25b68c9f96947a9271ba6325d",
+        "node_id": "C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ",
+        "commit": {
+            "author": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2024-05-31T18:12:01Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2024-08-13T02:00:43Z"
+            },
+            "message": "introduce fd_file(), convert all accessors to it.\n\n\tFor any changes of struct fd representation we need to\nturn existing accesses to fields into calls of wrappers.\nAccesses to struct fd::flags are very few (3 in linux/file.h,\n1 in net/socket.c, 3 in fs/overlayfs/file.c and 3 more in\nexplicit initializers).\n\tThose can be dealt with in the commit converting to\nnew layout; accesses to struct fd::file are too many for that.\n\tThis commit converts (almost) all of f.file to\nfd_file(f).  It's not entirely mechanical ('file' is used as\na member name more than just in struct fd) and it does not\neven attempt to distinguish the uses in pointer context from\nthose in boolean context; the latter will be eventually turned\ninto a separate helper (fd_empty()).\n\n\tNOTE: mass conversion to fd_empty(), tempting as it\nmight be, is a bad idea; better do that piecewise in commit\nthat convert from fdget...() to CLASS(...).\n\n[conflicts in fs/fhandle.c, kernel/bpf/syscall.c, mm/memcontrol.c\ncaught by git; fs/stat.c one got caught by git grep]\n[fs/xattr.c conflict]\n\nReviewed-by: Christian Brauner <brauner@kernel.org>\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "e0d317b1ee86d7b03238e98f25f1f23f233b2511",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/e0d317b1ee86d7b03238e98f25f1f23f233b2511"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/1da91ea87aefe2c25b68c9f96947a9271ba6325d",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/1da91ea87aefe2c25b68c9f96947a9271ba6325d",
+        "html_url": "https://github.com/torvalds/linux/commit/1da91ea87aefe2c25b68c9f96947a9271ba6325d",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/1da91ea87aefe2c25b68c9f96947a9271ba6325d/comments",
+        "author": null,
+        "committer": null,
+        "parents": [
+            {
+                "sha": "8400291e289ee6b2bf9779ff1c83a291501f017b",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/8400291e289ee6b2bf9779ff1c83a291501f017b",
+                "html_url": "https://github.com/torvalds/linux/commit/8400291e289ee6b2bf9779ff1c83a291501f017b"
+            }
+        ]
+    },
+    {
+        "sha": "dff60734fc7606fabde668ab6a26feacec8787cc",
+        "node_id": "C_kwDOACN7MtoAKGRmZjYwNzM0ZmM3NjA2ZmFiZGU2NjhhYjZhMjZmZWFjZWM4Nzg3Y2M",
+        "commit": {
+            "author": {
+                "name": "Mateusz Guzik",
+                "email": "mjguzik@gmail.com",
+                "date": "2024-06-04T15:52:56Z"
+            },
+            "committer": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2024-06-05T15:03:57Z"
+            },
+            "message": "vfs: retire user_path_at_empty and drop empty arg from getname_flags\n\nNo users after do_readlinkat started doing the job on its own.\n\nSigned-off-by: Mateusz Guzik <mjguzik@gmail.com>\nLink: https://lore.kernel.org/r/20240604155257.109500-3-mjguzik@gmail.com\nReviewed-by: Jan Kara <jack@suse.cz>\nSigned-off-by: Christian Brauner <brauner@kernel.org>",
+            "tree": {
+                "sha": "64a63f7d34ff771da6932a4aac3603b71cb0eca2",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/64a63f7d34ff771da6932a4aac3603b71cb0eca2"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/dff60734fc7606fabde668ab6a26feacec8787cc",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/dff60734fc7606fabde668ab6a26feacec8787cc",
+        "html_url": "https://github.com/torvalds/linux/commit/dff60734fc7606fabde668ab6a26feacec8787cc",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/dff60734fc7606fabde668ab6a26feacec8787cc/comments",
+        "author": {
+            "login": "mjguzik",
+            "id": 9325157,
+            "node_id": "MDQ6VXNlcjkzMjUxNTc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9325157?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mjguzik",
+            "html_url": "https://github.com/mjguzik",
+            "followers_url": "https://api.github.com/users/mjguzik/followers",
+            "following_url": "https://api.github.com/users/mjguzik/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mjguzik/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mjguzik/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mjguzik/subscriptions",
+            "organizations_url": "https://api.github.com/users/mjguzik/orgs",
+            "repos_url": "https://api.github.com/users/mjguzik/repos",
+            "events_url": "https://api.github.com/users/mjguzik/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mjguzik/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "969ce92da3112e05d1a70c344f8740a85e933f2e",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/969ce92da3112e05d1a70c344f8740a85e933f2e",
+                "html_url": "https://github.com/torvalds/linux/commit/969ce92da3112e05d1a70c344f8740a85e933f2e"
+            }
+        ]
+    },
+    {
+        "sha": "ef44c8ab06b300a5b9b30e5b630f491ac7bc4d3e",
+        "node_id": "C_kwDOACN7MtoAKGVmNDRjOGFiMDZiMzAwYTViOWIzMGU1YjYzMGY0OTFhYzdiYzRkM2U",
+        "commit": {
+            "author": {
+                "name": "Hongbo Li",
+                "email": "lihongbo22@huawei.com",
+                "date": "2024-05-22T03:04:22Z"
+            },
+            "committer": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2024-05-27T13:58:46Z"
+            },
+            "message": "fs: fsconfig: intercept non-new mount API in advance for FSCONFIG_CMD_CREATE_EXCL command\n\nfsconfig with FSCONFIG_CMD_CREATE_EXCL command requires the new mount api,\nhere we should return -EOPNOTSUPP in advance to avoid extra procedure.\n\nSigned-off-by: Hongbo Li <lihongbo22@huawei.com>\nLink: https://lore.kernel.org/r/20240522030422.315892-1-lihongbo22@huawei.com\nReviewed-by: Jan Kara <jack@suse.cz>\nSigned-off-by: Christian Brauner <brauner@kernel.org>",
+            "tree": {
+                "sha": "6531c17bfdd2b64cebe6e4090aa7990f49010d03",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/6531c17bfdd2b64cebe6e4090aa7990f49010d03"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/ef44c8ab06b300a5b9b30e5b630f491ac7bc4d3e",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/ef44c8ab06b300a5b9b30e5b630f491ac7bc4d3e",
+        "html_url": "https://github.com/torvalds/linux/commit/ef44c8ab06b300a5b9b30e5b630f491ac7bc4d3e",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/ef44c8ab06b300a5b9b30e5b630f491ac7bc4d3e/comments",
+        "author": null,
+        "committer": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "3aa63a569c64e708df547a8913c84e64a06e7853",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/3aa63a569c64e708df547a8913c84e64a06e7853",
+                "html_url": "https://github.com/torvalds/linux/commit/3aa63a569c64e708df547a8913c84e64a06e7853"
+            }
+        ]
+    },
+    {
+        "sha": "9cf16b380af5bab7d0952b9aad0601ebf986de69",
+        "node_id": "C_kwDOACN7MtoAKDljZjE2YjM4MGFmNWJhYjdkMDk1MmI5YWFkMDYwMWViZjk4NmRlNjk",
+        "commit": {
+            "author": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2023-09-22T11:49:05Z"
+            },
+            "committer": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2023-09-22T12:09:06Z"
+            },
+            "message": "fsconfig: ensure that dirfd is set to aux\n\nThe code in fs_param_is_fd() expects param->dirfd to be set to the fd\nthat was used to set param->file to initialize result->uint_32. So make\nsure it's set so users like autofs using FSCONFIG_SET_FD with the new\nmount api can rely on this to be set to the correct value.\n\nLink: https://lore.kernel.org/lkml/20230922-vorbringen-spaghetti-946729122076@brauner\nSigned-off-by: Christian Brauner <brauner@kernel.org>",
+            "tree": {
+                "sha": "3874ee5fc0494deab441b041362e733523e96c46",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/3874ee5fc0494deab441b041362e733523e96c46"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/9cf16b380af5bab7d0952b9aad0601ebf986de69",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/9cf16b380af5bab7d0952b9aad0601ebf986de69",
+        "html_url": "https://github.com/torvalds/linux/commit/9cf16b380af5bab7d0952b9aad0601ebf986de69",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/9cf16b380af5bab7d0952b9aad0601ebf986de69/comments",
+        "author": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "dede367149c48822c9f699291d71a3211c2a91bb",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/dede367149c48822c9f699291d71a3211c2a91bb",
+                "html_url": "https://github.com/torvalds/linux/commit/dede367149c48822c9f699291d71a3211c2a91bb"
+            }
+        ]
+    },
+    {
+        "sha": "22ed7ecdaefe0cac0c6e6295e83048af60435b13",
+        "node_id": "C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM",
+        "commit": {
+            "author": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2023-08-02T11:57:06Z"
+            },
+            "committer": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2023-08-14T16:48:02Z"
+            },
+            "message": "fs: add FSCONFIG_CMD_CREATE_EXCL\n\nSummary\n=======\n\nThis introduces FSCONFIG_CMD_CREATE_EXCL which will allows userspace to\nimplement something like mount -t ext4 --exclusive /dev/sda /B which\nfails if a superblock for the requested filesystem does already exist:\n\nBefore this patch\n-----------------\n\n$ sudo ./move-mount -f xfs -o source=/dev/sda4 /A\nRequesting filesystem type xfs\nMount options requested: source=/dev/sda4\nAttaching mount at /A\nMoving single attached mount\nSetting key(source) with val(/dev/sda4)\n\n$ sudo ./move-mount -f xfs -o source=/dev/sda4 /B\nRequesting filesystem type xfs\nMount options requested: source=/dev/sda4\nAttaching mount at /B\nMoving single attached mount\nSetting key(source) with val(/dev/sda4)\n\nAfter this patch with --exclusive as a switch for FSCONFIG_CMD_CREATE_EXCL\n--------------------------------------------------------------------------\n\n$ sudo ./move-mount -f xfs --exclusive -o source=/dev/sda4 /A\nRequesting filesystem type xfs\nRequest exclusive superblock creation\nMount options requested: source=/dev/sda4\nAttaching mount at /A\nMoving single attached mount\nSetting key(source) with val(/dev/sda4)\n\n$ sudo ./move-mount -f xfs --exclusive -o source=/dev/sda4 /B\nRequesting filesystem type xfs\nRequest exclusive superblock creation\nMount options requested: source=/dev/sda4\nAttaching mount at /B\nMoving single attached mount\nSetting key(source) with val(/dev/sda4)\nDevice or resource busy | move-mount.c: 300: do_fsconfig: i xfs: reusing existing filesystem not allowed\n\nDetails\n=======\n\nAs mentioned on the list (cf. [1]-[3]) mount requests like\nmount -t ext4 /dev/sda /A are ambigous for userspace. Either a new\nsuperblock has been created and mounted or an existing superblock has\nbeen reused and a bind-mount has been created.\n\nThis becomes clear in the following example where two processes create\nthe same mount for the same block device:\n\nP1                                                              P2\nfd_fs = fsopen(\"ext4\");                                         fd_fs = fsopen(\"ext4\");\nfsconfig(fd_fs, FSCONFIG_SET_STRING, \"source\", \"/dev/sda\");     fsconfig(fd_fs, FSCONFIG_SET_STRING, \"source\", \"/dev/sda\");\nfsconfig(fd_fs, FSCONFIG_SET_STRING, \"dax\", \"always\");          fsconfig(fd_fs, FSCONFIG_SET_STRING, \"resuid\", \"1000\");\n\n// wins and creates superblock\nfsconfig(fd_fs, FSCONFIG_CMD_CREATE, ...)\n                                                                // finds compatible superblock of P1\n                                                                // spins until P1 sets SB_BORN and grabs a reference\n                                                                fsconfig(fd_fs, FSCONFIG_CMD_CREATE, ...)\n\nfd_mnt1 = fsmount(fd_fs);                                       fd_mnt2 = fsmount(fd_fs);\nmove_mount(fd_mnt1, \"/A\")                                       move_mount(fd_mnt2, \"/B\")\n\nNot just does P2 get a bind-mount but the mount options that P2\nrequestes are silently ignored. The VFS itself doesn't, can't and\nshouldn't enforce filesystem specific mount option compatibility. It\nonly enforces incompatibility for read-only <-> read-write transitions:\n\nmount -t ext4       /dev/sda /A\nmount -t ext4 -o ro /dev/sda /B\n\nThe read-only request will fail with EBUSY as the VFS can't just\nsilently transition a superblock from read-write to read-only or vica\nversa without risking security issues.\n\nTo userspace this silent superblock reuse can become a security issue in\nbecause there is currently no straightforward way for userspace to know\nthat they did indeed manage to create a new superblock and didn't just\nreuse an existing one.\n\nThis adds a new FSCONFIG_CMD_CREATE_EXCL command to fsconfig() that\nreturns EBUSY if an existing superblock would be reused. Userspace that\nneeds to be sure that it did create a new superblock with the requested\nmount options can request superblock creation using this command. If the\ncommand succeeds they can be sure that they did create a new superblock\nwith the requested mount options.\n\nThis requires the new mount api. With the old mount api it would be\nnecessary to plumb this through every legacy filesystem's\nfile_system_type->mount() method. If they want this feature they are\nmost welcome to switch to the new mount api.\n\nFollowing is an analysis of the effect of FSCONFIG_CMD_CREATE_EXCL on\neach high-level superblock creation helper:\n\n(1) get_tree_nodev()\n\n    Always allocate new superblock. Hence, FSCONFIG_CMD_CREATE and\n    FSCONFIG_CMD_CREATE_EXCL are equivalent.\n\n    The binderfs or overlayfs filesystems are examples.\n\n(4) get_tree_keyed()\n\n    Finds an existing superblock based on sb->s_fs_info. Hence,\n    FSCONFIG_CMD_CREATE would reuse an existing superblock whereas\n    FSCONFIG_CMD_CREATE_EXCL would reject it with EBUSY.\n\n    The mqueue or nfsd filesystems are examples.\n\n(2) get_tree_bdev()\n\n    This effectively works like get_tree_keyed().\n\n    The ext4 or xfs filesystems are examples.\n\n(3) get_tree_single()\n\n    Only one superblock of this filesystem type can ever exist.\n    Hence, FSCONFIG_CMD_CREATE would reuse an existing superblock\n    whereas FSCONFIG_CMD_CREATE_EXCL would reject it with EBUSY.\n\n    The securityfs or configfs filesystems are examples.\n\n    Note that some single-instance filesystems never destroy the\n    superblock once it has been created during the first mount. For\n    example, if securityfs has been mounted at least onces then the\n    created superblock will never be destroyed again as long as there is\n    still an LSM making use it. Consequently, even if securityfs is\n    unmounted and the superblock seemingly destroyed it really isn't\n    which means that FSCONFIG_CMD_CREATE_EXCL will continue rejecting\n    reusing an existing superblock.\n\n    This is acceptable thugh since special purpose filesystems such as\n    this shouldn't have a need to use FSCONFIG_CMD_CREATE_EXCL anyway\n    and if they do it's probably to make sure that mount options aren't\n    ignored.\n\nFollowing is an analysis of the effect of FSCONFIG_CMD_CREATE_EXCL on\nfilesystems that make use of the low-level sget_fc() helper directly.\nThey're all effectively variants on get_tree_keyed(), get_tree_bdev(),\nor get_tree_nodev():\n\n(5) mtd_get_sb()\n\n    Similar logic to get_tree_keyed().\n\n(6) afs_get_tree()\n\n    Similar logic to get_tree_keyed().\n\n(7) ceph_get_tree()\n\n    Similar logic to get_tree_keyed().\n\n    Already explicitly allows forcing the allocation of a new superblock\n    via CEPH_OPT_NOSHARE. This turns it into get_tree_nodev().\n\n(8) fuse_get_tree_submount()\n\n    Similar logic to get_tree_nodev().\n\n(9) fuse_get_tree()\n\n    Forces reuse of existing FUSE superblock.\n\n    Forces reuse of existing superblock if passed in file refers to an\n    existing FUSE connection.\n    If FSCONFIG_CMD_CREATE_EXCL is specified together with an fd\n    referring to an existing FUSE connections this would cause the\n    superblock reusal to fail. If reusing is the intent then\n    FSCONFIG_CMD_CREATE_EXCL shouldn't be specified.\n\n(10) fuse_get_tree()\n     -> get_tree_nodev()\n\n    Same logic as in get_tree_nodev().\n\n(11) fuse_get_tree()\n     -> get_tree_bdev()\n\n    Same logic as in get_tree_bdev().\n\n(12) virtio_fs_get_tree()\n\n     Same logic as get_tree_keyed().\n\n(13) gfs2_meta_get_tree()\n\n     Forces reuse of existing gfs2 superblock.\n\n     Mounting gfs2meta enforces that a gf2s superblock must already\n     exist. If not, it will error out. Consequently, mounting gfs2meta\n     with FSCONFIG_CMD_CREATE_EXCL would always fail. If reusing is the\n     intent then FSCONFIG_CMD_CREATE_EXCL shouldn't be specified.\n\n(14) kernfs_get_tree()\n\n     Similar logic to get_tree_keyed().\n\n(15) nfs_get_tree_common()\n\n    Similar logic to get_tree_keyed().\n\n    Already explicitly allows forcing the allocation of a new superblock\n    via NFS_MOUNT_UNSHARED. This effectively turns it into\n    get_tree_nodev().\n\nLink: [1] https://lore.kernel.org/linux-block/20230704-fasching-wertarbeit-7c6ffb01c83d@brauner\nLink: [2] https://lore.kernel.org/linux-block/20230705-pumpwerk-vielversprechend-a4b1fd947b65@brauner\nLink: [3] https://lore.kernel.org/linux-fsdevel/20230725-einnahmen-warnschilder-17779aec0a97@brauner\nReviewed-by: Josef Bacik <josef@toxicpanda.com>\nReviewed-by: Christoph Hellwig <hch@lst.de>\nReviewed-by: Jan Kara <jack@suse.cz>\nReviewed-by: Aleksa Sarai <cyphar@cyphar.com>\nMessage-Id: <20230802-vfs-super-exclusive-v2-4-95dc4e41b870@kernel.org>\nSigned-off-by: Christian Brauner <brauner@kernel.org>",
+            "tree": {
+                "sha": "490e1c811f66d837c106b9da0e1d00a4906ed045",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/490e1c811f66d837c106b9da0e1d00a4906ed045"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/22ed7ecdaefe0cac0c6e6295e83048af60435b13",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\niHUEABYKAB0WIQRAhzRXHqcMeLMyaSiRxhvAZXjcogUCZNpawwAKCRCRxhvAZXjc\nopL3AP9jFK8jBx+FKRYYCO6KLtLvffWyeXWDdFOPAtcRjxr9dwEAvO9DyRtrZtLi\nOSKLOFJrMhOj732+4slAJT1HHeb03g0=\n=Rp6S\n-----END PGP SIGNATURE-----",
+                "payload": "tree 490e1c811f66d837c106b9da0e1d00a4906ed045\nparent 11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e\nauthor Christian Brauner <brauner@kernel.org> 1690977426 +0200\ncommitter Christian Brauner <brauner@kernel.org> 1692031682 +0200\n\nfs: add FSCONFIG_CMD_CREATE_EXCL\n\nSummary\n=======\n\nThis introduces FSCONFIG_CMD_CREATE_EXCL which will allows userspace to\nimplement something like mount -t ext4 --exclusive /dev/sda /B which\nfails if a superblock for the requested filesystem does already exist:\n\nBefore this patch\n-----------------\n\n$ sudo ./move-mount -f xfs -o source=/dev/sda4 /A\nRequesting filesystem type xfs\nMount options requested: source=/dev/sda4\nAttaching mount at /A\nMoving single attached mount\nSetting key(source) with val(/dev/sda4)\n\n$ sudo ./move-mount -f xfs -o source=/dev/sda4 /B\nRequesting filesystem type xfs\nMount options requested: source=/dev/sda4\nAttaching mount at /B\nMoving single attached mount\nSetting key(source) with val(/dev/sda4)\n\nAfter this patch with --exclusive as a switch for FSCONFIG_CMD_CREATE_EXCL\n--------------------------------------------------------------------------\n\n$ sudo ./move-mount -f xfs --exclusive -o source=/dev/sda4 /A\nRequesting filesystem type xfs\nRequest exclusive superblock creation\nMount options requested: source=/dev/sda4\nAttaching mount at /A\nMoving single attached mount\nSetting key(source) with val(/dev/sda4)\n\n$ sudo ./move-mount -f xfs --exclusive -o source=/dev/sda4 /B\nRequesting filesystem type xfs\nRequest exclusive superblock creation\nMount options requested: source=/dev/sda4\nAttaching mount at /B\nMoving single attached mount\nSetting key(source) with val(/dev/sda4)\nDevice or resource busy | move-mount.c: 300: do_fsconfig: i xfs: reusing existing filesystem not allowed\n\nDetails\n=======\n\nAs mentioned on the list (cf. [1]-[3]) mount requests like\nmount -t ext4 /dev/sda /A are ambigous for userspace. Either a new\nsuperblock has been created and mounted or an existing superblock has\nbeen reused and a bind-mount has been created.\n\nThis becomes clear in the following example where two processes create\nthe same mount for the same block device:\n\nP1                                                              P2\nfd_fs = fsopen(\"ext4\");                                         fd_fs = fsopen(\"ext4\");\nfsconfig(fd_fs, FSCONFIG_SET_STRING, \"source\", \"/dev/sda\");     fsconfig(fd_fs, FSCONFIG_SET_STRING, \"source\", \"/dev/sda\");\nfsconfig(fd_fs, FSCONFIG_SET_STRING, \"dax\", \"always\");          fsconfig(fd_fs, FSCONFIG_SET_STRING, \"resuid\", \"1000\");\n\n// wins and creates superblock\nfsconfig(fd_fs, FSCONFIG_CMD_CREATE, ...)\n                                                                // finds compatible superblock of P1\n                                                                // spins until P1 sets SB_BORN and grabs a reference\n                                                                fsconfig(fd_fs, FSCONFIG_CMD_CREATE, ...)\n\nfd_mnt1 = fsmount(fd_fs);                                       fd_mnt2 = fsmount(fd_fs);\nmove_mount(fd_mnt1, \"/A\")                                       move_mount(fd_mnt2, \"/B\")\n\nNot just does P2 get a bind-mount but the mount options that P2\nrequestes are silently ignored. The VFS itself doesn't, can't and\nshouldn't enforce filesystem specific mount option compatibility. It\nonly enforces incompatibility for read-only <-> read-write transitions:\n\nmount -t ext4       /dev/sda /A\nmount -t ext4 -o ro /dev/sda /B\n\nThe read-only request will fail with EBUSY as the VFS can't just\nsilently transition a superblock from read-write to read-only or vica\nversa without risking security issues.\n\nTo userspace this silent superblock reuse can become a security issue in\nbecause there is currently no straightforward way for userspace to know\nthat they did indeed manage to create a new superblock and didn't just\nreuse an existing one.\n\nThis adds a new FSCONFIG_CMD_CREATE_EXCL command to fsconfig() that\nreturns EBUSY if an existing superblock would be reused. Userspace that\nneeds to be sure that it did create a new superblock with the requested\nmount options can request superblock creation using this command. If the\ncommand succeeds they can be sure that they did create a new superblock\nwith the requested mount options.\n\nThis requires the new mount api. With the old mount api it would be\nnecessary to plumb this through every legacy filesystem's\nfile_system_type->mount() method. If they want this feature they are\nmost welcome to switch to the new mount api.\n\nFollowing is an analysis of the effect of FSCONFIG_CMD_CREATE_EXCL on\neach high-level superblock creation helper:\n\n(1) get_tree_nodev()\n\n    Always allocate new superblock. Hence, FSCONFIG_CMD_CREATE and\n    FSCONFIG_CMD_CREATE_EXCL are equivalent.\n\n    The binderfs or overlayfs filesystems are examples.\n\n(4) get_tree_keyed()\n\n    Finds an existing superblock based on sb->s_fs_info. Hence,\n    FSCONFIG_CMD_CREATE would reuse an existing superblock whereas\n    FSCONFIG_CMD_CREATE_EXCL would reject it with EBUSY.\n\n    The mqueue or nfsd filesystems are examples.\n\n(2) get_tree_bdev()\n\n    This effectively works like get_tree_keyed().\n\n    The ext4 or xfs filesystems are examples.\n\n(3) get_tree_single()\n\n    Only one superblock of this filesystem type can ever exist.\n    Hence, FSCONFIG_CMD_CREATE would reuse an existing superblock\n    whereas FSCONFIG_CMD_CREATE_EXCL would reject it with EBUSY.\n\n    The securityfs or configfs filesystems are examples.\n\n    Note that some single-instance filesystems never destroy the\n    superblock once it has been created during the first mount. For\n    example, if securityfs has been mounted at least onces then the\n    created superblock will never be destroyed again as long as there is\n    still an LSM making use it. Consequently, even if securityfs is\n    unmounted and the superblock seemingly destroyed it really isn't\n    which means that FSCONFIG_CMD_CREATE_EXCL will continue rejecting\n    reusing an existing superblock.\n\n    This is acceptable thugh since special purpose filesystems such as\n    this shouldn't have a need to use FSCONFIG_CMD_CREATE_EXCL anyway\n    and if they do it's probably to make sure that mount options aren't\n    ignored.\n\nFollowing is an analysis of the effect of FSCONFIG_CMD_CREATE_EXCL on\nfilesystems that make use of the low-level sget_fc() helper directly.\nThey're all effectively variants on get_tree_keyed(), get_tree_bdev(),\nor get_tree_nodev():\n\n(5) mtd_get_sb()\n\n    Similar logic to get_tree_keyed().\n\n(6) afs_get_tree()\n\n    Similar logic to get_tree_keyed().\n\n(7) ceph_get_tree()\n\n    Similar logic to get_tree_keyed().\n\n    Already explicitly allows forcing the allocation of a new superblock\n    via CEPH_OPT_NOSHARE. This turns it into get_tree_nodev().\n\n(8) fuse_get_tree_submount()\n\n    Similar logic to get_tree_nodev().\n\n(9) fuse_get_tree()\n\n    Forces reuse of existing FUSE superblock.\n\n    Forces reuse of existing superblock if passed in file refers to an\n    existing FUSE connection.\n    If FSCONFIG_CMD_CREATE_EXCL is specified together with an fd\n    referring to an existing FUSE connections this would cause the\n    superblock reusal to fail. If reusing is the intent then\n    FSCONFIG_CMD_CREATE_EXCL shouldn't be specified.\n\n(10) fuse_get_tree()\n     -> get_tree_nodev()\n\n    Same logic as in get_tree_nodev().\n\n(11) fuse_get_tree()\n     -> get_tree_bdev()\n\n    Same logic as in get_tree_bdev().\n\n(12) virtio_fs_get_tree()\n\n     Same logic as get_tree_keyed().\n\n(13) gfs2_meta_get_tree()\n\n     Forces reuse of existing gfs2 superblock.\n\n     Mounting gfs2meta enforces that a gf2s superblock must already\n     exist. If not, it will error out. Consequently, mounting gfs2meta\n     with FSCONFIG_CMD_CREATE_EXCL would always fail. If reusing is the\n     intent then FSCONFIG_CMD_CREATE_EXCL shouldn't be specified.\n\n(14) kernfs_get_tree()\n\n     Similar logic to get_tree_keyed().\n\n(15) nfs_get_tree_common()\n\n    Similar logic to get_tree_keyed().\n\n    Already explicitly allows forcing the allocation of a new superblock\n    via NFS_MOUNT_UNSHARED. This effectively turns it into\n    get_tree_nodev().\n\nLink: [1] https://lore.kernel.org/linux-block/20230704-fasching-wertarbeit-7c6ffb01c83d@brauner\nLink: [2] https://lore.kernel.org/linux-block/20230705-pumpwerk-vielversprechend-a4b1fd947b65@brauner\nLink: [3] https://lore.kernel.org/linux-fsdevel/20230725-einnahmen-warnschilder-17779aec0a97@brauner\nReviewed-by: Josef Bacik <josef@toxicpanda.com>\nReviewed-by: Christoph Hellwig <hch@lst.de>\nReviewed-by: Jan Kara <jack@suse.cz>\nReviewed-by: Aleksa Sarai <cyphar@cyphar.com>\nMessage-Id: <20230802-vfs-super-exclusive-v2-4-95dc4e41b870@kernel.org>\nSigned-off-by: Christian Brauner <brauner@kernel.org>\n"
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/22ed7ecdaefe0cac0c6e6295e83048af60435b13",
+        "html_url": "https://github.com/torvalds/linux/commit/22ed7ecdaefe0cac0c6e6295e83048af60435b13",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/22ed7ecdaefe0cac0c6e6295e83048af60435b13/comments",
+        "author": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e",
+                "html_url": "https://github.com/torvalds/linux/commit/11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e"
+            }
+        ]
+    },
+    {
+        "sha": "11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e",
+        "node_id": "C_kwDOACN7MtoAKDExYTUxZDhjMTNhNzVmNmIyNGNmZmVkYThlNWUxMWZjOGE3NDlmMWU",
+        "commit": {
+            "author": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2023-08-02T11:57:05Z"
+            },
+            "committer": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2023-08-14T16:48:02Z"
+            },
+            "message": "fs: add vfs_cmd_reconfigure()\n\nSplit the steps to reconfigure a superblock into a tiny helper instead\nof open-coding it in the switch.\n\nReviewed-by: Christoph Hellwig <hch@lst.de>\nReviewed-by: Jan Kara <jack@suse.cz>\nReviewed-by: Aleksa Sarai <cyphar@cyphar.com>\nMessage-Id: <20230802-vfs-super-exclusive-v2-3-95dc4e41b870@kernel.org>\nSigned-off-by: Christian Brauner <brauner@kernel.org>",
+            "tree": {
+                "sha": "e1f9ebd3d6b724dcc6c05f44a790ff5d2c9655aa",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/e1f9ebd3d6b724dcc6c05f44a790ff5d2c9655aa"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\niHUEABYKAB0WIQRAhzRXHqcMeLMyaSiRxhvAZXjcogUCZNpawgAKCRCRxhvAZXjc\nos8uAP9/gTEBsKWP+YVdXOz8h6bd9coYBcV1rtJiWvj6zoEyXAEAx/XtecXFgQsC\nMrDNgOmdiRLj5U/wPinsLNbFS2Jj/wA=\n=duFB\n-----END PGP SIGNATURE-----",
+                "payload": "tree e1f9ebd3d6b724dcc6c05f44a790ff5d2c9655aa\nparent dae8b08d5d83b7550917af06cfba76f0b908bf15\nauthor Christian Brauner <brauner@kernel.org> 1690977425 +0200\ncommitter Christian Brauner <brauner@kernel.org> 1692031682 +0200\n\nfs: add vfs_cmd_reconfigure()\n\nSplit the steps to reconfigure a superblock into a tiny helper instead\nof open-coding it in the switch.\n\nReviewed-by: Christoph Hellwig <hch@lst.de>\nReviewed-by: Jan Kara <jack@suse.cz>\nReviewed-by: Aleksa Sarai <cyphar@cyphar.com>\nMessage-Id: <20230802-vfs-super-exclusive-v2-3-95dc4e41b870@kernel.org>\nSigned-off-by: Christian Brauner <brauner@kernel.org>\n"
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e",
+        "html_url": "https://github.com/torvalds/linux/commit/11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/11a51d8c13a75f6b24cffeda8e5e11fc8a749f1e/comments",
+        "author": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "dae8b08d5d83b7550917af06cfba76f0b908bf15",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/dae8b08d5d83b7550917af06cfba76f0b908bf15",
+                "html_url": "https://github.com/torvalds/linux/commit/dae8b08d5d83b7550917af06cfba76f0b908bf15"
+            }
+        ]
+    },
+    {
+        "sha": "dae8b08d5d83b7550917af06cfba76f0b908bf15",
+        "node_id": "C_kwDOACN7MtoAKGRhZThiMDhkNWQ4M2I3NTUwOTE3YWYwNmNmYmE3NmYwYjkwOGJmMTU",
+        "commit": {
+            "author": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2023-08-02T11:57:04Z"
+            },
+            "committer": {
+                "name": "Christian Brauner",
+                "email": "brauner@kernel.org",
+                "date": "2023-08-14T16:48:02Z"
+            },
+            "message": "fs: add vfs_cmd_create()\n\nSplit the steps to create a superblock into a tiny helper. This will\nmake the next patch easier to follow.\n\nReviewed-by: Josef Bacik <josef@toxicpanda.com>\nReviewed-by: Christoph Hellwig <hch@lst.de>\nReviewed-by: Jan Kara <jack@suse.cz>\nReviewed-by: Aleksa Sarai <cyphar@cyphar.com>\nMessage-Id: <20230802-vfs-super-exclusive-v2-2-95dc4e41b870@kernel.org>\nSigned-off-by: Christian Brauner <brauner@kernel.org>",
+            "tree": {
+                "sha": "edb057d1f4ee345a2513f9d12bb7c4360ad7f927",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/edb057d1f4ee345a2513f9d12bb7c4360ad7f927"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/dae8b08d5d83b7550917af06cfba76f0b908bf15",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\niHUEABYKAB0WIQRAhzRXHqcMeLMyaSiRxhvAZXjcogUCZNpawgAKCRCRxhvAZXjc\normKAQDPfQSRFdN89aUrJgY6n6RMToqqPSjjC/OXCoWz4SivfAEArwHNHODnuRsX\nQ8QgP01BrNW14jBWMdCWzaNUELR8YQE=\n=KuM1\n-----END PGP SIGNATURE-----",
+                "payload": "tree edb057d1f4ee345a2513f9d12bb7c4360ad7f927\nparent e062abaec65b970c4d7ecf26bc1558a1b6f92970\nauthor Christian Brauner <brauner@kernel.org> 1690977424 +0200\ncommitter Christian Brauner <brauner@kernel.org> 1692031682 +0200\n\nfs: add vfs_cmd_create()\n\nSplit the steps to create a superblock into a tiny helper. This will\nmake the next patch easier to follow.\n\nReviewed-by: Josef Bacik <josef@toxicpanda.com>\nReviewed-by: Christoph Hellwig <hch@lst.de>\nReviewed-by: Jan Kara <jack@suse.cz>\nReviewed-by: Aleksa Sarai <cyphar@cyphar.com>\nMessage-Id: <20230802-vfs-super-exclusive-v2-2-95dc4e41b870@kernel.org>\nSigned-off-by: Christian Brauner <brauner@kernel.org>\n"
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/dae8b08d5d83b7550917af06cfba76f0b908bf15",
+        "html_url": "https://github.com/torvalds/linux/commit/dae8b08d5d83b7550917af06cfba76f0b908bf15",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/dae8b08d5d83b7550917af06cfba76f0b908bf15/comments",
+        "author": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "e062abaec65b970c4d7ecf26bc1558a1b6f92970",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/e062abaec65b970c4d7ecf26bc1558a1b6f92970",
+                "html_url": "https://github.com/torvalds/linux/commit/e062abaec65b970c4d7ecf26bc1558a1b6f92970"
+            }
+        ]
+    },
+    {
+        "sha": "a5f85d7834f7e1456e799c79a2a83fc11b90cfe2",
+        "node_id": "C_kwDOACN7MtoAKGE1Zjg1ZDc4MzRmN2UxNDU2ZTc5OWM3OWEyYTgzZmMxMWI5MGNmZTI",
+        "commit": {
+            "author": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2022-03-01T05:05:29Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2022-05-20T03:25:10Z"
+            },
+            "message": "uninline may_mount() and don't opencode it in fspick(2)/fsopen(2)\n\nIt's done once per (mount-related) syscall and there's no point\nwhatsoever making it inline.\n\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "be51d3f60e7b1b8697e6c825a58914f11c3ca838",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/be51d3f60e7b1b8697e6c825a58914f11c3ca838"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/a5f85d7834f7e1456e799c79a2a83fc11b90cfe2",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/a5f85d7834f7e1456e799c79a2a83fc11b90cfe2",
+        "html_url": "https://github.com/torvalds/linux/commit/a5f85d7834f7e1456e799c79a2a83fc11b90cfe2",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/a5f85d7834f7e1456e799c79a2a83fc11b90cfe2/comments",
+        "author": null,
+        "committer": null,
+        "parents": [
+            {
+                "sha": "3123109284176b1532874591f7c81f3837bbdc17",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/3123109284176b1532874591f7c81f3837bbdc17",
+                "html_url": "https://github.com/torvalds/linux/commit/3123109284176b1532874591f7c81f3837bbdc17"
+            }
+        ]
+    },
+    {
+        "sha": "df561f6688fef775baa341a0f5d960becd248b11",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODpkZjU2MWY2Njg4ZmVmNzc1YmFhMzQxYTBmNWQ5NjBiZWNkMjQ4YjEx",
+        "commit": {
+            "author": {
+                "name": "Gustavo A. R. Silva",
+                "email": "gustavoars@kernel.org",
+                "date": "2020-08-23T22:36:59Z"
+            },
+            "committer": {
+                "name": "Gustavo A. R. Silva",
+                "email": "gustavoars@kernel.org",
+                "date": "2020-08-23T22:36:59Z"
+            },
+            "message": "treewide: Use fallthrough pseudo-keyword\n\nReplace the existing /* fall through */ comments and its variants with\nthe new pseudo-keyword macro fallthrough[1]. Also, remove unnecessary\nfall-through markings when it is the case.\n\n[1] https://www.kernel.org/doc/html/v5.7/process/deprecated.html?highlight=fallthrough#implicit-switch-case-fall-through\n\nSigned-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>",
+            "tree": {
+                "sha": "05a57bb60ea02d9119e42c5acbef603a30dfe2a3",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/05a57bb60ea02d9119e42c5acbef603a30dfe2a3"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/df561f6688fef775baa341a0f5d960becd248b11",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/df561f6688fef775baa341a0f5d960becd248b11",
+        "html_url": "https://github.com/torvalds/linux/commit/df561f6688fef775baa341a0f5d960becd248b11",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/df561f6688fef775baa341a0f5d960becd248b11/comments",
+        "author": {
+            "login": "GustavoARSilva",
+            "id": 245005,
+            "node_id": "MDQ6VXNlcjI0NTAwNQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/245005?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/GustavoARSilva",
+            "html_url": "https://github.com/GustavoARSilva",
+            "followers_url": "https://api.github.com/users/GustavoARSilva/followers",
+            "following_url": "https://api.github.com/users/GustavoARSilva/following{/other_user}",
+            "gists_url": "https://api.github.com/users/GustavoARSilva/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/GustavoARSilva/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/GustavoARSilva/subscriptions",
+            "organizations_url": "https://api.github.com/users/GustavoARSilva/orgs",
+            "repos_url": "https://api.github.com/users/GustavoARSilva/repos",
+            "events_url": "https://api.github.com/users/GustavoARSilva/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/GustavoARSilva/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "GustavoARSilva",
+            "id": 245005,
+            "node_id": "MDQ6VXNlcjI0NTAwNQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/245005?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/GustavoARSilva",
+            "html_url": "https://github.com/GustavoARSilva",
+            "followers_url": "https://api.github.com/users/GustavoARSilva/followers",
+            "following_url": "https://api.github.com/users/GustavoARSilva/following{/other_user}",
+            "gists_url": "https://api.github.com/users/GustavoARSilva/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/GustavoARSilva/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/GustavoARSilva/subscriptions",
+            "organizations_url": "https://api.github.com/users/GustavoARSilva/orgs",
+            "repos_url": "https://api.github.com/users/GustavoARSilva/repos",
+            "events_url": "https://api.github.com/users/GustavoARSilva/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/GustavoARSilva/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "d012a7190fc1fd72ed48911e77ca97ba4521bccd",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/d012a7190fc1fd72ed48911e77ca97ba4521bccd",
+                "html_url": "https://github.com/torvalds/linux/commit/d012a7190fc1fd72ed48911e77ca97ba4521bccd"
+            }
+        ]
+    },
+    {
+        "sha": "cc3c0b533ab9142eac2e291628fbfca3685f38cd",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODpjYzNjMGI1MzNhYjkxNDJlYWMyZTI5MTYyOGZiZmNhMzY4NWYzOGNk",
+        "commit": {
+            "author": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-12-21T05:16:49Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2020-02-07T19:48:35Z"
+            },
+            "message": "add prefix to fs_context->log\n\n... turning it into struct p_log embedded into fs_context.  Initialize\nthe prefix with fs_type->name, turning fs_parse() into a trivial\ninline wrapper for __fs_parse().\n\nThis makes fs_parameter_description->name completely unused.\n\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "1e030853f8a0bed9225eb392a4faad4f24477fb5",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/1e030853f8a0bed9225eb392a4faad4f24477fb5"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/cc3c0b533ab9142eac2e291628fbfca3685f38cd",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/cc3c0b533ab9142eac2e291628fbfca3685f38cd",
+        "html_url": "https://github.com/torvalds/linux/commit/cc3c0b533ab9142eac2e291628fbfca3685f38cd",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/cc3c0b533ab9142eac2e291628fbfca3685f38cd/comments",
+        "author": null,
+        "committer": null,
+        "parents": [
+            {
+                "sha": "c80c98f0dc5dc709b04254b5f30145c6ab8800a4",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/c80c98f0dc5dc709b04254b5f30145c6ab8800a4",
+                "html_url": "https://github.com/torvalds/linux/commit/c80c98f0dc5dc709b04254b5f30145c6ab8800a4"
+            }
+        ]
+    },
+    {
+        "sha": "aa1918f9491442a007a0cbe41a31539233209777",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODphYTE5MThmOTQ5MTQ0MmEwMDdhMGNiZTQxYTMxNTM5MjMzMjA5Nzc3",
+        "commit": {
+            "author": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-12-18T01:09:08Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2020-02-07T19:48:30Z"
+            },
+            "message": "get rid of fs_value_is_filename_empty\n\nIts behaviour is identical to that of fs_value_is_filename.\nIt makes no sense, anyway - LOOKUP_EMPTY affects nothing\nwhatsoever once the pathname has been imported from userland.\nAnd both fs_value_is_filename and fs_value_is_filename_empty\ncarry an already imported pathname.\n\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "27107d8f773475bcee68123ec521d8ca9fdbaf95",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/27107d8f773475bcee68123ec521d8ca9fdbaf95"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/aa1918f9491442a007a0cbe41a31539233209777",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/aa1918f9491442a007a0cbe41a31539233209777",
+        "html_url": "https://github.com/torvalds/linux/commit/aa1918f9491442a007a0cbe41a31539233209777",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/aa1918f9491442a007a0cbe41a31539233209777/comments",
+        "author": null,
+        "committer": null,
+        "parents": [
+            {
+                "sha": "34264ae3fa22429ec4fd9151602342d1f21486eb",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/34264ae3fa22429ec4fd9151602342d1f21486eb",
+                "html_url": "https://github.com/torvalds/linux/commit/34264ae3fa22429ec4fd9151602342d1f21486eb"
+            }
+        ]
+    },
+    {
+        "sha": "933a90bf4f3505f8ec83bda21a3c7d70d7c2b426",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODo5MzNhOTBiZjRmMzUwNWY4ZWM4M2JkYTIxYTNjN2Q3MGQ3YzJiNDI2",
+        "commit": {
+            "author": {
+                "name": "Linus Torvalds",
+                "email": "torvalds@linux-foundation.org",
+                "date": "2019-07-19T17:42:02Z"
+            },
+            "committer": {
+                "name": "Linus Torvalds",
+                "email": "torvalds@linux-foundation.org",
+                "date": "2019-07-19T17:42:02Z"
+            },
+            "message": "Merge branch 'work.mount0' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs\n\nPull vfs mount updates from Al Viro:\n \"The first part of mount updates.\n\n  Convert filesystems to use the new mount API\"\n\n* 'work.mount0' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (63 commits)\n  mnt_init(): call shmem_init() unconditionally\n  constify ksys_mount() string arguments\n  don't bother with registering rootfs\n  init_rootfs(): don't bother with init_ramfs_fs()\n  vfs: Convert smackfs to use the new mount API\n  vfs: Convert selinuxfs to use the new mount API\n  vfs: Convert securityfs to use the new mount API\n  vfs: Convert apparmorfs to use the new mount API\n  vfs: Convert openpromfs to use the new mount API\n  vfs: Convert xenfs to use the new mount API\n  vfs: Convert gadgetfs to use the new mount API\n  vfs: Convert oprofilefs to use the new mount API\n  vfs: Convert ibmasmfs to use the new mount API\n  vfs: Convert qib_fs/ipathfs to use the new mount API\n  vfs: Convert efivarfs to use the new mount API\n  vfs: Convert configfs to use the new mount API\n  vfs: Convert binfmt_misc to use the new mount API\n  convenience helper: get_tree_single()\n  convenience helper get_tree_nodev()\n  vfs: Kill sget_userns()\n  ...",
+            "tree": {
+                "sha": "ca81c209000a15670e3582760ad9bae1a9cde215",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/ca81c209000a15670e3582760ad9bae1a9cde215"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/933a90bf4f3505f8ec83bda21a3c7d70d7c2b426",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/933a90bf4f3505f8ec83bda21a3c7d70d7c2b426",
+        "html_url": "https://github.com/torvalds/linux/commit/933a90bf4f3505f8ec83bda21a3c7d70d7c2b426",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/933a90bf4f3505f8ec83bda21a3c7d70d7c2b426/comments",
+        "author": {
+            "login": "torvalds",
+            "id": 1024025,
+            "node_id": "MDQ6VXNlcjEwMjQwMjU=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1024025?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/torvalds",
+            "html_url": "https://github.com/torvalds",
+            "followers_url": "https://api.github.com/users/torvalds/followers",
+            "following_url": "https://api.github.com/users/torvalds/following{/other_user}",
+            "gists_url": "https://api.github.com/users/torvalds/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/torvalds/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/torvalds/subscriptions",
+            "organizations_url": "https://api.github.com/users/torvalds/orgs",
+            "repos_url": "https://api.github.com/users/torvalds/repos",
+            "events_url": "https://api.github.com/users/torvalds/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/torvalds/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "torvalds",
+            "id": 1024025,
+            "node_id": "MDQ6VXNlcjEwMjQwMjU=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1024025?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/torvalds",
+            "html_url": "https://github.com/torvalds",
+            "followers_url": "https://api.github.com/users/torvalds/followers",
+            "following_url": "https://api.github.com/users/torvalds/following{/other_user}",
+            "gists_url": "https://api.github.com/users/torvalds/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/torvalds/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/torvalds/subscriptions",
+            "organizations_url": "https://api.github.com/users/torvalds/orgs",
+            "repos_url": "https://api.github.com/users/torvalds/repos",
+            "events_url": "https://api.github.com/users/torvalds/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/torvalds/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "5f4fc6d440d77a2cf74fe4ea56955674ac7e35e7",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/5f4fc6d440d77a2cf74fe4ea56955674ac7e35e7",
+                "html_url": "https://github.com/torvalds/linux/commit/5f4fc6d440d77a2cf74fe4ea56955674ac7e35e7"
+            },
+            {
+                "sha": "037f11b4752f717201143a1dc5d6acf3cb71ddfa",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/037f11b4752f717201143a1dc5d6acf3cb71ddfa",
+                "html_url": "https://github.com/torvalds/linux/commit/037f11b4752f717201143a1dc5d6acf3cb71ddfa"
+            }
+        ]
+    },
+    {
+        "sha": "c3aabf0780a506225b53bfe2b5177dd5dfec093d",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk",
+        "commit": {
+            "author": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-05-13T16:57:22Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-05-25T22:00:02Z"
+            },
+            "message": "move mount_capable() further out\n\nCall graph of vfs_get_tree():\n\tvfs_fsconfig_locked()\t# neither kernmount, nor submount\n\tdo_new_mount()\t\t# neither kernmount, nor submount\n\tfc_mount()\n\t\tafs_mntpt_do_automount()\t# submount\n\t\tmount_one_hugetlbfs()\t\t# kernmount\n\t\tpid_ns_prepare_proc()\t\t# kernmount\n\t\tmq_create_mount()\t\t# kernmount\n\t\tvfs_kern_mount()\n\t\t\tsimple_pin_fs()\t\t# kernmount\n\t\t\tvfs_submount()\t\t# submount\n\t\t\tkern_mount()\t\t# kernmount\n\t\t\tinit_mount_tree()\n\t\t\tbtrfs_mount()\n\t\t\tnfs_do_root_mount()\n\n\tThe first two need the check (unconditionally).\ninit_mount_tree() is setting rootfs up; any capability\nchecks make zero sense for that one.  And btrfs_mount()/\nnfs_do_root_mount() have the checks already done in their\ncallers.\n\n\tIOW, we can shift mount_capable() handling into\nthe two callers - one in the normal case of mount(2),\nanother - in fsconfig(2) handling of FSCONFIG_CMD_CREATE.\nI.e. the syscalls that set a new filesystem up.\n\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "95e0457725a49ae8849f4e17014de6871b78cac3",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/95e0457725a49ae8849f4e17014de6871b78cac3"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/c3aabf0780a506225b53bfe2b5177dd5dfec093d",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/c3aabf0780a506225b53bfe2b5177dd5dfec093d",
+        "html_url": "https://github.com/torvalds/linux/commit/c3aabf0780a506225b53bfe2b5177dd5dfec093d",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/c3aabf0780a506225b53bfe2b5177dd5dfec093d/comments",
+        "author": null,
+        "committer": null,
+        "parents": [
+            {
+                "sha": "059338aae33165179352a26b58d815801072c87d",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/059338aae33165179352a26b58d815801072c87d",
+                "html_url": "https://github.com/torvalds/linux/commit/059338aae33165179352a26b58d815801072c87d"
+            }
+        ]
+    },
+    {
+        "sha": "b4d0d230ccfb5d1a9ea85da64aa584df7c148ee9",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODpiNGQwZDIzMGNjZmI1ZDFhOWVhODVkYTY0YWE1ODRkZjdjMTQ4ZWU5",
+        "commit": {
+            "author": {
+                "name": "Thomas Gleixner",
+                "email": "tglx@linutronix.de",
+                "date": "2019-05-20T17:08:01Z"
+            },
+            "committer": {
+                "name": "Greg Kroah-Hartman",
+                "email": "gregkh@linuxfoundation.org",
+                "date": "2019-05-24T15:27:11Z"
+            },
+            "message": "treewide: Replace GPLv2 boilerplate/reference with SPDX - rule 36\n\nBased on 1 normalized pattern(s):\n\n  this program is free software you can redistribute it and or modify\n  it under the terms of the gnu general public licence as published by\n  the free software foundation either version 2 of the licence or at\n  your option any later version\n\nextracted by the scancode license scanner the SPDX license identifier\n\n  GPL-2.0-or-later\n\nhas been chosen to replace the boilerplate/reference in 114 file(s).\n\nSigned-off-by: Thomas Gleixner <tglx@linutronix.de>\nReviewed-by: Allison Randal <allison@lohutok.net>\nReviewed-by: Kate Stewart <kstewart@linuxfoundation.org>\nCc: linux-spdx@vger.kernel.org\nLink: https://lkml.kernel.org/r/20190520170857.552531963@linutronix.de\nSigned-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>",
+            "tree": {
+                "sha": "d38300f7dec8eca82413bffe276e095dc14a0eb0",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/d38300f7dec8eca82413bffe276e095dc14a0eb0"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/b4d0d230ccfb5d1a9ea85da64aa584df7c148ee9",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/b4d0d230ccfb5d1a9ea85da64aa584df7c148ee9",
+        "html_url": "https://github.com/torvalds/linux/commit/b4d0d230ccfb5d1a9ea85da64aa584df7c148ee9",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/b4d0d230ccfb5d1a9ea85da64aa584df7c148ee9/comments",
+        "author": {
+            "login": "KAGA-KOKO",
+            "id": 171241280,
+            "node_id": "U_kgDOCjTvQA",
+            "avatar_url": "https://avatars.githubusercontent.com/u/171241280?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/KAGA-KOKO",
+            "html_url": "https://github.com/KAGA-KOKO",
+            "followers_url": "https://api.github.com/users/KAGA-KOKO/followers",
+            "following_url": "https://api.github.com/users/KAGA-KOKO/following{/other_user}",
+            "gists_url": "https://api.github.com/users/KAGA-KOKO/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/KAGA-KOKO/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/KAGA-KOKO/subscriptions",
+            "organizations_url": "https://api.github.com/users/KAGA-KOKO/orgs",
+            "repos_url": "https://api.github.com/users/KAGA-KOKO/repos",
+            "events_url": "https://api.github.com/users/KAGA-KOKO/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/KAGA-KOKO/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "gregkh",
+            "id": 14953,
+            "node_id": "MDQ6VXNlcjE0OTUz",
+            "avatar_url": "https://avatars.githubusercontent.com/u/14953?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/gregkh",
+            "html_url": "https://github.com/gregkh",
+            "followers_url": "https://api.github.com/users/gregkh/followers",
+            "following_url": "https://api.github.com/users/gregkh/following{/other_user}",
+            "gists_url": "https://api.github.com/users/gregkh/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/gregkh/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/gregkh/subscriptions",
+            "organizations_url": "https://api.github.com/users/gregkh/orgs",
+            "repos_url": "https://api.github.com/users/gregkh/repos",
+            "events_url": "https://api.github.com/users/gregkh/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/gregkh/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "68252eb5f8413a5bdaac8644be9067916e58df8c",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/68252eb5f8413a5bdaac8644be9067916e58df8c",
+                "html_url": "https://github.com/torvalds/linux/commit/68252eb5f8413a5bdaac8644be9067916e58df8c"
+            }
+        ]
+    },
+    {
+        "sha": "1cdc415f10831c18912943017d06b2be948c67b4",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODoxY2RjNDE1ZjEwODMxYzE4OTEyOTQzMDE3ZDA2YjJiZTk0OGM2N2I0",
+        "commit": {
+            "author": {
+                "name": "Christian Brauner",
+                "email": "christian@brauner.io",
+                "date": "2019-05-16T11:52:20Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-05-16T16:23:45Z"
+            },
+            "message": "uapi, fsopen: use square brackets around \"fscontext\" [ver #2]\n\nMake the name of the anon inode fd \"[fscontext]\" instead of \"fscontext\".\nThis is minor but most core-kernel anon inode fds already carry square\nbrackets around their name:\n\n[eventfd]\n[eventpoll]\n[fanotify]\n[io_uring]\n[pidfd]\n[signalfd]\n[timerfd]\n[userfaultfd]\n\nFor the sake of consistency lets do the same for the fscontext anon inode\nfd that comes with the new mount api.\n\nSigned-off-by: Christian Brauner <christian@brauner.io>\nSigned-off-by: David Howells <dhowells@redhat.com>\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "42ff02a824bb5fc54c63fe469845a1eb25880745",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/42ff02a824bb5fc54c63fe469845a1eb25880745"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/1cdc415f10831c18912943017d06b2be948c67b4",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/1cdc415f10831c18912943017d06b2be948c67b4",
+        "html_url": "https://github.com/torvalds/linux/commit/1cdc415f10831c18912943017d06b2be948c67b4",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/1cdc415f10831c18912943017d06b2be948c67b4/comments",
+        "author": {
+            "login": "brauner",
+            "id": 7353573,
+            "node_id": "MDQ6VXNlcjczNTM1NzM=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7353573?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/brauner",
+            "html_url": "https://github.com/brauner",
+            "followers_url": "https://api.github.com/users/brauner/followers",
+            "following_url": "https://api.github.com/users/brauner/following{/other_user}",
+            "gists_url": "https://api.github.com/users/brauner/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/brauner/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/brauner/subscriptions",
+            "organizations_url": "https://api.github.com/users/brauner/orgs",
+            "repos_url": "https://api.github.com/users/brauner/repos",
+            "events_url": "https://api.github.com/users/brauner/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/brauner/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": null,
+        "parents": [
+            {
+                "sha": "05883eee857eab4693e7d13ebab06716475c5754",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/05883eee857eab4693e7d13ebab06716475c5754",
+                "html_url": "https://github.com/torvalds/linux/commit/05883eee857eab4693e7d13ebab06716475c5754"
+            }
+        ]
+    },
+    {
+        "sha": "cf3cba4a429be43e5527a3f78859b1bfd9ebc5fb",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODpjZjNjYmE0YTQyOWJlNDNlNTUyN2EzZjc4ODU5YjFiZmQ5ZWJjNWZi",
+        "commit": {
+            "author": {
+                "name": "David Howells",
+                "email": "dhowells@redhat.com",
+                "date": "2018-11-01T23:36:23Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-03-20T22:49:06Z"
+            },
+            "message": "vfs: syscall: Add fspick() to select a superblock for reconfiguration\n\nProvide an fspick() system call that can be used to pick an existing\nmountpoint into an fs_context which can thereafter be used to reconfigure a\nsuperblock (equivalent of the superblock side of -o remount).\n\nThis looks like:\n\n\tint fd = fspick(AT_FDCWD, \"/mnt\",\n\t\t\tFSPICK_CLOEXEC | FSPICK_NO_AUTOMOUNT);\n\tfsconfig(fd, FSCONFIG_SET_FLAG, \"intr\", NULL, 0);\n\tfsconfig(fd, FSCONFIG_SET_FLAG, \"noac\", NULL, 0);\n\tfsconfig(fd, FSCONFIG_CMD_RECONFIGURE, NULL, NULL, 0);\n\nAt the point of fspick being called, the file descriptor referring to the\nfilesystem context is in exactly the same state as the one that was created\nby fsopen() after fsmount() has been successfully called.\n\nSigned-off-by: David Howells <dhowells@redhat.com>\ncc: linux-api@vger.kernel.org\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "41f4c4a999e7e22644b0f3a220208519dc1f4ccd",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/41f4c4a999e7e22644b0f3a220208519dc1f4ccd"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/cf3cba4a429be43e5527a3f78859b1bfd9ebc5fb",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/cf3cba4a429be43e5527a3f78859b1bfd9ebc5fb",
+        "html_url": "https://github.com/torvalds/linux/commit/cf3cba4a429be43e5527a3f78859b1bfd9ebc5fb",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/cf3cba4a429be43e5527a3f78859b1bfd9ebc5fb/comments",
+        "author": {
+            "login": "dhowells",
+            "id": 22451301,
+            "node_id": "MDQ6VXNlcjIyNDUxMzAx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/22451301?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/dhowells",
+            "html_url": "https://github.com/dhowells",
+            "followers_url": "https://api.github.com/users/dhowells/followers",
+            "following_url": "https://api.github.com/users/dhowells/following{/other_user}",
+            "gists_url": "https://api.github.com/users/dhowells/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/dhowells/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/dhowells/subscriptions",
+            "organizations_url": "https://api.github.com/users/dhowells/orgs",
+            "repos_url": "https://api.github.com/users/dhowells/repos",
+            "events_url": "https://api.github.com/users/dhowells/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/dhowells/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": null,
+        "parents": [
+            {
+                "sha": "93766fbd2696c2c4453dd8e1070977e9cd4e6b6d",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/93766fbd2696c2c4453dd8e1070977e9cd4e6b6d",
+                "html_url": "https://github.com/torvalds/linux/commit/93766fbd2696c2c4453dd8e1070977e9cd4e6b6d"
+            }
+        ]
+    },
+    {
+        "sha": "ecdab150fddb42fe6a739335257949220033b782",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy",
+        "commit": {
+            "author": {
+                "name": "David Howells",
+                "email": "dhowells@redhat.com",
+                "date": "2018-11-01T23:36:09Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-03-20T22:49:06Z"
+            },
+            "message": "vfs: syscall: Add fsconfig() for configuring and managing a context\n\nAdd a syscall for configuring a filesystem creation context and triggering\nactions upon it, to be used in conjunction with fsopen, fspick and fsmount.\n\n    long fsconfig(int fs_fd, unsigned int cmd, const char *key,\n\t\t  const void *value, int aux);\n\nWhere fs_fd indicates the context, cmd indicates the action to take, key\nindicates the parameter name for parameter-setting actions and, if needed,\nvalue points to a buffer containing the value and aux can give more\ninformation for the value.\n\nThe following command IDs are proposed:\n\n (*) FSCONFIG_SET_FLAG: No value is specified.  The parameter must be\n     boolean in nature.  The key may be prefixed with \"no\" to invert the\n     setting. value must be NULL and aux must be 0.\n\n (*) FSCONFIG_SET_STRING: A string value is specified.  The parameter can\n     be expecting boolean, integer, string or take a path.  A conversion to\n     an appropriate type will be attempted (which may include looking up as\n     a path).  value points to a NUL-terminated string and aux must be 0.\n\n (*) FSCONFIG_SET_BINARY: A binary blob is specified.  value points to\n     the blob and aux indicates its size.  The parameter must be expecting\n     a blob.\n\n (*) FSCONFIG_SET_PATH: A non-empty path is specified.  The parameter must\n     be expecting a path object.  value points to a NUL-terminated string\n     that is the path and aux is a file descriptor at which to start a\n     relative lookup or AT_FDCWD.\n\n (*) FSCONFIG_SET_PATH_EMPTY: As fsconfig_set_path, but with AT_EMPTY_PATH\n     implied.\n\n (*) FSCONFIG_SET_FD: An open file descriptor is specified.  value must\n     be NULL and aux indicates the file descriptor.\n\n (*) FSCONFIG_CMD_CREATE: Trigger superblock creation.\n\n (*) FSCONFIG_CMD_RECONFIGURE: Trigger superblock reconfiguration.\n\nFor the \"set\" command IDs, the idea is that the file_system_type will point\nto a list of parameters and the types of value that those parameters expect\nto take.  The core code can then do the parse and argument conversion and\nthen give the LSM and FS a cooked option or array of options to use.\n\nSource specification is also done the same way same way, using special keys\n\"source\", \"source1\", \"source2\", etc..\n\n[!] Note that, for the moment, the key and value are just glued back\ntogether and handed to the filesystem.  Every filesystem that uses options\nuses match_token() and co. to do this, and this will need to be changed -\nbut not all at once.\n\nExample usage:\n\n    fd = fsopen(\"ext4\", FSOPEN_CLOEXEC);\n    fsconfig(fd, fsconfig_set_path, \"source\", \"/dev/sda1\", AT_FDCWD);\n    fsconfig(fd, fsconfig_set_path_empty, \"journal_path\", \"\", journal_fd);\n    fsconfig(fd, fsconfig_set_fd, \"journal_fd\", \"\", journal_fd);\n    fsconfig(fd, fsconfig_set_flag, \"user_xattr\", NULL, 0);\n    fsconfig(fd, fsconfig_set_flag, \"noacl\", NULL, 0);\n    fsconfig(fd, fsconfig_set_string, \"sb\", \"1\", 0);\n    fsconfig(fd, fsconfig_set_string, \"errors\", \"continue\", 0);\n    fsconfig(fd, fsconfig_set_string, \"data\", \"journal\", 0);\n    fsconfig(fd, fsconfig_set_string, \"context\", \"unconfined_u:...\", 0);\n    fsconfig(fd, fsconfig_cmd_create, NULL, NULL, 0);\n    mfd = fsmount(fd, FSMOUNT_CLOEXEC, MS_NOEXEC);\n\nor:\n\n    fd = fsopen(\"ext4\", FSOPEN_CLOEXEC);\n    fsconfig(fd, fsconfig_set_string, \"source\", \"/dev/sda1\", 0);\n    fsconfig(fd, fsconfig_cmd_create, NULL, NULL, 0);\n    mfd = fsmount(fd, FSMOUNT_CLOEXEC, MS_NOEXEC);\n\nor:\n\n    fd = fsopen(\"afs\", FSOPEN_CLOEXEC);\n    fsconfig(fd, fsconfig_set_string, \"source\", \"#grand.central.org:root.cell\", 0);\n    fsconfig(fd, fsconfig_cmd_create, NULL, NULL, 0);\n    mfd = fsmount(fd, FSMOUNT_CLOEXEC, MS_NOEXEC);\n\nor:\n\n    fd = fsopen(\"jffs2\", FSOPEN_CLOEXEC);\n    fsconfig(fd, fsconfig_set_string, \"source\", \"mtd0\", 0);\n    fsconfig(fd, fsconfig_cmd_create, NULL, NULL, 0);\n    mfd = fsmount(fd, FSMOUNT_CLOEXEC, MS_NOEXEC);\n\nSigned-off-by: David Howells <dhowells@redhat.com>\ncc: linux-api@vger.kernel.org\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "df036d4821bb48fe0f369cc91087fcf442d72339",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/df036d4821bb48fe0f369cc91087fcf442d72339"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/ecdab150fddb42fe6a739335257949220033b782",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/ecdab150fddb42fe6a739335257949220033b782",
+        "html_url": "https://github.com/torvalds/linux/commit/ecdab150fddb42fe6a739335257949220033b782",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/ecdab150fddb42fe6a739335257949220033b782/comments",
+        "author": {
+            "login": "dhowells",
+            "id": 22451301,
+            "node_id": "MDQ6VXNlcjIyNDUxMzAx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/22451301?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/dhowells",
+            "html_url": "https://github.com/dhowells",
+            "followers_url": "https://api.github.com/users/dhowells/followers",
+            "following_url": "https://api.github.com/users/dhowells/following{/other_user}",
+            "gists_url": "https://api.github.com/users/dhowells/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/dhowells/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/dhowells/subscriptions",
+            "organizations_url": "https://api.github.com/users/dhowells/orgs",
+            "repos_url": "https://api.github.com/users/dhowells/repos",
+            "events_url": "https://api.github.com/users/dhowells/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/dhowells/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": null,
+        "parents": [
+            {
+                "sha": "007ec26cdc9fefacbed85b592afc69413194499c",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/007ec26cdc9fefacbed85b592afc69413194499c",
+                "html_url": "https://github.com/torvalds/linux/commit/007ec26cdc9fefacbed85b592afc69413194499c"
+            }
+        ]
+    },
+    {
+        "sha": "007ec26cdc9fefacbed85b592afc69413194499c",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj",
+        "commit": {
+            "author": {
+                "name": "David Howells",
+                "email": "dhowells@redhat.com",
+                "date": "2018-11-01T23:34:29Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-03-20T22:49:06Z"
+            },
+            "message": "vfs: Implement logging through fs_context\n\nImplement the ability for filesystems to log error, warning and\ninformational messages through the fs_context.  These can be extracted by\nuserspace by reading from an fd created by fsopen().\n\nError messages are prefixed with \"e \", warnings with \"w \" and informational\nmessages with \"i \".\n\nInside the kernel, formatted messages are malloc'd but unformatted messages\nare not copied if they're either in the core .rodata section or in the\n.rodata section of the filesystem module pinned by fs_context::fs_type.\nThe messages are only good till the fs_type is released.\n\nNote that the logging object is shared between duplicated fs_context\nstructures.  This is so that such as NFS which do a mount within a mount\ncan get at least some of the errors from the inner mount.\n\nFive logging functions are provided for this:\n\n (1) void logfc(struct fs_context *fc, const char *fmt, ...);\n\n     This logs a message into the context.  If the buffer is full, the\n     earliest message is discarded.\n\n (2) void errorf(fc, fmt, ...);\n\n     This wraps logfc() to log an error.\n\n (3) void invalf(fc, fmt, ...);\n\n     This wraps errorf() and returns -EINVAL for convenience.\n\n (4) void warnf(fc, fmt, ...);\n\n     This wraps logfc() to log a warning.\n\n (5) void infof(fc, fmt, ...);\n\n     This wraps logfc() to log an informational message.\n\nSigned-off-by: David Howells <dhowells@redhat.com>\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "757bc7472e25a91db0109784d4b2da59ed23554b",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/757bc7472e25a91db0109784d4b2da59ed23554b"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/007ec26cdc9fefacbed85b592afc69413194499c",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/007ec26cdc9fefacbed85b592afc69413194499c",
+        "html_url": "https://github.com/torvalds/linux/commit/007ec26cdc9fefacbed85b592afc69413194499c",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/007ec26cdc9fefacbed85b592afc69413194499c/comments",
+        "author": {
+            "login": "dhowells",
+            "id": 22451301,
+            "node_id": "MDQ6VXNlcjIyNDUxMzAx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/22451301?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/dhowells",
+            "html_url": "https://github.com/dhowells",
+            "followers_url": "https://api.github.com/users/dhowells/followers",
+            "following_url": "https://api.github.com/users/dhowells/following{/other_user}",
+            "gists_url": "https://api.github.com/users/dhowells/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/dhowells/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/dhowells/subscriptions",
+            "organizations_url": "https://api.github.com/users/dhowells/orgs",
+            "repos_url": "https://api.github.com/users/dhowells/repos",
+            "events_url": "https://api.github.com/users/dhowells/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/dhowells/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": null,
+        "parents": [
+            {
+                "sha": "24dcb3d90a1f67fe08c68a004af37df059d74005",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/24dcb3d90a1f67fe08c68a004af37df059d74005",
+                "html_url": "https://github.com/torvalds/linux/commit/24dcb3d90a1f67fe08c68a004af37df059d74005"
+            }
+        ]
+    },
+    {
+        "sha": "24dcb3d90a1f67fe08c68a004af37df059d74005",
+        "node_id": "MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1",
+        "commit": {
+            "author": {
+                "name": "David Howells",
+                "email": "dhowells@redhat.com",
+                "date": "2018-11-01T23:33:31Z"
+            },
+            "committer": {
+                "name": "Al Viro",
+                "email": "viro@zeniv.linux.org.uk",
+                "date": "2019-03-20T22:49:06Z"
+            },
+            "message": "vfs: syscall: Add fsopen() to prepare for superblock creation\n\nProvide an fsopen() system call that starts the process of preparing to\ncreate a superblock that will then be mountable, using an fd as a context\nhandle.  fsopen() is given the name of the filesystem that will be used:\n\n\tint mfd = fsopen(const char *fsname, unsigned int flags);\n\nwhere flags can be 0 or FSOPEN_CLOEXEC.\n\nFor example:\n\n\tsfd = fsopen(\"ext4\", FSOPEN_CLOEXEC);\n\tfsconfig(sfd, FSCONFIG_SET_PATH, \"source\", \"/dev/sda1\", AT_FDCWD);\n\tfsconfig(sfd, FSCONFIG_SET_FLAG, \"noatime\", NULL, 0);\n\tfsconfig(sfd, FSCONFIG_SET_FLAG, \"acl\", NULL, 0);\n\tfsconfig(sfd, FSCONFIG_SET_FLAG, \"user_xattr\", NULL, 0);\n\tfsconfig(sfd, FSCONFIG_SET_STRING, \"sb\", \"1\", 0);\n\tfsconfig(sfd, FSCONFIG_CMD_CREATE, NULL, NULL, 0);\n\tfsinfo(sfd, NULL, ...); // query new superblock attributes\n\tmfd = fsmount(sfd, FSMOUNT_CLOEXEC, MS_RELATIME);\n\tmove_mount(mfd, \"\", sfd, AT_FDCWD, \"/mnt\", MOVE_MOUNT_F_EMPTY_PATH);\n\n\tsfd = fsopen(\"afs\", -1);\n\tfsconfig(fd, FSCONFIG_SET_STRING, \"source\",\n\t\t \"#grand.central.org:root.cell\", 0);\n\tfsconfig(fd, FSCONFIG_CMD_CREATE, NULL, NULL, 0);\n\tmfd = fsmount(sfd, 0, MS_NODEV);\n\tmove_mount(mfd, \"\", sfd, AT_FDCWD, \"/mnt\", MOVE_MOUNT_F_EMPTY_PATH);\n\nIf an error is reported at any step, an error message may be available to be\nread() back (ENODATA will be reported if there isn't an error available) in\nthe form:\n\n\t\"e <subsys>:<problem>\"\n\t\"e SELinux:Mount on mountpoint not permitted\"\n\nOnce fsmount() has been called, further fsconfig() calls will incur EBUSY,\neven if the fsmount() fails.  read() is still possible to retrieve error\ninformation.\n\nThe fsopen() syscall creates a mount context and hangs it of the fd that it\nreturns.\n\nNetlink is not used because it is optional and would make the core VFS\ndependent on the networking layer and also potentially add network\nnamespace issues.\n\nNote that, for the moment, the caller must have SYS_CAP_ADMIN to use\nfsopen().\n\nSigned-off-by: David Howells <dhowells@redhat.com>\ncc: linux-api@vger.kernel.org\nSigned-off-by: Al Viro <viro@zeniv.linux.org.uk>",
+            "tree": {
+                "sha": "14f5bfaf1a0d7dcb56a1d2217d4ce13d1e447dea",
+                "url": "https://api.github.com/repos/torvalds/linux/git/trees/14f5bfaf1a0d7dcb56a1d2217d4ce13d1e447dea"
+            },
+            "url": "https://api.github.com/repos/torvalds/linux/git/commits/24dcb3d90a1f67fe08c68a004af37df059d74005",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/torvalds/linux/commits/24dcb3d90a1f67fe08c68a004af37df059d74005",
+        "html_url": "https://github.com/torvalds/linux/commit/24dcb3d90a1f67fe08c68a004af37df059d74005",
+        "comments_url": "https://api.github.com/repos/torvalds/linux/commits/24dcb3d90a1f67fe08c68a004af37df059d74005/comments",
+        "author": {
+            "login": "dhowells",
+            "id": 22451301,
+            "node_id": "MDQ6VXNlcjIyNDUxMzAx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/22451301?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/dhowells",
+            "html_url": "https://github.com/dhowells",
+            "followers_url": "https://api.github.com/users/dhowells/followers",
+            "following_url": "https://api.github.com/users/dhowells/following{/other_user}",
+            "gists_url": "https://api.github.com/users/dhowells/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/dhowells/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/dhowells/subscriptions",
+            "organizations_url": "https://api.github.com/users/dhowells/orgs",
+            "repos_url": "https://api.github.com/users/dhowells/repos",
+            "events_url": "https://api.github.com/users/dhowells/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/dhowells/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+        },
+        "committer": null,
+        "parents": [
+            {
+                "sha": "dadd2299ab61fc2b55b95b7b3a8f674cdd3b69c9",
+                "url": "https://api.github.com/repos/torvalds/linux/commits/dadd2299ab61fc2b55b95b7b3a8f674cdd3b69c9",
+                "html_url": "https://github.com/torvalds/linux/commit/dadd2299ab61fc2b55b95b7b3a8f674cdd3b69c9"
+            }
+        ]
+    }
+]

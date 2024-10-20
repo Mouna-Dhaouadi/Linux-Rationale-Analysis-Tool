@@ -1,0 +1,359 @@
+text;predicted_decision;predicted_rationale
+fsconfig: ensure that dirfd is set to aux;0;0
+"The code in fs_param_is_fd() expects param->dirfd to be set to the fd
+that was used to set param->file to initialize result->uint_32";0;0
+"So make
+sure it's set so users like autofs using FSCONFIG_SET_FD with the new
+mount api can rely on this to be set to the correct value.";0;1
+fs: add FSCONFIG_CMD_CREATE_EXCL;1;0
+"Summary
+This introduces FSCONFIG_CMD_CREATE_EXCL which will allows userspace to
+implement something like mount -t ext4 --exclusive /dev/sda /B which
+fails if a superblock for the requested filesystem does already exist";1;0
+"Before this patch
+$ sudo ./move-mount -f xfs -o source=/dev/sda4 /A
+Requesting filesystem type xfs
+Mount options requested: source=/dev/sda4
+Attaching mount at /A
+Moving single attached mount
+Setting key(source) with val(/dev/sda4)
+$ sudo ./move-mount -f xfs -o source=/dev/sda4 /B
+Requesting filesystem type xfs
+Mount options requested: source=/dev/sda4
+Attaching mount at /B
+Moving single attached mount
+Setting key(source) with val(/dev/sda4)
+After this patch with --exclusive as a switch for FSCONFIG_CMD_CREATE_EXCL
+$ sudo ./move-mount -f xfs --exclusive -o source=/dev/sda4 /A
+Requesting filesystem type xfs
+Request exclusive superblock creation
+Mount options requested: source=/dev/sda4
+Attaching mount at /A
+Moving single attached mount
+Setting key(source) with val(/dev/sda4)
+$ sudo ./move-mount -f xfs --exclusive -o source=/dev/sda4 /B
+Requesting filesystem type xfs
+Request exclusive superblock creation
+Mount options requested: source=/dev/sda4
+Attaching mount at /B
+Moving single attached mount
+Setting key(source) with val(/dev/sda4)
+Device or resource busy | move-mount.c: 300: do_fsconfig: i xfs: reusing existing filesystem not allowed
+Details
+As mentioned on the list (cf";1;0
+"[1]-[3]) mount requests like
+mount -t ext4 /dev/sda /A are ambigous for userspace";0;0
+"Either a new
+superblock has been created and mounted or an existing superblock has
+been reused and a bind-mount has been created";0;1
+"This becomes clear in the following example where two processes create
+the same mount for the same block device";0;1
+"P1                                                              P2
+// wins and creates superblock
+fsconfig(fd_fs, FSCONFIG_CMD_CREATE, ...)
+                                                                // finds compatible superblock of P1
+                                                                // spins until P1 sets SB_BORN and grabs a reference
+                                                                fsconfig(fd_fs, FSCONFIG_CMD_CREATE, ...)
+move_mount(fd_mnt1, ""/A"")                                       move_mount(fd_mnt2, ""/B"")
+Not just does P2 get a bind-mount but the mount options that P2
+requestes are silently ignored";1;0
+"The VFS itself doesn't, can't and
+shouldn't enforce filesystem specific mount option compatibility";0;1
+"It
+only enforces incompatibility for read-only <-> read-write transitions";1;0
+"mount -t ext4       /dev/sda /A
+mount -t ext4 -o ro /dev/sda /B
+The read-only request will fail with EBUSY as the VFS can't just
+silently transition a superblock from read-write to read-only or vica
+versa without risking security issues";0;1
+"To userspace this silent superblock reuse can become a security issue in
+because there is currently no straightforward way for userspace to know
+that they did indeed manage to create a new superblock and didn't just
+reuse an existing one";1;1
+"This adds a new FSCONFIG_CMD_CREATE_EXCL command to fsconfig() that
+returns EBUSY if an existing superblock would be reused";1;1
+"Userspace that
+needs to be sure that it did create a new superblock with the requested
+mount options can request superblock creation using this command";1;1
+"If the
+command succeeds they can be sure that they did create a new superblock
+with the requested mount options";1;1
+This requires the new mount api;0;1
+"With the old mount api it would be
+necessary to plumb this through every legacy filesystem's
+file_system_type->mount() method";1;1
+"If they want this feature they are
+most welcome to switch to the new mount api";1;1
+"Following is an analysis of the effect of FSCONFIG_CMD_CREATE_EXCL on
+each high-level superblock creation helper";1;0
+"(1) get_tree_nodev()
+    Always allocate new superblock";1;0
+"Hence, FSCONFIG_CMD_CREATE and
+    FSCONFIG_CMD_CREATE_EXCL are equivalent";1;0
+    The binderfs or overlayfs filesystems are examples;0;0
+"(4) get_tree_keyed()
+    Finds an existing superblock based on sb->s_fs_info";1;0
+"Hence,
+    FSCONFIG_CMD_CREATE would reuse an existing superblock whereas
+    FSCONFIG_CMD_CREATE_EXCL would reject it with EBUSY";1;0
+    The mqueue or nfsd filesystems are examples;0;0
+"(2) get_tree_bdev()
+    This effectively works like get_tree_keyed()";1;1
+    The ext4 or xfs filesystems are examples;0;0
+"(3) get_tree_single()
+    Only one superblock of this filesystem type can ever exist";1;1
+"    Hence, FSCONFIG_CMD_CREATE would reuse an existing superblock
+    whereas FSCONFIG_CMD_CREATE_EXCL would reject it with EBUSY";1;0
+    The securityfs or configfs filesystems are examples;0;0
+"    Note that some single-instance filesystems never destroy the
+    superblock once it has been created during the first mount";1;1
+"For
+    example, if securityfs has been mounted at least onces then the
+    created superblock will never be destroyed again as long as there is
+    still an LSM making use it";1;1
+"Consequently, even if securityfs is
+    unmounted and the superblock seemingly destroyed it really isn't
+    which means that FSCONFIG_CMD_CREATE_EXCL will continue rejecting
+    reusing an existing superblock";1;1
+"    This is acceptable thugh since special purpose filesystems such as
+    this shouldn't have a need to use FSCONFIG_CMD_CREATE_EXCL anyway
+    and if they do it's probably to make sure that mount options aren't
+    ignored";1;1
+"Following is an analysis of the effect of FSCONFIG_CMD_CREATE_EXCL on
+filesystems that make use of the low-level sget_fc() helper directly";1;1
+"They're all effectively variants on get_tree_keyed(), get_tree_bdev(),
+or get_tree_nodev()";1;0
+"(5) mtd_get_sb()
+    Similar logic to get_tree_keyed()";1;0
+"(6) afs_get_tree()
+    Similar logic to get_tree_keyed()";1;1
+"(7) ceph_get_tree()
+    Similar logic to get_tree_keyed()";1;0
+"    Already explicitly allows forcing the allocation of a new superblock
+    via CEPH_OPT_NOSHARE";1;1
+This turns it into get_tree_nodev();1;1
+"(8) fuse_get_tree_submount()
+    Similar logic to get_tree_nodev()";1;0
+"(9) fuse_get_tree()
+    Forces reuse of existing FUSE superblock";1;1
+"    Forces reuse of existing superblock if passed in file refers to an
+    existing FUSE connection";1;1
+"    If FSCONFIG_CMD_CREATE_EXCL is specified together with an fd
+    referring to an existing FUSE connections this would cause the
+    superblock reusal to fail";0;1
+"If reusing is the intent then
+    FSCONFIG_CMD_CREATE_EXCL shouldn't be specified";1;0
+"(10) fuse_get_tree()
+     -> get_tree_nodev()
+    Same logic as in get_tree_nodev()";1;1
+"(11) fuse_get_tree()
+     -> get_tree_bdev()
+    Same logic as in get_tree_bdev()";1;1
+"(12) virtio_fs_get_tree()
+     Same logic as get_tree_keyed()";1;1
+"(13) gfs2_meta_get_tree()
+     Forces reuse of existing gfs2 superblock";1;0
+"     Mounting gfs2meta enforces that a gf2s superblock must already
+     exist";0;1
+If not, it will error out;1;0
+"Consequently, mounting gfs2meta
+     with FSCONFIG_CMD_CREATE_EXCL would always fail";0;0
+"If reusing is the
+     intent then FSCONFIG_CMD_CREATE_EXCL shouldn't be specified";1;0
+"(14) kernfs_get_tree()
+     Similar logic to get_tree_keyed()";1;0
+"(15) nfs_get_tree_common()
+    Similar logic to get_tree_keyed()";1;0
+"    Already explicitly allows forcing the allocation of a new superblock
+    via NFS_MOUNT_UNSHARED";1;1
+"This effectively turns it into
+    get_tree_nodev().";1;1
+fs: add vfs_cmd_reconfigure();1;0
+"Split the steps to reconfigure a superblock into a tiny helper instead
+of open-coding it in the switch.";1;1
+fs: add vfs_cmd_create();1;0
+Split the steps to create a superblock into a tiny helper;1;0
+"This will
+make the next patch easier to follow.";1;1
+uninline may_mount() and don't opencode it in fspick(2)/fsopen(2);1;0
+"It's done once per (mount-related) syscall and there's no point
+whatsoever making it inline.";1;1
+treewide: Use fallthrough pseudo-keyword;1;1
+"Replace the existing /* fall through */ comments and its variants with
+the new pseudo-keyword macro fallthrough[1]";1;1
+"Also, remove unnecessary
+fall-through markings when it is the case.";1;1
+add prefix to fs_context->log;1;0
+..;0;0
+turning it into struct p_log embedded into fs_context;1;0
+" Initialize
+the prefix with fs_type->name, turning fs_parse() into a trivial
+inline wrapper for __fs_parse()";1;0
+This makes fs_parameter_description->name completely unused.;1;1
+get rid of fs_value_is_filename_empty;1;1
+Its behaviour is identical to that of fs_value_is_filename;0;0
+"It makes no sense, anyway - LOOKUP_EMPTY affects nothing
+whatsoever once the pathname has been imported from userland";1;1
+"And both fs_value_is_filename and fs_value_is_filename_empty
+carry an already imported pathname.";1;1
+move mount_capable() further out;1;0
+Call graph of vfs_get_tree();1;0
+"	vfs_fsconfig_locked()	# neither kernmount, nor submount
+	do_new_mount()		# neither kernmount, nor submount
+	fc_mount()
+		afs_mntpt_do_automount()	# submount
+		mount_one_hugetlbfs()		# kernmount
+		pid_ns_prepare_proc()		# kernmount
+		mq_create_mount()		# kernmount
+		vfs_kern_mount()
+			simple_pin_fs()		# kernmount
+			vfs_submount()		# submount
+			kern_mount()		# kernmount
+			init_mount_tree()
+			btrfs_mount()
+			nfs_do_root_mount()
+	The first two need the check (unconditionally)";1;0
+"init_mount_tree() is setting rootfs up; any capability
+checks make zero sense for that one";1;1
+" And btrfs_mount()/
+nfs_do_root_mount() have the checks already done in their
+callers";1;0
+"	IOW, we can shift mount_capable() handling into
+the two callers - one in the normal case of mount(2),
+another - in fsconfig(2) handling of FSCONFIG_CMD_CREATE";0;1
+I.e;0;0
+the syscalls that set a new filesystem up.;0;0
+treewide: Replace GPLv2 boilerplate/reference with SPDX - rule 36;1;0
+Based on 1 normalized pattern(s);0;0
+"  this program is free software you can redistribute it and or modify
+  it under the terms of the gnu general public licence as published by
+  the free software foundation either version 2 of the licence or at
+  your option any later version
+extracted by the scancode license scanner the SPDX license identifier
+  GPL-2.0-or-later
+has been chosen to replace the boilerplate/reference in 114 file(s).";0;0
+"uapi, fsopen: use square brackets around ""fscontext"" [ver #2]";1;0
+"Make the name of the anon inode fd ""[fscontext]"" instead of ""fscontext""";1;0
+"This is minor but most core-kernel anon inode fds already carry square
+brackets around their name";0;0
+"[eventfd]
+[eventpoll]
+[fanotify]
+[io_uring]
+[pidfd]
+[signalfd]
+[timerfd]
+[userfaultfd]
+For the sake of consistency lets do the same for the fscontext anon inode
+fd that comes with the new mount api.";0;0
+vfs: syscall: Add fspick() to select a superblock for reconfiguration;1;0
+"Provide an fspick() system call that can be used to pick an existing
+mountpoint into an fs_context which can thereafter be used to reconfigure a
+superblock (equivalent of the superblock side of -o remount)";1;1
+This looks like;0;0
+"	int fd = fspick(AT_FDCWD, ""/mnt"",
+At the point of fspick being called, the file descriptor referring to the
+filesystem context is in exactly the same state as the one that was created
+by fsopen() after fsmount() has been successfully called.";0;1
+vfs: syscall: Add fsconfig() for configuring and managing a context;1;0
+"Add a syscall for configuring a filesystem creation context and triggering
+actions upon it, to be used in conjunction with fsopen, fspick and fsmount";1;1
+"    long fsconfig(int fs_fd, unsigned int cmd, const char *key,
+Where fs_fd indicates the context, cmd indicates the action to take, key
+indicates the parameter name for parameter-setting actions and, if needed,
+value points to a buffer containing the value and aux can give more
+information for the value";1;1
+The following command IDs are proposed;1;0
+ (*) FSCONFIG_SET_FLAG: No value is specified;1;0
+" The parameter must be
+     boolean in nature";1;1
+" The key may be prefixed with ""no"" to invert the
+     setting";1;0
+value must be NULL and aux must be 0;0;1
+ (*) FSCONFIG_SET_STRING: A string value is specified;0;0
+" The parameter can
+     be expecting boolean, integer, string or take a path";0;1
+" A conversion to
+     an appropriate type will be attempted (which may include looking up as
+     a path)";1;0
+ value points to a NUL-terminated string and aux must be 0;1;0
+ (*) FSCONFIG_SET_BINARY: A binary blob is specified;0;0
+" value points to
+     the blob and aux indicates its size";1;0
+" The parameter must be expecting
+     a blob";1;1
+ (*) FSCONFIG_SET_PATH: A non-empty path is specified;0;0
+" The parameter must
+     be expecting a path object";1;1
+" value points to a NUL-terminated string
+     that is the path and aux is a file descriptor at which to start a
+     relative lookup or AT_FDCWD";0;0
+" (*) FSCONFIG_SET_PATH_EMPTY: As fsconfig_set_path, but with AT_EMPTY_PATH
+     implied";0;0
+ (*) FSCONFIG_SET_FD: An open file descriptor is specified;0;0
+" value must
+     be NULL and aux indicates the file descriptor";1;1
+ (*) FSCONFIG_CMD_CREATE: Trigger superblock creation;1;0
+ (*) FSCONFIG_CMD_RECONFIGURE: Trigger superblock reconfiguration;0;1
+"For the ""set"" command IDs, the idea is that the file_system_type will point
+to a list of parameters and the types of value that those parameters expect
+to take";1;1
+" The core code can then do the parse and argument conversion and
+then give the LSM and FS a cooked option or array of options to use";1;0
+"Source specification is also done the same way same way, using special keys
+""source"", ""source1"", ""source2"", etc.";1;1
+"[!] Note that, for the moment, the key and value are just glued back
+together and handed to the filesystem";1;0
+" Every filesystem that uses options
+uses match_token() and co";0;1
+"to do this, and this will need to be changed -
+but not all at once";1;1
+Example usage:;0;0
+vfs: Implement logging through fs_context;1;0
+"Implement the ability for filesystems to log error, warning and
+informational messages through the fs_context";1;1
+" These can be extracted by
+userspace by reading from an fd created by fsopen()";1;1
+"Error messages are prefixed with ""e "", warnings with ""w "" and informational
+messages with ""i """;0;0
+"Inside the kernel, formatted messages are malloc'd but unformatted messages
+are not copied if they're either in the core .rodata section or in the
+.rodata section of the filesystem module pinned by fs_context::fs_type";1;0
+The messages are only good till the fs_type is released;1;0
+"Note that the logging object is shared between duplicated fs_context
+structures";0;0
+" This is so that such as NFS which do a mount within a mount
+can get at least some of the errors from the inner mount";1;1
+Five logging functions are provided for this;0;0
+     This logs a message into the context;1;0
+" If the buffer is full, the
+     earliest message is discarded";1;0
+     This wraps logfc() to log an error;0;1
+     This wraps errorf() and returns -EINVAL for convenience;0;0
+     This wraps logfc() to log a warning;0;0
+     This wraps logfc() to log an informational message.;1;0
+vfs: syscall: Add fsopen() to prepare for superblock creation;1;0
+"Provide an fsopen() system call that starts the process of preparing to
+create a superblock that will then be mountable, using an fd as a context
+handle";1;0
+ fsopen() is given the name of the filesystem that will be used;0;0
+where flags can be 0 or FSOPEN_CLOEXEC;0;1
+For example;0;1
+"	fsinfo(sfd, NULL, ...); // query new superblock attributes
+	fsconfig(fd, FSCONFIG_SET_STRING, ""source"",
+If an error is reported at any step, an error message may be available to be
+read() back (ENODATA will be reported if there isn't an error available) in
+the form";1;1
+"	""e <subsys>:<problem>""
+	""e SELinux:Mount on mountpoint not permitted""
+Once fsmount() has been called, further fsconfig() calls will incur EBUSY,
+even if the fsmount() fails";0;0
+" read() is still possible to retrieve error
+information";0;0
+"The fsopen() syscall creates a mount context and hangs it of the fd that it
+returns";1;0
+"Netlink is not used because it is optional and would make the core VFS
+dependent on the networking layer and also potentially add network
+namespace issues";0;1
+"Note that, for the moment, the caller must have SYS_CAP_ADMIN to use
+fsopen().";1;1

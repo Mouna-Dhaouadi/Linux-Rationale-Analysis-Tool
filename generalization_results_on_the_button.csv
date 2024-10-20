@@ -1,0 +1,1234 @@
+commit ID;text;predicted_decision;predicted_rationale
+C_kwDOACN7MtoAKDE2ZjcwZmVhYWJlOWZkZTBhZjcwM2YyOTkxZDQ0YTc1ODlmMGI2ZTM;ACPI: button: trigger wakeup key events;1;1
+C_kwDOACN7MtoAKDE2ZjcwZmVhYWJlOWZkZTBhZjcwM2YyOTkxZDQ0YTc1ODlmMGI2ZTM;"Andorid can wakeup from various wakeup sources, but only several wakeup
+sources can wake up screen with right events(POWER, WAKEUP) from input
+device";0;1
+C_kwDOACN7MtoAKDE2ZjcwZmVhYWJlOWZkZTBhZjcwM2YyOTkxZDQ0YTc1ODlmMGI2ZTM;"Regarding pressing acpi power button, it can resume system and
+ACPI_BITMASK_WAKE_STATUS and ACPI_BITMASK_POWER_BUTTON_STATUS are set in
+pm1a_sts, but kernel does not report any key event to user space during
+resuming by default";0;0
+C_kwDOACN7MtoAKDE2ZjcwZmVhYWJlOWZkZTBhZjcwM2YyOTkxZDQ0YTc1ODlmMGI2ZTM;So, send wakeup key event to user space during resume from power button.;1;0
+C_kwDOACN7MtoAKGU0ZTYyZDVmZDhlY2IwZWE0MTc0YWZkYTY1NDQzMjkyN2QyNDhhOGE;ACPI: button: Use different notify handlers for lid and buttons;1;1
+C_kwDOACN7MtoAKGU0ZTYyZDVmZDhlY2IwZWE0MTc0YWZkYTY1NDQzMjkyN2QyNDhhOGE;"Since the lid handling in acpi_button_notify() is special, introduce
+acpi_lid_notify() specifically for handling lid notifications.";1;1
+C_kwDOACN7MtoAKDBkNTExNTdkZmFhYzA1ZWE2NjYxNmQ4YTI1MGRjZTA0YmVmNDlhNGY;ACPI: button: Eliminate the driver notify callback;1;0
+C_kwDOACN7MtoAKDBkNTExNTdkZmFhYzA1ZWE2NjYxNmQ4YTI1MGRjZTA0YmVmNDlhNGY;"Rework the ACPI button driver to install notify handlers or fixed
+event handlers for the devices it binds to by itself, reduce the
+indentation level in its notify handler routine and drop its
+notify callback";1;1
+C_kwDOACN7MtoAKDBkNTExNTdkZmFhYzA1ZWE2NjYxNmQ4YTI1MGRjZTA0YmVmNDlhNGY;"This will allow acpi_device_install_notify_handler() and
+acpi_device_remove_notify_handler() to be simplified going forward
+and it will allow the driver to use different notify handlers for the
+lid and for the power and sleep buttons.";1;0
+C_kwDOACN7MtoAKDRmZDU1NTY2MDhiZmE5YzJiZjI3NmZjMTE1ZWYwNDI4ODMzMWFkZWQ;ACPI: button: Add lid disable DMI quirk for Nextbook Ares 8A;1;0
+C_kwDOACN7MtoAKDRmZDU1NTY2MDhiZmE5YzJiZjI3NmZjMTE1ZWYwNDI4ODMzMWFkZWQ;"The LID0 device on the Nextbook Ares 8A tablet always reports lid
+closed causing userspace to suspend the device as soon as booting
+is complete";0;0
+C_kwDOACN7MtoAKDRmZDU1NTY2MDhiZmE5YzJiZjI3NmZjMTE1ZWYwNDI4ODMzMWFkZWQ;Add a DMI quirk to disable the broken lid functionality.;1;0
+C_kwDOACN7MtoAKDZjMGViNWJhMzUwMGY2ZGEzNjczNTFmZjNjNDQ1MmMwMjljYjcyZmE;ACPI: make remove callback of ACPI driver void;1;0
+C_kwDOACN7MtoAKDZjMGViNWJhMzUwMGY2ZGEzNjczNTFmZjNjNDQ1MmMwMjljYjcyZmE;For bus-based driver, device removal is implemented as;0;0
+C_kwDOACN7MtoAKDZjMGViNWJhMzUwMGY2ZGEzNjczNTFmZjNjNDQ1MmMwMjljYjcyZmE;"1 device_remove()->
+2   bus->remove()->
+3     driver->remove()
+Driver core needs no inform from callee(bus driver) about the
+result of remove callback";1;1
+C_kwDOACN7MtoAKDZjMGViNWJhMzUwMGY2ZGEzNjczNTFmZjNjNDQ1MmMwMjljYjcyZmE;"In that case, commit fc7a6209d571
+(""bus: Make remove callback return void"") forces bus_type::remove
+be void-returned";1;0
+C_kwDOACN7MtoAKDZjMGViNWJhMzUwMGY2ZGEzNjczNTFmZjNjNDQ1MmMwMjljYjcyZmE;"Now we have the situation that both 1 & 2 of calling chain are
+void-returned, so it does not make much sense for 3(driver->remove)
+to return non-void to its caller";0;0
+C_kwDOACN7MtoAKDZjMGViNWJhMzUwMGY2ZGEzNjczNTFmZjNjNDQ1MmMwMjljYjcyZmE;"So the basic idea behind this change is making remove() callback of
+any bus-based driver to be void-returned";1;0
+C_kwDOACN7MtoAKDZjMGViNWJhMzUwMGY2ZGEzNjczNTFmZjNjNDQ1MmMwMjljYjcyZmE;This change, for itself, is for device drivers based on acpi-bus.;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxYTIwZDQwOWM4NzQyNTUwODZlMmY0MmE3Mjk4MjZkNDkwMjk0Yzkx;ACPI: button: Add DMI quirk for Lenovo Yoga 9 (14INTL5);1;1
+MDY6Q29tbWl0MjMyNTI5ODoxYTIwZDQwOWM4NzQyNTUwODZlMmY0MmE3Mjk4MjZkNDkwMjk0Yzkx;The Lenovo Yoga 9 (14INTL5)'s ACPI _LID is bugged;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxYTIwZDQwOWM4NzQyNTUwODZlMmY0MmE3Mjk4MjZkNDkwMjk0Yzkx;After hibernation the lid is initially reported as closed;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxYTIwZDQwOWM4NzQyNTUwODZlMmY0MmE3Mjk4MjZkNDkwMjk0Yzkx;"Once closing and then reopening the lid reports the lid as
+open again";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxYTIwZDQwOWM4NzQyNTUwODZlMmY0MmE3Mjk4MjZkNDkwMjk0Yzkx;"This leads to the conclusion that the initial
+notification of the lid is missing but subsequent
+notifications are correct";0;1
+MDY6Q29tbWl0MjMyNTI5ODoxYTIwZDQwOWM4NzQyNTUwODZlMmY0MmE3Mjk4MjZkNDkwMjk0Yzkx;"In order fo the Linux LID code to handle this device properly
+the lid_init_state must be set to ACPI_BUTTON_LID_INIT_OPEN.";0;0
+MDY6Q29tbWl0MjMyNTI5ODplZmZiZTY0MDRlNmMxY2NjYWEzNTFhNTBmMWQ0MzFmODNiMzRkOWE1;ACPI: button: fix some coding style issues;1;1
+MDY6Q29tbWl0MjMyNTI5ODplZmZiZTY0MDRlNmMxY2NjYWEzNTFhNTBmMWQ0MzFmODNiMzRkOWE1;"Fix some coding style issues reported by checkpatch.pl, including the
+following types";1;1
+MDY6Q29tbWl0MjMyNTI5ODplZmZiZTY0MDRlNmMxY2NjYWEzNTFhNTBmMWQ0MzFmODNiMzRkOWE1;"WARNING: Block comments use * on subsequent lines
+WARNING: Block comments use a trailing */ on a separate line
+ERROR: code indent should use tabs where possible";1;1
+MDY6Q29tbWl0MjMyNTI5ODo0MTFlMzIxNmQ0ZWU3ZTNjMjVjMzY1YjBkMDllMThmNzc5OGQ3MDVh;ACPI: button: Clean up printing messages;1;1
+MDY6Q29tbWl0MjMyNTI5ODo0MTFlMzIxNmQ0ZWU3ZTNjMjVjMzY1YjBkMDllMThmNzc5OGQ3MDVh;"Replace the ACPI_DEBUG_PRINT() instance in button.c with an
+acpi_handle_debug() call, drop the _COMPONENT and ACPI_MODULE_NAME()
+definitions that are not used any more, drop the no longer needed
+ACPI_BUTTON_COMPONENT definition from the headers and update the
+documentation accordingly";1;0
+MDY6Q29tbWl0MjMyNTI5ODo0MTFlMzIxNmQ0ZWU3ZTNjMjVjMzY1YjBkMDllMThmNzc5OGQ3MDVh;"While at it, replace the direct printk() invocations with pr_info()
+(that changes the excessive log level for some of them too) and drop
+the unneeded PREFIX sybmbol definition from battery.c.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3ZGFhYTA2MzU3YmY3ZjE4NzRiNjJiYjFlYTlkNjZhNTFkNGU1Njdl;ACPI: button: Add DMI quirk for Medion Akoya E2228T;1;1
+MDY6Q29tbWl0MjMyNTI5ODo3ZGFhYTA2MzU3YmY3ZjE4NzRiNjJiYjFlYTlkNjZhNTFkNGU1Njdl;"The Medion Akoya E2228T's ACPI _LID implementation is quite broken,
+it has the same issues as the one from the Medion Akoya E2215T";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3ZGFhYTA2MzU3YmY3ZjE4NzRiNjJiYjFlYTlkNjZhNTFkNGU1Njdl;1;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3ZGFhYTA2MzU3YmY3ZjE4NzRiNjJiYjFlYTlkNjZhNTFkNGU1Njdl;"For notifications it uses an ActiveLow Edge GpioInt, rather then
+   an ActiveBoth one, meaning that the device is only notified when the
+   lid is closed, not when it is opened";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3ZGFhYTA2MzU3YmY3ZjE4NzRiNjJiYjFlYTlkNjZhNTFkNGU1Njdl;2;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3ZGFhYTA2MzU3YmY3ZjE4NzRiNjJiYjFlYTlkNjZhNTFkNGU1Njdl;"Matching with this its _LID method simply always returns 0 (closed)
+In order for the Linux LID code to work properly with this implementation,
+the lid_init_state selection needs to be set to ACPI_BUTTON_LID_INIT_OPEN,
+add a DMI quirk for this";0;1
+MDY6Q29tbWl0MjMyNTI5ODo3ZGFhYTA2MzU3YmY3ZjE4NzRiNjJiYjFlYTlkNjZhNTFkNGU1Njdl;"While working on this I also found out that the MD60### part of the model
+number differs per country/batch while all of the E2215T and E2228T models
+have this issue, so also remove the "" MD60198"" part from the E2215T quirk.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzZhNGRmZTg3Y2QzNGRiMjE1MzMzMGFhODRkYmJjMjEwZWIzNmI2;ACPI: button: Drop no longer necessary Acer SW5-012 lid_init_state quirk;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzZhNGRmZTg3Y2QzNGRiMjE1MzMzMGFhODRkYmJjMjEwZWIzNmI2;"Commit 78a5b53e9fb4 (""Input: soc_button_array - work around DSDTs which
+modify the irqflags"") adds a workaround for DSDTs with a _LID method
+which play tricks with the irqflags, assuming that the OS is using
+an irq-type of IRQ_TYPE_LEVEL_LOW";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzZhNGRmZTg3Y2QzNGRiMjE1MzMzMGFhODRkYmJjMjEwZWIzNmI2;"Now that this workaround is in place, we no longer need to disable the
+lid functionality on the Acer SW5-012.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMTk4OGE4ZTUxNDc5Y2VmZmU3YjA1NjhiMTcwZWZmYWJiNzA4ZGZl;ACPI: button: fix handling lid state changes when input device closed;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMTk4OGE4ZTUxNDc5Y2VmZmU3YjA1NjhiMTcwZWZmYWJiNzA4ZGZl;"The original intent of 84d3f6b76447 was to delay evaluating lid state until
+all drivers have been loaded, with input device being opened from userspace
+serving as a signal for this condition";0;0
+MDY6Q29tbWl0MjMyNTI5ODoyMTk4OGE4ZTUxNDc5Y2VmZmU3YjA1NjhiMTcwZWZmYWJiNzA4ZGZl;"Let's ensure that state updates
+happen even if userspace closed (or in the future inhibited) input device";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMTk4OGE4ZTUxNDc5Y2VmZmU3YjA1NjhiMTcwZWZmYWJiNzA4ZGZl;"Note that if we go through suspend/resume cycle we assume the system has
+been fully initialized even if LID input device has not been opened yet";0;1
+MDY6Q29tbWl0MjMyNTI5ODoyMTk4OGE4ZTUxNDc5Y2VmZmU3YjA1NjhiMTcwZWZmYWJiNzA4ZGZl;"This has a side-effect of fixing access to input->users outside of
+input->mutex protections by the way of eliminating said accesses and using
+driver private flag";0;1
+MDY6Q29tbWl0MjMyNTI5ODoyMTk4OGE4ZTUxNDc5Y2VmZmU3YjA1NjhiMTcwZWZmYWJiNzA4ZGZl;"Fixes: 84d3f6b76447 (""ACPI / button: Delay acpi_lid_initialize_state() until first user space open"")";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1N2QyZGQ0YmQxOGIxMzc4YjNiYzBiNmIyYjhiODU4ZGViNmMyZmE3;ACPI: Use fallthrough pseudo-keyword;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1N2QyZGQ0YmQxOGIxMzc4YjNiYzBiNmIyYjhiODU4ZGViNmMyZmE3;"Replace the existing /* fall through */ comments and its variants with
+the new pseudo-keyword macro fallthrough[1]";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1N2QyZGQ0YmQxOGIxMzc4YjNiYzBiNmIyYjhiODU4ZGViNmMyZmE3;"Also, remove unnecessary
+fall-through markings when it is the case.";1;1
+MDY6Q29tbWl0MjMyNTI5ODphMTA2NjBmNzc4OGJjYjEyMjk1MzRjZDFhYTU3YThmNGIzNmNmZTc0;ACPI: Delete unused proc filename macros;1;1
+MDY6Q29tbWl0MjMyNTI5ODphMTA2NjBmNzc4OGJjYjEyMjk1MzRjZDFhYTU3YThmNGIzNmNmZTc0;"Those were used to create files in /proc/acpi long ago
+and were missed when that code was deleted.";0;0
+MDY6Q29tbWl0MjMyNTI5ODoyYjYwMjJhMzJlMWM2ZTc0MGE1OTI5OTUxZDlkOGNiZWQzYjE2MmIx;ACPI: button: Drop no longer necessary Asus T200TA lid_init_state quirk;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyYjYwMjJhMzJlMWM2ZTc0MGE1OTI5OTUxZDlkOGNiZWQzYjE2MmIx;"Commit 17e5888e4e18 (""x86: Select HARDIRQS_SW_RESEND on x86"") fixes
+the edge-triggered embedded-controller (WC) IRQ not being replayed after
+resume when woken by opening the lid, which gets signaled by the EC";0;0
+MDY6Q29tbWl0MjMyNTI5ODoyYjYwMjJhMzJlMWM2ZTc0MGE1OTI5OTUxZDlkOGNiZWQzYjE2MmIx;"This means that the lid_init_state=ACPI_BUTTON_LID_INIT_OPEN quirk for
+the Asus T200TA is no longer necessary, the lid now works properly
+without it, so drop the quirk";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyYjYwMjJhMzJlMWM2ZTc0MGE1OTI5OTUxZDlkOGNiZWQzYjE2MmIx;"Fixes: 17e5888e4e18 (""x86: Select HARDIRQS_SW_RESEND on x86"")";1;1
+MDY6Q29tbWl0MjMyNTI5ODphYzFjYzZiNDg1NmZmYTdlY2I4MThiM2NlYjgyYmZjNDM1OTdkNjEz;ACPI: button: move HIDs to acpi/button.h;1;0
+MDY6Q29tbWl0MjMyNTI5ODphYzFjYzZiNDg1NmZmYTdlY2I4MThiM2NlYjgyYmZjNDM1OTdkNjEz;This makes it possible to use ACPI_BUTTON_HID_POWER in another driver.;0;1
+MDY6Q29tbWl0MjMyNTI5ODowNTI4OTA0OTI2YWFiMTliZmZiMjA2ODg3OWFhNDRkYjE2NmM2ZDVm;ACPI: button: Add DMI quirk for Razer Blade Stealth 13 late 2019 lid switch;1;0
+MDY6Q29tbWl0MjMyNTI5ODowNTI4OTA0OTI2YWFiMTliZmZiMjA2ODg3OWFhNDRkYjE2NmM2ZDVm;"Running evemu-record on the lid switch event shows that the lid reports
+the first ""close"" but then never reports an ""open""";0;0
+MDY6Q29tbWl0MjMyNTI5ODowNTI4OTA0OTI2YWFiMTliZmZiMjA2ODg3OWFhNDRkYjE2NmM2ZDVm;" This causes systemd
+to continuously re-suspend the laptop every 30s";0;1
+MDY6Q29tbWl0MjMyNTI5ODowNTI4OTA0OTI2YWFiMTliZmZiMjA2ODg3OWFhNDRkYjE2NmM2ZDVm;" Resetting the _LID to
+""open"" fixes the issue.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;ACPI: button: Add DMI quirk for Acer Switch 10 SW5-032 lid-switch;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;The Acer Switch 10 SW5-032 _LID method is quite broken, it looks like this;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"            Method (_LID, 0, NotSerialized)  // _LID: Lid Status
+                If ((STAS & One))
+                    Local0 = One
+                    PBCG |= 0x05000000
+                    HMCG |= 0x05000000
+                Else
+                    Local0 = Zero
+                    PBCG &= 0xF0FFFFFF
+                    HMCG &= 0xF0FFFFFF
+                ^^PCI0.GFX0.CLID = Local0
+                Return (Local0)
+The problem here is the accesses to the PBCG and HMCG, these are the
+pinconf0 registers for the power, resp";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"the home button GPIO,
+e.g";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;PBCG is declared as;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"            OperationRegion (PWBT, SystemMemory, 0xFED0E080, 0x10)
+            Field (PWBT, DWordAcc, NoLock, Preserve)
+                PBCG,   32,
+                PBV1,   32,
+                PBSA,   32,
+                PBV2,   32
+Where 0xFED0E000 is the base address of the GPO2 device and 0x80 is
+the offset for the pin used for the powerbutton";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;The problem here is this line in _LID;0;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"                    PBCG |= 0x05000000
+This changes the trigger flags of the GPIO, changing when it generates
+interrupts";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;Note it does not clear the original flags;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"Linux uses an
+edge triggered interrupt on both positive and negative edges";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"This |=
+adds the BYT_TRIG_LVL flag to this, so now it is turned into a level
+interrupt which fires both when low and high, iow it simply always
+fires leading to an interrupt storm, the tablet immediately waking up
+from suspend again, etc";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"There is nothing we can do to fix this, except for a DSDT override,
+which the user needs to do manually";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"The only thing we can do is
+never call _LID, which requires disabling the lid-switch functionality
+altogether";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"This commit adds a quirk for this, as no lid-switch function is better
+then the interrupt storm";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGVkOWM2MzljMWI1MzU1NmY4N2IxYzUwMzFjN2U0YzU3Mjg1YTky;"A user manually applying a DSDT override can
+also override the quirk on the kernel cmdline.";1;1
+MDY6Q29tbWl0MjMyNTI5ODplMzQ2ZDBjZjJjMGEyZGM5ZTYzZDViOTA4MjRiYmU1YWMwY2M0M2Uy;ACPI: button: Remove unused acpi_lid_notifier_[un]register() functions;1;1
+MDY6Q29tbWl0MjMyNTI5ODplMzQ2ZDBjZjJjMGEyZGM5ZTYzZDViOTA4MjRiYmU1YWMwY2M0M2Uy;"There are no users of the acpi_lid_notifier_[un]register functions,
+so lets remove them.";1;0
+MDY6Q29tbWl0MjMyNTI5ODowMGUyNTAzNjdjYzZjNGFiODBmZWE2ZWM2MDVkNDY0ZTYyNGJkNTIw;ACPI: button: Add DMI quirk for Asus T200TA;1;1
+MDY6Q29tbWl0MjMyNTI5ODowMGUyNTAzNjdjYzZjNGFiODBmZWE2ZWM2MDVkNDY0ZTYyNGJkNTIw;"The Asus T200TA lid has some weird behavior where _LID keeps reporting
+closed after every second openening of the lid";0;1
+MDY6Q29tbWl0MjMyNTI5ODowMGUyNTAzNjdjYzZjNGFiODBmZWE2ZWM2MDVkNDY0ZTYyNGJkNTIw;"Causing immediate
+re-suspend after opening every other open";0;0
+MDY6Q29tbWl0MjMyNTI5ODowMGUyNTAzNjdjYzZjNGFiODBmZWE2ZWM2MDVkNDY0ZTYyNGJkNTIw;"I've looked at the AML code but it involves talking to the EC and we
+have no idea what the EC is doing";1;0
+MDY6Q29tbWl0MjMyNTI5ODowMGUyNTAzNjdjYzZjNGFiODBmZWE2ZWM2MDVkNDY0ZTYyNGJkNTIw;"Setting lid_init_state to
+ACPI_BUTTON_LID_INIT_OPEN fixes the unwanted behavior, so this commit
+adds a DMI based quirk to use ACPI_BUTTON_LID_INIT_OPEN on the T200TA.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MzJlMWJhNDg2MTE3ZGUyZmNlYTNkZjI3YWQ4MjE4YWQ2YzExNDcw;ACPI: button: Add DMI quirk for Medion Akoya E2215T;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MzJlMWJhNDg2MTE3ZGUyZmNlYTNkZjI3YWQ4MjE4YWQ2YzExNDcw;The Medion Akoya E2215T's ACPI _LID implementation is quite broken;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5MzJlMWJhNDg2MTE3ZGUyZmNlYTNkZjI3YWQ4MjE4YWQ2YzExNDcw; 1;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5MzJlMWJhNDg2MTE3ZGUyZmNlYTNkZjI3YWQ4MjE4YWQ2YzExNDcw;"For notifications it uses an ActiveLow Edge GpioInt, rather then
+    an ActiveBoth one, meaning that the device is only notified when the
+    lid is closed, not when it is opened";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5MzJlMWJhNDg2MTE3ZGUyZmNlYTNkZjI3YWQ4MjE4YWQ2YzExNDcw;2;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5MzJlMWJhNDg2MTE3ZGUyZmNlYTNkZjI3YWQ4MjE4YWQ2YzExNDcw;"Matching with this its _LID method simply always returns 0 (closed)
+  In order for the Linux LID code to work properly with this implementation,
+  the lid_init_state selection needs to be set to ACPI_BUTTON_LID_INIT_OPEN";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MzJlMWJhNDg2MTE3ZGUyZmNlYTNkZjI3YWQ4MjE4YWQ2YzExNDcw;This commit adds a DMI quirk for this.;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;ACPI: button: Turn lid_blacklst DMI table into a generic quirk table;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;"Commit 3540c32a9ae4 (""ACPI / button: Add quirks for initial lid state
+notification"") added 3 different modes to the LID handling code to deal
+with various buggy implementations";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;"Until now users which need one of the 2 non-default modes to get their
+HW to work have to pass a kernel commandline option for this";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;E.g;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;"was closed with a
+note that the user has to add ""button.lid_init_state=open"" to the kernel
+commandline to get the LID code to not cause undesirable suspends on his
+Samsung N210 Plus";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;"This commit modifies the existing lid_blacklst DMI table so that it can
+be used not only to completely disable the LID code on devices where
+the ACPI tables are broken beyond repair, but also to select one of the 2
+non default LID handling modes on devices where this is necessary";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;"This will allow us to add quirks to make the LID work OOTB on broken
+devices";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;Getting this working OOTB is esp;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkN2NkMDgyMzFhN2ZhZmIwZDgxNzg2NTE1NTI3NjUxZDMyNDJhN2Y0;"important because the typical
+breakage is false LID closed reporting, causing undesirable suspends which
+basically make the system unusable.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OTM2ODFlMmM3NWY1OWYyM2NmNmY2Y2VmYzRmMDBjYWUyYTQ1MjJi;ACPI: button: Allow disabling LID support with the lid_init_state module option;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1OTM2ODFlMmM3NWY1OWYyM2NmNmY2Y2VmYzRmMDBjYWUyYTQ1MjJi;"Add a new ""disabled"" value for the lid_init_state module option, which can
+be used to disable LID support on devices where it is completely broken";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1OTM2ODFlMmM3NWY1OWYyM2NmNmY2Y2VmYzRmMDBjYWUyYTQ1MjJi;"Sometimes devices seem to spontaneously suspend and the cause for this is
+not clear";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OTM2ODFlMmM3NWY1OWYyM2NmNmY2Y2VmYzRmMDBjYWUyYTQ1MjJi;"The LID switch is known to be one possible cause for this,
+this commit allows easily disabling the LID switch for testing if it
+is the cause";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1OTM2ODFlMmM3NWY1OWYyM2NmNmY2Y2VmYzRmMDBjYWUyYTQ1MjJi;"For example some devices which do not even have a lid, still have a LID
+device in their ACPI tables, pointing to a floating GPIO";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OTM2ODFlMmM3NWY1OWYyM2NmNmY2Y2VmYzRmMDBjYWUyYTQ1MjJi;"This is not really related to the initial LID state, but re-using the
+existing option keeps things simple and it will make it much easier to
+add DMI quirks which can either disable the LID completely or set another
+non-default lid_init_state value, both of which are necessary on some
+devices.";1;1
+MDY6Q29tbWl0MjMyNTI5ODowNjViZDRkMzViM2ZiNDQ4NGM2MWZjNDBhNTFlZWZmZDVhYmU1MmU4;ACPI: button: Refactor lid_init_state module parsing code;1;0
+MDY6Q29tbWl0MjMyNTI5ODowNjViZDRkMzViM2ZiNDQ4NGM2MWZjNDBhNTFlZWZmZDVhYmU1MmU4;"Replace the weird strncmp() calls in param_set_lid_init_state(),
+which look to me like they will also accept things like ""opennnn""
+to use sysfs_match_string instead";1;0
+MDY6Q29tbWl0MjMyNTI5ODowNjViZDRkMzViM2ZiNDQ4NGM2MWZjNDBhNTFlZWZmZDVhYmU1MmU4;"Also rewrite param_get_lid_init_state() using the new lid_init_state_str
+array";1;0
+MDY6Q29tbWl0MjMyNTI5ODowNjViZDRkMzViM2ZiNDQ4NGM2MWZjNDBhNTFlZWZmZDVhYmU1MmU4;Instead of doing a straightforward one line replacement, e.g;0;1
+MDY6Q29tbWl0MjMyNTI5ODowNjViZDRkMzViM2ZiNDQ4NGM2MWZjNDBhNTFlZWZmZDVhYmU1MmU4;;0;0
+MDY6Q29tbWl0MjMyNTI5ODowNjViZDRkMzViM2ZiNDQ4NGM2MWZjNDBhNTFlZWZmZDVhYmU1MmU4;"print all possible values, putting [] around the selected value, so
+that users can easily find out what the possible values are.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjOTQyZmRkZjg3OTNiMjAxM2JlOGM5MDFiNDdkMGE4ZGMwMmJmOTlm;treewide: Replace GPLv2 boilerplate/reference with SPDX - rule 157;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjOTQyZmRkZjg3OTNiMjAxM2JlOGM5MDFiNDdkMGE4ZGMwMmJmOTlm;Based on 3 normalized pattern(s);0;0
+MDY6Q29tbWl0MjMyNTI5ODpjOTQyZmRkZjg3OTNiMjAxM2JlOGM5MDFiNDdkMGE4ZGMwMmJmOTlm;"  this program is free software you can redistribute it and or modify
+  it under the terms of the gnu general public license as published by
+  the free software foundation either version 2 of the license or at
+  your option any later version this program is distributed in the
+  hope that it will be useful but without any warranty without even
+  the implied warranty of merchantability or fitness for a particular
+  purpose see the gnu general public license for more details
+  this program is free software you can redistribute it and or modify
+  it under the terms of the gnu general public license as published by
+  the free software foundation either version 2 of the license or at
+  your option any later version [author] [kishon] [vijay] [abraham]
+  [i] [kishon]@[ti] [com] this program is distributed in the hope that
+  it will be useful but without any warranty without even the implied
+  warranty of merchantability or fitness for a particular purpose see
+  the gnu general public license for more details
+  this program is free software you can redistribute it and or modify
+  it under the terms of the gnu general public license as published by
+  the free software foundation either version 2 of the license or at
+  your option any later version [author] [graeme] [gregory]
+  [gg]@[slimlogic] [co] [uk] [author] [kishon] [vijay] [abraham] [i]
+  [kishon]@[ti] [com] [based] [on] [twl6030]_[usb] [c] [author] [hema]
+  [hk] [hemahk]@[ti] [com] this program is distributed in the hope
+  that it will be useful but without any warranty without even the
+  implied warranty of merchantability or fitness for a particular
+  purpose see the gnu general public license for more details
+extracted by the scancode license scanner the SPDX license identifier
+  GPL-2.0-or-later
+has been chosen to replace the boilerplate/reference in 1105 file(s).";0;0
+MDY6Q29tbWl0MjMyNTI5ODoxM2U5NjIxNDBiZTY3MWYzMWEwMTE1NDNmMTE0NzdhZjY3YTZjMzNl;ACPI: button: reinitialize button state upon resume;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxM2U5NjIxNDBiZTY3MWYzMWEwMTE1NDNmMTE0NzdhZjY3YTZjMzNl;"With commit dfa46c50f65b (""ACPI / button: Fix an issue in
+button.lid_init_state=ignore mode""), the lid device is considered to be
+not compliant to SW_LID if the Lid state is unchanged when updating it";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxM2U5NjIxNDBiZTY3MWYzMWEwMTE1NDNmMTE0NzdhZjY3YTZjMzNl;"This is not wrong, but we overlooked the resume case, where Lid state is
+updated unconditionally in the button driver .resume() callback";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxM2U5NjIxNDBiZTY3MWYzMWEwMTE1NDNmMTE0NzdhZjY3YTZjMzNl;"And this
+results in warning message ""ACPI: button: The lid device is not compliant
+to  SW_LID."" after resume, if the machine is suspended with Lid opened and
+then resumed with Lid opened";0;1
+MDY6Q29tbWl0MjMyNTI5ODoxM2U5NjIxNDBiZTY3MWYzMWEwMTE1NDNmMTE0NzdhZjY3YTZjMzNl;"Fix this by flushing the cached lid state before updating the Lid device
+in .resume() callback";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxM2U5NjIxNDBiZTY3MWYzMWEwMTE1NDNmMTE0NzdhZjY3YTZjMzNl;"Fixes: dfa46c50f65b (""ACPI / button: Fix an issue in button.lid_init_state=ignore mode"")
+Reported-and-tested-by: Zhao Lijian <lijian.zhao@intel.com>";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyYzRjMmE3MWJkNmY3NWMzOTgyYWMwOTQwNzg4OWIxMTA2NzNhYzgz;ACPI / button: fix defined but not used warning;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyYzRjMmE3MWJkNmY3NWMzOTgyYWMwOTQwNzg4OWIxMTA2NzNhYzgz;"Fix a build warning in the ACPI button driver when CONFIG_PROC_FS
+is not enabled by marking the unused function as __maybe_unused";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyYzRjMmE3MWJkNmY3NWMzOTgyYWMwOTQwNzg4OWIxMTA2NzNhYzgz;../drivers/acpi/button.c:252:12: warning: 'acpi_button_state_seq_show' defined but not used [-Wunused-function];0;0
+MDY6Q29tbWl0MjMyNTI5ODo3YzA1OGM3Yzc0YjNkYmViN2QxNTdjMjczOTU5Zjg3ZmFmNzEwMzUw;ACPI / button: increment wakeup count only when notified;1;1
+MDY6Q29tbWl0MjMyNTI5ODo3YzA1OGM3Yzc0YjNkYmViN2QxNTdjMjczOTU5Zjg3ZmFmNzEwMzUw;"Because acpi_lid_initialize_state() is called on every system
+resume and it triggers acpi_lid_notify_state() which invokes
+acpi_pm_wakeup_event() for the lid device, the lid's wakeup count is
+incremented even if the lid was not the source of the event that woke up
+the system";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3YzA1OGM3Yzc0YjNkYmViN2QxNTdjMjczOTU5Zjg3ZmFmNzEwMzUw;"That behavior confuses user space deamons using
+wakeup_count to identify the potential system wakeup source";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3YzA1OGM3Yzc0YjNkYmViN2QxNTdjMjczOTU5Zjg3ZmFmNzEwMzUw;"To avoid
+the confusion, only trigger acpi_pm_wakeup_event() in the
+acpi_button_notify() path and don't do that in the
+acpi_lid_initialize_state() path.";1;1
+MDY6Q29tbWl0MjMyNTI5ODozZjM5NDJhY2E2ZGEzNTFhMTI1NDNhYTc3NjQ2Nzc5MWI2M2IzYTc4;proc: introduce proc_create_single{,_data};1;0
+MDY6Q29tbWl0MjMyNTI5ODozZjM5NDJhY2E2ZGEzNTFhMTI1NDNhYTc3NjQ2Nzc5MWI2M2IzYTc4;"Variants of proc_create{,_data} that directly take a seq_file show
+callback and drastically reduces the boilerplate code in the callers";1;1
+MDY6Q29tbWl0MjMyNTI5ODozZjM5NDJhY2E2ZGEzNTFhMTI1NDNhYTc3NjQ2Nzc5MWI2M2IzYTc4;All trivial callers converted over.;1;0
+MDY6Q29tbWl0MjMyNTI5ODphYzFlNTViMWZkYjI3YzFiMDdhMGE2ZmU1MTlmMTI5MWZmMWU3ZDQw;ACPI / button: make module loadable when booted in non-ACPI mode;1;0
+MDY6Q29tbWl0MjMyNTI5ODphYzFlNTViMWZkYjI3YzFiMDdhMGE2ZmU1MTlmMTI5MWZmMWU3ZDQw;"Modules such as nouveau.ko and i915.ko have a link time dependency on
+acpi_lid_open(), and due to its use of acpi_bus_register_driver(),
+the button.ko module that provides it is only loadable when booted in
+ACPI mode";0;0
+MDY6Q29tbWl0MjMyNTI5ODphYzFlNTViMWZkYjI3YzFiMDdhMGE2ZmU1MTlmMTI5MWZmMWU3ZDQw;"However, the ACPI button driver can be built into the core
+kernel as well, in which case the dependency can always be satisfied,
+and the dependent modules can be loaded regardless of whether the
+system was booted in ACPI mode or not";1;0
+MDY6Q29tbWl0MjMyNTI5ODphYzFlNTViMWZkYjI3YzFiMDdhMGE2ZmU1MTlmMTI5MWZmMWU3ZDQw;"So let's fix this asymmetry by making the ACPI button driver loadable
+as a module even if not booted in ACPI mode, so it can provide the
+acpi_lid_open() symbol in the same way as when built into the kernel.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5ZTgxMWUxOWE3YWNhMTZkNDBlMWNlMGM2OGU5YmJmZmVhMWI5ODEw;ACPI: button: Add a LID switch blacklist and add 1 model to it;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5ZTgxMWUxOWE3YWNhMTZkNDBlMWNlMGM2OGU5YmJmZmVhMWI5ODEw;"The GP-electronic T701 tablet does not have a LID switch, but it
+does define a LID device in its DSDT";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5ZTgxMWUxOWE3YWNhMTZkNDBlMWNlMGM2OGU5YmJmZmVhMWI5ODEw;"The _LID method points to
+the ""\\_SB.GPO2"" pin 0x18 GPIO with a pull setting of ""PullDefault"",
+which leaves the pin floating";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5ZTgxMWUxOWE3YWNhMTZkNDBlMWNlMGM2OGU5YmJmZmVhMWI5ODEw;"This causes the ACPI button driver to cause spurious LID closed events,
+causing the device to suspend while the user is using it";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5ZTgxMWUxOWE3YWNhMTZkNDBlMWNlMGM2OGU5YmJmZmVhMWI5ODEw;"There is
+nothing the ACPI button driver (or the gpio code) can do to fix this,
+so the only solution is to add a DMI based blacklist and ignore the LID
+device on these tablets.";1;1
+MDY6Q29tbWl0MjMyNTI5ODphZTM1ZDY1NmQ3OTZmYTIwMzc4NzQ1NWNlNTk4NzRjNjY4MmRjMGNm;ACPI: button: Add a debug message when we're sending a LID event;1;0
+MDY6Q29tbWl0MjMyNTI5ODphZTM1ZDY1NmQ3OTZmYTIwMzc4NzQ1NWNlNTk4NzRjNjY4MmRjMGNm;"I've been debugging some spurious suspend issues on various devices,
+at least on some devices these spurious suspends are caused by surious
+LID closed events being send to userspace";0;0
+MDY6Q29tbWl0MjMyNTI5ODphZTM1ZDY1NmQ3OTZmYTIwMzc4NzQ1NWNlNTk4NzRjNjY4MmRjMGNm;Running e.g;0;0
+MDY6Q29tbWl0MjMyNTI5ODphZTM1ZDY1NmQ3OTZmYTIwMzc4NzQ1NWNlNTk4NzRjNjY4MmRjMGNm;"evemu-record after noticing a spurious suspend is too late
+to detect that a LID closed event it the (probable) cause of this";1;1
+MDY6Q29tbWl0MjMyNTI5ODphZTM1ZDY1NmQ3OTZmYTIwMzc4NzQ1NWNlNTk4NzRjNjY4MmRjMGNm;This commit adds an acpi_handle_debug call to help debugging this.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NGQzZjZiNzY0NDc4OTY5MTljNjNiMjhhZDcxZjcxMjM4Y2VmY2Nl;ACPI / button: Delay acpi_lid_initialize_state() until first user space open;0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NGQzZjZiNzY0NDc4OTY5MTljNjNiMjhhZDcxZjcxMjM4Y2VmY2Nl;"ACPI _LID methods may depend on OpRegions and do not always handle
+handlers for those OpRegions not being present properly e.g";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NGQzZjZiNzY0NDc4OTY5MTljNjNiMjhhZDcxZjcxMjM4Y2VmY2Nl;;0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NGQzZjZiNzY0NDc4OTY5MTljNjNiMjhhZDcxZjcxMjM4Y2VmY2Nl;"            Method (_LID, 0, NotSerialized)  // _LID: Lid Status
+                If ((^^I2C5.PMI1.AVBL == One) && (^^GPO2.AVBL == One))
+Note the missing Return (1) when either of the OpRegions is not available,
+this causes (in this case) a report of the lid-switch being closed,
+which causes userspace to do an immediate suspend at boot";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NGQzZjZiNzY0NDc4OTY5MTljNjNiMjhhZDcxZjcxMjM4Y2VmY2Nl;"This commit delays getting the initial state and thus calling _LID for
+the first time until userspace opens the /dev/input/event# node";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NGQzZjZiNzY0NDc4OTY5MTljNjNiMjhhZDcxZjcxMjM4Y2VmY2Nl;"This
+ensures that all drivers will have had a chance to load and registerer
+their OpRegions before the first _LID call, fixing this issue.";0;0
+MDY6Q29tbWl0MjMyNTI5ODplNGRjYTdiN2FhMDhiMjI4OTNjNDU0ODVkMjIyYjU4MDdjMTM3NWFl;treewide: Fix function prototypes for module_param_call();1;1
+MDY6Q29tbWl0MjMyNTI5ODplNGRjYTdiN2FhMDhiMjI4OTNjNDU0ODVkMjIyYjU4MDdjMTM3NWFl;"Several function prototypes for the set/get functions defined by
+module_param_call() have a slightly wrong argument types";0;1
+MDY6Q29tbWl0MjMyNTI5ODplNGRjYTdiN2FhMDhiMjI4OTNjNDU0ODVkMjIyYjU4MDdjMTM3NWFl;"This fixes
+those in an effort to clean up the calls when running under type-enforced
+compiler instrumentation for CFI";0;1
+MDY6Q29tbWl0MjMyNTI5ODplNGRjYTdiN2FhMDhiMjI4OTNjNDU0ODVkMjIyYjU4MDdjMTM3NWFl;"This is the result of running the
+following semantic patch";0;1
+MDY6Q29tbWl0MjMyNTI5ODplNGRjYTdiN2FhMDhiMjI4OTNjNDU0ODVkMjIyYjU4MDdjMTM3NWFl;"@match_module_param_call_function@
+@fix_set_prototype
+ depends on match_module_param_call_function@
+ int _set_func(
+-_val_type _val
++const char * _val
+-_param_type _param
++const struct kernel_param * _param
+@fix_get_prototype
+ depends on match_module_param_call_function@
+ int _get_func(
+-_val_type _val
++char * _val
+-_param_type _param
++const struct kernel_param * _param
+Two additional by-hand changes are included for places where the above
+Coccinelle script didn't notice them";0;1
+MDY6Q29tbWl0MjMyNTI5ODplNGRjYTdiN2FhMDhiMjI4OTNjNDU0ODVkMjIyYjU4MDdjMTM3NWFl;"	drivers/platform/x86/thinkpad_acpi.c
+	fs/lockd/svc.c";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiNmFlYWI0NGVkMzg3ZTUyNjRkMjk2OWJjN2RlZWU5OTNiMjlhNTE1;ACPI: fix whitespace in pr_fmt() to align log entries;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiNmFlYWI0NGVkMzg3ZTUyNjRkMjk2OWJjN2RlZWU5OTNiMjlhNTE1;See this dmesg extract before the patch:;0;0
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;ACPI / PM: Ignore spurious SCI wakeups from suspend-to-idle;0;0
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;"The ACPI SCI (System Control Interrupt) is set up as a wakeup IRQ
+during suspend-to-idle transitions and, consequently, any events
+signaled through it wake up the system from that state";1;0
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;" However,
+on some systems some of the events signaled via the ACPI SCI while
+suspended to idle should not cause the system to wake up";0;1
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;" In fact,
+quite often they should just be discarded";0;1
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;"Arguably, systems should not resume entirely on such events, but in
+order to decide which events really should cause the system to resume
+and which are spurious, it is necessary to resume up to the point
+when ACPI SCIs are actually handled and processed, which is after
+executing dpm_resume_noirq() in the system resume path";0;1
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;"For this reasons, add a loop around freeze_enter() in which the
+platforms can process events signaled via multiplexed IRQ lines
+like the ACPI SCI and add suspend-to-idle hooks that can be
+used for this purpose to struct platform_freeze_ops";1;0
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;"In the ACPI case, the ->wake hook is used for checking if the SCI
+has triggered while suspended and deferring the interrupt-induced
+system wakeup until the events signaled through it are actually
+processed sufficiently to decide whether or not the system should
+resume";0;1
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;" In turn, the ->sync hook allows all of the relevant event
+queues to be flushed so as to prevent events from being missed due
+to race conditions";1;1
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;"In addition to that, some ACPI code processing wakeup events needs
+to be modified to use the ""hard"" version of wakeup triggers, so that
+it will cause a system resume to happen on device-induced wakeup
+events even if the ""soft"" mechanism to prevent the system from
+suspending is not enabled";0;1
+MDY6Q29tbWl0MjMyNTI5ODozM2U0ZjgwZWU2OWI1MTY4YmFkZjM3ZWRiZmVkNzk2ZWI0ODQzNGI5;" However, to preserve the existing
+behavior with respect to suspend-to-RAM, this only is done in
+the suspend-to-idle case and only if an SCI has occurred while
+suspended.";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmM2I3ZWFhZTFiMzVlYjgwNzc2MTBlYjdjN2RiMDQyYzliMDY0NWUx;"Revert ""ACPI / sleep: Ignore spurious SCI wakeups from suspend-to-idle""";0;0
+MDY6Q29tbWl0MjMyNTI5ODpmM2I3ZWFhZTFiMzVlYjgwNzc2MTBlYjdjN2RiMDQyYzliMDY0NWUx;"Revert commit eed4d47efe95 (ACPI / sleep: Ignore spurious SCI wakeups
+from suspend-to-idle) as it turned out to be premature and triggered
+a number of different issues on various systems";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmM2I3ZWFhZTFiMzVlYjgwNzc2MTBlYjdjN2RiMDQyYzliMDY0NWUx;"That includes, but is not limited to, premature suspend-to-RAM aborts
+on Dell XPS 13 (9343) reported by Dominik";0;0
+MDY6Q29tbWl0MjMyNTI5ODpmM2I3ZWFhZTFiMzVlYjgwNzc2MTBlYjdjN2RiMDQyYzliMDY0NWUx;"The issue the commit in question attempted to address is real and
+will need to be taken care of going forward, but evidently more work
+is needed for this purpose.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"Revert ""ACPI / button: Change default behavior to lid_init_state=open""";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"Revert commit 77e9a4aa9de1 (ACPI / button: Change default behavior to
+lid_init_state=open) which changed the kernel's behavior on laptops
+that boot with closed lids and expect the lid switch state to be
+reported accurately by the kernel";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"If you boot or resume your laptop with the lid closed on a docking
+station while using an external monitor connected to it, both internal
+and external displays will light on, while only the external should";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"There is a design choice in gdm to only provide the greeter on the
+internal display when lit on, so users only see a gray area on the
+external monitor";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"Also, the cursor will not show up as it's by
+default on the internal display too";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"To ""fix"" that, users have to open the laptop once and close it once
+again to sync the state of the switch with the hardware state";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"Even if the ""method"" operation mode implementation can be buggy on
+some platforms, the ""open"" choice is worse";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;" It breaks docking
+stations basically and there is no way to have a user-space hwdb to
+fix that";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"On the contrary, it's rather easy in user-space to have a hwdb
+with the problematic platforms";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"Then,  libinput (1.7.0+) can fix
+the state of the lid switch for us: you need to set the udev
+property LIBINPUT_ATTR_LID_SWITCH_RELIABILITY to 'write_open'";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"When libinput detects internal keyboard events, it will overwrite the
+state of the switch to open, making it reliable again";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;" Given that
+logind only checks the lid switch value after a timeout, we can
+assume the user will use the internal keyboard before this timeout
+expires";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;For example, such a hwdb entry is;0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzhkOGRiMDM5ZGFhYzA5MzgyMzhlOWE0MGE1YmQ2ZTUwZWUzYzli;"libinput:name:*Lid Switch*:dmi:*svnMicrosoftCorporation:pnSurface3:*
+ LIBINPUT_ATTR_LID_SWITCH_RELIABILITY=write_open";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"Revert ""ACPI / button: Remove lid_init_state=method mode""";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;This reverts commit ecb10b694b72ca5ea51b3c90a71ff2a11963425a;1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"The only expected ACPI control method lid device's usage model is
+ 1";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"Listen to the lid notification,
+ 2";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"Evaluate _LID after being notified by BIOS,
+ 3";0;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"Suspend the system (if users configure to do so) after seeing ""close""";0;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"It's not ensured that BIOS will notify OS after boot/resume, and
+it's not ensured that BIOS will always generate ""open"" event upon
+opening the lid";0;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;But there are 2 wrong usage models;0;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz; 1;0;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"When the lid device is responsible for suspend/resume the system,
+    userspace requires to see ""open"" event to be paired with ""close"" after
+    the system is resumed, or it will suspend the system again";0;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz; 2;1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"When an external monitor connects to the laptop attached docks,
+    userspace requires to see ""close"" event after the system is resumed so
+    that it can determine whether the internal display should remain dark
+    and the external display should be lit on";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"After we made default kernel behavior to be suitable for usage model 1,
+users of usage model 2 start to report regressions for such behavior
+change";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;"Reversion of button.lid_init_state=method doesn't actually reverts to old
+default behavior as doing so can enter a regression loop, but facilitates
+users to work the reported regressions around with
+button.lid_init_state=method";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmMzY5ZmRmNGY2NjEzMjJiNzNmMzMwN2U5ZjNjZDU1ZmIzYTIwMTIz;Fixes: ecb10b694b72 (ACPI / button: Remove lid_init_state=method mode);1;1
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;ACPI / sleep: Ignore spurious SCI wakeups from suspend-to-idle;0;0
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;"The ACPI SCI (System Control Interrupt) is set up as a wakeup IRQ
+during suspend-to-idle transitions and, consequently, any events
+signaled through it wake up the system from that state";1;0
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;" However,
+on some systems some of the events signaled via the ACPI SCI while
+suspended to idle should not cause the system to wake up";0;1
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;" In fact,
+quite often they should just be discarded";0;1
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;"Arguably, systems should not resume entirely on such events, but in
+order to decide which events really should cause the system to resume
+and which are spurious, it is necessary to resume up to the point
+when ACPI SCIs are actually handled and processed, which is after
+executing dpm_resume_noirq() in the system resume path";0;1
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;"For this reasons, add a loop around freeze_enter() in which the
+platforms can process events signaled via multiplexed IRQ lines
+like the ACPI SCI and add suspend-to-idle hooks that can be
+used for this purpose to struct platform_freeze_ops";1;0
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;"In the ACPI case, the ->wake hook is used for checking if the SCI
+has triggered while suspended and deferring the interrupt-induced
+system wakeup until the events signaled through it are actually
+processed sufficiently to decide whether or not the system should
+resume";0;1
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;" In turn, the ->sync hook allows all of the relevant event
+queues to be flushed so as to prevent events from being missed due
+to race conditions";1;1
+MDY6Q29tbWl0MjMyNTI5ODplZWQ0ZDQ3ZWZlOTUwOGI4NTViMDk3NTRjZjZkZTQzMjVkOGEyZjBk;"In addition to that, some ACPI code processing wakeup events needs
+to be modified to use the ""hard"" version of wakeup triggers, so that
+it will cause a system resume to happen on device-induced wakeup
+events even if the ""soft"" mechanism to prevent the system from
+suspending is not enabled (that also helps to catch device-induced
+wakeup events occurring during suspend transitions in progress).";0;1
+MDY6Q29tbWl0MjMyNTI5ODplY2IxMGI2OTRiNzJjYTVlYTUxYjNjOTBhNzFmZjJhMTE5NjM0MjVh;ACPI / button: Remove lid_init_state=method mode;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2IxMGI2OTRiNzJjYTVlYTUxYjNjOTBhNzFmZjJhMTE5NjM0MjVh;"The mode is buggy, and lid_init__state=open is more useful than this
+mode, so this patch makes it deprecated.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;ACPI / button: Change default behavior to lid_init_state=open;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;More and more platforms need the button.lid_init_state=open quirk;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"This
+patch sets it the default behavior";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"If a platform doesn't send lid open event or lid open event is lost due to
+the underlying system problems, then we can compare various combinations";0;1
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;1;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"systemd/acpid is used to suspend system or not, systemd has a special
+2";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;_LID returns a cached value or not;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;The result is as follows;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1; 1;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"lid_init_state=method
+   1";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"cached
+      1";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by lid;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (x) event=close
+         (x) systemd=suspends again
+         (x) acpid=suspends again
+         (x) state=close
+      2";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by other;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=close
+         (x) systemd=suspends again
+         (x) acpid=suspends again
+         (o) state=close
+   2";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"non-cached
+      1";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by lid;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=open
+         (o) systemd=resumes
+         (o) acpid=resumes
+         (o) state=open
+      2";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by other;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=close
+         (x) systemd=suspends again
+         (x) acpid=suspends again
+         (o) state=close
+ 2";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"lid_init_state=open
+   1";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"cached
+      1";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by lid;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=open
+         (o) systemd=resumes
+         (o) acpid=resumes
+         (x) state=close
+      2";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by other;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (x) event=open
+         (o) systemd=resumes
+         (o) acpid=resumes
+         (o) state=close
+   2";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"non-cached
+      1";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by lid;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=open
+         (o) systemd=resumes
+         (o) acpid=resumes
+         (o) state=open
+      2";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by other;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (x) event=open
+         (o) systemd=resumes
+         (o) acpid=resumes
+         (o) state=close
+ 3";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"lid_init_state=ignore
+   1";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"cached
+      1";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by lid;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=none
+         (x) systemd=suspends again
+         (o) acpid=resumes
+         (x) state=close
+      2";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by other;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=none
+         (x) systemd=suspends again
+         (o) acpid=resumes
+         (o) state=close
+   2";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"non-cached
+      1";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by lid;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=none
+         (x) systemd=suspends again
+         (o) acpid=resumes
+         (o) state=open
+      2";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;resumed by other;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"         (o) event=none
+         (x) systemd=suspends again
+         (o) acpid=resumes
+         (o) state=close
+As a conclusion";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1; 1;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"With systemd changed, lid_init_state=ignore has only one problem and the
+    problem comes from an underlying issue, not userspace and kernel lid
+    handling";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1; 2;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"Without systemd changed, lid_init_state=open can be the default
+    behavior as the pass ratio is not much worse than lid_init_state=ignore";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1; 3;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3N2U5YTRhYTlkZTEwY2MxNDE4YmY5YTg5MjM2Njk4ODgwMmE4MDI1;"lid_init_state=method is buggy, we can have a separate patch to make it
+    deprectated.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;ACPI / button: Fix an issue in button.lid_init_state=ignore mode;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"On most platforms, _LID returning value, lid open/close events are all
+reliable, but there are exceptions";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"Some AML tables report wrong initial
+lid state [1], and some of them never report lid open state [2]";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;The usage model on such buggy platforms is;0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;3;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"The lid close event is always reliable, used by the platform firmware to
+   trigger OSPM power saving operations";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"This usage model is not compliant to the Linux SW_LID model as the Linux
+userspace is very strict to the reliability of the open events";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"In order not to trigger issues on such buggy platforms, the ACPI button
+driver currently implements a lid_init_state=open quirk to send additional
+""open"" event after resuming";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;However, this is still not sufficient because;0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;1;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"Some special usage models (e.x., the dark resume scenario) cannot be
+   supported by this mode";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;2;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"If a ""close"" event is not used to trigger ""suspend"", then the subsequent
+   ""close"" events cannot be seen by the userspace";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"So we need to stop sending the additional ""open"" event and switch the
+driver to lid_init_state=ignore mode and make sure the platform triggered
+events can be reliably delivered to the userspace";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"The userspace programs
+then can be changed to not to be strict to the ""open"" events on such buggy
+platforms";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"Why will the subsequent ""close"" events be lost? This is because the input
+layer automatically filters redundant events for switch events";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"Thus given
+that the buggy AML tables do not guarantee paired ""open""/""close"" events,
+the ACPI button driver currently is not able to guarantee that the platform
+triggered reliable events can be always be seen by the userspace via
+SW_LID";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"This patch adds a mechanism to insert lid events as a compensation for the
+platform triggered ones to form a complete event switches in order to make
+sure that the platform triggered events can always be reliably delivered
+to the userspace";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"This essentially guarantees that the platform triggered
+reliable ""close"" events will always be relibly delivered to the userspace";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"However this mechanism is not suitable for lid_init_state=open/method as
+it should not send the complement switch event for the unreliable initial
+lid state notification";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"2 unreliable events can trigger unexpected
+behavior";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"Thus this patch only implements this mechanism for
+lid_init_state=ignore";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;Known issues;0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;1;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"Possible alternative approach
+   This approach is based on the fact that Linux requires a switch event
+   type for LID events";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"Another approach is to use key event type to
+   implement ACPI lid events";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"   With SW event type, since ACPI button driver inserts wrong lid events,
+   there could be a potential issue that an ""open"" event issued from some
+   AML update methods could result in a wrong ""close"" event to be delivered
+   to the userspace";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;While using KEY event type, there is no such problem;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZmE0NmM1MGY2NWI2Y2ExMGNlYTM4OTMyN2E2ZjFmMTc0OWJjNjMz;"   However there may not be such a kind of real case, and if there is such
+   a case, it is worked around in this patch as the complement switch event
+   is only generated for ""close"" event in order to deliver the reliable
+   ""close"" event to the userspace.";1;0
+MDY6Q29tbWl0MjMyNTI5ODplMzcwY2M4NjQwMzA1YWEyZmE0MmI4NTJjY2NkODllODBjMjhkOWEw;ACPI / button: remove pointer to old lid_sysfs on unbind;1;1
+MDY6Q29tbWl0MjMyNTI5ODplMzcwY2M4NjQwMzA1YWEyZmE0MmI4NTJjY2NkODllODBjMjhkOWEw;"When we removed the procfs dir on error or if the driver is
+unbound, the two variables acpi_lid_dir and acpi_button_dir
+were not reset";1;1
+MDY6Q29tbWl0MjMyNTI5ODplMzcwY2M4NjQwMzA1YWEyZmE0MmI4NTJjY2NkODllODBjMjhkOWEw;"On the next rebind, those static variables
+were not null and we couldn't re-register the device again.";0;1
+MDY6Q29tbWl0MjMyNTI5ODozNTQwYzMyYTlhZTRjYjIzYWI3MGY3Nzk4ZjQ1YWZmYzAyNzYyZmE3;ACPI / button: Add quirks for initial lid state notification;1;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQwYzMyYTlhZTRjYjIzYWI3MGY3Nzk4ZjQ1YWZmYzAyNzYyZmE3;"Linux userspace (systemd-logind) keeps on rechecking lid state when the
+lid state is closed";0;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQwYzMyYTlhZTRjYjIzYWI3MGY3Nzk4ZjQ1YWZmYzAyNzYyZmE3;"If it failed to update the lid state to open after
+boot/resume, the system suspending right after the boot/resume could be
+resulted";0;1
+MDY6Q29tbWl0MjMyNTI5ODozNTQwYzMyYTlhZTRjYjIzYWI3MGY3Nzk4ZjQ1YWZmYzAyNzYyZmE3;"Graphics drivers also use the lid notifications to implment
+MODESET_ON_LID_OPEN option";1;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQwYzMyYTlhZTRjYjIzYWI3MGY3Nzk4ZjQ1YWZmYzAyNzYyZmE3;"Before the situation is improved from the userspace and from the graphics
+driver, users can simply configure ACPI button driver to send initial
+""open"" lid state using button.lid_init_state=open to avoid such kind of
+issues";0;1
+MDY6Q29tbWl0MjMyNTI5ODozNTQwYzMyYTlhZTRjYjIzYWI3MGY3Nzk4ZjQ1YWZmYzAyNzYyZmE3;"And our ultimate target should be making button.lid_init_state=ignore
+the default behavior";1;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQwYzMyYTlhZTRjYjIzYWI3MGY3Nzk4ZjQ1YWZmYzAyNzYyZmE3;" This patch implements the 2 options and keep the
+old behavior (button.lid_init_state=method).";1;0
+MDY6Q29tbWl0MjMyNTI5ODplZTdlMjI2NTNmNTA3NzE2OWVjNzA2YjVhMTQwYTNiZTlkYjM4MWU3;ACPI / button: Refactor functions to eliminate redundant code;0;1
+MDY6Q29tbWl0MjMyNTI5ODplZTdlMjI2NTNmNTA3NzE2OWVjNzA2YjVhMTQwYTNiZTlkYjM4MWU3;"(Correct a wrong macro usage.)
+This patch simplies the code by merging some redundant code";1;1
+MDY6Q29tbWl0MjMyNTI5ODplZTdlMjI2NTNmNTA3NzE2OWVjNzA2YjVhMTQwYTNiZTlkYjM4MWU3;No functional changes.;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;ACPI / button: Remove initial lid state notification;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;The _LID control method's initial returning value is not reliable;0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;"The _LID control method is described to return the ""current"" lid state";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;"However the word of ""current"" has ambiguity, many BIOSen return the lid
+state upon the last lid notification instead of returning the lid state
+upon the last _LID evaluation";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;"There won't be difference when the _LID
+control method is evaluated during the runtime, the problem is its initial
+returning value";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;"When the BIOSen implement this control method with cached
+value, the initial returning value is likely not reliable";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;"There are simply
+so many examples retuning ""close"" as initial lid state (Link 1), sending
+this state to the userspace causes suspending right after booting/resuming";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;"Since the lid state is implemented by the BIOSen, the kernel lid driver has
+no idea how it can be correct, this patch stops sending the initial lid
+state to the userspace to try to avoid sending the wrong lid state to the
+userspace to trigger such kind of wrong suspending";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;"This actually reverts
+the following commit introduced for fixing a Novell bug";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmRkNDIwMDM0ZjI0ZjM1NmI4NmY5MDIyMmVmMTkxNDhiODJhNWMx;"  Commit: 23de5d9ef2a4bbc4f733f58311bcb7cf6239c813
+  Subject: ACPI: button: send initial lid state after add and resume";1;0
+MDY6Q29tbWl0MjMyNTI5ODo0YzYyZGJiY2U5MDJjZjJhZmE4OGNhYzg5ZWM2N2M4MjgxNjBmNDMx;ACPI: Remove FSF mailing addresses;1;1
+MDY6Q29tbWl0MjMyNTI5ODo0YzYyZGJiY2U5MDJjZjJhZmE4OGNhYzg5ZWM2N2M4MjgxNjBmNDMx;"There is no need to carry potentially outdated Free Software Foundation
+mailing address in file headers since the COPYING file includes it.";1;1
+MDY6Q29tbWl0MjMyNTI5ODplNzFlZWIyYTZiY2M2MjgyYjk1MjE1ZWIzNTNhM2FjOWNlM2UwZGUz;ACPI / button: Do not propagate wakeup-from-suspend events;1;0
+MDY6Q29tbWl0MjMyNTI5ODplNzFlZWIyYTZiY2M2MjgyYjk1MjE1ZWIzNTNhM2FjOWNlM2UwZGUz;"During system suspend mark ACPI buttons (other than the lid) as
+""suspended"" and if in that state, report wakeup events on button
+events, but do not propagate those events up the stack";1;1
+MDY6Q29tbWl0MjMyNTI5ODplNzFlZWIyYTZiY2M2MjgyYjk1MjE1ZWIzNTNhM2FjOWNlM2UwZGUz;"This prevents systems from being turned off after a button-triggered
+wakeup from the ""freeze"" sleep state.";0;1
+MDY6Q29tbWl0MjMyNTI5ODowYmY2MzY4ZWU4ZjI1ODI2ZDA2NDVjMGY3YTRmMTdjODg0NTM1NmE0;ACPI / button: Add ACPI Button event via netlink routine;1;1
+MDY6Q29tbWl0MjMyNTI5ODowYmY2MzY4ZWU4ZjI1ODI2ZDA2NDVjMGY3YTRmMTdjODg0NTM1NmE0;"Commit 1696d9d (ACPI: Remove the old /proc/acpi/event interface)
+removed ACPI Button event which originally was sent to userspace via
+/proc/acpi/event";1;1
+MDY6Q29tbWl0MjMyNTI5ODowYmY2MzY4ZWU4ZjI1ODI2ZDA2NDVjMGY3YTRmMTdjODg0NTM1NmE0;"This caused ACPI shutdown regression on gentoo
+in VirtualBox";1;1
+MDY6Q29tbWl0MjMyNTI5ODowYmY2MzY4ZWU4ZjI1ODI2ZDA2NDVjMGY3YTRmMTdjODg0NTM1NmE0;"Now ACPI events are sent to userspace via netlink,
+so add ACPI Button event back via netlink routine";1;1
+MDY6Q29tbWl0MjMyNTI5ODowYmY2MzY4ZWU4ZjI1ODI2ZDA2NDVjMGY3YTRmMTdjODg0NTM1NmE0;References: Reported-and-tested-by: Richard Musil <richard.musil@gmail.com>;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyZGU5ZmQxN2MwMzU5ZmVhMGMyYWI1YWUzOTNjNDBkNmQyOTliY2Fm;ACPI / button: fix button driver compile error when CONFIG_PM_SLEEP is undefined;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyZGU5ZmQxN2MwMzU5ZmVhMGMyYWI1YWUzOTNjNDBkNmQyOTliY2Fm;"The ACPI button driver defines acpi_button_resume() when
+CONFIG_PM_SLEEP is defined";1;0
+MDY6Q29tbWl0MjMyNTI5ODoyZGU5ZmQxN2MwMzU5ZmVhMGMyYWI1YWUzOTNjNDBkNmQyOTliY2Fm;"This results in the following
+compile error when CONFIG_PM_SLEEP is undefined";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyZGU5ZmQxN2MwMzU5ZmVhMGMyYWI1YWUzOTNjNDBkNmQyOTliY2Fm;drivers/acpi/button.c:85:8: error: ‘acpi_button_resume’ undeclared here (not in a function);0;0
+MDY6Q29tbWl0MjMyNTI5ODo4ZWFhMjlmOTJhNjZjOTJhZGUxYWQ2NjNkMTRkOTc1ZDc3NmVmNDky;ACPI / Button: Fix enabling button GPEs twice;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZWFhMjlmOTJhNjZjOTJhZGUxYWQ2NjNkMTRkOTc1ZDc3NmVmNDky;"Button GPEs have been enabled in the acpi_wake_device_init() during
+boot and the button driver enables them for the second time";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZWFhMjlmOTJhNjZjOTJhZGUxYWQ2NjNkMTRkOTc1ZDc3NmVmNDky;"Consequently, it is necessary to do
+twice in a row to disable those GPEs via sysfs";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZWFhMjlmOTJhNjZjOTJhZGUxYWQ2NjNkMTRkOTc1ZDc3NmVmNDky;"This patch is to
+remove the GPE enabling code from the button driver to avoid the
+problem.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4YjQ4NDYzZjg5NDI5YWY0MDhmZjY5NTI0NGRjNjI3ZTFhY2ZmNGY3;ACPI: Clean up inclusions of ACPI header files;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4YjQ4NDYzZjg5NDI5YWY0MDhmZjY5NTI0NGRjNjI3ZTFhY2ZmNGY3;"Replace direct inclusions of <acpi/acpi.h>, <acpi/acpi_bus.h> and
+<acpi/acpi_drivers.h>, which are incorrect, with <linux/acpi.h>
+inclusions and remove some inclusions of those files that aren't
+necessary";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4YjQ4NDYzZjg5NDI5YWY0MDhmZjY5NTI0NGRjNjI3ZTFhY2ZmNGY3;"First of all, <acpi/acpi.h>, <acpi/acpi_bus.h> and <acpi/acpi_drivers.h>
+should not be included directly from any files that are built for
+CONFIG_ACPI unset, because that generally leads to build warnings about
+undefined symbols in !CONFIG_ACPI builds";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4YjQ4NDYzZjg5NDI5YWY0MDhmZjY5NTI0NGRjNjI3ZTFhY2ZmNGY3;" For CONFIG_ACPI set,
+<linux/acpi.h> includes those files and for CONFIG_ACPI unset it
+provides stub ACPI symbols to be used in that case";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4YjQ4NDYzZjg5NDI5YWY0MDhmZjY5NTI0NGRjNjI3ZTFhY2ZmNGY3;"Second, there are ordering dependencies between those files that always
+have to be met";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4YjQ4NDYzZjg5NDI5YWY0MDhmZjY5NTI0NGRjNjI3ZTFhY2ZmNGY3;" Namely, it is required that <acpi/acpi_bus.h> be included
+prior to <acpi/acpi_drivers.h> so that the acpi_pci_root declarations the
+latter depends on are always there";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4YjQ4NDYzZjg5NDI5YWY0MDhmZjY5NTI0NGRjNjI3ZTFhY2ZmNGY3;" And <acpi/acpi.h> which provides
+basic ACPICA type declarations should always be included prior to any other
+ACPI headers in CONFIG_ACPI builds";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4YjQ4NDYzZjg5NDI5YWY0MDhmZjY5NTI0NGRjNjI3ZTFhY2ZmNGY3;" That also is taken care of including
+<linux/acpi.h> as appropriate.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo3NjNmNTI3YjY4YzZiMDI2NDM5ZjBiMTJlYmUyMzJkOTZiNTU2M2Rm;ACPI / button: Using input_set_capability() to mark device's event capability;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3NjNmNTI3YjY4YzZiMDI2NDM5ZjBiMTJlYmUyMzJkOTZiNTU2M2Rm;"Input layer provides input_set_capability() to set input device's event
+related bits";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3NjNmNTI3YjY4YzZiMDI2NDM5ZjBiMTJlYmUyMzJkOTZiNTU2M2Rm;This patch is to use it to replace origin code.;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxNjk2ZDlkYzU3ZTA2MmNlNTIwMGY2YTQyYTZhYWFkYTE1YjQzNGJi;ACPI: Remove the old /proc/acpi/event interface;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxNjk2ZDlkYzU3ZTA2MmNlNTIwMGY2YTQyYTZhYWFkYTE1YjQzNGJi;It is quite some time that this one has been deprecated;0;1
+MDY6Q29tbWl0MjMyNTI5ODoxNjk2ZDlkYzU3ZTA2MmNlNTIwMGY2YTQyYTZhYWFkYTE1YjQzNGJi;Get rid of it;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxNjk2ZDlkYzU3ZTA2MmNlNTIwMGY2YTQyYTZhYWFkYTE1YjQzNGJi;"Should some really important user be overseen, it may be reverted and
+the userspace program worked on first, but it is time to do something
+to get rid of this old stuff...";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkOWRkYTc4YmFkODc5NTk1ZDhjNDIyMGEwNjdmYzAyOWQ2NDg0YTE2;procfs: new helper - PDE_DATA(inode);1;0
+MDY6Q29tbWl0MjMyNTI5ODpkOWRkYTc4YmFkODc5NTk1ZDhjNDIyMGEwNjdmYzAyOWQ2NDg0YTE2;"The only part of proc_dir_entry the code outside of fs/proc
+really cares about is PDE(inode)->data";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkOWRkYTc4YmFkODc5NTk1ZDhjNDIyMGEwNjdmYzAyOWQ2NDg0YTE2;" Provide a helper
+for that; static inline for now, eventually will be moved
+to fs/proc, along with the knowledge of struct proc_dir_entry
+layout.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2MjcwZGE2ZjRkNWE3ZTEzY2ZmOTg1ODVkMjVjNjc0MmFlYzVhMzNj;ACPI: suppress compiler warnings in button.c;0;1
+MDY6Q29tbWl0MjMyNTI5ODo2MjcwZGE2ZjRkNWE3ZTEzY2ZmOTg1ODVkMjVjNjc0MmFlYzVhMzNj;This patch fixes following compiler warnings when build via make W=1;1;1
+MDY6Q29tbWl0MjMyNTI5ODo2MjcwZGE2ZjRkNWE3ZTEzY2ZmOTg1ODVkMjVjNjc0MmFlYzVhMzNj;"drivers/acpi/button.c:220:5: warning: no previous prototype for ‘acpi_lid_notifier_register’ [-Wmissing-prototypes]
+drivers/acpi/button.c:226:5: warning: no previous prototype for ‘acpi_lid_notifier_unregister’ [-Wmissing-prototypes]
+drivers/acpi/button.c:232:5: warning: no previous prototype for ‘acpi_lid_open’ [-Wmissing-prototypes]";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1MWZhYzgzODhhMDMyNWE0M2YwYWU2NzQ1M2VjZTJjMzczZTJlYzI4;ACPI: Remove useless type argument of driver .remove() operation;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1MWZhYzgzODhhMDMyNWE0M2YwYWU2NzQ1M2VjZTJjMzczZTJlYzI4;"The second argument of ACPI driver .remove() operation is only used
+by the ACPI processor driver and the value passed to that driver
+through it is always available from the given struct acpi_device
+object's removal_type field";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1MWZhYzgzODhhMDMyNWE0M2YwYWU2NzQ1M2VjZTJjMzczZTJlYzI4;" For this reason, the second ACPI driver
+.remove() argument is in fact useless, so drop it.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo0NjZlNzhmNzc5YjJiODExZjc3ZGJkMmViZjYxOGRkZDQyZTNlZDUw;ACPI/button: convert to module_acpi_driver();1;0
+MDY6Q29tbWl0MjMyNTI5ODo0NjZlNzhmNzc5YjJiODExZjc3ZGJkMmViZjYxOGRkZDQyZTNlZDUw;;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5MDY5MjQwNDgwZTI0YTJkNmNlMjM0MDRjOWFkNmNhYmY1OWI3MjU4;ACPI / PM: Fix unused function warnings for CONFIG_PM_SLEEP;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MDY5MjQwNDgwZTI0YTJkNmNlMjM0MDRjOWFkNmNhYmY1OWI3MjU4;"According to compiler warnings, several suspend/resume functions
+in ACPI drivers are not used for CONFIG_PM_SLEEP unset, so add
+#ifdefs to prevent them from being built in that case.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxYmU1MzJkZTgzNGFiN2IxOGNlMjBkYzJlNTZlNzI0NzcwYmViNzlk;ACPI: Use struct dev_pm_ops for power management in the button driver;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxYmU1MzJkZTgzNGFiN2IxOGNlMjBkYzJlNTZlNzI0NzcwYmViNzlk;"Make the ACPI button driver define its PM callbacks through
+a struct dev_pm_ops object rather than by using legacy PM hooks
+in struct acpi_device_ops.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5MTJiNzQyN2ZjMTM0NjdiYWMwNDJjYzcyZjJlY2NiZGJjMzlkNzcz;ACPI button: remove unused procfs I/F;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MTJiNzQyN2ZjMTM0NjdiYWMwNDJjYzcyZjJlY2NiZGJjMzlkNzcz;Remove unused ACPI button procfs interface;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MTJiNzQyN2ZjMTM0NjdiYWMwNDJjYzcyZjJlY2NiZGJjMzlkNzcz;Only /proc/acpi/button/lid/LID/state remains.;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjMTlmOWE4NGVjODA3ZGE1N2ZkNzViYmQ5YTNmMmI4MjY5NjExZjc5;ACPI / Button: Avoid disabling wakeup unnecessarily on remove;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjMTlmOWE4NGVjODA3ZGE1N2ZkNzViYmQ5YTNmMmI4MjY5NjExZjc5;"If a button device had already been enabled to wake up the system
+from sleep states before the button driver saw it, the driver
+shouldn't disable the device's wakeup capability when being detached
+from the device.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1MTkwNzI2NzY1YjQwNzc0YzA2OWUxODdhOTU4ZTEwY2NkOTcwZTY1;ACPI: Remove the wakeup.run_wake_count device field;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1MTkwNzI2NzY1YjQwNzc0YzA2OWUxODdhOTU4ZTEwY2NkOTcwZTY1;"The wakeup.run_wake_count ACPI device field is only used by the PCI
+runtime PM code to ""protect"" devices from being prepared for
+generating wakeup signals more than once in a row";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1MTkwNzI2NzY1YjQwNzc0YzA2OWUxODdhOTU4ZTEwY2NkOTcwZTY1;" However, it
+really doesn't provide any protection, because (1) all of the
+functions it is supposed to protect use their own reference counters
+effectively ensuring that the device will be set up for generating
+wakeup signals just once and (2) the PCI runtime PM code uses
+wakeup.run_wake_count in a racy way, since nothing prevents
+acpi_dev_run_wake() from being called concurrently from two different
+threads for the same device";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1MTkwNzI2NzY1YjQwNzc0YzA2OWUxODdhOTU4ZTEwY2NkOTcwZTY1;"Remove the wakeup.run_wake_count ACPI device field which is
+unnecessary, confusing and used in a wrong way.";0;0
+MDY6Q29tbWl0MjMyNTI5ODoxZjgzNTExYmQ4ZjQ0YjhhOWUyZDgyMjYzYjJjOTVmMjZhNjI1ZmNj;ACPI / PM: Report wakeup events from buttons;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxZjgzNTExYmQ4ZjQ0YjhhOWUyZDgyMjYzYjJjOTVmMjZhNjI1ZmNj;"Since ACPI buttons and lids can be configured to wake up the system
+from sleep states, report wakeup events from these devices.";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMmI1NmJjODA4YWRkYjkwOGE1YmY0MzVkOWI5NDJjMDJhZjlhN2M0;ACPI / PM: Use device wakeup flags for handling ACPI wakeup devices;1;1
+MDY6Q29tbWl0MjMyNTI5ODpmMmI1NmJjODA4YWRkYjkwOGE1YmY0MzVkOWI5NDJjMDJhZjlhN2M0;"There are ACPI devices (buttons and the laptop lid) that can wake up
+the system from sleep states and have no ""physical"" companion
+devices";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMmI1NmJjODA4YWRkYjkwOGE1YmY0MzVkOWI5NDJjMDJhZjlhN2M0;" The ACPI subsystem uses two flags, wakeup.state.enabled and
+wakeup.flags.always_enabled, for handling those devices, but they
+are not accessible through the standard device wakeup infrastructure";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmMmI1NmJjODA4YWRkYjkwOGE1YmY0MzVkOWI5NDJjMDJhZjlhN2M0;"User space can only control them via the /proc/acpi/wakeup interface
+that is not really convenient (e.g";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmMmI1NmJjODA4YWRkYjkwOGE1YmY0MzVkOWI5NDJjMDJhZjlhN2M0;"the way in which devices are
+enabled to wake up the system is not portable between different
+systems, because it requires one to know the devices' ""names"" used in
+the system's ACPI tables)";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmMmI1NmJjODA4YWRkYjkwOGE1YmY0MzVkOWI5NDJjMDJhZjlhN2M0;"To address this problem, use standard device wakeup flags instead of
+the special ACPI flags for handling those devices";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmMmI1NmJjODA4YWRkYjkwOGE1YmY0MzVkOWI5NDJjMDJhZjlhN2M0;" In particular,
+use device_set_wakeup_capable() to mark the ACPI wakeup devices
+during initialization and use device_set_wakeup_enable() to allow
+or disallow them to wake up the system from sleep states";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMmI1NmJjODA4YWRkYjkwOGE1YmY0MzVkOWI5NDJjMDJhZjlhN2M0;" Rework
+the /proc/acpi/wakeup interface to take these changes into account.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo2MjBlMTEyY2ZlMWM5MjgxYzE3NmRlOGFkMWE3NjkxYzRlYjQ5NTBk;ACPI/PNP: A HID value of an object never changes -> make it const;1;0
+MDY6Q29tbWl0MjMyNTI5ODo2MjBlMTEyY2ZlMWM5MjgxYzE3NmRlOGFkMWE3NjkxYzRlYjQ5NTBk;;0;0
+MDY6Q29tbWl0MjMyNTI5ODphNDQwNjFhYThiNWQ1OGIyNzI5ZmFjYTRjMTU1YTk0YTViZWEyYTA5;ACPICA: Remove wakeup GPE reference counting which is not used;1;0
+MDY6Q29tbWl0MjMyNTI5ODphNDQwNjFhYThiNWQ1OGIyNzI5ZmFjYTRjMTU1YTk0YTViZWEyYTA5;"After the previous patch that introduced acpi_gpe_wakeup() and
+modified the ACPI suspend and wakeup code to use it, the third
+reference counter are not necessary any more";0;1
+MDY6Q29tbWl0MjMyNTI5ODphNDQwNjFhYThiNWQ1OGIyNzI5ZmFjYTRjMTU1YTk0YTViZWEyYTA5;" Remove them and
+accordingly";1;0
+MDY6Q29tbWl0MjMyNTI5ODphNDQwNjFhYThiNWQ1OGIyNzI5ZmFjYTRjMTU1YTk0YTViZWEyYTA5;" Also drop GPE type constants that aren't used
+any more.";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjYjFjYjE3ODBmMjAyNWE3ZDYxMmRlMDkxMzFiZjY1MzBmODBmYjFh;ACPI / PM: Do not enable GPEs for system wakeup in advance;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjYjFjYjE3ODBmMjAyNWE3ZDYxMmRlMDkxMzFiZjY1MzBmODBmYjFh;"After commit 9630bdd9b15d2f489c646d8bc04b60e53eb5ec78
+(ACPI: Use GPE reference counting to support shared GPEs) the wakeup
+enable mask bits of GPEs are set as soon as the GPEs are enabled to
+wake up the system";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjYjFjYjE3ODBmMjAyNWE3ZDYxMmRlMDkxMzFiZjY1MzBmODBmYjFh;" Unfortunately, this leads to a regression
+reported by Michal Hocko, where a system is woken up from ACPI S5 by
+a device that is not supposed to do that, because the wakeup enable
+mask bit of this device's GPE is always set when
+acpi_enter_sleep_state() calls acpi_hw_enable_all_wakeup_gpes(),
+although it should only be set if the device is supposed to wake up
+the system from the target state";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjYjFjYjE3ODBmMjAyNWE3ZDYxMmRlMDkxMzFiZjY1MzBmODBmYjFh;"To work around this issue, rework the ACPI power management code so
+that GPEs are not enabled to wake up the system upfront, but only
+during a system state transition when the target state of the system
+is known";0;0
+MDY6Q29tbWl0MjMyNTI5ODpjYjFjYjE3ODBmMjAyNWE3ZDYxMmRlMDkxMzFiZjY1MzBmODBmYjFh;" [Of course, this means that the reference counting of
+""wakeup"" GPEs doesn't really make sense and it is sufficient to
+set/unset the wakeup mask bits for them during system sleep
+transitions";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjYjFjYjE3ODBmMjAyNWE3ZDYxMmRlMDkxMzFiZjY1MzBmODBmYjFh;" This will allow us to simplify the GPE handling code
+quite a bit, but that change is too intrusive for 2.6.35.]
+Fixes ";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;include cleanup: Update gfp.h and slab.h includes to prepare for breaking implicit slab.h inclusion from percpu.h;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"percpu.h is included by sched.h and module.h and thus ends up being
+included when building most .c files";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" percpu.h includes slab.h which
+in turn includes gfp.h making everything defined by the two files
+universally available and complicating inclusion dependencies";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;percpu.h -> slab.h dependency is about to be removed;0;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" Prepare for
+this change by updating users of gfp and slab facilities include those
+headers directly instead of assuming availability";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" As this conversion
+needs to touch large number of source files, the following script is
+used as the basis of conversion";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;The script does the followings;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;  only the necessary includes are there;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1; ie;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"if only gfp is used,
+  gfp.h, if slab is used, slab.h";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"  blocks and try to put the new include such that its order conforms
+  to its surrounding";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" It's put in the include block which contains
+  core kernel includes, in the same order that the rest are ordered -
+  alphabetical, Christmas tree, rev-Xmas-tree or at the end if there
+  doesn't seem to be any matching order";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"  because the file doesn't have fitting include block), it prints out
+  an error message indicating which .h file needs to be added to the
+  file";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;The conversion was done in the following steps;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;1;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"The initial automatic conversion of all .c files updated slightly
+   over 4000 files, deleting around 700 includes and adding ~480 gfp.h
+   and ~3000 slab.h inclusions";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" The script emitted errors for ~400
+   files";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;2;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;Each error was manually checked;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" Some didn't need the inclusion,
+   some needed manual addition while adding it to implementation .h or
+   embedding .c file was more appropriate for others";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" This step added
+   inclusions to around 150 files";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;3;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"The script was run again and the output was compared to the edits
+   from #2 to make sure no file was left behind";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;4;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;Several build tests were done and a couple of problems were fixed;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;   e.g;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"lib/decompress_*.c used malloc/free() wrappers around slab
+   APIs requiring slab.h to be added manually";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;5;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"The script was run on all .h files but without automatically
+   editing them as sprinkling gfp.h and slab.h inclusions around .h
+   files could easily lead to inclusion dependency hell";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" Most gfp.h
+   inclusion directives were ignored as stuff from gfp.h was usually
+   wildly available and often used in preprocessor macros";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" Each
+   slab.h inclusion directive was examined and added manually as
+   necessary";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;6;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;percpu.h was updated not to include slab.h;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;7;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"Build test were done on the following configurations and failures
+   were fixed";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;" CONFIG_GCOV_KERNEL was turned off for all tests (as my
+   distributed build env didn't work with gcov compiles) and a few
+   more options had to be turned off depending on archs to make things
+   build (like ipr on powerpc/64 which failed due to missing writeq)";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;8;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"percpu.h modifications were reverted so that it could be applied as
+   a separate patch and serve as bisection point";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"Given the fact that I had only a couple of failures from tests on step
+6, I'm fairly confident about the coverage of this conversion patch";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YTBlM2FkNmFmODY2MGJlMjFjYTk4YTk3MWNkMDBmMzMxMzE4YzA1;"If there is a breakage, it's likely to be something in one of the arch
+headers which should be easily discoverable easily on most builds of
+the specific arch.";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmNTE3NzA5ZDY1YmVlZDk1ZjUyZjAyMWI0M2UzMDM1YjUyZWY3OTFh;ACPI / PM: Add more run-time wake-up fields;1;1
+MDY6Q29tbWl0MjMyNTI5ODpmNTE3NzA5ZDY1YmVlZDk1ZjUyZjAyMWI0M2UzMDM1YjUyZWY3OTFh;"Use the run_wake flag to mark all devices for which run-time wake-up
+events may be generated by the platform";0;0
+MDY6Q29tbWl0MjMyNTI5ODpmNTE3NzA5ZDY1YmVlZDk1ZjUyZjAyMWI0M2UzMDM1YjUyZWY3OTFh;" Introduce a new wake-up
+flag, always_enabled, for marking devices that should be permanently
+enabled to generate run-time events";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmNTE3NzA5ZDY1YmVlZDk1ZjUyZjAyMWI0M2UzMDM1YjUyZWY3OTFh;" Also, introduce a reference
+counter for run-wake devices and a function that will initialize all
+of the run-time wake-up fields for given device.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NjMwYmRkOWIxNWQyZjQ4OWM2NDZkOGJjMDRiNjBlNTNlYjVlYzc4;ACPI: Use GPE reference counting to support shared GPEs;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NjMwYmRkOWIxNWQyZjQ4OWM2NDZkOGJjMDRiNjBlNTNlYjVlYzc4;ACPI GPEs may map to multiple devices;0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NjMwYmRkOWIxNWQyZjQ4OWM2NDZkOGJjMDRiNjBlNTNlYjVlYzc4;" The current GPE interface
+only provides a mechanism for enabling and disabling GPEs, making
+it difficult to change the state of GPEs at runtime without extensive
+cooperation between devices";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NjMwYmRkOWIxNWQyZjQ4OWM2NDZkOGJjMDRiNjBlNTNlYjVlYzc4;"Add an API to allow devices to indicate whether or not they want
+their device's GPE to be enabled for both runtime and wakeup events";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NjMwYmRkOWIxNWQyZjQ4OWM2NDZkOGJjMDRiNjBlNTNlYjVlYzc4;"Remove the old GPE type handling entirely, which gets rid of various
+quirks, like the implicit disabling with GPE type setting";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NjMwYmRkOWIxNWQyZjQ4OWM2NDZkOGJjMDRiNjBlNTNlYjVlYzc4;"This
+requires a small amount of rework in order to ensure that non-wake
+GPEs are enabled by default to preserve existing behaviour";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NjMwYmRkOWIxNWQyZjQ4OWM2NDZkOGJjMDRiNjBlNTNlYjVlYzc4;Based on patches from Matthew Garrett <mjg@redhat.com>.;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxM2MxOTljMGQwY2Y3OGIyNzU5Mjk5MTEyOWZiOGNiY2ZjNTE2NGRl;ACPI: Use the return result of ACPI lid notifier chain correctly;0;1
+MDY6Q29tbWl0MjMyNTI5ODoxM2MxOTljMGQwY2Y3OGIyNzU5Mjk5MTEyOWZiOGNiY2ZjNTE2NGRl;"On some laptops it will return NOTIFY_OK(non-zero) when calling the ACPI LID
+notifier";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxM2MxOTljMGQwY2Y3OGIyNzU5Mjk5MTEyOWZiOGNiY2ZjNTE2NGRl;"Then it is used as the result of ACPI LID resume function, which
+will complain the following warning message in course of suspend/resume";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxM2MxOTljMGQwY2Y3OGIyNzU5Mjk5MTEyOWZiOGNiY2ZjNTE2NGRl;"     >PM: Device PNP0C0D:00 failed to resume: error 1
+This patch is to eliminate the above warning message.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyYzkwN2I3MmRiNGRkNGU4YWY2ZGNjYjZlMGFjMTIyZDc4NjI3Yjhk;ACPI button: don't try to use a non-existent lid device;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyYzkwN2I3MmRiNGRkNGU4YWY2ZGNjYjZlMGFjMTIyZDc4NjI3Yjhk;"If a call comes in to check the lid state but there's no lid device
+present, we should return -ENODEV.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3ZTEyNzE1ZWNjNDdhOGE1OTE1NGFmZTI3NDZlNDg5OTgyMjViYjY5;ACPI button: provide lid status functions;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3ZTEyNzE1ZWNjNDdhOGE1OTE1NGFmZTI3NDZlNDg5OTgyMjViYjY5;"Some drivers need to know when a lid event occurs and get the current
+status";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3ZTEyNzE1ZWNjNDdhOGE1OTE1NGFmZTI3NDZlNDg5OTgyMjViYjY5;" This can be useful for when a platform firmware clobbers some
+hardware state at lid time, and a driver needs to restore things when
+the lid is opened again.";0;1
+MDY6Q29tbWl0MjMyNTI5ODphMTkyYTk1ODBiY2M0MTY5MmJlMWYzNmI3N2MzYjY4MTgyN2Y1NjZh;ACPI: Move definition of PREFIX from acpi_bus.h to internal..h;1;0
+MDY6Q29tbWl0MjMyNTI5ODphMTkyYTk1ODBiY2M0MTY5MmJlMWYzNmI3N2MzYjY4MTgyN2Y1NjZh;"Linux/ACPI core files using internal.h all PREFIX ""ACPI: "",
+however, not all ACPI drivers use/want it -- and they
+should not have to #undef PREFIX to define their own";1;1
+MDY6Q29tbWl0MjMyNTI5ODphMTkyYTk1ODBiY2M0MTY5MmJlMWYzNmI3N2MzYjY4MTgyN2Y1NjZh;Add GPL commment to internal.h while we are there;1;0
+MDY6Q29tbWl0MjMyNTI5ODphMTkyYTk1ODBiY2M0MTY5MmJlMWYzNmI3N2MzYjY4MTgyN2Y1NjZh;"This does not change any actual console output,
+asside from a whitespace fix.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjhiNTk3Yzg4M2NmODYzYzcyMTY1NjRjYWUwOGE0NzMwZDU2Y2Mx;ACPI: button: remove control method/fixed hardware distinctions;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjhiNTk3Yzg4M2NmODYzYzcyMTY1NjRjYWUwOGE0NzMwZDU2Y2Mx;"This patch removes the driver distinction between control method (CM)
+and fixed hardware (FF) buttons";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjhiNTk3Yzg4M2NmODYzYzcyMTY1NjRjYWUwOGE0NzMwZDU2Y2Mx;" We previously needed that so we
+could install either a fixed event handler or a notify handler, but
+the Linux/ACPI code now handles that for us, so we don't need to
+worry about it";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjhiNTk3Yzg4M2NmODYzYzcyMTY1NjRjYWUwOGE0NzMwZDU2Y2Mx;"Note that this removes the FF/CM annotation from the ""info"" files
+in /proc";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjhiNTk3Yzg4M2NmODYzYzcyMTY1NjRjYWUwOGE0NzMwZDU2Y2Mx;" For example,
+    /proc/acpi/button/PWRF/info";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjhiNTk3Yzg4M2NmODYzYzcyMTY1NjRjYWUwOGE0NzMwZDU2Y2Mx;"    -type:		Power Button (FF)
+    +type:		Power Button
+I don't think there's anything meaningful user-space can do by
+knowing whether a button is a control method or a fixed hardware
+button, so nobody should be looking at the FF/CM.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMDZjMTllN2I5NzhlMWI4NGVhNWNhYmJkNDcwYTBkZGNlZDU3N2M4;ACPI: button: remove button->device pointer;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMDZjMTllN2I5NzhlMWI4NGVhNWNhYmJkNDcwYTBkZGNlZDU3N2M4;"We no longer need a pointer from struct acpi_button back to the
+struct acpi_device";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMDZjMTllN2I5NzhlMWI4NGVhNWNhYmJkNDcwYTBkZGNlZDU3N2M4;" Everywhere we used that pointer, we either
+already have, or can easily get, the acpi_device pointer without
+using the copy from acpi_button";0;1
+MDY6Q29tbWl0MjMyNTI5ODoxMDZjMTllN2I5NzhlMWI4NGVhNWNhYmJkNDcwYTBkZGNlZDU3N2M4;" So this patch removes the
+structure element.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiZjA0YTc3MjI3ZGI3NmYxNjNiYzIzNTVlZjRlMTc2Nzk0OTg3YmUy;ACPI: button: cache hid/name/class pointers;0;1
+MDY6Q29tbWl0MjMyNTI5ODpiZjA0YTc3MjI3ZGI3NmYxNjNiYzIzNTVlZjRlMTc2Nzk0OTg3YmUy;"This patch adds temporaries to cache the acpi_device_hid(),
+acpi_device_name(), and acpi_device_class() pointers so we
+don't have to clutter the code with so many uses of those
+interfaces.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxYmNlODExMzFjNzEwNjRiYzMxNjMwNzhmMjQ1NDViODM5YTMxOTY3;ACPI: button: use Linux style for getting driver_data;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxYmNlODExMzFjNzEwNjRiYzMxNjMwNzhmMjQ1NDViODM5YTMxOTY3;"It's typical and slightly more compact to look up the driver_data
+structure by initializing the automatic variable at its definition.";1;0
+MDY6Q29tbWl0MjMyNTI5ODplMmZiOTc1NGQyNzUxMzkxOGE0OTM2ZThjYmFhZDUwZmY1NmNmZDNk;ACPI: button: remove unnecessary null pointer checks;0;1
+MDY6Q29tbWl0MjMyNTI5ODplMmZiOTc1NGQyNzUxMzkxOGE0OTM2ZThjYmFhZDUwZmY1NmNmZDNk;Better to oops and learn about a bug than to silently cover it up.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1MGE0ZGE4OTAxMDJhNDU1ZTVjZDNkZDM1OGMzODY1MGQwNzE3OGQz;ACPI: button: whitespace changes;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1MGE0ZGE4OTAxMDJhNDU1ZTVjZDNkZDM1OGMzODY1MGQwNzE3OGQz;This patch changes a bit of whitespace to follow Linux conventions.;1;1
+MDY6Q29tbWl0MjMyNTI5ODozNzNjZmMzNjBlYzc3M2JlMmY3NjE1ZTU5YTE5ZjMzMTMyNTVkYjdj;ACPI: button: use .notify method instead of installing handler directly;1;1
+MDY6Q29tbWl0MjMyNTI5ODozNzNjZmMzNjBlYzc3M2JlMmY3NjE1ZTU5YTE5ZjMzMTMyNTVkYjdj;This patch adds a .notify() method;1;0
+MDY6Q29tbWl0MjMyNTI5ODozNzNjZmMzNjBlYzc3M2JlMmY3NjE1ZTU5YTE5ZjMzMTMyNTVkYjdj;" The presence of .notify() causes
+Linux/ACPI to manage event handlers and notify handlers on our behalf,
+so we don't have to install and remove them ourselves";1;1
+MDY6Q29tbWl0MjMyNTI5ODozNzNjZmMzNjBlYzc3M2JlMmY3NjE1ZTU5YTE5ZjMzMTMyNTVkYjdj;"Note that events from fixed hardware buttons now show up as a special
+notify event, so to preserve user-space backward compatibility, we
+convert that back to ACPI_BUTTON_NOTIFY_STATUS.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;proc 2/2: remove struct proc_dir_entry::owner;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;"Setting ->owner as done currently (pde->owner = THIS_MODULE) is racy
+as correctly noted at bug #12454";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;"Someone can lookup entry with NULL
+->owner, thus not pinning enything, and release it later resulting
+in module refcount underflow";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;"We can keep ->owner and supply it at registration time like ->proc_fops
+and ->data";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;"But this leaves ->owner as easy-manipulative field (just one C assignment)
+and somebody will forget to unpin previous/pin current module when
+switching ->owner";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;"->proc_fops is declared as ""const"" which should give
+some thoughts";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;"->read_proc/->write_proc were just fixed to not require ->owner for
+protection";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;"rmmod'ed directories will be empty and return ""."" and "".."" -- no harm";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;And directories with tricky enough readdir and lookup shouldn't be modular;0;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;We definitely don't want such modular code;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;Removing ->owner will also make PDE smaller;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;So, let's nuke it;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5OWI3NjIzMzgwM2JlYWIzMDIxMjNkMjQzZWVhOWU0MTE0OTgwNGYz;Kudos to Jeff Layton for reminding about this, let's say, oversight.;1;0
+MDY6Q29tbWl0MjMyNTI5ODowYjcwODRhYzY3ZmI4NGYwY2YyZjhiYzAyZDdlMGRlYTg1MjFkZDJk;ACPICA: Use spinlock for acpi_{en|dis}able_gpe;1;1
+MDY6Q29tbWl0MjMyNTI5ODowYjcwODRhYzY3ZmI4NGYwY2YyZjhiYzAyZDdlMGRlYTg1MjFkZDJk;"Disabling gpe might interfere with gpe detection/handling,
+thus producing ""interrupt not handled"" errors";0;1
+MDY6Q29tbWl0MjMyNTI5ODowYjcwODRhYzY3ZmI4NGYwY2YyZjhiYzAyZDdlMGRlYTg1MjFkZDJk;"Ironically, disabling of GPE from interrupt context is already
+under spinlock, so only userspace needs to start using it.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4OTU5NWI4ZjI4NTBhMDgwZDI5MGJmNzc4ZWM5MzNlYTFkOTlmNzhl;ACPI: consolidate ACPI_*_COMPONENT definitions in acpi_drivers.h;0;0
+MDY6Q29tbWl0MjMyNTI5ODo4OTU5NWI4ZjI4NTBhMDgwZDI5MGJmNzc4ZWM5MzNlYTFkOTlmNzhl;"Move all the component definitions for drivers to a single shared place,
+include/acpi/acpi_drivers.h.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZjMxNmU5MzkxMDBlNzg5YjNjNWQ0ZDEwMjYxOWNjZjU4MzRiZDAw;ACPI: Always report a sync event after a lid state change;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkZjMxNmU5MzkxMDBlNzg5YjNjNWQ0ZDEwMjYxOWNjZjU4MzRiZDAw;"Currently not always an EV_SYN event is reported to userland
+after the EV_SW SW_LID event has been sent";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkZjMxNmU5MzkxMDBlNzg5YjNjNWQ0ZDEwMjYxOWNjZjU4MzRiZDAw;"This is easy to verify
+by using “input-events” from input-utils and just closing and opening
+the lid.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyNzY2M2M1ODU1YjEwYWY5ZWM2N2JjN2RmYmEwMDE0MjZiYTIxMjIy;ACPI: Change acpi_evaluate_integer to support 64-bit on 32-bit kernels;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNzY2M2M1ODU1YjEwYWY5ZWM2N2JjN2RmYmEwMDE0MjZiYTIxMjIy;As of version 2.0, ACPI can return 64-bit integers;0;1
+MDY6Q29tbWl0MjMyNTI5ODoyNzY2M2M1ODU1YjEwYWY5ZWM2N2JjN2RmYmEwMDE0MjZiYTIxMjIy;" The current
+acpi_evaluate_integer only supports 64-bit integers on 64-bit platforms";1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNzY2M2M1ODU1YjEwYWY5ZWM2N2JjN2RmYmEwMDE0MjZiYTIxMjIy;"Change the argument to take a pointer to an acpi_integer so we support
+64-bit integers on all platforms";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyNzY2M2M1ODU1YjEwYWY5ZWM2N2JjN2RmYmEwMDE0MjZiYTIxMjIy;"lenb: replaced use of ""acpi_integer"" with ""unsigned long long""
+lenb: fixed bug in acpi_thermal_trips_update()";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkYjg5YjRmMGRiYWI4MzdkMGYzZGUyYzNlOTQyN2E4ZDUzOTNhZmEz;ACPI: catch calls of acpi_driver_data on pointer of wrong type;0;1
+MDY6Q29tbWl0MjMyNTI5ODpkYjg5YjRmMGRiYWI4MzdkMGYzZGUyYzNlOTQyN2E4ZDUzOTNhZmEz;Catch attempts to use of acpi_driver_data on pointers of wrong type;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkYjg5YjRmMGRiYWI4MzdkMGYzZGUyYzNlOTQyN2E4ZDUzOTNhZmEz;"akpm: rewritten to use proper C typechecking and remove the
+""function""-used-as-lvalue thing.";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjdhY2ZhYjAzMmZmMjYyZjQyOTU0MzI4Y2RmZDIwYTVkOWFhYWFj;acpi: use non-racy method for proc entries creation;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjdhY2ZhYjAzMmZmMjYyZjQyOTU0MzI4Y2RmZDIwYTVkOWFhYWFj;"Use proc_create()/proc_create_data() to make sure that ->proc_fops and ->data
+be setup before gluing PDE to main tree";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjdhY2ZhYjAzMmZmMjYyZjQyOTU0MzI4Y2RmZDIwYTVkOWFhYWFj;Add correct ->owner to proc_fops to fix reading/module unloading race.;1;1
+MDY6Q29tbWl0MjMyNTI5ODozYjM0ZTUyMzJmYTk3NzZlOWE0YjNmNTM5Y2Q5ZmVlNzYwOWM5MDBl;ACPI: button: make real parent for input devices in device tree;0;1
+MDY6Q29tbWl0MjMyNTI5ODozYjM0ZTUyMzJmYTk3NzZlOWE0YjNmNTM5Y2Q5ZmVlNzYwOWM5MDBl;;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyM2RlNWQ5ZWYyYTRiYmM0ZjczM2Y1ODMxMWJjYjdjZjYyMzljODEz;ACPI: button: send initial lid state after add and resume;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyM2RlNWQ5ZWYyYTRiYmM0ZjczM2Y1ODMxMWJjYjdjZjYyMzljODEz;"Input layer should know about initial state of lid switch,
+even before first notify";0;1
+MDY6Q29tbWl0MjMyNTI5ODoyM2RlNWQ5ZWYyYTRiYmM0ZjczM2Y1ODMxMWJjYjdjZjYyMzljODEz;Reference: ;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3YjE5YWRhMmVkM2MxZWNjYjlmZTk0ZDc0YjA1ZTE0MjgyMjQ2NjNk;get rid of input BIT* duplicate defines;1;1
+MDY6Q29tbWl0MjMyNTI5ODo3YjE5YWRhMmVkM2MxZWNjYjlmZTk0ZDc0YjA1ZTE0MjgyMjQ2NjNk;"get rid of input BIT* duplicate defines
+use newly global defined macros for input layer";0;1
+MDY6Q29tbWl0MjMyNTI5ODo3YjE5YWRhMmVkM2MxZWNjYjlmZTk0ZDc0YjA1ZTE0MjgyMjQ2NjNk;"Also remove includes of
+input.h from non-input sources only for BIT macro definiton";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3YjE5YWRhMmVkM2MxZWNjYjlmZTk0ZDc0YjA1ZTE0MjgyMjQ2NjNk;"Define the
+macro temporarily in local manner, all those local definitons will be
+removed further in this patchset (to not break bisecting)";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3YjE5YWRhMmVkM2MxZWNjYjlmZTk0ZDc0YjA1ZTE0MjgyMjQ2NjNk;BIT macro will be globally defined (1<<x);1;0
+MDY6Q29tbWl0MjMyNTI5ODoxNGUwNGZiMzRmZmE4MmVlNjFhZTY5Zjk4ZDhmY2ExMmQyZThlMzFj;ACPI: Schedule /proc/acpi/event for removal;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxNGUwNGZiMzRmZmE4MmVlNjFhZTY5Zjk4ZDhmY2ExMmQyZThlMzFj;Schedule /proc/acpi/event for removal in 6 months;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxNGUwNGZiMzRmZmE4MmVlNjFhZTY5Zjk4ZDhmY2ExMmQyZThlMzFj;"Re-name acpi_bus_generate_event() to acpi_bus_generate_proc_event()
+to make sure there is no confusion that it is for /proc/acpi/event only";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxNGUwNGZiMzRmZmE4MmVlNjFhZTY5Zjk4ZDhmY2ExMmQyZThlMzFj;Add CONFIG_ACPI_PROC_EVENT to allow removal of /proc/acpi/event;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxNGUwNGZiMzRmZmE4MmVlNjFhZTY5Zjk4ZDhmY2ExMmQyZThlMzFj;There is no functional change if CONFIG_ACPI_PROC_EVENT=y;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxYmE5MGUzYTg3YzQ2NTAwNjIzYWZkYzM4OTg1NzNlNGE1ZWJiMjFi;ACPI: autoload modules - Create __mod_acpi_device_table symbol for all ACPI drivers;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxYmE5MGUzYTg3YzQ2NTAwNjIzYWZkYzM4OTg1NzNlNGE1ZWJiMjFi;modpost is going to use these to create e.g;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxYmE5MGUzYTg3YzQ2NTAwNjIzYWZkYzM4OTg1NzNlNGE1ZWJiMjFi;"acpi:ACPI0001
+in modules.alias.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3Y2RhOTNlMDA4ZTFhNDc3OTcwYWRiZjgyZGJhODFhNWQ0ZjBhZTQw;ACPI: delete extra #defines in /drivers/acpi/ drivers;0;1
+MDY6Q29tbWl0MjMyNTI5ODo3Y2RhOTNlMDA4ZTFhNDc3OTcwYWRiZjgyZGJhODFhNWQ0ZjBhZTQw;Cosmetic only;1;1
+MDY6Q29tbWl0MjMyNTI5ODo3Y2RhOTNlMDA4ZTFhNDc3OTcwYWRiZjgyZGJhODFhNWQ0ZjBhZTQw;"Except in a single case, #define ACPI_*_DRIVER_NAME
+were invoked 0 or 1 times.";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmI2NzA1Yjc1ZDljN2FmZjk4YTQ2MDJhMzIyMzA2MzllMTA4OTFj;ACPI: fix acpi_driver.name usage;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmI2NzA1Yjc1ZDljN2FmZjk4YTQ2MDJhMzIyMzA2MzllMTA4OTFj;It was erroneously used as a description rather than a name;0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmI2NzA1Yjc1ZDljN2FmZjk4YTQ2MDJhMzIyMzA2MzllMTA4OTFj;ie;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjMmI2NzA1Yjc1ZDljN2FmZjk4YTQ2MDJhMzIyMzA2MzllMTA4OTFj;turn this;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjMmI2NzA1Yjc1ZDljN2FmZjk4YTQ2MDJhMzIyMzA2MzllMTA4OTFj;"lenb@se7525gp2:/sys> ls bus/acpi/drivers
+ACPI AC Adapter Driver  ACPI Embedded Controller Driver  ACPI Power Resource Driver
+ACPI Battery Driver     ACPI Fan Driver                  ACPI Processor Driver
+ACPI Button Driver      ACPI PCI Interrupt Link Driver   ACPI Thermal Zone Driver
+ACPI container driver   ACPI PCI Root Bridge Driver      hpet
+into this";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjMmI2NzA1Yjc1ZDljN2FmZjk4YTQ2MDJhMzIyMzA2MzllMTA4OTFj;"lenb@se7525gp2:~> ls /sys/bus/acpi/drivers
+ac  battery  button  container  ec  fan  hpet  pci_link  pci_root  power  processor  thermal";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmNTJmZDY2ZDJlYTc5NDAxMGMyZDc1MzZjZjhlNmFiZWQwYWM0OTQ3;ACPI: clean up ACPI_MODULE_NAME() use;1;1
+MDY6Q29tbWl0MjMyNTI5ODpmNTJmZDY2ZDJlYTc5NDAxMGMyZDc1MzZjZjhlNmFiZWQwYWM0OTQ3;"cosmetic only
+Make ""module name"" actually match the file name";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmNTJmZDY2ZDJlYTc5NDAxMGMyZDc1MzZjZjhlNmFiZWQwYWM0OTQ3;"Invoke with ';' as leaving it off confuses Lindent and gcc doesn't care";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmNTJmZDY2ZDJlYTc5NDAxMGMyZDc1MzZjZjhlNmFiZWQwYWM0OTQ3;Fix indentation where Lindent did get confused.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NzVhOGUzZWQyYjllYWI5ZjA2MmExZTBiYTdmZTE4MGUxNTIwNGUx;Pull sysfs into test branch;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NzVhOGUzZWQyYjllYWI5ZjA2MmExZTBiYTdmZTE4MGUxNTIwNGUx;Conflicts;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NzVhOGUzZWQyYjllYWI5ZjA2MmExZTBiYTdmZTE4MGUxNTIwNGUx;"	Documentation/feature-removal-schedule.txt
+	include/acpi/acpi_drivers.h";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiZmQ4MDIyM2Q3M2Y4MGUxZDFjNjlkYWNlOTE1MTc1NmIzZWYzYjQ5;ACPI: correct id for fixed buttons;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiZmQ4MDIyM2Q3M2Y4MGUxZDFjNjlkYWNlOTE1MTc1NmIzZWYzYjQ5;"ACPI_BUTTON_HID_POWERF was changed, but this change was not propogated to
+button.c, thus breaking detection of fixed power and sleep buttons.";0;0
+MDY6Q29tbWl0MjMyNTI5ODpjMDk2OGYwZWEyMWQxMGI2NzIwMjQ2ZTFlOTZiZDZhN2ExNjE5NjRk;ACPI: button: register with input layer;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjMDk2OGYwZWEyMWQxMGI2NzIwMjQ2ZTFlOTZiZDZhN2ExNjE5NjRk;"In addition to signalling button/lid events through /proc/acpi/event,
+create separate input devices and report KEY_POWER, KEY_SLEEP and
+SW_LID through input layer";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjMDk2OGYwZWEyMWQxMGI2NzIwMjQ2ZTFlOTZiZDZhN2ExNjE5NjRk;" Also remove unnecessary casts and variable
+initializations, clean up formatting";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjMDk2OGYwZWEyMWQxMGI2NzIwMjQ2ZTFlOTZiZDZhN2ExNjE5NjRk;"Sleep button may autorepeat but userspace will have to filter duplicate
+sleep requests anyway (and discard unprocessed events right after
+wakeup)";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMDk2OGYwZWEyMWQxMGI2NzIwMjQ2ZTFlOTZiZDZhN2ExNjE5NjRk;"Unlike /proc/acpi/event interface input device corresponding to LID
+switch reports true lid state instead of just a counter";0;0
+MDY6Q29tbWl0MjMyNTI5ODpjMDk2OGYwZWEyMWQxMGI2NzIwMjQ2ZTFlOTZiZDZhN2ExNjE5NjRk;"SW_LID is
+active when lid is closed";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjMDk2OGYwZWEyMWQxMGI2NzIwMjQ2ZTFlOTZiZDZhN2ExNjE5NjRk;The driver now depends on CONFIG_INPUT.;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNzUwODAzMjhhZmZiNGIyNjhkYTQzMGI3MDc0Y2M4MTM5Y2M2NjJh;ACPI: add 'const' to several ACPI file_operations;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNzUwODAzMjhhZmZiNGIyNjhkYTQzMGI3MDc0Y2M4MTM5Y2M2NjJh;;0;0
+MDY6Q29tbWl0MjMyNTI5ODo2YzY4OTUzNzcyNmVjNjY1MjQ2ZDJmNjBjNDg0NzViZTJlZmFjMmQw;ACPI: button: Remove unneeded acpi_handle from driver.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo2YzY4OTUzNzcyNmVjNjY1MjQ2ZDJmNjBjNDg0NzViZTJlZmFjMmQw;;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyN2IxZDNlODViMWRmZDkwMzdkM2ZiYjk4YjJlMmFhY2NhMDFkYTM5;ACPI: button: Use acpi_device's handle instead of driver's;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyN2IxZDNlODViMWRmZDkwMzdkM2ZiYjk4YjJlMmFhY2NhMDFkYTM5;;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNTUwZDk4ZDMzMTczNzhkOTNhNDg2OWRiMjA0NzI1ZDI3MGVjODEy;ACPI: delete tracing macros from drivers/acpi/*.c;0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNTUwZDk4ZDMzMTczNzhkOTNhNDg2OWRiMjA0NzI1ZDI3MGVjODEy;;0;0
+MDY6Q29tbWl0MjMyNTI5ODo2NDY4NDYzYWJkNzA1MWZjYzI5ZjNlZTdjOTMxZjliYmJiMjZmNWE0;ACPI: un-export ACPI_ERROR() -- use printk(KERN_ERR...);1;1
+MDY6Q29tbWl0MjMyNTI5ODo2NDY4NDYzYWJkNzA1MWZjYzI5ZjNlZTdjOTMxZjliYmJiMjZmNWE0;;0;0
+MDY6Q29tbWl0MjMyNTI5ODphNmZjNjcyMDJlMDIyNGU2YzlkMWQyODVjYzBiNDQ0YmNlODg3ZWQ1;ACPI: Enable ACPI error messages w/o CONFIG_ACPI_DEBUG;1;1
+MDY6Q29tbWl0MjMyNTI5ODphNmZjNjcyMDJlMDIyNGU2YzlkMWQyODVjYzBiNDQ0YmNlODg3ZWQ1;;0;0
+MDY6Q29tbWl0MjMyNTI5ODo0YmU0NGZjZDNiZjY0OGI3ODJmNDQ2MGZkMDZkZmFlNmM0MmRlZDRi;[ACPI] Lindent all ACPI files;0;0
+MDY6Q29tbWl0MjMyNTI5ODo0YmU0NGZjZDNiZjY0OGI3ODJmNDQ2MGZkMDZkZmFlNmM0MmRlZDRi;;0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMzRhODAzMGVlYWI0ZDU5ZGNkZDg2ZGUzOGY2OTI3YjllZGQ0NDFm;[ACPI] restore /proc/acpi/button/ (ala 2.6.12);1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMzRhODAzMGVlYWI0ZDU5ZGNkZDg2ZGUzOGY2OTI3YjllZGQ0NDFm;"Signed-off-by Alexey Starikovskiy <alexey.y.starikovskiy@intel.com>
+Signed-off-by Len Brown <len.brown@intel.com>";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiZDQ2OThkYWQzMDIzYWUxMzdiMzY2YzczNmUyOWNhNmVhZjNiOWY3;[ACPI] Allow simultaneous Fixed Feature and Control Method buttons;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiZDQ2OThkYWQzMDIzYWUxMzdiMzY2YzczNmUyOWNhNmVhZjNiOWY3;delete /proc/acpi/button;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxZGExNzdlNGMzZjQxNTI0ZTg4NmI3ZjFiOGEwYzFmYzczMjFjYWMy;Linux-2.6.12-rc2;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxZGExNzdlNGMzZjQxNTI0ZTg4NmI3ZjFiOGEwYzFmYzczMjFjYWMy;Initial git repository build;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxZGExNzdlNGMzZjQxNTI0ZTg4NmI3ZjFiOGEwYzFmYzczMjFjYWMy;"I'm not bothering with the full history,
+even though we have it";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxZGExNzdlNGMzZjQxNTI0ZTg4NmI3ZjFiOGEwYzFmYzczMjFjYWMy;"We can create a separate ""historical"" git
+archive of that later if we want to, and in the meantime it's about
+3.2GB when imported into git - space that would just make the early
+git days unnecessarily complicated, when we don't have a lot of good
+infrastructure for it";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxZGExNzdlNGMzZjQxNTI0ZTg4NmI3ZjFiOGEwYzFmYzczMjFjYWMy;Let it rip!;1;0

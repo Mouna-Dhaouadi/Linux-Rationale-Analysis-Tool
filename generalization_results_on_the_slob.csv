@@ -1,0 +1,1718 @@
+commit ID;text;predicted_decision;predicted_rationale
+C_kwDOACN7MtoAKDY2MzBlOTUwZDUzMmZmYWJjZTNhNGJkYmFjN2JlODQ0YmFkMTkzZmU;mm/slob: remove slob.c;1;1
+C_kwDOACN7MtoAKDY2MzBlOTUwZDUzMmZmYWJjZTNhNGJkYmFjN2JlODQ0YmFkMTkzZmU;Remove the SLOB implementation;1;1
+C_kwDOACN7MtoAKDY2MzBlOTUwZDUzMmZmYWJjZTNhNGJkYmFjN2JlODQ0YmFkMTkzZmU;RIP SLOB allocator (2006 - 2023);0;0
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;slab: Introduce kmalloc_size_roundup();1;0
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"In the effort to help the compiler reason about buffer sizes, the
+__alloc_size attribute was added to allocators";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"This improves the scope
+of the compiler's ability to apply CONFIG_UBSAN_BOUNDS and (in the near
+future) CONFIG_FORTIFY_SOURCE";1;0
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"For most allocations, this works well,
+as the vast majority of callers are not expecting to use more memory
+than what they asked for";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"There is, however, one common exception to this: anticipatory resizing
+of kmalloc allocations";0;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"These cases all use ksize() to determine the
+actual bucket size of a given allocation (e.g";1;0
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"128 when 126 was asked
+for)";0;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;This comes in two styles in the kernel;0;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"1) An allocation has been determined to be too small, and needs to be
+   resized";0;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"Instead of the caller choosing its own next best size, it
+   wants to minimize the number of calls to krealloc(), so it just uses
+   ksize() plus some additional bytes, forcing the realloc into the next
+   bucket size, from which it can learn how large it is now";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;For example;0;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"2) The minimum size of an allocation is calculated, but since it may
+   grow in the future, just use all the space available in the chosen
+   bucket immediately, to avoid needing to reallocate later";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"A good
+   example of this is skbuff's allocators";0;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;	/* kmalloc(size) might give us more room than requested;1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"	 * Put skb_shared_info exactly at the end of allocated zone,
+	 * to allow max possible filling before reallocation";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"In both cases, the ""how much was actually allocated?"" question is answered
+_after_ the allocation, where the compiler hinting is not in an easy place
+to make the association any more";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"This mismatch between the compiler's
+view of the buffer length and the code's intention about how much it is
+going to actually use has already caused problems[1]";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"It is possible to
+fix this by reordering the use of the ""actual size"" information";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"We can serve the needs of users of ksize() and still have accurate buffer
+length hinting for the compiler by doing the bucket size calculation
+_before_ the allocation";0;0
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"Code can instead ask ""how large an allocation
+would I get for a given size?""";1;1
+C_kwDOACN7MtoAKDA1YTk0MDY1NmUxZWIyMDI2ZDllZTMxMDE5ZDViNDdlOTU0NTEyNGQ;"Introduce kmalloc_size_roundup(), to serve this function so we can start
+replacing the ""anticipatory resizing"" uses of ksize().";1;1
+C_kwDOACN7MtoAKDhkZmE5ZDU1NDA2MTg3M2Y5NjMzNTczMGZiMWQ0MDM2OThiMmIxYjQ;mm/slab_common: move declaration of __ksize() to mm/slab.h;1;0
+C_kwDOACN7MtoAKDhkZmE5ZDU1NDA2MTg3M2Y5NjMzNTczMGZiMWQ0MDM2OThiMmIxYjQ;__ksize() is only called by KASAN;0;0
+C_kwDOACN7MtoAKDhkZmE5ZDU1NDA2MTg3M2Y5NjMzNTczMGZiMWQ0MDM2OThiMmIxYjQ;"Remove export symbol and move
+declaration to mm/slab.h as we don't want to grow its callers.";1;1
+C_kwDOACN7MtoAKDJjMWQ2OTdmYjhiYTZkMmQ0NGY5MTRkNDI2OGFlMWNjZGYwMjVmMWI;mm/slab_common: drop kmem_alloc & avoid dereferencing fields when not using;1;0
+C_kwDOACN7MtoAKDJjMWQ2OTdmYjhiYTZkMmQ0NGY5MTRkNDI2OGFlMWNjZGYwMjVmMWI;"Drop kmem_alloc event class, and define kmalloc and kmem_cache_alloc
+using TRACE_EVENT() macro";0;0
+C_kwDOACN7MtoAKDJjMWQ2OTdmYjhiYTZkMmQ0NGY5MTRkNDI2OGFlMWNjZGYwMjVmMWI;And then this patch does;1;0
+C_kwDOACN7MtoAKDJjMWQ2OTdmYjhiYTZkMmQ0NGY5MTRkNDI2OGFlMWNjZGYwMjVmMWI;   - Do not pass pointer to struct kmem_cache to trace_kmalloc;1;0
+C_kwDOACN7MtoAKDJjMWQ2OTdmYjhiYTZkMmQ0NGY5MTRkNDI2OGFlMWNjZGYwMjVmMWI;     gfp flag is enough to know if it's accounted or not;0;1
+C_kwDOACN7MtoAKDJjMWQ2OTdmYjhiYTZkMmQ0NGY5MTRkNDI2OGFlMWNjZGYwMjVmMWI;   - Avoid dereferencing s->object_size and s->size when not using kmem_cache_alloc event;1;0
+C_kwDOACN7MtoAKDJjMWQ2OTdmYjhiYTZkMmQ0NGY5MTRkNDI2OGFlMWNjZGYwMjVmMWI;   - Avoid dereferencing s->name in when not using kmem_cache_free event;0;1
+C_kwDOACN7MtoAKDJjMWQ2OTdmYjhiYTZkMmQ0NGY5MTRkNDI2OGFlMWNjZGYwMjVmMWI;   - Adjust s->size to SLOB_UNITS(s->size) * SLOB_UNIT in SLOB;1;0
+C_kwDOACN7MtoAKDExZTk3MzRiY2I2YTczNjE5NDNmOTkzZWJhNGU5N2Y1ODEyMTIwZDg;mm/slab_common: unify NUMA and UMA version of tracepoints;1;1
+C_kwDOACN7MtoAKDExZTk3MzRiY2I2YTczNjE5NDNmOTkzZWJhNGU5N2Y1ODEyMTIwZDg;"Drop kmem_alloc event class, rename kmem_alloc_node to kmem_alloc, and
+remove _node postfix for NUMA version of tracepoints";0;0
+C_kwDOACN7MtoAKDExZTk3MzRiY2I2YTczNjE5NDNmOTkzZWJhNGU5N2Y1ODEyMTIwZDg;"This will break some tools that depend on {kmem_cache_alloc,kmalloc}_node,
+but at this point maintaining both kmem_alloc and kmem_alloc_node
+event classes does not makes sense at all.";0;0
+C_kwDOACN7MtoAKGM0NTI0OGRiMDRmOGUzYWNhNDc5OGQ2N2EzOTRmYjljYzIxNjgxMTg;mm/slab_common: cleanup kmalloc_track_caller();1;1
+C_kwDOACN7MtoAKGM0NTI0OGRiMDRmOGUzYWNhNDc5OGQ2N2EzOTRmYjljYzIxNjgxMTg;Make kmalloc_track_caller() wrapper of kmalloc_node_track_caller().;1;1
+C_kwDOACN7MtoAKGY3OGEwM2Y2ZTI4YmUwMjgzZjczZDNjMThiNTQ4MzdiNjM4YThjY2Y;mm/slab_common: remove CONFIG_NUMA ifdefs for common kmalloc functions;1;0
+C_kwDOACN7MtoAKGY3OGEwM2Y2ZTI4YmUwMjgzZjczZDNjMThiNTQ4MzdiNjM4YThjY2Y;"Now that slab_alloc_node() is available for SLAB when CONFIG_NUMA=n,
+remove CONFIG_NUMA ifdefs for common kmalloc functions.";1;1
+C_kwDOACN7MtoAKDMwNDE4MDhiNTIyMDMxZGNjZmJkODk4ZTUyMDEwOTU2OWYwMzk4NjA;mm/slab_common: move generic bulk alloc/free functions to SLOB;1;0
+C_kwDOACN7MtoAKDMwNDE4MDhiNTIyMDMxZGNjZmJkODk4ZTUyMDEwOTU2OWYwMzk4NjA;SLOB;0;0
+C_kwDOACN7MtoAKDMwNDE4MDhiNTIyMDMxZGNjZmJkODk4ZTUyMDEwOTU2OWYwMzk4NjA;No functional change intended.;1;0
+C_kwDOACN7MtoAKGIzNDdhYTdiNTc0NzdmNzFjNzQwZTJiYmM2ZDEwNzhhNzEwOWJhMjM;mm/tracing: add 'accounted' entry into output of allocation tracepoints;1;0
+C_kwDOACN7MtoAKGIzNDdhYTdiNTc0NzdmNzFjNzQwZTJiYmM2ZDEwNzhhNzEwOWJhMjM;"Slab caches marked with SLAB_ACCOUNT force accounting for every
+allocation from this cache even if __GFP_ACCOUNT flag is not passed";1;1
+C_kwDOACN7MtoAKGIzNDdhYTdiNTc0NzdmNzFjNzQwZTJiYmM2ZDEwNzhhNzEwOWJhMjM;"Unfortunately, at the moment this flag is not visible in ftrace output,
+and this makes it difficult to analyze the accounted allocations";0;1
+C_kwDOACN7MtoAKGIzNDdhYTdiNTc0NzdmNzFjNzQwZTJiYmM2ZDEwNzhhNzEwOWJhMjM;"This patch adds boolean ""accounted"" entry into trace output,
+and set it to 'true' for calls used __GFP_ACCOUNT flag and
+for allocations from caches marked with SLAB_ACCOUNT";1;0
+C_kwDOACN7MtoAKGIzNDdhYTdiNTc0NzdmNzFjNzQwZTJiYmM2ZDEwNzhhNzEwOWJhMjM;Set it to 'false' if accounting is disabled in configs.;0;0
+C_kwDOACN7MtoAKGQ5NDlhODE1NWQxMzlhYTg5MDc5NWI4MDIwMDRhMTk2YjdmMDA1OTg;mm: make minimum slab alignment a runtime property;1;0
+C_kwDOACN7MtoAKGQ5NDlhODE1NWQxMzlhYTg5MDc5NWI4MDIwMDRhMTk2YjdmMDA1OTg;"When CONFIG_KASAN_HW_TAGS is enabled we currently increase the minimum
+slab alignment to 16";1;1
+C_kwDOACN7MtoAKGQ5NDlhODE1NWQxMzlhYTg5MDc5NWI4MDIwMDRhMTk2YjdmMDA1OTg;" This happens even if MTE is not supported in
+hardware or disabled via kasan=off, which creates an unnecessary memory
+overhead in those cases";1;1
+C_kwDOACN7MtoAKGQ5NDlhODE1NWQxMzlhYTg5MDc5NWI4MDIwMDRhMTk2YjdmMDA1OTg;" Eliminate this overhead by making the minimum
+slab alignment a runtime property and only aligning to 16 if KASAN is
+enabled at runtime";1;0
+C_kwDOACN7MtoAKGQ5NDlhODE1NWQxMzlhYTg5MDc5NWI4MDIwMDRhMTk2YjdmMDA1OTg;"On a DragonBoard 845c (non-MTE hardware) with a kernel built with
+CONFIG_KASAN_HW_TAGS, waiting for quiescence after a full Android boot I
+see the following Slab measurements in /proc/meminfo (median of 3
+reboots)";1;1
+C_kwDOACN7MtoAKGQ5NDlhODE1NWQxMzlhYTg5MDc5NWI4MDIwMDRhMTk2YjdmMDA1OTg;"Before: 169020 kB
+After:  167304 kB";0;0
+C_kwDOACN7MtoAKDJkZmU2M2U2MWNjMzFlZTU5Y2U5NTE2NzJiMDg1MGI1MjI5Y2Q1YjA;mm, kfence: support kmem_dump_obj() for KFENCE objects;0;0
+C_kwDOACN7MtoAKDJkZmU2M2U2MWNjMzFlZTU5Y2U5NTE2NzJiMDg1MGI1MjI5Y2Q1YjA;"Calling kmem_obj_info() via kmem_dump_obj() on KFENCE objects has been
+producing garbage data due to the object not actually being maintained
+by SLAB or SLUB";0;0
+C_kwDOACN7MtoAKDJkZmU2M2U2MWNjMzFlZTU5Y2U5NTE2NzJiMDg1MGI1MjI5Y2Q1YjA;"Fix this by implementing __kfence_obj_info() that copies relevant
+information to struct kmem_obj_info when the object was allocated by
+KFENCE; this is called by a common kmem_obj_info(), which also calls the
+slab/slub/slob specific variant now called __kmem_obj_info()";0;0
+C_kwDOACN7MtoAKDJkZmU2M2U2MWNjMzFlZTU5Y2U5NTE2NzJiMDg1MGI1MjI5Y2Q1YjA;"For completeness, kmem_dump_obj() now displays if the object was
+allocated by KFENCE.";0;0
+C_kwDOACN7MtoAKDg4ZjJlZjczZmQ2NjQ5MWEyZjlhODIzNzNkMjJjYTY1NDBmMjNjNjI;mm: introduce kmem_cache_alloc_lru;1;0
+C_kwDOACN7MtoAKDg4ZjJlZjczZmQ2NjQ5MWEyZjlhODIzNzNkMjJjYTY1NDBmMjNjNjI;"We currently allocate scope for every memcg to be able to tracked on
+every superblock instantiated in the system, regardless of whether that
+superblock is even accessible to that memcg";0;0
+C_kwDOACN7MtoAKDg4ZjJlZjczZmQ2NjQ5MWEyZjlhODIzNzNkMjJjYTY1NDBmMjNjNjI;"These huge memcg counts come from container hosts where memcgs are
+confined to just a small subset of the total number of superblocks that
+instantiated at any given point in time";0;1
+C_kwDOACN7MtoAKDg4ZjJlZjczZmQ2NjQ5MWEyZjlhODIzNzNkMjJjYTY1NDBmMjNjNjI;"For these systems with huge container counts, list_lru does not need the
+capability of tracking every memcg on every superblock";1;1
+C_kwDOACN7MtoAKDg4ZjJlZjczZmQ2NjQ5MWEyZjlhODIzNzNkMjJjYTY1NDBmMjNjNjI;" What it comes
+down to is that adding the memcg to the list_lru at the first insert";1;0
+C_kwDOACN7MtoAKDg4ZjJlZjczZmQ2NjQ5MWEyZjlhODIzNzNkMjJjYTY1NDBmMjNjNjI;So introduce kmem_cache_alloc_lru to allocate objects and its list_lru;1;1
+C_kwDOACN7MtoAKDg4ZjJlZjczZmQ2NjQ5MWEyZjlhODIzNzNkMjJjYTY1NDBmMjNjNjI;"In the later patch, we will convert all inode and dentry allocation from
+kmem_cache_alloc to kmem_cache_alloc_lru.";0;1
+C_kwDOACN7MtoAKGJkNTNjZTRkYTI1MmRkYjFhZTQyNTdjMTY0ZjgwYWVhM2Q4YWI5MGM;mm/slob: make kmem_cache_boot static;0;0
+C_kwDOACN7MtoAKGJkNTNjZTRkYTI1MmRkYjFhZTQyNTdjMTY0ZjgwYWVhM2Q4YWI5MGM;kmem_cache_boot is never accessed outside slob.c;0;0
+C_kwDOACN7MtoAKGJkNTNjZTRkYTI1MmRkYjFhZTQyNTdjMTY0ZjgwYWVhM2Q4YWI5MGM;Make it static.;1;0
+C_kwDOACN7MtoAKGIwMWFmNWMwYjA0MTRmOTZlNmMzODkxZTcwNGQxYzQwZmFhMTg4MTM;mm/slob: Remove unnecessary page_mapcount_reset() function call;1;1
+C_kwDOACN7MtoAKGIwMWFmNWMwYjA0MTRmOTZlNmMzODkxZTcwNGQxYzQwZmFhMTg4MTM;"After commit 401fb12c68c2 (""mm/sl*b: Differentiate struct slab fields by
+sl*b implementations""), we can reorder fields of struct slab depending
+on slab allocator";0;0
+C_kwDOACN7MtoAKGIwMWFmNWMwYjA0MTRmOTZlNmMzODkxZTcwNGQxYzQwZmFhMTg4MTM;"For now, page_mapcount_reset() is called because page->_mapcount and
+slab->units have same offset";0;0
+C_kwDOACN7MtoAKGIwMWFmNWMwYjA0MTRmOTZlNmMzODkxZTcwNGQxYzQwZmFhMTg4MTM;But this is not necessary for struct slab;0;1
+C_kwDOACN7MtoAKGIwMWFmNWMwYjA0MTRmOTZlNmMzODkxZTcwNGQxYzQwZmFhMTg4MTM;Use unused field for units instead.;1;1
+C_kwDOACN7MtoAKDUwNzU3MDE4YjRjOWIwMmRiZjdmY2MwNTE0ZTBmYzQ1Yjg2ODljNjI;mm/slob: Convert SLOB to use struct slab and struct folio;1;0
+C_kwDOACN7MtoAKDUwNzU3MDE4YjRjOWIwMmRiZjdmY2MwNTE0ZTBmYzQ1Yjg2ODljNjI;Use struct slab throughout the slob allocator;1;0
+C_kwDOACN7MtoAKDUwNzU3MDE4YjRjOWIwMmRiZjdmY2MwNTE0ZTBmYzQ1Yjg2ODljNjI;"Where non-slab page can
+appear use struct folio instead of struct page";1;1
+C_kwDOACN7MtoAKDUwNzU3MDE4YjRjOWIwMmRiZjdmY2MwNTE0ZTBmYzQ1Yjg2ODljNjI;"[ vbabka@suse.cz: don't introduce wrappers for PageSlobFree in mm/slab.h
+  just for the single callers being wrappers in mm/slob.c ]
+[ Hyeonggon Yoo <42.hyeyoo@gmail.com>: fix NULL pointer deference ]";1;1
+C_kwDOACN7MtoAKDcyMTMyMzBhZjVlMWU4M2ZmMDEwYjM0NDgyNjBiOWQzZjk1ZGQwMzY;mm: Use struct slab in kmem_obj_info();1;0
+C_kwDOACN7MtoAKDcyMTMyMzBhZjVlMWU4M2ZmMDEwYjM0NDgyNjBiOWQzZjk1ZGQwMzY;"All three implementations of slab support kmem_obj_info() which reports
+details of an object allocated from the slab allocator";0;0
+C_kwDOACN7MtoAKDcyMTMyMzBhZjVlMWU4M2ZmMDEwYjM0NDgyNjBiOWQzZjk1ZGQwMzY;" By using the
+slab type instead of the page type, we make it obvious that this can
+only be called for slabs";1;1
+C_kwDOACN7MtoAKDcyMTMyMzBhZjVlMWU4M2ZmMDEwYjM0NDgyNjBiOWQzZjk1ZGQwMzY;[ vbabka@suse.cz: also convert the related kmem_valid_obj() to folios ];0;0
+C_kwDOACN7MtoAKDBjMjQ4MTFiMTJiYTI5YTY4ODFlOGVjMGQwMWFkM2YzYjA5MWRhMDI;mm: Convert __ksize() to struct slab;1;0
+C_kwDOACN7MtoAKDBjMjQ4MTFiMTJiYTI5YTY4ODFlOGVjMGQwMWFkM2YzYjA5MWRhMDI;In SLUB, use folios, and struct slab to access slab_cache field;1;0
+C_kwDOACN7MtoAKDBjMjQ4MTFiMTJiYTI5YTY4ODFlOGVjMGQwMWFkM2YzYjA5MWRhMDI;"In SLOB, use folios to properly resolve pointers beyond
+PAGE_SIZE offset of the object";1;0
+C_kwDOACN7MtoAKDBjMjQ4MTFiMTJiYTI5YTY4ODFlOGVjMGQwMWFkM2YzYjA5MWRhMDI;"[ vbabka@suse.cz: use folios, and only convert folio_test_slab() == true
+  folios to struct slab ]";1;0
+C_kwDOACN7MtoAKDlhNTQzZjAwN2I3MDJiMGJlNGFjYWNhZDQxNmEwZjkwMjMzYjQ1NTg;"mm: emit the ""free"" trace report before freeing memory in kmem_cache_free()";0;0
+C_kwDOACN7MtoAKDlhNTQzZjAwN2I3MDJiMGJlNGFjYWNhZDQxNmEwZjkwMjMzYjQ1NTg;"After the memory is freed, it can be immediately allocated by other
+CPUs, before the ""free"" trace report has been emitted";0;1
+C_kwDOACN7MtoAKDlhNTQzZjAwN2I3MDJiMGJlNGFjYWNhZDQxNmEwZjkwMjMzYjQ1NTg;" This causes
+inaccurate traces";0;1
+C_kwDOACN7MtoAKDlhNTQzZjAwN2I3MDJiMGJlNGFjYWNhZDQxNmEwZjkwMjMzYjQ1NTg;For example, if the following sequence of events occurs;1;1
+C_kwDOACN7MtoAKDlhNTQzZjAwN2I3MDJiMGJlNGFjYWNhZDQxNmEwZjkwMjMzYjQ1NTg;"    CPU 0                 CPU 1
+  (1) alloc xxxxxx
+  (2) free  xxxxxx
+                         (3) alloc xxxxxx
+                         (4) free  xxxxxx
+Then they will be inaccurately reported via tracing, so that they appear
+to have happened in this order";0;1
+C_kwDOACN7MtoAKDlhNTQzZjAwN2I3MDJiMGJlNGFjYWNhZDQxNmEwZjkwMjMzYjQ1NTg;"    CPU 0                 CPU 1
+  (1) alloc xxxxxx
+                         (2) alloc xxxxxx
+  (3) free  xxxxxx
+                         (4) free  xxxxxx
+This makes it look like CPU 1 somehow managed to allocate memory that
+CPU 0 still had allocated for itself";0;0
+C_kwDOACN7MtoAKDlhNTQzZjAwN2I3MDJiMGJlNGFjYWNhZDQxNmEwZjkwMjMzYjQ1NTg;"In order to avoid this, emit the ""free xxxxxx"" tracing report just
+before the actual call to free the memory, instead of just after it.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YmIxYmIzNTNjZmUzNDNmYzNjODRmYWYwNmY3MmJhMzA5ZmRlNTQx;mm: Don't build mm_dump_obj() on CONFIG_PRINTK=n kernels;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YmIxYmIzNTNjZmUzNDNmYzNjODRmYWYwNmY3MmJhMzA5ZmRlNTQx;"The mem_dump_obj() functionality adds a few hundred bytes, which is a
+small price to pay";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YmIxYmIzNTNjZmUzNDNmYzNjODRmYWYwNmY3MmJhMzA5ZmRlNTQx;" Except on kernels built with CONFIG_PRINTK=n, in
+which mem_dump_obj() messages will be suppressed";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YmIxYmIzNTNjZmUzNDNmYzNjODRmYWYwNmY3MmJhMzA5ZmRlNTQx;" This commit therefore
+makes mem_dump_obj() be a static inline empty function on kernels built
+with CONFIG_PRINTK=n and excludes all of its support functions as well";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1YmIxYmIzNTNjZmUzNDNmYzNjODRmYWYwNmY3MmJhMzA5ZmRlNTQx;This avoids kernel bloat on systems that cannot use mem_dump_obj().;0;1
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;mm, tracing: record slab name for kmem_cache_free();0;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;Currently, a trace record generated by the RCU core is as below;0;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;..;0;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;"kmem_cache_free: call_site=rcu_core+0x1fd/0x610 ptr=00000000f3b49a66
+It doesn't tell us what the RCU core has freed";0;1
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;This patch adds the slab name to trace_kmem_cache_free();1;1
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;The new format is as follows;1;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;..;0;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;"kmem_cache_free: call_site=rcu_core+0x1fd/0x610 ptr=0000000037f79c8d name=dentry
+..";0;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;"kmem_cache_free: call_site=rcu_core+0x1fd/0x610 ptr=00000000f78cb7b5 name=sock_inode_cache
+..";0;1
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;"kmem_cache_free: call_site=rcu_core+0x1fd/0x610 ptr=0000000018768985 name=pool_workqueue
+..";0;0
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;"kmem_cache_free: call_site=rcu_core+0x1fd/0x610 ptr=000000006a6cb484 name=radix_tree_node
+We can use it to understand what the RCU core is going to free";1;1
+MDY6Q29tbWl0MjMyNTI5ODozNTQ0ZGU4ZWU2ZTQ4MTcyNzhiMTVmZTA4NjU4ZGU0OWFiZjU4OTU0;"For
+example, some users maybe interested in when the RCU core starts
+freeing reclaimable slabs like dentry to reduce memory pressure.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;mm: Add mem_dump_obj() to print source of memory block;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;"There are kernel facilities such as per-CPU reference counts that give
+error messages in generic handlers or callbacks, whose messages are
+unenlightening";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;" In the case of per-CPU reference-count underflow, this
+is not a problem when creating a new use of this facility because in that
+case the bug is almost certainly in the code implementing that new use";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;"However, trouble arises when deploying across many systems, which might
+exercise corner cases that were not seen during development and testing";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;"Here, it would be really nice to get some kind of hint as to which of
+several uses the underflow was caused by";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;"This commit therefore exposes a mem_dump_obj() function that takes
+a pointer to memory (which must still be allocated if it has been
+dynamically allocated) and prints available information on where that
+memory came from";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;" This pointer can reference the middle of the block as
+well as the beginning of the block, as needed by things like RCU callback
+functions and timer handlers that might not know where the beginning of
+the memory block is";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;" These functions and handlers can use mem_dump_obj()
+to print out better hints as to where the problem might lie";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;The information printed can depend on kernel configuration;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;" For example,
+the allocation return address can be printed only for slab and slub,
+and even then only when the necessary debug has been enabled";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;" For slab,
+build with CONFIG_DEBUG_SLAB=y, and either use sizes with ample space
+to the next power of two or use the SLAB_STORE_USER when creating the
+kmem_cache structure";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;" For slub, build with CONFIG_SLUB_DEBUG=y and
+boot with slub_debug=U, or pass SLAB_STORE_USER to kmem_cache_create()
+if more focused use is desired";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4ZTdmMzdmMmFhYTU2YjcyM2EyNGY2ODcyODE3Y2Y5YzY0MTBiNjEz;" Also for slub, use CONFIG_STACKTRACE
+to enable printing of the allocation-time stack trace.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;mm: extract might_alloc() debug check;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;"Extracted from slab.h, which seems to have the most complete version
+including the correct might_sleep() check";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz; Roll it out to slob.c;0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;"Motivated by a discussion with Paul about possibly changing call_rcu
+behaviour to allocate memory, but only roughly every 500th call";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;"There are a lot fewer places in the kernel that care about whether
+allocating memory is allowed or not (due to deadlocks with reclaim code)
+than places that care whether sleeping is allowed";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;" But debugging these
+also tends to be a lot harder, so nice descriptive checks could come in
+handy";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz; I might have some use eventually for annotations in drivers/gpu;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;"Note that unlike fs_reclaim_acquire/release gfpflags_allow_blocking does
+not consult the PF_MEMALLOC flags";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;" But there is no flag equivalent for
+GFP_NOWAIT, hence this check can't go wrong due to
+memalloc_no*_save/restore contexts";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;" Willy is working on a patch series
+which might change this";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWQ2YzcwMWY0Y2E3YzQ0ZGMxNDhkNjY0ZjYwNDU0MTI2NmEyMzMz;"I think best would be if that updates gfpflags_allow_blocking(), since
+there's a ton of callers all over the place for that already.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;mm: memcg: convert vmstat slab counters to bytes;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;"In order to prepare for per-object slab memory accounting, convert
+NR_SLAB_RECLAIMABLE and NR_SLAB_UNRECLAIMABLE vmstat items to bytes";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;"To make it obvious, rename them to NR_SLAB_RECLAIMABLE_B and
+NR_SLAB_UNRECLAIMABLE_B (similar to NR_KERNEL_STACK_KB)";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;"Internally global and per-node counters are stored in pages, however memcg
+and lruvec counters are stored in bytes";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;" This scheme may look weird, but
+only for now";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;" As soon as slab pages will be shared between multiple
+cgroups, global and node counters will reflect the total number of slab
+pages";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;" However memcg and lruvec counters will be used for per-memcg slab
+memory tracking, which will take separate kernel objects in the account";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;"Keeping global and node counters in pages helps to avoid additional
+overhead";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNDJmMzI0NWM3ZTI5OWUwMTcyMTNmYTAyOGMzMTkzMTZiY2RiN2Y0;"The size of slab memory shouldn't exceed 4Gb on 32-bit machines, so it
+will fit into atomic_long_t we use for vmstats.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmZDdjYjU3NTNlZjQ5OTY0ZWE5ZGI1MTIxYzNmYzlhNGVjMjFlZDhl;mm/sl[uo]b: export __kmalloc_track(_node)_caller;0;0
+MDY6Q29tbWl0MjMyNTI5ODpmZDdjYjU3NTNlZjQ5OTY0ZWE5ZGI1MTIxYzNmYzlhNGVjMjFlZDhl;"slab does this already, and I want to use this in a memory allocation
+tracker in drm for stuff that's tied to the lifetime of a drm_device,
+not the underlying struct device";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmZDdjYjU3NTNlZjQ5OTY0ZWE5ZGI1MTIxYzNmYzlhNGVjMjFlZDhl;Kinda like devres, but for drm.;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;mm, sl[aou]b: guarantee natural alignment for kmalloc(power-of-two);1;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;"In most configurations, kmalloc() happens to return naturally aligned
+(i.e";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5; aligned to the block size itself) blocks for power of two sizes;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;"That means some kmalloc() users might unknowingly rely on that
+alignment, until stuff breaks when the kernel is built with e.g";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;CONFIG_SLUB_DEBUG or CONFIG_SLOB, and blocks stop being aligned;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" Then
+developers have to devise workaround such as own kmem caches with
+specified alignment [1], which is not always practical, as recently
+evidenced in [2]";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;The topic has been discussed at LSF/MM 2019 [3];0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" Adding a
+'kmalloc_aligned()' variant would not help with code unknowingly relying
+on the implicit alignment";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" For slab implementations it would either
+require creating more kmalloc caches, or allocate a larger size and only
+give back part of it";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" That would be wasteful, especially with a generic
+alignment parameter (in contrast with a fixed alignment to size)";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;"Ideally we should provide to mm users what they need without difficult
+workarounds or own reimplementations, so let's make the kmalloc()
+alignment to size explicitly guaranteed for power-of-two sizes under all
+configurations";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" What this means for the three available allocators?
+  implicitly provided alignment could be compromised with
+  CONFIG_DEBUG_SLAB due to redzoning, however SLAB disables redzoning for
+  caches with alignment larger than unsigned long long";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" Practically on at
+  least x86 this includes kmalloc caches as they use cache line alignment,
+  which is larger than that";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" Still, this patch ensures alignment on all
+  arches and cache sizes";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;  CONFIG_SLUB_DEBUG and boot parameter for the particular kmalloc cache;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;"  With this patch, explicit alignment is guaranteed with redzoning as
+  well";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" This will result in more memory being wasted, but that should be
+  acceptable in a debugging scenario";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;  kmalloc();0;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5; The potential downside is increased fragmentation;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1OWJiNDc5ODVjMWRiMjI5Y2NmZjhjNWRlZWJlY2Q1NGZjNzdkMmE5;" While
+  pathological allocation scenarios are certainly possible, in my testing,
+  after booting a x86_64 kernel+userspace with virtme, around 16MB memory
+  was consumed by slab pages both before and after the patch, with
+  difference in the noise.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;mm, sl[ou]b: improve memory accounting;1;1
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;"Patch series ""guarantee natural alignment for kmalloc()"", v2";0;1
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;This patch (of 2);1;0
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;"SLOB currently doesn't account its pages at all, so in /proc/meminfo the
+Slab field shows zero";1;0
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;" Modifying a counter on page allocation and
+freeing should be acceptable even for the small system scenarios SLOB is
+intended for";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;" Since reclaimable caches are not separated in SLOB,
+account everything as unreclaimable";0;0
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;"SLUB currently doesn't account kmalloc() and kmalloc_node() allocations
+larger than order-1 page, that are passed directly to the page
+allocator";0;1
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;" As they also don't appear in /proc/slabinfo, it might look
+like a memory leak";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy; For consistency, account them as well;1;0
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;" (SLAB
+doesn't actually use page allocator directly, so no change there)";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2YTQ4NmMwYWQ0ZGNkZWUzOTQ2ODQyYzY0ODg0ZDI5NzhiZmUyNjAy;"Ideally SLOB and SLUB would be handled in separate patches, but due to
+implementations, it's easier to patch both at once to prevent
+inconsistencies.";1;0
+MDY6Q29tbWl0MjMyNTI5ODphNTBiODU0ZTA3M2NkMzMzNWJiYmFkYThkY2ZmODNhODU3Mjk3ZGQ3;mm: introduce page_size();1;0
+MDY6Q29tbWl0MjMyNTI5ODphNTBiODU0ZTA3M2NkMzMzNWJiYmFkYThkY2ZmODNhODU3Mjk3ZGQ3;"Patch series ""Make working with compound pages easier"", v2";1;1
+MDY6Q29tbWl0MjMyNTI5ODphNTBiODU0ZTA3M2NkMzMzNWJiYmFkYThkY2ZmODNhODU3Mjk3ZGQ3;"These three patches add three helpers and convert the appropriate
+places to use them";1;1
+MDY6Q29tbWl0MjMyNTI5ODphNTBiODU0ZTA3M2NkMzMzNWJiYmFkYThkY2ZmODNhODU3Mjk3ZGQ3;This patch (of 3);1;0
+MDY6Q29tbWl0MjMyNTI5ODphNTBiODU0ZTA3M2NkMzMzNWJiYmFkYThkY2ZmODNhODU3Mjk3ZGQ3;It's unnecessarily hard to find out the size of a potentially huge page;1;1
+MDY6Q29tbWl0MjMyNTI5ODphNTBiODU0ZTA3M2NkMzMzNWJiYmFkYThkY2ZmODNhODU3Mjk3ZGQ3;Replace 'PAGE_SIZE << compound_order(page)' with page_size(page).;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGQxZjhjYjM5NjVhNmY2MzNiZjIzZWI5ODRjZGE1NTI5MjdlM2E1;mm/slab: refactor common ksize KASAN logic into slab_common.c;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGQxZjhjYjM5NjVhNmY2MzNiZjIzZWI5ODRjZGE1NTI5MjdlM2E1;"This refactors common code of ksize() between the various allocators into
+slab_common.c: __ksize() is the allocator-specific implementation without
+instrumentation, whereas ksize() includes the required KASAN logic.";1;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;slob: use slab_list instead of lru;1;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;Currently we use the page->lru list for maintaining lists of slabs;0;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;" We
+have a list_head in the page structure (slab_list) that can be used for
+this purpose";0;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;" Doing so makes the code cleaner since we are not
+overloading the lru list";0;1
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"The slab_list is part of a union within the page struct (included here
+stripped down)";1;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"	union {
+		struct {
+			union {
+Here we see that slab_list and lru are the same bits";1;1
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;" We can verify that
+this change is safe to do by examining the object file produced from
+slob.c before and after this patch is applied";1;1
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;Steps taken to verify;0;1
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi; 1;0;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"checkout current tip of Linus' tree
+    commit a667cb7a94d4 (""Merge branch 'akpm' (patches from Andrew)"")
+ 2";1;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"configure and build (select SLOB allocator)
+    CONFIG_SLOB=y
+    CONFIG_SLAB_MERGE_DEFAULT=y
+ 3";1;1
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"dissasemble object file `objdump -dr mm/slub.o > before.s
+ 4";1;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"apply patch
+ 5";1;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"build
+ 6";1;1
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"dissasemble object file `objdump -dr mm/slub.o > after.s
+ 7";1;0
+MDY6Q29tbWl0MjMyNTI5ODphZGFiN2I2ODE4OWQxNDUwNGU5ZjY5MGVlN2ViN2U5OGFmNjgzMDFi;"diff before.s after.s
+Use slab_list list_head instead of the lru list_head for maintaining
+lists of slabs.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;slob: respect list_head abstraction layer;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;Currently we reach inside the list_head;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;" This is a violation of the layer
+of abstraction provided by the list_head";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh; It makes the code fragile;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;More importantly it makes the code wicked hard to understand;0;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;"The code reaches into the list_head structure to counteract the fact that
+the list _may_ have been changed during slob_page_alloc()";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;" Instead of
+this we can add a return parameter to slob_page_alloc() to signal that the
+list was modified (list_del() called with page->lru to remove page from
+the freelist)";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;"This code is concerned with an optimisation that counters the tendency for
+first fit allocation algorithm to fragment memory into many small chunks
+at the front of the memory pool";0;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;" Since the page is only removed from the
+list when an allocation uses _all_ the remaining memory in the page then
+in this special case fragmentation does not occur and we therefore do not
+need the optimisation";0;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;"Add a return parameter to slob_page_alloc() to signal that the allocation
+used up the whole page and that the page was removed from the free list";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;"After calling slob_page_alloc() check the return value just added and only
+attempt optimisation if the page is still on the list";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzBlOGUwOWUyNjc1YmJjNDg0NTgxODI1ZmUyOWUyZTVhNmI4YjBh;"Use list_head API instead of reaching into the list_head structure to
+check if sp is at the front of the list.";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMjgyMjdlN2ZlNDA4N2I2MGYxYmQzMWY3NjJlNjEyMzdlYjIzNzkw;slab: __GFP_ZERO is incompatible with a constructor;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMjgyMjdlN2ZlNDA4N2I2MGYxYmQzMWY3NjJlNjEyMzdlYjIzNzkw;"__GFP_ZERO requests that the object be initialised to all-zeroes, while
+the purpose of a constructor is to initialise an object to a particular
+pattern";0;1
+MDY6Q29tbWl0MjMyNTI5ODoxMjgyMjdlN2ZlNDA4N2I2MGYxYmQzMWY3NjJlNjEyMzdlYjIzNzkw; We cannot do both;0;1
+MDY6Q29tbWl0MjMyNTI5ODoxMjgyMjdlN2ZlNDA4N2I2MGYxYmQzMWY3NjJlNjEyMzdlYjIzNzkw;" Add a warning to catch any users who
+mistakenly pass a __GFP_ZERO flag when allocating a slab with a
+constructor.";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNTAxMTJlZGRlMWQwYzYyMTUyMGU1Mzc0NzA0NDAwOWYxMWM2NTZi;slab, slub, slob: add slab_flags_t;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNTAxMTJlZGRlMWQwYzYyMTUyMGU1Mzc0NzA0NDAwOWYxMWM2NTZi;"Add sparse-checked slab_flags_t for struct kmem_cache::flags (SLAB_POISON,
+etc)";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNTAxMTJlZGRlMWQwYzYyMTUyMGU1Mzc0NzA0NDAwOWYxMWM2NTZi;"SLAB is bloated temporarily by switching to ""unsigned long"", but only
+temporarily.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5Zjg4ZmFlZTNmZjdkNmU4YjA5YzlkMjNiN2Q0YWMwYzE1YTNlYWU5;mm/slob.c: remove an unnecessary check for __GFP_ZERO;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5Zjg4ZmFlZTNmZjdkNmU4YjA5YzlkMjNiN2Q0YWMwYzE1YTNlYWU5;"Current flow guarantees a valid pointer when handling the __GFP_ZERO
+case";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5Zjg4ZmFlZTNmZjdkNmU4YjA5YzlkMjNiN2Q0YWMwYzE1YTNlYWU5; So remove the unnecessary NULL pointer check.;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;License cleanup: add SPDX GPL-2.0 license identifier to files with no license;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"Many source files in the tree are missing licensing information, which
+makes it harder for compliance tools to determine the correct license";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"By default all files without license information are under the default
+license of the kernel, which is GPL version 2";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"Update the files which contain no license information with the 'GPL-2.0'
+SPDX license identifier";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" The SPDX identifier is a legally binding
+shorthand, which can be used instead of the full boiler plate text";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"This patch is based on work done by Thomas Gleixner and Kate Stewart and
+Philippe Ombredanne";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;How this work was done;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"Patches were generated and checked against linux-4.14-rc6 for a subset of
+the use cases";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk; - file had no licensing information it it;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - file was a */uapi/* one with no licensing information in it,
+ - file was a */uapi/* one with existing licensing information,
+Further patches will be generated in subsequent months to fix up cases
+where non-standard license headers were used, and references to license
+had to be inferred by heuristics based on keywords";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"The analysis to determine which SPDX License Identifier to be applied to
+a file was done in a spreadsheet of side by side results from of the
+output of two independent scanners (ScanCode & Windriver) producing SPDX
+tag:value files created by Philippe Ombredanne";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" Philippe prepared the
+base worksheet, and did an initial spot review of a few 1000 files";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"The 4.13 kernel was the starting point of the analysis with 60,537 files
+assessed";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" Kate Stewart did a file by file comparison of the scanner
+to be applied to the file";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"She confirmed any determination that was not
+immediately clear with lawyers working with the Linux Foundation";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;Criteria used to select files for SPDX license identifier tagging was;0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk; - Files considered eligible had to be source code files;0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - Make and config files were included as candidates if they contained >5
+   lines of source
+ - File already had some variant of a license header in it (even if <5
+   lines)";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;All documentation files were explicitly excluded;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"The following heuristics were used to determine which SPDX license
+identifiers to apply";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - when both scanners couldn't find any license traces, file was
+   considered to have no license information in it, and the top level
+   COPYING file license applied";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;   For non */uapi/* files that summary was;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"   SPDX license identifier                            # files
+   GPL-2.0                                              11139
+   and resulted in the first patch in this series";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"   If that file was a */uapi/* path one, it was ""GPL-2.0 WITH
+   Linux-syscall-note"" otherwise it was ""GPL-2.0""";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk; Results of that was;0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"   SPDX license identifier                            # files
+   GPL-2.0 WITH Linux-syscall-note                        930
+   and resulted in the second patch in this series";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - if a file had some form of licensing information in it, and was one
+   of the */uapi/* ones, it was denoted with the Linux-syscall-note if
+   any GPL family license was found in the file or had no licensing in
+   it (per prior point)";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk; Results summary;0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"   SPDX license identifier                            # files
+   GPL-2.0 WITH Linux-syscall-note                       270
+   GPL-2.0+ WITH Linux-syscall-note                      169
+   ((GPL-2.0 WITH Linux-syscall-note) OR BSD-2-Clause)    21
+   ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause)    17
+   LGPL-2.1+ WITH Linux-syscall-note                      15
+   GPL-1.0+ WITH Linux-syscall-note                       14
+   ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause)    5
+   LGPL-2.0+ WITH Linux-syscall-note                       4
+   LGPL-2.1 WITH Linux-syscall-note                        3
+   ((GPL-2.0 WITH Linux-syscall-note) OR MIT)              3
+   ((GPL-2.0 WITH Linux-syscall-note) AND MIT)             1
+   and that resulted in the third patch in this series";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - when the two scanners agreed on the detected license(s), that became
+   the concluded license(s)";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - when there was disagreement between the two scanners (one detected a
+   license but the other didn't, or they both detected different
+   licenses) a manual inspection of the file occurred";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - In most cases a manual inspection of the information in the file
+   resulted in a clear resolution of the license that should apply (and
+   which scanner probably needed to revisit its heuristics)";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - When it was not immediately clear, the license identifier was
+   confirmed with lawyers working with the Linux Foundation";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - If there was any question as to the appropriate license identifier,
+   the file was flagged for further research and to be revisited later
+   in time";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"In total, over 70 hours of logged manual review was done on the
+spreadsheet to determine the SPDX license identifiers to apply to the
+source files by Kate, Philippe, Thomas and, in some cases, confirmation
+by lawyers working with the Linux Foundation";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"Kate also obtained a third independent scan of the 4.13 code base from
+FOSSology, and compared selected files where the other two scanners
+disagreed against that SPDX file, to see if there was new insights";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" The
+Windriver scanner is based on an older version of FOSSology in part, so
+they are related";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"Thomas did random spot checks in about 500 files from the spreadsheets
+for the uapi headers and agreed with SPDX license identifier in the
+files he inspected";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"For the non-uapi files Thomas did random spot checks
+in about 15000 files";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"In initial set of patches against 4.14-rc6, 3 files were found to have
+copy/paste license identifier errors, and have been fixed to reflect the
+correct identifier";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;"Additionally Philippe spent 10 hours this week doing a detailed manual
+inspection and review of the 12,461 patched files from the initial patch
+version early this week with";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" - a full scancode scan run, collecting the matched texts, detected
+   license ids and scores
+ - reviewing anything where there was a license detected (about 500+
+   files) to ensure that the applied SPDX license was correct
+ - reviewing anything where there was no detection but the patch license
+   was not GPL-2.0 WITH Linux-syscall-note to ensure that the applied
+   SPDX license was correct
+This produced a worksheet with 20 files needing minor correction";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" This
+worksheet was then exported into 3 different .csv files for the
+different types of files to be modified";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;These .csv files were then reviewed by Greg;0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" Thomas wrote a script to
+parse the csv files and add the proper SPDX tag to the file, in the
+format that the file expected";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMjQ0MTMxODBmNTYwMGJjYjNiYjcwZmJlZDVjZjE4NmI2MDg2NGJk;" This script was further refined by Greg
+based on the output to detect more types of files automatically and to
+distinguish between header and source .c files (which need different
+comment types.)  Finally Greg ran the script using the .csv files to
+generate the patches.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkOTJhOGNmY2IzN2VjZDEzMTUyNjlkYWI3NDFmMDczYjYzYjNhOGI2;locking/lockdep: Rework FS_RECLAIM annotation;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkOTJhOGNmY2IzN2VjZDEzMTUyNjlkYWI3NDFmMDczYjYzYjNhOGI2;"A while ago someone, and I cannot find the email just now, asked if we
+could not implement the RECLAIM_FS inversion stuff with a 'fake' lock
+like we use for other things like workqueues etc";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkOTJhOGNmY2IzN2VjZDEzMTUyNjlkYWI3NDFmMDczYjYzYjNhOGI2;"I think this should
+be possible which allows reducing the 'irq' states and will reduce the
+amount of __bfs() lookups we do";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkOTJhOGNmY2IzN2VjZDEzMTUyNjlkYWI3NDFmMDczYjYzYjNhOGI2;"Removing the 1 IRQ state results in 4 less __bfs() walks per
+dependency, improving lockdep performance";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkOTJhOGNmY2IzN2VjZDEzMTUyNjlkYWI3NDFmMDczYjYzYjNhOGI2;"And by moving this
+annotation out of the lockdep code it becomes easier for the mm people
+to extend.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1ZjBkNWEzYWU3Y2ZmMGQ3ZmE5NDNjMTk5YzNhMmU0NGYyM2UxZmFj;mm: Rename SLAB_DESTROY_BY_RCU to SLAB_TYPESAFE_BY_RCU;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1ZjBkNWEzYWU3Y2ZmMGQ3ZmE5NDNjMTk5YzNhMmU0NGYyM2UxZmFj;"A group of Linux kernel hackers reported chasing a bug that resulted
+from their assumption that SLAB_DESTROY_BY_RCU provided an existence
+guarantee, that is, that no block from such a slab would be reallocated
+during an RCU read-side critical section";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1ZjBkNWEzYWU3Y2ZmMGQ3ZmE5NDNjMTk5YzNhMmU0NGYyM2UxZmFj;" Of course, that is not the
+case";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1ZjBkNWEzYWU3Y2ZmMGQ3ZmE5NDNjMTk5YzNhMmU0NGYyM2UxZmFj;" Instead, SLAB_DESTROY_BY_RCU only prevents freeing of an entire
+slab of blocks";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1ZjBkNWEzYWU3Y2ZmMGQ3ZmE5NDNjMTk5YzNhMmU0NGYyM2UxZmFj;"However, there is a phrase for this, namely ""type safety""";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1ZjBkNWEzYWU3Y2ZmMGQ3ZmE5NDNjMTk5YzNhMmU0NGYyM2UxZmFj;" This commit
+therefore renames SLAB_DESTROY_BY_RCU to SLAB_TYPESAFE_BY_RCU in order
+to avoid future instances of this sort of confusion.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4OWUzNjRkYjcxZmI1ZTdmYzhkOTMyMjgxNTJhYmZhNjdkYWYzNWZh;slub: move synchronize_sched out of slab_mutex on shrink;1;0
+MDY6Q29tbWl0MjMyNTI5ODo4OWUzNjRkYjcxZmI1ZTdmYzhkOTMyMjgxNTJhYmZhNjdkYWYzNWZh;"synchronize_sched() is a heavy operation and calling it per each cache
+owned by a memory cgroup being destroyed may take quite some time";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4OWUzNjRkYjcxZmI1ZTdmYzhkOTMyMjgxNTJhYmZhNjdkYWYzNWZh;" What
+is worse, it's currently called under the slab_mutex, stalling all works
+doing cache creation/destruction";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4OWUzNjRkYjcxZmI1ZTdmYzhkOTMyMjgxNTJhYmZhNjdkYWYzNWZh;"Actually, there isn't much point in calling synchronize_sched() for each
+cache - it's enough to call it just once - after setting cpu_partial for
+all caches and before shrinking them";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4OWUzNjRkYjcxZmI1ZTdmYzhkOTMyMjgxNTJhYmZhNjdkYWYzNWZh;" This way, we can also move it out
+of the slab_mutex, which we have to hold for iterating over the slab
+cache list.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1MmI0Yjk1MGI1MDc0MGJmZjUwN2E2MjkwN2U4NjcxMDc0M2MyMmU3;mm: slab: free kmem_cache_node after destroy sysfs file;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1MmI0Yjk1MGI1MDc0MGJmZjUwN2E2MjkwN2U4NjcxMDc0M2MyMmU3;"When slub_debug alloc_calls_show is enabled we will try to track
+location and user of slab object on each online node, kmem_cache_node
+structure and cpu_cache/cpu_slub shouldn't be freed till there is the
+last reference to sysfs file";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1MmI0Yjk1MGI1MDc0MGJmZjUwN2E2MjkwN2U4NjcxMDc0M2MyMmU3;This fixes the following panic;0;1
+MDY6Q29tbWl0MjMyNTI5ODo1MmI0Yjk1MGI1MDc0MGJmZjUwN2E2MjkwN2U4NjcxMDc0M2MyMmU3;"   BUG: unable to handle kernel NULL pointer dereference at 0000000000000020
+   IP:  list_locations+0x169/0x4e0
+   PGD 257304067 PUD 438456067 PMD 0
+   Oops: 0000 [#1] SMP
+   CPU: 3 PID: 973074 Comm: cat ve: 0 Not tainted 3.10.0-229.7.2.ovz.9.30-00007-japdoll-dirty #2 9.30
+   Hardware name: DEPO Computers To Be Filled By O.E.M./H67DE3, BIOS L1.60c 07/14/2011
+   task: ffff88042a5dc5b0 ti: ffff88037f8d8000 task.ti: ffff88037f8d8000
+   RIP: list_locations+0x169/0x4e0
+   Separated __kmem_cache_release from __kmem_cache_shutdown which now
+called on slab_kmem_cache_release (after the last reference to sysfs
+file object has dropped)";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1MmI0Yjk1MGI1MDc0MGJmZjUwN2E2MjkwN2U4NjcxMDc0M2MyMmU3;"Reintroduced locking in free_partial as sysfs file might access cache's
+partial list after shutdowning - partial revert of the commit
+69cb8e6b7c29 (""slub: free slabs without holding locks"")";0;0
+MDY6Q29tbWl0MjMyNTI5ODo1MmI0Yjk1MGI1MDc0MGJmZjUwN2E2MjkwN2U4NjcxMDc0M2MyMmU3;" Zap
+__remove_partial and use remove_partial (w/o underscores) as
+free_partial now takes list_lock which s partial revert for commit
+1e4dd9461fab (""slub: do not assert not having lock in removing freed
+partial"")";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;slab/slub: adjust kmem_cache_alloc_bulk API;0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;Adjust kmem_cache_alloc_bulk API before we have any real users;0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;Adjust API to return type 'int' instead of previously type 'bool';1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;" This
+is done to allow future extension of the bulk alloc API";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;"A future extension could be to allow SLUB to stop at a page boundary, when
+specified by a flag, and then return the number of objects";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;"The advantage of this approach, would make it easier to make bulk alloc
+run without local IRQs disabled";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;" With an approach of cmpxchg ""stealing""
+the entire c->freelist or page->freelist";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;" To avoid overshooting we would
+stop processing at a slab-page boundary";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;" Else we always end up returning
+some objects at the cost of another cmpxchg";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NjU3NjJhODExOWU3NGI1ZjBlMjM2ZDJkOGVhYWY4YmU5MjkyYTA2;"To keep compatible with future users of this API linking against an older
+kernel when using the new flag, we need to return the number of allocated
+objects with this API change.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;mm: rename alloc_pages_exact_node() to __alloc_pages_node();1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;"alloc_pages_exact_node() was introduced in commit 6484eb3e2a81 (""page
+allocator: do not check NUMA node ID when the caller knows the node is
+valid"") as an optimized variant of alloc_pages_node(), that doesn't
+fallback to current node for nid == NUMA_NO_NODE";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;" Unfortunately the
+name of the function can easily suggest that the allocation is
+restricted to the given node and fails otherwise";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;" In truth, the node is
+only preferred, unless __GFP_THISNODE is passed among the gfp flags";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;"The misleading name has lead to mistakes in the past, see for example
+commits 5265047ac301 (""mm, thp: really limit transparent hugepage
+allocation to local node"") and b360edb43f8e (""mm, mempolicy";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;"migrate_to_node should only migrate to node"")";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;"Another issue with the name is that there's a family of
+alloc_pages_exact*() functions where 'exact' means exact size (instead
+of page order), which leads to more confusion";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;"To prevent further mistakes, this patch effectively renames
+alloc_pages_exact_node() to __alloc_pages_node() to better convey that
+it's an optimized variant of alloc_pages_node() not intended for general
+usage";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy; Both functions get described in comments;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;"It has been also considered to really provide a convenience function for
+allocations restricted to a node, but the major opinion seems to be that
+__GFP_THISNODE already provides that functionality and we shouldn't
+duplicate the API needlessly";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;" The number of users would be small
+anyway";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;"Existing callers of alloc_pages_exact_node() are simply converted to
+call __alloc_pages_node(), with the exception of sba_alloc_coherent()
+which open-codes the check for NUMA_NO_NODE, so it is converted to use
+alloc_pages_node() instead";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;" This means it no longer performs some
+VM_BUG_ON checks, and since the current check for nid in
+alloc_pages_node() uses a 'nid < 0' comparison (which includes
+NUMA_NO_NODE), it may hide wrong values which would be previously
+exposed";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;Both differences will be rectified by the next patch;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;"To sum up, this patch makes no functional changes, except temporarily
+hiding potentially buggy callers";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NmRiODAwZjVkNzNjZDVjNDk0NjEyNTNkNDU3NjZlMDk0ZjBmOGMy;" Restricting the checks in
+alloc_pages_node() is left for the next patch which can in turn expose
+more existing buggy callers.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo0ODQ3NDhmMGI2NWExOTUwYjJiOTNmNDQ0YTIyODdlOGRkMmNlZGQ2;slab: infrastructure for bulk object allocation and freeing;0;0
+MDY6Q29tbWl0MjMyNTI5ODo0ODQ3NDhmMGI2NWExOTUwYjJiOTNmNDQ0YTIyODdlOGRkMmNlZGQ2;Add the basic infrastructure for alloc/free operations on pointer arrays;1;1
+MDY6Q29tbWl0MjMyNTI5ODo0ODQ3NDhmMGI2NWExOTUwYjJiOTNmNDQ0YTIyODdlOGRkMmNlZGQ2;"It includes a generic function in the common slab code that is used in
+this infrastructure patch to create the unoptimized functionality for slab
+bulk operations";1;0
+MDY6Q29tbWl0MjMyNTI5ODo0ODQ3NDhmMGI2NWExOTUwYjJiOTNmNDQ0YTIyODdlOGRkMmNlZGQ2;"Allocators can then provide optimized allocation functions for situations
+in which large numbers of objects are needed";0;1
+MDY6Q29tbWl0MjMyNTI5ODo0ODQ3NDhmMGI2NWExOTUwYjJiOTNmNDQ0YTIyODdlOGRkMmNlZGQ2;" These optimization may
+avoid taking locks repeatedly and bypass metadata creation if all objects
+in slab pages can be used to provide the objects required";1;1
+MDY6Q29tbWl0MjMyNTI5ODo0ODQ3NDhmMGI2NWExOTUwYjJiOTNmNDQ0YTIyODdlOGRkMmNlZGQ2;"Allocators can extend the skeletons provided and add their own code to the
+bulk alloc and free functions";1;0
+MDY6Q29tbWl0MjMyNTI5ODo0ODQ3NDhmMGI2NWExOTUwYjJiOTNmNDQ0YTIyODdlOGRkMmNlZGQ2;" They can keep the generic allocation and
+freeing and just fall back to those if optimizations would not work (like
+for example when debugging is on).";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMjFhNmRhZjQ2NmE3YmZhN2JjMmFjNTk0ODM3YTFjZTc5M2E3OTYw;slob: make slob_alloc_node() static and remove EXPORT_SYMBOL();1;0
+MDY6Q29tbWl0MjMyNTI5ODpjMjFhNmRhZjQ2NmE3YmZhN2JjMmFjNTk0ODM3YTFjZTc5M2E3OTYw;slob_alloc_node() is only used in slob.c;0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMjFhNmRhZjQ2NmE3YmZhN2JjMmFjNTk0ODM3YTFjZTc5M2E3OTYw;" Remove the EXPORT_SYMBOL and
+make slob_alloc_node() static.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;slub: make dead caches discard free slabs immediately;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;"To speed up further allocations SLUB may store empty slabs in per cpu/node
+partial lists instead of freeing them immediately";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" This prevents per
+memcg caches destruction, because kmem caches created for a memory cgroup
+are only destroyed after the last page charged to the cgroup is freed";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;To fix this issue, this patch resurrects approach first proposed in [1];1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;"It forbids SLUB to cache empty slabs after the memory cgroup that the
+cache belongs to was destroyed";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" It is achieved by setting kmem_cache's
+cpu_partial and min_partial constants to 0 and tuning put_cpu_partial() so
+that it would drop frozen empty slabs immediately if cpu_partial = 0";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;The runtime overhead is minimal;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" From all the hot functions, we only
+touch relatively cold put_cpu_partial(): we make it call
+unfreeze_partials() after freezing a slab that belongs to an offline
+memory cgroup";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" Since slab freezing exists to avoid moving slabs from/to a
+partial list on free/alloc, and there can't be allocations from dead
+caches, it shouldn't cause any overhead";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" We do have to disable preemption
+for put_cpu_partial() to achieve that though";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;The original patch was accepted well and even merged to the mm tree;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;"However, I decided to withdraw it due to changes happening to the memcg
+core at that time";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" I had an idea of introducing per-memcg shrinkers for
+kmem caches, but now, as memcg has finally settled down, I do not see it
+as an option, because SLUB shrinker would be too costly to call since SLUB
+does not keep free slabs on a separate list";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" Besides, we currently do not
+even call per-memcg shrinkers for offline memcgs";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" Overall, it would
+introduce much more complexity to both SLUB and memcg than this small
+patch";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;"Regarding to SLAB, there's no problem with it, because it shrinks
+per-cpu/node caches periodically";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNmUwYjdmYTExODYyNDMzNzczZDk4NmI1Zjk5NWZmZGY0N2NlNjcy;" Thanks to list_lru reparenting, we no
+longer keep entries for offline cgroups in per-memcg arrays (such as
+memcg_cache_params->memcg_caches), so we do not have to bother if a
+per-memcg cache will be shrunk a bit later than it could be.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2MWY0NzEwNWEyYzljNjBlOTUwY2E4MDhiNzU2MGY3NzZmOWJmYTMx;mm/sl[ao]b: always track caller in kmalloc_(node_)track_caller();0;0
+MDY6Q29tbWl0MjMyNTI5ODo2MWY0NzEwNWEyYzljNjBlOTUwY2E4MDhiNzU2MGY3NzZmOWJmYTMx;Now, we track caller if tracing or slab debugging is enabled;1;1
+MDY6Q29tbWl0MjMyNTI5ODo2MWY0NzEwNWEyYzljNjBlOTUwY2E4MDhiNzU2MGY3NzZmOWJmYTMx;" If they are
+disabled, we could save one argument passing overhead by calling
+__kmalloc(_node)()";1;0
+MDY6Q29tbWl0MjMyNTI5ODo2MWY0NzEwNWEyYzljNjBlOTUwY2E4MDhiNzU2MGY3NzZmOWJmYTMx; But, I think that it would be marginal;0;0
+MDY6Q29tbWl0MjMyNTI5ODo2MWY0NzEwNWEyYzljNjBlOTUwY2E4MDhiNzU2MGY3NzZmOWJmYTMx;" Furthermore,
+default slab allocator, SLUB, doesn't use this technique so I think that
+it's okay to change this situation";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2MWY0NzEwNWEyYzljNjBlOTUwY2E4MDhiNzU2MGY3NzZmOWJmYTMx;"After this change, we can turn on/off CONFIG_DEBUG_SLAB without full
+kernel build and remove some complicated '#if' defintion";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2MWY0NzEwNWEyYzljNjBlOTUwY2E4MDhiNzU2MGY3NzZmOWJmYTMx;" It looks more
+benefitial to me.";1;1
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;slab: get_online_mems for kmem_cache_{create,destroy,shrink};1;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;"When we create a sl[au]b cache, we allocate kmem_cache_node structures
+for each online NUMA node";0;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;" To handle nodes taken online/offline, we
+register memory hotplug notifier and allocate/free kmem_cache_node
+corresponding to the node that changes its state for each kmem cache";0;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;"To synchronize between the two paths we hold the slab_mutex during both
+the cache creationg/destruction path and while tuning per-node parts of
+kmem caches in memory hotplug handler, but that's not quite right,
+because it does not guarantee that a newly created cache will have all
+kmem_cache_nodes initialized in case it races with memory hotplug";0;1
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;" For
+instance, in case of slub";0;1
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;"    CPU0                            CPU1
+    kmem_cache_create:              online_pages";0;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;     __kmem_cache_create:            slab_memory_callback;1;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;                                      slab_mem_going_online_callback;1;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;"                                       lock slab_mutex
+                                       for each slab_caches list entry
+                                           allocate kmem_cache node
+                                       unlock slab_mutex
+      lock slab_mutex
+      init_kmem_cache_nodes";0;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;"           allocate kmem_cache node
+      add kmem_cache to slab_caches list
+      unlock slab_mutex
+                                    online_pages (continued)";1;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;"                                     node_states_set_node
+As a result we'll get a kmem cache with not all kmem_cache_nodes
+allocated";0;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;"To avoid issues like that we should hold get/put_online_mems() during
+the whole kmem cache creation/destruction/shrink paths, just like we
+deal with cpu hotplug";1;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj; This patch does the trick;1;0
+MDY6Q29tbWl0MjMyNTI5ODowM2FmYzBlMjVmN2ZjMDM1MzcwMTRhNzcwZjRjNTRlYmJlNjNhMjRj;"Note, that after it's applied, there is no need in taking the slab_mutex
+for kmem_cache_shrink any more, so it is removed from there.";1;1
+MDY6Q29tbWl0MjMyNTI5ODozNGJmNmVmOTRhODM1YThmMWQ4YWJkM2U3ZDM4YzZjMDhkMjA1ODY3;mm: slab/slub: use page->list consistently instead of page->lru;1;0
+MDY6Q29tbWl0MjMyNTI5ODozNGJmNmVmOTRhODM1YThmMWQ4YWJkM2U3ZDM4YzZjMDhkMjA1ODY3;'struct page' has two list_head fields: 'lru' and 'list';0;1
+MDY6Q29tbWl0MjMyNTI5ODozNGJmNmVmOTRhODM1YThmMWQ4YWJkM2U3ZDM4YzZjMDhkMjA1ODY3;" Conveniently,
+they are unioned together";1;1
+MDY6Q29tbWl0MjMyNTI5ODozNGJmNmVmOTRhODM1YThmMWQ4YWJkM2U3ZDM4YzZjMDhkMjA1ODY3;" This means that code can use them
+interchangably, which gets horribly confusing like with this nugget from
+slab.c";1;1
+MDY6Q29tbWl0MjMyNTI5ODozNGJmNmVmOTRhODM1YThmMWQ4YWJkM2U3ZDM4YzZjMDhkMjA1ODY3;"This patch makes the slab and slub code use page->lru universally instead
+of mixing ->list and ->lru";1;1
+MDY6Q29tbWl0MjMyNTI5ODozNGJmNmVmOTRhODM1YThmMWQ4YWJkM2U3ZDM4YzZjMDhkMjA1ODY3;"So, the new rule is: page->lru is what the you use if you want to keep
+your page on a list";1;1
+MDY6Q29tbWl0MjMyNTI5ODozNGJmNmVmOTRhODM1YThmMWQ4YWJkM2U3ZDM4YzZjMDhkMjA1ODY3;" Don't like the fact that it's not called ->list?
+Too bad.";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMWI2ZWI2ZTZiZTE0OWI0MGViYjAxM2Y1YmZlMmFjODZiNmYxYzFi;mm/sl[aou]b: Move kmallocXXX functions to common code;1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMWI2ZWI2ZTZiZTE0OWI0MGViYjAxM2Y1YmZlMmFjODZiNmYxYzFi;"The kmalloc* functions of all slab allcoators are similar now so
+lets move them into slab.h";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmMWI2ZWI2ZTZiZTE0OWI0MGViYjAxM2Y1YmZlMmFjODZiNmYxYzFi;"This requires some function naming changes
+in slob";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmMWI2ZWI2ZTZiZTE0OWI0MGViYjAxM2Y1YmZlMmFjODZiNmYxYzFi;"As a results of this patch there is a common set of functions for
+all allocators";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmMWI2ZWI2ZTZiZTE0OWI0MGViYjAxM2Y1YmZlMmFjODZiNmYxYzFi;"Also means that kmalloc_large() is now available
+in general to perform large order allocations that go directly
+via the page allocator";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmMWI2ZWI2ZTZiZTE0OWI0MGViYjAxM2Y1YmZlMmFjODZiNmYxYzFi;"kmalloc_large() can be substituted if
+kmalloc() throws warnings because of too large allocations";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmMWI2ZWI2ZTZiZTE0OWI0MGViYjAxM2Y1YmZlMmFjODZiNmYxYzFi;"kmalloc_large() has exactly the same semantics as kmalloc but
+can only used for allocations > PAGE_SIZE.";0;0
+MDY6Q29tbWl0MjMyNTI5ODpjMWU4NTRlOTI0ZjM1NDY1N2VhMmFkMDhmZDdiMzhhYWM4MWM1OWIx;slob: Check for NULL pointer before calling ctor();0;0
+MDY6Q29tbWl0MjMyNTI5ODpjMWU4NTRlOTI0ZjM1NDY1N2VhMmFkMDhmZDdiMzhhYWM4MWM1OWIx;"While doing some code inspection, I noticed that the slob constructor
+method can be called with a NULL pointer";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMWU4NTRlOTI0ZjM1NDY1N2VhMmFkMDhmZDdiMzhhYWM4MWM1OWIx;"If memory is tight and slob
+fails to allocate with slob_alloc() or slob_new_pages() it still calls
+the ctor() method with a NULL pointer";0;0
+MDY6Q29tbWl0MjMyNTI5ODpjMWU4NTRlOTI0ZjM1NDY1N2VhMmFkMDhmZDdiMzhhYWM4MWM1OWIx;"Looking at the first ctor()
+method I found, I noticed that it can not handle a NULL pointer (I'm
+sure others probably can't either)";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjMWU4NTRlOTI0ZjM1NDY1N2VhMmFkMDhmZDdiMzhhYWM4MWM1OWIx;"static void sighand_ctor(void *data)
+The solution is to only call the ctor() method if allocation succeeded.";1;1
+MDY6Q29tbWl0MjMyNTI5ODphNmQ3ODE1OWY4YTcxNzI2M2JlYTcxYmVmNzM4MjU2ZGFmZTYyNjBk;slob: use DIV_ROUND_UP where possible;1;1
+MDY6Q29tbWl0MjMyNTI5ODphNmQ3ODE1OWY4YTcxNzI2M2JlYTcxYmVmNzM4MjU2ZGFmZTYyNjBk;;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyMmI3NTFjM2QwMzc2ZTg2YTM3N2UzYTBhYTJkZGJiZTlkMmVlZmMx;mm: rename page struct field helpers;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyMmI3NTFjM2QwMzc2ZTg2YTM3N2UzYTBhYTJkZGJiZTlkMmVlZmMx;"The function names page_xchg_last_nid(), page_last_nid() and
+reset_page_last_nid() were judged to be inconsistent so rename them to a
+struct_field_op style pattern";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMmI3NTFjM2QwMzc2ZTg2YTM3N2UzYTBhYTJkZGJiZTlkMmVlZmMx;" As it looked jarring to have
+reset_page_mapcount() and page_nid_reset_last() beside each other in
+memmap_init_zone(), this patch also renames reset_page_mapcount() to
+page_mapcount_reset()";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMmI3NTFjM2QwMzc2ZTg2YTM3N2UzYTBhYTJkZGJiZTlkMmVlZmMx;" There are others like init_page_count() but as
+it is used throughout the arch code a rename would likely cause more
+conflicts than it is worth.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiOWNlNWVmNDlmMDBkYWYyMjU0YzY5NTNjOGQzMWY3OWFhYmNjZDM0;sl[au]b: always get the cache from its page in kmem_cache_free();0;0
+MDY6Q29tbWl0MjMyNTI5ODpiOWNlNWVmNDlmMDBkYWYyMjU0YzY5NTNjOGQzMWY3OWFhYmNjZDM0;struct page already has this information;0;1
+MDY6Q29tbWl0MjMyNTI5ODpiOWNlNWVmNDlmMDBkYWYyMjU0YzY5NTNjOGQzMWY3OWFhYmNjZDM0;" If we start chaining caches,
+this information will always be more trustworthy than whatever is passed
+into the function.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo0NTkwNjg1NTQ2YTM3NGZiMGY2MDY4MmNlMGUzYTZmZDQ4OTExZDQ2;mm/sl[aou]b: Common alignment code;1;0
+MDY6Q29tbWl0MjMyNTI5ODo0NTkwNjg1NTQ2YTM3NGZiMGY2MDY4MmNlMGUzYTZmZDQ4OTExZDQ2;Extract the code to do object alignment from the allocators;0;0
+MDY6Q29tbWl0MjMyNTI5ODo0NTkwNjg1NTQ2YTM3NGZiMGY2MDY4MmNlMGUzYTZmZDQ4OTExZDQ2;"Do the alignment calculations in slab_common so that the
+__kmem_cache_create functions of the allocators do not have
+to deal with alignment.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;mm/slob: use min_t() to compare ARCH_SLAB_MINALIGN;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;"The definition of ARCH_SLAB_MINALIGN is architecture dependent
+and can be either of type size_t or int";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;"Comparing that value
+with ARCH_KMALLOC_MINALIGN can cause harmless warnings on
+platforms where they are different";0;1
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;"Since both are always
+small positive integer numbers, using the size_t type to compare
+them is safe and gets rid of the warning";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;Without this patch, building ARM collie_defconfig results in;0;1
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;mm/slob.c: In function '__kmalloc_node';0;1
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;"mm/slob.c:431:152: warning: comparison of distinct pointer types lacks a cast [enabled by default]
+mm/slob.c: In function 'kfree'";0;1
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;"mm/slob.c:484:153: warning: comparison of distinct pointer types lacks a cast [enabled by default]
+mm/slob.c: In function 'ksize'";0;1
+MDY6Q29tbWl0MjMyNTI5ODo3ODkzMDZlNWFkNmIzMDUxYzI2M2FjMjQ3ODg3NWVmYThiYzA3NDYy;mm/slob.c:503:153: warning: comparison of distinct pointer types lacks a cast [enabled by default];0;1
+MDY6Q29tbWl0MjMyNTI5ODo4Y2Y5ODY0YjEzODI4NTFkOTBjN2M1MDVmODQ0MWM4OTI4ZjE0Njll;mm/slob: Use free_page instead of put_page for page-size kmalloc allocations;1;0
+MDY6Q29tbWl0MjMyNTI5ODo4Y2Y5ODY0YjEzODI4NTFkOTBjN2M1MDVmODQ0MWM4OTI4ZjE0Njll;"When freeing objects, the slob allocator currently free empty pages
+calling __free_pages()";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4Y2Y5ODY0YjEzODI4NTFkOTBjN2M1MDVmODQ0MWM4OTI4ZjE0Njll;"However, page-size kmallocs are disposed
+using put_page() instead";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4Y2Y5ODY0YjEzODI4NTFkOTBjN2M1MDVmODQ0MWM4OTI4ZjE0Njll;"It makes no sense to call put_page() for kernel pages that are provided
+by the object allocator, so we shouldn't be doing this ourselves";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4Y2Y5ODY0YjEzODI4NTFkOTBjN2M1MDVmODQ0MWM4OTI4ZjE0Njll;This is based on;0;0
+MDY6Q29tbWl0MjMyNTI5ODo4Y2Y5ODY0YjEzODI4NTFkOTBjN2M1MDVmODQ0MWM4OTI4ZjE0Njll;"commit d9b7f22623b5fa9cc189581dcdfb2ac605933bf4
+Author: Glauber Costa <glommer@parallels.com>
+slub: use free_page instead of put_page for freeing kmalloc allocation";1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNDI4NjBhNDdhNzViOTMzYTc5YTMwZjZhNDBiZjQ4NThmNGEzZWNj;mm/sl[aou]b: Move common kmem_cache_size() to slab.h;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNDI4NjBhNDdhNzViOTMzYTc5YTMwZjZhNDBiZjQ4NThmNGEzZWNj;"This function is identically defined in all three allocators
+and it's trivial to move it to slab.h
+Since now it's static, inline, header-defined function
+this patch also drops the EXPORT_SYMBOL tag.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmZTc0ZmUyYmYyOTNkMDYxODI2ZjBkN2FmYzJjYTg0NTZiZGJiNDBl;mm/slob: Use object_size field in kmem_cache_size();1;0
+MDY6Q29tbWl0MjMyNTI5ODpmZTc0ZmUyYmYyOTNkMDYxODI2ZjBkN2FmYzJjYTg0NTZiZGJiNDBl;"Fields object_size and size are not the same: the latter might include
+slab metadata";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmZTc0ZmUyYmYyOTNkMDYxODI2ZjBkN2FmYzJjYTg0NTZiZGJiNDBl;Return object_size field in kmem_cache_size();1;0
+MDY6Q29tbWl0MjMyNTI5ODpmZTc0ZmUyYmYyOTNkMDYxODI2ZjBkN2FmYzJjYTg0NTZiZGJiNDBl;Also, improve trace accuracy by correctly tracing reported size.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OTlkODc5NWQ0MzhkMzk2OTM2ODExYjE4NTQyOGQ3MGI3YjdkZTZk;mm/slob: Drop usage of page->private for storing page-sized allocations;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OTlkODc5NWQ0MzhkMzk2OTM2ODExYjE4NTQyOGQ3MGI3YjdkZTZk;"This field was being used to store size allocation so it could be
+retrieved by ksize()";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5OTlkODc5NWQ0MzhkMzk2OTM2ODExYjE4NTQyOGQ3MGI3YjdkZTZk;"However, it is a bad practice to not mark a page
+as a slab page and then use fields for special purposes";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5OTlkODc5NWQ0MzhkMzk2OTM2ODExYjE4NTQyOGQ3MGI3YjdkZTZk;"There is no need to store the allocated size and
+ksize() can simply return PAGE_SIZE << compound_order(page).";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4MmJkNTUwOGI0MDgwZTg1MWFjMWE5YjYyYmVkNmQ3MjdiMWI0YTg0;mm, slob: fix build breakage in __kmalloc_node_track_caller;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4MmJkNTUwOGI0MDgwZTg1MWFjMWE5YjYyYmVkNmQ3MjdiMWI0YTg0;On Sat, 8 Sep 2012, Ezequiel Garcia wrote;0;1
+MDY6Q29tbWl0MjMyNTI5ODo4MmJkNTUwOGI0MDgwZTg1MWFjMWE5YjYyYmVkNmQ3MjdiMWI0YTg0;"> @@ -454,15 +455,35 @@ void *__kmalloc_node(size_t size, gfp_t gfp, int node)
+> -		trace_kmalloc_node(_RET_IP_, ret,
+> +		trace_kmalloc_node(caller, ret,
+> +void *__kmalloc_node(size_t size, gfp_t gfp, int node)
+> +#ifdef CONFIG_TRACING
+> +void *__kmalloc_track_caller(size_t size, gfp_t gfp, unsigned long caller)
+> +#ifdef CONFIG_NUMA
+> +void *__kmalloc_node_track_caller(size_t size, gfp_t gfpflags,
+> +					int node, unsigned long caller)
+> +#endif
+This breaks Pekka's slab/next tree with this";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4MmJkNTUwOGI0MDgwZTg1MWFjMWE5YjYyYmVkNmQ3MjdiMWI0YTg0;mm/slob.c: In function '__kmalloc_node_track_caller';0;1
+MDY6Q29tbWl0MjMyNTI5ODo4MmJkNTUwOGI0MDgwZTg1MWFjMWE5YjYyYmVkNmQ3MjdiMWI0YTg0;"mm/slob.c:488: error: 'gfp' undeclared (first use in this function)
+mm/slob.c:488: error: (Each undeclared identifier is reported only once
+mm/slob.c:488: error: for each function it appears in.)
+mm, slob: fix build breakage in __kmalloc_node_track_caller
+""mm, slob: Add support for kmalloc_track_caller()"" breaks the build
+because gfp is undeclared";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4MmJkNTUwOGI0MDgwZTg1MWFjMWE5YjYyYmVkNmQ3MjdiMWI0YTg0; Fix it.;1;1
+MDY6Q29tbWl0MjMyNTI5ODpmM2Y3NDEwMTk1OTVmMWU3MzU2NGQ5ODVmNWZlOGFiY2JiOThjNzY5;mm, slob: Add support for kmalloc_track_caller();1;0
+MDY6Q29tbWl0MjMyNTI5ODpmM2Y3NDEwMTk1OTVmMWU3MzU2NGQ5ODVmNWZlOGFiY2JiOThjNzY5;Currently slob falls back to regular kmalloc for this case;0;1
+MDY6Q29tbWl0MjMyNTI5ODpmM2Y3NDEwMTk1OTVmMWU3MzU2NGQ5ODVmNWZlOGFiY2JiOThjNzY5;"With this patch kmalloc_track_caller() is correctly implemented,
+thus tracing the specified caller";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmM2Y3NDEwMTk1OTVmMWU3MzU2NGQ5ODVmNWZlOGFiY2JiOThjNzY5;"This is important to trace accurately allocations performed by
+krealloc, kstrdup, kmemdup, etc.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5MGYyY2JiYzQ5YThmZTVhNDljZWExZDM2MmQ5MGUzNzdiOTQ5ZDQ5;mm, slob: Use NUMA_NO_NODE instead of -1;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5MGYyY2JiYzQ5YThmZTVhNDljZWExZDM2MmQ5MGUzNzdiOTQ5ZDQ5;;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjY2U4OWY0ZjY5MTEyODY1MDBjZjdiZTAzNjNmNDZjOWIwYTEyY2Uw;mm/sl[aou]b: Move kmem_cache refcounting to common code;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjY2U4OWY0ZjY5MTEyODY1MDBjZjdiZTAzNjNmNDZjOWIwYTEyY2Uw;"Get rid of the refcount stuff in the allocators and do that part of
+kmem_cache management in the common code.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4YTEzYTRjYzgwYmIyNWM5ZWFiMmU3ZTU2YmFiNzI0ZmNmYTU1ZmNl;mm/sl[aou]b: Shrink __kmem_cache_create() parameter lists;1;0
+MDY6Q29tbWl0MjMyNTI5ODo4YTEzYTRjYzgwYmIyNWM5ZWFiMmU3ZTU2YmFiNzI0ZmNmYTU1ZmNl;Do the initial settings of the fields in common code;1;0
+MDY6Q29tbWl0MjMyNTI5ODo4YTEzYTRjYzgwYmIyNWM5ZWFiMmU3ZTU2YmFiNzI0ZmNmYTU1ZmNl;"This will allow us
+to push more processing into common code later and improve readability.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyNzhiMWJiMTMxMzY2NGQ0OTk5YTdmN2Q0N2E4YThkOTY0ODYyZDAy;mm/sl[aou]b: Move kmem_cache allocations into common code;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNzhiMWJiMTMxMzY2NGQ0OTk5YTdmN2Q0N2E4YThkOTY0ODYyZDAy;Shift the allocations to common code;0;1
+MDY6Q29tbWl0MjMyNTI5ODoyNzhiMWJiMTMxMzY2NGQ0OTk5YTdmN2Q0N2E4YThkOTY0ODYyZDAy;"That way the allocation and
+freeing of the kmem_cache structures is handled by common code.";0;0
+MDY6Q29tbWl0MjMyNTI5ODoxMmMzNjY3ZmI3ODBlMjAzNjBhZDBiZGUzMmRmYjM1OTFlZjYwOWFk;mm/sl[aou]b: Get rid of __kmem_cache_destroy;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMmMzNjY3ZmI3ODBlMjAzNjBhZDBiZGUzMmRmYjM1OTFlZjYwOWFk;What is done there can be done in __kmem_cache_shutdown;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMmMzNjY3ZmI3ODBlMjAzNjBhZDBiZGUzMmRmYjM1OTFlZjYwOWFk;This affects RCU handling somewhat;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMmMzNjY3ZmI3ODBlMjAzNjBhZDBiZGUzMmRmYjM1OTFlZjYwOWFk;"On rcu free all slab allocators do
+not refer to other management structures than the kmem_cache structure";0;0
+MDY6Q29tbWl0MjMyNTI5ODoxMmMzNjY3ZmI3ODBlMjAzNjBhZDBiZGUzMmRmYjM1OTFlZjYwOWFk;"Therefore these other structures can be freed before the rcu deferred
+free to the page allocator occurs.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZjRjNzY1YzIyZGVlZTc2NjMxOWFlOWExZGI2ODMyNWYxNDgxNmU2;mm/sl[aou]b: Move freeing of kmem_cache structure to common code;0;0
+MDY6Q29tbWl0MjMyNTI5ODo4ZjRjNzY1YzIyZGVlZTc2NjMxOWFlOWExZGI2ODMyNWYxNDgxNmU2;The freeing action is basically the same in all slab allocators;1;0
+MDY6Q29tbWl0MjMyNTI5ODo4ZjRjNzY1YzIyZGVlZTc2NjMxOWFlOWExZGI2ODMyNWYxNDgxNmU2;Move to the common kmem_cache_destroy() function.;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5YjAzMGNiODY1ZjEzN2UxNTc0NTk2OTgzZmFjZTJhMDdlNDFlOGIy;"mm/sl[aou]b: Use ""kmem_cache"" name for slab cache with kmem_cache struct";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5YjAzMGNiODY1ZjEzN2UxNTc0NTk2OTgzZmFjZTJhMDdlNDFlOGIy;"Make all allocators use the ""kmem_cache"" slabname for the ""kmem_cache""
+structure.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NDVjZjJiNjE5OWJlNzBmZjAzMTAyYjllNjQyYzNiYjA1ZDAxZGU5;mm/sl[aou]b: Extract a common function for kmem_cache_destroy;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NDVjZjJiNjE5OWJlNzBmZjAzMTAyYjllNjQyYzNiYjA1ZDAxZGU5;kmem_cache_destroy does basically the same in all allocators;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NDVjZjJiNjE5OWJlNzBmZjAzMTAyYjllNjQyYzNiYjA1ZDAxZGU5;"Extract common code which is easy since we already have common mutex
+handling.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3YzlhZGY1YTU0NzE2NDdmMzkyMTY5ZWYxOWQzZTgxZGNmYTc2MDQ1;mm/sl[aou]b: Move list_add() to slab_common.c;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3YzlhZGY1YTU0NzE2NDdmMzkyMTY5ZWYxOWQzZTgxZGNmYTc2MDQ1;"Move the code to append the new kmem_cache to the list of slab caches to
+the kmem_cache_create code in the shared code";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3YzlhZGY1YTU0NzE2NDdmMzkyMTY5ZWYxOWQzZTgxZGNmYTc2MDQ1;"This is possible now since the acquisition of the mutex was moved into
+kmem_cache_create().";1;1
+MDY6Q29tbWl0MjMyNTI5ODo0NGE4YmRlYTE5ZGZmMWFiY2RjNDUyOGU1ZjdlMDM4YjE4ZWU1MjU1;slob: Fix early boot kernel crash;1;1
+MDY6Q29tbWl0MjMyNTI5ODo0NGE4YmRlYTE5ZGZmMWFiY2RjNDUyOGU1ZjdlMDM4YjE4ZWU1MjU1;"Commit fd3142a59af2012a7c5dc72ec97a4935ff1c5fc6 broke
+slob since a piece of a change for a later patch slipped into
+Fengguang Wu writes";0;0
+MDY6Q29tbWl0MjMyNTI5ODo0NGE4YmRlYTE5ZGZmMWFiY2RjNDUyOGU1ZjdlMDM4YjE4ZWU1MjU1;"  The commit crashes the kernel w/o any dmesg output (the attached one is
+  created by the script as a summary for that run)";1;0
+MDY6Q29tbWl0MjMyNTI5ODo0NGE4YmRlYTE5ZGZmMWFiY2RjNDUyOGU1ZjdlMDM4YjE4ZWU1MjU1;"This is very
+  reproducible in kvm for the attached config.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo5N2QwNjYwOTE1OGU2MWY2YmRmNTM4YzRhNjc4OGUyZGU0OTIyMzZm;mm, sl[aou]b: Common definition for boot state of the slab allocators;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5N2QwNjYwOTE1OGU2MWY2YmRmNTM4YzRhNjc4OGUyZGU0OTIyMzZm;All allocators have some sort of support for the bootstrap status;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5N2QwNjYwOTE1OGU2MWY2YmRmNTM4YzRhNjc4OGUyZGU0OTIyMzZm;"Setup a common definition for the boot states and make all slab
+allocators use that definition.";1;0
+MDY6Q29tbWl0MjMyNTI5ODowMzkzNjNmMzhiZmU1ZjYyODFlOWVhZTVlMDUxOGIxMTU3N2Q5ZDUw;mm, sl[aou]b: Extract common code for kmem_cache_create();0;0
+MDY6Q29tbWl0MjMyNTI5ODowMzkzNjNmMzhiZmU1ZjYyODFlOWVhZTVlMDUxOGIxMTU3N2Q5ZDUw;"Kmem_cache_create() does a variety of sanity checks but those
+vary depending on the allocator";0;0
+MDY6Q29tbWl0MjMyNTI5ODowMzkzNjNmMzhiZmU1ZjYyODFlOWVhZTVlMDUxOGIxMTU3N2Q5ZDUw;"Use the strictest tests and put them into
+a slab_common file";1;0
+MDY6Q29tbWl0MjMyNTI5ODowMzkzNjNmMzhiZmU1ZjYyODFlOWVhZTVlMDUxOGIxMTU3N2Q5ZDUw;Make the tests conditional on CONFIG_DEBUG_VM;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMzkzNjNmMzhiZmU1ZjYyODFlOWVhZTVlMDUxOGIxMTU3N2Q5ZDUw;"This patch has the effect of adding sanity checks for SLUB and SLOB
+under CONFIG_DEBUG_VM and removes the checks in SLAB for !CONFIG_DEBUG_VM.";1;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;mm, sl[aou]b: Extract common fields from struct kmem_cache;1;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;Define a struct that describes common fields used in all slab allocators;1;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;"A slab allocator either uses the common definition (like SLOB) or is
+required to provide members of kmem_cache with the definition given";0;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;"After that it will be possible to share code that
+only operates on those fields of kmem_cache";0;1
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;"The patch basically takes the slob definition of kmem cache and
+uses the field namees for the other allocators";1;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;"It also standardizes the names used for basic object lengths in
+allocators";1;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;object_size	Struct size specified at kmem_cache_create;1;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;"Basically
+		the payload expected to be used by the subsystem";0;1
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;size		The size of memory allocator for each object;1;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;"This size
+		is larger than object_size and includes padding, alignment
+		and extra metadata for each object (f.e";1;0
+MDY6Q29tbWl0MjMyNTI5ODozYjBlZmRmYTFlNzE5MzAzNTM2YzA0ZDlhYmNhNDNhYmViNDBmODBh;"for debugging
+		and rcu).";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiNTU2ODI4MGM5YjkxNjJiMzg0YmU5ZDQ0NzAxM2I3NGQ2ODJkNGIz;slob: Remove various small accessors;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiNTU2ODI4MGM5YjkxNjJiMzg0YmU5ZDQ0NzAxM2I3NGQ2ODJkNGIz;Those have become so simple that they are no longer needed.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo2OTBkNTc3NzM5MjE4MGZkYzA1YTgyYzBjNzk3OWU1MGU4ZDkzZGU4;slob: No need to zero mapping since it is no longer in use;1;1
+MDY6Q29tbWl0MjMyNTI5ODo2OTBkNTc3NzM5MjE4MGZkYzA1YTgyYzBjNzk3OWU1MGU4ZDkzZGU4;;0;0
+MDY6Q29tbWl0MjMyNTI5ODpiOGMyNGM0YWVmOTRiMWYwZGFhZmI0NTAzNjNmZWYxM2ExMTYzNzgw;slob: Define page struct fields used in mm_types.h;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiOGMyNGM0YWVmOTRiMWYwZGFhZmI0NTAzNjNmZWYxM2ExMTYzNzgw;"Define the fields used by slob in mm_types.h and use struct page instead
+of struct slob_page in slob";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiOGMyNGM0YWVmOTRiMWYwZGFhZmI0NTAzNjNmZWYxM2ExMTYzNzgw;"This cleans up numerous of typecasts in slob.c and
+makes readers aware of slob's use of page struct fields";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiOGMyNGM0YWVmOTRiMWYwZGFhZmI0NTAzNjNmZWYxM2ExMTYzNzgw;[Also cleans up some bitrot in slob.c;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiOGMyNGM0YWVmOTRiMWYwZGFhZmI0NTAzNjNmZWYxM2ExMTYzNzgw;"The page struct field layout
+in slob.c is an old layout and does not match the one in mm_types.h]";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiOTVmMWIzMWI3NTU4ODMwNmUzMmIyYWZkMzIxNjZjYWQ0OGY2NzBi;mm: Map most files to use export.h instead of module.h;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiOTVmMWIzMWI3NTU4ODMwNmUzMmIyYWZkMzIxNjZjYWQ0OGY2NzBi;"The files changed within are only using the EXPORT_SYMBOL
+macro variants";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiOTVmMWIzMWI3NTU4ODMwNmUzMmIyYWZkMzIxNjZjYWQ0OGY2NzBi;" They are not using core modular infrastructure
+and hence don't need module.h but only the export.h header.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo2MDA2MzQ5N2E5NWU3MTZjOWE2ODlhZjNiZTI2ODdkMjYxZjExNWI0;atomic: use <linux/atomic.h>;1;1
+MDY6Q29tbWl0MjMyNTI5ODo2MDA2MzQ5N2E5NWU3MTZjOWE2ODlhZjNiZTI2ODdkMjYxZjExNWI0;"This allows us to move duplicated code in <asm/atomic.h>
+(atomic_inc_not_zero() for now) to <linux/atomic.h>";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;slob/lockdep: Fix gfp flags passed to lockdep;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;"Doing a ktest.pl randconfig, I stumbled across the following bug
+on boot up";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;"------------[ cut here ]------------
+WARNING: at /home/rostedt/work/autotest/nobackup/linux-test.git/kernel/lockdep.c:2649 lockdep_trace_alloc+0xed/0x100()
+Hardware name";0;1
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;Modules linked in;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;"Pid: 0, comm: swapper Not tainted 3.0.0-rc1-test-00054-g1d68b67 #1
+Then I ran a ktest.pl config_bisect and it came up with this config
+as the problem";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;"  CONFIG_SLOB
+Looking at what is different between SLOB and SLAB and SLUB, I found
+that the gfp flags are masked against gfp_allowed_mask in
+SLAB and SLUB, but not SLOB";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;"On boot up, interrupts are disabled and lockdep will warn if some flags
+are set in gfp and interrupts are disabled";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;"But these flags are masked
+off with the gfp_allowed_mask during boot";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;"Because SLOB does not
+mask the flags against gfp_allowed_mask it triggers the warn on";1;0
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;Adding this mask fixes the bug;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiZDUwY2ZhODkxNTNhNjc0Mjk5MzVhMTVlNTc3YTVlYjVmMTBkZDFi;"I also found that kmem_cache_alloc_node()
+was missing both the mask and the lockdep check, and that was added too.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo2MzMxMDQ2N2EzZDFlZDZhMDQ2MGVjMWY0MjY4MTI2Y2QxY2VlYzJl;mm: Remove support for kmem_cache_name();1;0
+MDY6Q29tbWl0MjMyNTI5ODo2MzMxMDQ2N2EzZDFlZDZhMDQ2MGVjMWY0MjY4MTI2Y2QxY2VlYzJl;The last user was ext4 and Eric Sandeen removed the call in a recent patch;1;0
+MDY6Q29tbWl0MjMyNTI5ODo2MzMxMDQ2N2EzZDFlZDZhMDQ2MGVjMWY0MjY4MTI2Y2QxY2VlYzJl;"See
+the following URL for the discussion:";0;0
+MDY6Q29tbWl0MjMyNTI5ODpjY2QzNWZiOWY0ZGE4NTZiMTA1ZWEwZjFlMGNhYjM3MDJlOGFlNmJh;kernel: kmem_ptr_validate considered harmful;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjY2QzNWZiOWY0ZGE4NTZiMTA1ZWEwZjFlMGNhYjM3MDJlOGFlNmJh;This is a nasty and error prone API;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjY2QzNWZiOWY0ZGE4NTZiMTA1ZWEwZjFlMGNhYjM3MDJlOGFlNmJh;It is no longer used, remove it.;1;0
+MDY6Q29tbWl0MjMyNTI5ODo4ZGYyNzVhZjhkYjgyMjBkN2UzZjFiZjk3YjZhYzdhYWQwNWY5NmYw;slob: fix gfp flags for order-0 page allocations;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4ZGYyNzVhZjhkYjgyMjBkN2UzZjFiZjk3YjZhYzdhYWQwNWY5NmYw;"kmalloc_node() may allocate higher order slob pages, but the __GFP_COMP
+bit is only passed to the page allocator and not represented in the
+tracepoint event";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4ZGYyNzVhZjhkYjgyMjBkN2UzZjFiZjk3YjZhYzdhYWQwNWY5NmYw;" The bit should be passed to trace_kmalloc_node() as
+well.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjAyZGFiYWViYTc5ZGY5MGNjNjdjMzJkNWZlNGVlMGQ1ZTJiNzNh;SLOB: Free objects to their own list;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNjAyZGFiYWViYTc5ZGY5MGNjNjdjMzJkNWZlNGVlMGQ1ZTJiNzNh;"SLOB has alloced smaller objects from their own list in reduce overall external
+fragmentation and increase repeatability, free to their own list also";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkNjAyZGFiYWViYTc5ZGY5MGNjNjdjMzJkNWZlNGVlMGQ1ZTJiNzNh;This is /proc/meminfo result in my test machine;0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjAyZGFiYWViYTc5ZGY5MGNjNjdjMzJkNWZlNGVlMGQ1ZTJiNzNh;  without this patch;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNjAyZGFiYWViYTc5ZGY5MGNjNjdjMzJkNWZlNGVlMGQ1ZTJiNzNh;"  MemTotal:        1030720 kB
+  MemFree:          750012 kB
+  Buffers:           15496 kB
+  Cached:           160396 kB
+  SwapCached:            0 kB
+  Active:           105024 kB
+  Inactive:         145604 kB
+  Active(anon):      74816 kB
+  Inactive(anon):     2180 kB
+  Active(file):      30208 kB
+  Inactive(file):   143424 kB
+  Unevictable:          16 kB
+  with this patch";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjAyZGFiYWViYTc5ZGY5MGNjNjdjMzJkNWZlNGVlMGQ1ZTJiNzNh;"  MemTotal:        1030720 kB
+  MemFree:          751908 kB
+  Buffers:           15492 kB
+  Cached:           160280 kB
+  SwapCached:            0 kB
+  Active:           102720 kB
+  Inactive:         146140 kB
+  Active(anon):      73168 kB
+  Inactive(anon):     2180 kB
+  Active(file):      29552 kB
+  Inactive(file):   143960 kB
+  Unevictable:          16 kB
+The result shows an improvement of 1 MB!
+And when I tested it on a embeded system with 64 MB, I found this path is never
+called during kernel bootup.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzUzNTJjOTQyMjRjODhmNWFhMjhjYjc3MjA2Zjk5M2JkMzFiN2Ey;mm: remove all rcu head initializations;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzUzNTJjOTQyMjRjODhmNWFhMjhjYjc3MjA2Zjk5M2JkMzFiN2Ey;Remove all rcu head inits;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzUzNTJjOTQyMjRjODhmNWFhMjhjYjc3MjA2Zjk5M2JkMzFiN2Ey;"We don't care about the RCU head state before passing
+it to call_rcu() anyway";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NzUzNTJjOTQyMjRjODhmNWFhMjhjYjc3MjA2Zjk5M2JkMzFiN2Ey;"Only leave the ""on_stack"" variants so debugobjects can
+keep track of objects on stack.";1;0
+MDY6Q29tbWl0MjMyNTI5ODowMzljYTRlNzRhMWNmNjBiZDc0ODczMjRhNTY0ZWNmNWM5ODFmMjU0;tracing: Remove kmemtrace ftrace plugin;1;1
+MDY6Q29tbWl0MjMyNTI5ODowMzljYTRlNzRhMWNmNjBiZDc0ODczMjRhNTY0ZWNmNWM5ODFmMjU0;"We have been resisting new ftrace plugins and removing existing
+ones, and kmemtrace has been superseded by kmem trace events
+and perf-kmem, so we remove it.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiYWM0OWNlNDJhMzNmNTNiZWI3Y2YwNGU5YTA2MDA4NzlkNjI2NWNh;mm: Move ARCH_SLAB_MINALIGN and ARCH_KMALLOC_MINALIGN to <linux/slob_def.h>;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiYWM0OWNlNDJhMzNmNTNiZWI3Y2YwNGU5YTA2MDA4NzlkNjI2NWNh;;0;0
+MDY6Q29tbWl0MjMyNTI5ODpiYmZmMmU0MzNlODBmYWU3MmM4ZDAwZDQ4MjkyN2Q1MmVjMTliYTMz;slab: remove duplicate kmem_cache_init_late() declarations;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiYmZmMmU0MzNlODBmYWU3MmM4ZDAwZDQ4MjkyN2Q1MmVjMTliYTMz;"kmem_cache_init_late() has been declared in slab.h
+CC: Nick Piggin <npiggin@suse.de>
+CC: Matt Mackall <mpm@selenic.com>
+CC: Christoph Lameter <cl@linux-foundation.org>";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3ZWQ5ZjdlNWRiNThjNmU4YzJiNGI3MzhhNzVkNWRjZDhlMTdhYWQ1;fix RCU-callback-after-kmem_cache_destroy problem in sl[aou]b;1;1
+MDY6Q29tbWl0MjMyNTI5ODo3ZWQ5ZjdlNWRiNThjNmU4YzJiNGI3MzhhNzVkNWRjZDhlMTdhYWQ1;"Jesper noted that kmem_cache_destroy() invokes synchronize_rcu() rather than
+rcu_barrier() in the SLAB_DESTROY_BY_RCU case, which could result in RCU
+callbacks accessing a kmem_cache after it had been destroyed.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo2NDg0ZWIzZTJhODE4MDc3MjJjNWYyOGVmZWY5NGQ4MzM4YjdiOTk2;page allocator: do not check NUMA node ID when the caller knows the node is valid;0;1
+MDY6Q29tbWl0MjMyNTI5ODo2NDg0ZWIzZTJhODE4MDc3MjJjNWYyOGVmZWY5NGQ4MzM4YjdiOTk2;"Callers of alloc_pages_node() can optionally specify -1 as a node to mean
+""allocate from the current node""";0;0
+MDY6Q29tbWl0MjMyNTI5ODo2NDg0ZWIzZTJhODE4MDc3MjJjNWYyOGVmZWY5NGQ4MzM4YjdiOTk2;" However, a number of the callers in
+fast paths know for a fact their node is valid";0;1
+MDY6Q29tbWl0MjMyNTI5ODo2NDg0ZWIzZTJhODE4MDc3MjJjNWYyOGVmZWY5NGQ4MzM4YjdiOTk2;" To avoid a comparison and
+branch, this patch adds alloc_pages_exact_node() that only checks the nid
+with VM_BUG_ON()";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2NDg0ZWIzZTJhODE4MDc3MjJjNWYyOGVmZWY5NGQ4MzM4YjdiOTk2;" Callers that know their node is valid are then
+converted.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo0Mzc0ZTYxNmQyOGU2NTI2NWE1YjQzM2NlZWNlMjc1NDQ5ZjNkMmUz;kmemleak: Add the slob memory allocation/freeing hooks;1;0
+MDY6Q29tbWl0MjMyNTI5ODo0Mzc0ZTYxNmQyOGU2NTI2NWE1YjQzM2NlZWNlMjc1NDQ5ZjNkMmUz;"This patch adds the callbacks to kmemleak_(alloc|free) functions from the
+slob allocator.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3MzAzZjI0MDk4MTg4ODg4NDQxMmE5N2FjNzQyNzcyNTI3MzU2ODgw;slob: use PG_slab for identifying SLOB pages;1;0
+MDY6Q29tbWl0MjMyNTI5ODo3MzAzZjI0MDk4MTg4ODg4NDQxMmE5N2FjNzQyNzcyNTI3MzU2ODgw;For the sake of consistency.;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxZjA1MzJlYjYxN2QyOGY2NWM5MzU5M2ExNDkxZjY2MmYxNGY3ZWFj;mm: SLOB fix reclaim_state;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxZjA1MzJlYjYxN2QyOGY2NWM5MzU5M2ExNDkxZjY2MmYxNGY3ZWFj;"SLOB does not correctly account reclaim_state.reclaimed_slab, so it will
+break memory reclaim";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxZjA1MzJlYjYxN2QyOGY2NWM5MzU5M2ExNDkxZjY2MmYxNGY3ZWFj;Account it like SLAB does.;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMmFmNjFiYjUwZjVkNWYwMzIyZGJlNWFiMmEwZDc1ODA4ZDI1Yzdi;tracing, kmemtrace: Separate include/trace/kmemtrace.h to kmemtrace part and tracepoint part;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMmFmNjFiYjUwZjVkNWYwMzIyZGJlNWFiMmEwZDc1ODA4ZDI1Yzdi;"Impact: refactor code for future changes
+Current kmemtrace.h is used both as header file of kmemtrace and kmem's
+tracepoints definition";1;1
+MDY6Q29tbWl0MjMyNTI5ODowMmFmNjFiYjUwZjVkNWYwMzIyZGJlNWFiMmEwZDc1ODA4ZDI1Yzdi;"Tracepoints' definition file may be used by other code, and should only have
+definition of tracepoint";1;0
+MDY6Q29tbWl0MjMyNTI5ODowMmFmNjFiYjUwZjVkNWYwMzIyZGJlNWFiMmEwZDc1ODA4ZDI1Yzdi;We can separate include/trace/kmemtrace.h into 2 files;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMmFmNjFiYjUwZjVkNWYwMzIyZGJlNWFiMmEwZDc1ODA4ZDI1Yzdi;"  include/linux/kmemtrace.h: header file for kmemtrace
+  include/trace/kmem.h:      definition of kmem tracepoints";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMTIxZGI3NGJhMGZkMjI1OWYwZTIyNjU1MTE2ODRmYWRkYTlhYzQ5;kmemtrace: trace kfree() calls with NULL or zero-length objects;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyMTIxZGI3NGJhMGZkMjI1OWYwZTIyNjU1MTE2ODRmYWRkYTlhYzQ5;"Impact: also output kfree(NULL) entries
+This patch moves the trace_kfree() calls before the ZERO_OR_NULL_PTR
+check so that we can trace call-sites that call kfree() with NULL many
+times which might be an indication of a bug.";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjYTJiODRjYjNjNGEwZDRkMjE0M2I0NmVjMDcyY2RmZjVkMWIzYjg3;kmemtrace: use tracepoints;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjYTJiODRjYjNjNGEwZDRkMjE0M2I0NmVjMDcyY2RmZjVkMWIzYjg3;kmemtrace now uses tracepoints instead of markers;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjYTJiODRjYjNjNGEwZDRkMjE0M2I0NmVjMDcyY2RmZjVkMWIzYjg3;"We no longer need to
+use format specifiers to pass arguments.";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxOWNlZmRmZmJmZTBmN2UyODBmMjFlODA4NzU5MzdlODcwMGU5OWUy;lockdep: annotate reclaim context (__GFP_NOFS), fix SLOB;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxOWNlZmRmZmJmZTBmN2UyODBmMjFlODA4NzU5MzdlODcwMGU5OWUy;"Impact: build fix
+fix typo in mm/slob.c";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxOWNlZmRmZmJmZTBmN2UyODBmMjFlODA4NzU5MzdlODcwMGU5OWUy;" mm/slob.c:469: error: ‘flags’ undeclared (first use in this function)
+ mm/slob.c:469: error: (Each undeclared identifier is reported only once
+ mm/slob.c:469: error: for each function it appears in.)";1;0
+MDY6Q29tbWl0MjMyNTI5ODo2ZmI4ZjQyNDM5MzAyNTY3NGZkZTc4NjliNTlmNDg1ZDFlMzUyMTgy;slob: fix lockup in slob_free();1;1
+MDY6Q29tbWl0MjMyNTI5ODo2ZmI4ZjQyNDM5MzAyNTY3NGZkZTc4NjliNTlmNDg1ZDFlMzUyMTgy;Don't hold SLOB lock when freeing the page;0;0
+MDY6Q29tbWl0MjMyNTI5ODo2ZmI4ZjQyNDM5MzAyNTY3NGZkZTc4NjliNTlmNDg1ZDFlMzUyMTgy;Reduces lock hold width;0;0
+MDY6Q29tbWl0MjMyNTI5ODo2ZmI4ZjQyNDM5MzAyNTY3NGZkZTc4NjliNTlmNDg1ZDFlMzUyMTgy;"See
+the following thread for discussion of the bug:";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;lockdep: annotate reclaim context (__GFP_NOFS);0;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;"Here is another version, with the incremental patch rolled up, and
+added reclaim context annotation to kswapd, and allocation tracing
+to slab allocators (which may only ever reach the page allocator
+in rare cases, so it is good to put annotations here too)";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;"Haven't tested this version as such, but it should be getting closer
+to merge worthy ;)
+After noticing some code in mm/filemap.c accidentally perform a __GFP_FS
+allocation when it should not have been, I thought it might be a good idea to
+try to catch this kind of thing with lockdep";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;I coded up a little idea that seems to work;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;"Unfortunately the system has to
+actually be in __GFP_FS page reclaim, then take the lock, before it will mark
+it";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;"But at least that might still be some orders of magnitude more common
+(and more debuggable) than an actual deadlock condition, so we have some
+improvement I hope (the concept is no less complete than discovery of a lock's
+interrupt contexts)";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;"I guess we could even do the same thing with __GFP_IO (normal reclaim), and
+even GFP_NOIO locks too..";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;"but filesystems will have the most locks and fiddly
+code paths, so let's start there and see how it goes";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;It *seems* to work;0;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;I did a quick test;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;"[ INFO: inconsistent lock state ]
+2.6.28-rc6-00007-ged31348-dirty #26
+inconsistent {in-reclaim-W} -> {ov-reclaim-W} usage";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;modprobe/8526 [HC0[0]:SC0[0]:HE1:SE1] takes;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;{in-reclaim-W} state was registered at;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;"  [<ffffffff80267bdb>] __lock_acquire+0x75b/0x1a60
+  [<ffffffff80268f71>] lock_acquire+0x91/0xc0
+  [<ffffffff8070f0e1>] mutex_lock_nested+0xb1/0x310
+  [<ffffffffa002002b>] brd_init+0x2b/0x216 [brd]
+  [<ffffffff8020903b>] _stext+0x3b/0x170
+  [<ffffffff80272ebf>] sys_init_module+0xaf/0x1e0
+  [<ffffffff8020c3fb>] system_call_fastpath+0x16/0x1b
+  [<ffffffffffffffff>] 0xffffffffffffffff
+irq event stamp: 3929
+hardirqs last  enabled at (3929): [<ffffffff8070f2b5>] mutex_lock_nested+0x285/0x310
+hardirqs last disabled at (3928): [<ffffffff8070f089>] mutex_lock_nested+0x59/0x310
+softirqs last  enabled at (3732): [<ffffffff8061f623>] sk_filter+0x83/0xe0
+softirqs last disabled at (3730): [<ffffffff8061f5b6>] sk_filter+0x16/0xe0
+other info that might help us debug this";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;1 lock held by modprobe/8526;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;stack backtrace;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjQwYmQxNmZkYWQ0MmMwNTMwNDBiY2QzOTg4ZjVmZGVkYmI2YzU3;Pid: 8526, comm: modprobe Not tainted 2.6.28-rc6-00007-ged31348-dirty #26;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMWFhYmVjZDU1OTMxZWU3NTRmNmE5MTM5Njk1MTZiMjZhMGU2ODJl;mm: Export symbol ksize();0;0
+MDY6Q29tbWl0MjMyNTI5ODpiMWFhYmVjZDU1OTMxZWU3NTRmNmE5MTM5Njk1MTZiMjZhMGU2ODJl;"Commit 7b2cd92adc5430b0c1adeb120971852b4ea1ab08 (""crypto: api - Fix
+zeroing on free"") added modular user of ksize()";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiMWFhYmVjZDU1OTMxZWU3NTRmNmE5MTM5Njk1MTZiMjZhMGU2ODJl;"Export that to fix
+crypto.ko compilation.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo2ZTllZDBjYzRiOTYzZmRlNjZhYjQ3ZDlmYjE5MTQ3NjMxZTQ0NTU1;slob: clean up the code;0;1
+MDY6Q29tbWl0MjMyNTI5ODo2ZTllZDBjYzRiOTYzZmRlNjZhYjQ3ZDlmYjE5MTQ3NjMxZTQ0NTU1;- Define slob_free_pages() accordingly;1;0
+MDY6Q29tbWl0MjMyNTI5ODo2ZTllZDBjYzRiOTYzZmRlNjZhYjQ3ZDlmYjE5MTQ3NjMxZTQ0NTU1;Compile tests only.;1;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;tracing/kmemtrace: normalize the raw tracer event to the unified tracing API;0;0
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;"Impact: new tracer plugin
+This patch adapts kmemtrace raw events tracing to the unified tracing API";1;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;To enable and use this tracer, just do the following;1;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;" echo kmemtrace > /debugfs/tracing/current_tracer
+ cat /debugfs/tracing/trace
+You will have the following output";0;0
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;" # tracer: kmemtrace
+ # ALLOC  TYPE  REQ   GIVEN  FLAGS           POINTER         NODE    CALLER
+ # FREE   |      |     |       |              |   |            |        |
+type_id 1 call_site 18446744071565527833 ptr 18446612134395152256
+type_id 0 call_site 18446744071565585597 ptr 18446612134405955584 bytes_req 4096 bytes_alloc 4096 gfp_flags 208 node -1
+type_id 1 call_site 18446744071565585534 ptr 18446612134405955584
+type_id 0 call_site 18446744071565585597 ptr 18446612134405955584 bytes_req 4096 bytes_alloc 4096 gfp_flags 208 node -1
+type_id 0 call_site 18446744071565636711 ptr 18446612134345164672 bytes_req 240 bytes_alloc 240 gfp_flags 208 node -1
+type_id 1 call_site 18446744071565585534 ptr 18446612134405955584
+type_id 0 call_site 18446744071565585597 ptr 18446612134405955584 bytes_req 4096 bytes_alloc 4096 gfp_flags 208 node -1
+type_id 0 call_site 18446744071565636711 ptr 18446612134345164912 bytes_req 240 bytes_alloc 240 gfp_flags 208 node -1
+type_id 1 call_site 18446744071565585534 ptr 18446612134405955584
+type_id 0 call_site 18446744071565585597 ptr 18446612134405955584 bytes_req 4096 bytes_alloc 4096 gfp_flags 208 node -1
+type_id 0 call_site 18446744071565636711 ptr 18446612134345165152 bytes_req 240 bytes_alloc 240 gfp_flags 208 node -1
+type_id 0 call_site 18446744071566144042 ptr 18446612134346191680 bytes_req 1304 bytes_alloc 1312 gfp_flags 208 node -1
+type_id 1 call_site 18446744071565585534 ptr 18446612134405955584
+type_id 0 call_site 18446744071565585597 ptr 18446612134405955584 bytes_req 4096 bytes_alloc 4096 gfp_flags 208 node -1
+type_id 1 call_site 18446744071565585534 ptr 18446612134405955584
+That was to stay backward compatible with the format output produced in
+inux/tracepoint.h";1;0
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;This is the default ouput, but note that I tried something else;1;0
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;If you change an option;0;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;"echo kmem_minimalistic > /debugfs/trace_options
+and then cat /debugfs/trace, you will have the following output";0;0
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;" # tracer: kmemtrace
+ # ALLOC  TYPE  REQ   GIVEN  FLAGS           POINTER         NODE    CALLER
+ # FREE   |      |     |       |              |   |            |        |
+   -      C                            0xffff88007c088780          file_free_rcu
+   +      K   4096   4096   000000d0   0xffff88007cad6000     -1   getname
+   -      C                            0xffff88007cad6000          putname
+   +      K   4096   4096   000000d0   0xffff88007cad6000     -1   getname
+   +      K    240    240   000000d0   0xffff8800790dc780     -1   d_alloc
+   -      C                            0xffff88007cad6000          putname
+   +      K   4096   4096   000000d0   0xffff88007cad6000     -1   getname
+   +      K    240    240   000000d0   0xffff8800790dc870     -1   d_alloc
+   -      C                            0xffff88007cad6000          putname
+   +      K   4096   4096   000000d0   0xffff88007cad6000     -1   getname
+   +      K    240    240   000000d0   0xffff8800790dc960     -1   d_alloc
+   +      K   1304   1312   000000d0   0xffff8800791d7340     -1   reiserfs_alloc_inode
+   -      C                            0xffff88007cad6000          putname
+   +      K   4096   4096   000000d0   0xffff88007cad6000     -1   getname
+   -      C                            0xffff88007cad6000          putname
+   +      K    992   1000   000000d0   0xffff880079045b58     -1   alloc_inode
+   +      K    768   1024   000080d0   0xffff88007c096400     -1   alloc_pipe_info
+   +      K    240    240   000000d0   0xffff8800790dca50     -1   d_alloc
+   +      K    272    320   000080d0   0xffff88007c088780     -1   get_empty_filp
+   +      K    272    320   000080d0   0xffff88007c088000     -1   get_empty_filp
+Yeah I shall confess kmem_minimalistic should be: kmem_alternative";0;0
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;Whatever, I find it more readable but this a personal opinion of course;1;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;We can drop it if you want;1;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;On the ALLOC/FREE column, + means an allocation and - a free;0;0
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;"On the type column, you have K = kmalloc, C = cache, P = page
+I would like the flags to be GFP_* strings but that would not be easy to not
+break the column with strings...";0;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;About the node...it seems to always be -1;0;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;"I don't know why but that shouldn't
+be difficult to find";0;1
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;I moved linux/tracepoint.h to trace/tracepoint.h as well;1;0
+MDY6Q29tbWl0MjMyNTI5ODozNjk5NGU1OGE0OGZiOGY5NjUxYzdkYzg0NWE2ZGUyOThhYmE1YmZj;"I think that would
+be more easy to find the tracer headers if they are all in their common
+directory.";1;0
+MDY6Q29tbWl0MjMyNTI5ODozZWFlMmNiMjRhOTY1MDllMGEzOGNjNDhkYzE1MzhhMjgyNmY0ZTMz;kmemtrace: SLOB hooks.;0;1
+MDY6Q29tbWl0MjMyNTI5ODozZWFlMmNiMjRhOTY1MDllMGEzOGNjNDhkYzE1MzhhMjgyNmY0ZTMz;This adds hooks for the SLOB allocator, to allow tracing with kmemtrace;1;0
+MDY6Q29tbWl0MjMyNTI5ODozZWFlMmNiMjRhOTY1MDllMGEzOGNjNDhkYzE1MzhhMjgyNmY0ZTMz;"We also convert some inline functions to __always_inline to make sure
+_RET_IP_, which expands to __builtin_return_address(0), always works
+as expected.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1ZTE4ZTJiOGIzZDQ1M2U2OGFjY2MzZTI5NTY0M2ZlNGI1YmJjMjk1;slob: do not pass the SLAB flags as GFP in kmem_cache_create();1;0
+MDY6Q29tbWl0MjMyNTI5ODo1ZTE4ZTJiOGIzZDQ1M2U2OGFjY2MzZTI5NTY0M2ZlNGI1YmJjMjk1;"The kmem_cache_create() function in the slob allocator passes the SLAB
+flags as GFP flags to the slob_alloc() function";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1ZTE4ZTJiOGIzZDQ1M2U2OGFjY2MzZTI5NTY0M2ZlNGI1YmJjMjk1;" The patch changes this
+call to pass GFP_KERNEL as the other allocators seem to do.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3MDA5NmE1NjFkMWUwOTEyMGJhZTFmMjkzZjM2MzJjZWRiZmQ1YzY4;SLOB: fix bogus ksize calculation fix;1;1
+MDY6Q29tbWl0MjMyNTI5ODo3MDA5NmE1NjFkMWUwOTEyMGJhZTFmMjkzZjM2MzJjZWRiZmQ1YzY4;"This fixes the previous fix, which was completely wrong on closer
+inspection";1;1
+MDY6Q29tbWl0MjMyNTI5ODo3MDA5NmE1NjFkMWUwOTEyMGJhZTFmMjkzZjM2MzJjZWRiZmQ1YzY4;"This version has been manually tested with a user-space
+test harness and generates sane values";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3MDA5NmE1NjFkMWUwOTEyMGJhZTFmMjkzZjM2MzJjZWRiZmQ1YzY4;"A nearly identical patch has
+been boot-tested";1;0
+MDY6Q29tbWl0MjMyNTI5ODo3MDA5NmE1NjFkMWUwOTEyMGJhZTFmMjkzZjM2MzJjZWRiZmQ1YzY4;"The problem arose from changing how kmalloc/kfree handled alignment
+padding without updating ksize to match";0;1
+MDY6Q29tbWl0MjMyNTI5ODo3MDA5NmE1NjFkMWUwOTEyMGJhZTFmMjkzZjM2MzJjZWRiZmQ1YzY4;This brings it in sync.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NWJhOTRiYTA1OTIyOTYwNTNmN2YyODQ2ODEyMTczNDI0YWZlMWNi;SLOB: fix bogus ksize calculation;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4NWJhOTRiYTA1OTIyOTYwNTNmN2YyODQ2ODEyMTczNDI0YWZlMWNi;"SLOB's ksize calculation was braindamaged and generally harmlessly
+underreported the allocation size";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NWJhOTRiYTA1OTIyOTYwNTNmN2YyODQ2ODEyMTczNDI0YWZlMWNi;"But for very small buffers, it could
+in fact overreport them, leading code depending on krealloc to overrun
+the allocation and trample other data.";0;0
+MDY6Q29tbWl0MjMyNTI5ODoyMzEzNjdmZDliY2NiYjM2MzA5YWI1YmY1MDEyZTExYTg0MjMxMDMx;mm: unexport ksize;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMzEzNjdmZDliY2NiYjM2MzA5YWI1YmY1MDEyZTExYTg0MjMxMDMx;This patch removes the obsolete and no longer used exports of ksize.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1MWNjNTA2ODVhNDI3NWM2YTAyNjUzNjcwYWY5ZjEwOGE2NGUwMWNm;SL*B: drop kmem cache argument from constructor;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1MWNjNTA2ODVhNDI3NWM2YTAyNjUzNjcwYWY5ZjEwOGE2NGUwMWNm;"Kmem cache passed to constructor is only needed for constructors that are
+themselves multiplexeres";0;1
+MDY6Q29tbWl0MjMyNTI5ODo1MWNjNTA2ODVhNDI3NWM2YTAyNjUzNjcwYWY5ZjEwOGE2NGUwMWNm;" Nobody uses this ""feature"", nor does anybody uses
+passed kmem cache in non-trivial way, so pass only pointer to object";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1MWNjNTA2ODVhNDI3NWM2YTAyNjUzNjcwYWY5ZjEwOGE2NGUwMWNm;Non-trivial places are;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1MWNjNTA2ODVhNDI3NWM2YTAyNjUzNjcwYWY5ZjEwOGE2NGUwMWNm;"	arch/powerpc/mm/init_64.c
+	arch/powerpc/mm/hugetlbpage.c
+This is flag day, yes.";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5MDIzY2I3ZTg1NjRkOTVhMTg5M2Y4Y2I2ODk1YTI5M2JlOWE3MWZl;slob: record page flag overlays explicitly;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5MDIzY2I3ZTg1NjRkOTVhMTg5M2Y4Y2I2ODk1YTI5M2JlOWE3MWZl;"SLOB reuses two page bits for internal purposes, it overlays PG_active and
+PG_private";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5MDIzY2I3ZTg1NjRkOTVhMTg5M2Y4Y2I2ODk1YTI5M2JlOWE3MWZl; This is hidden away in slob.c;0;1
+MDY6Q29tbWl0MjMyNTI5ODo5MDIzY2I3ZTg1NjRkOTVhMTg5M2Y4Y2I2ODk1YTI5M2JlOWE3MWZl;" Document these overlays
+explicitly in the main page-flags enum along with all the others.";0;0
+MDY6Q29tbWl0MjMyNTI5ODoyMzlmNDljMDgwMDc3OGM4NjM1ODVhMTAzODA1YzU4YWZiYWQ2NzQ4;slob: Fix to return wrong pointer;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMzlmNDljMDgwMDc3OGM4NjM1ODVhMTAzODA1YzU4YWZiYWQ2NzQ4;Although slob_alloc return NULL, __kmalloc_node returns NULL + align;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyMzlmNDljMDgwMDc3OGM4NjM1ODVhMTAzODA1YzU4YWZiYWQ2NzQ4;"Because align always can be changed, it is very hard for debugging
+problem of no page if it don't return NULL";0;1
+MDY6Q29tbWl0MjMyNTI5ODoyMzlmNDljMDgwMDc3OGM4NjM1ODVhMTAzODA1YzU4YWZiYWQ2NzQ4;We have to return NULL in case of no page.;0;1
+MDY6Q29tbWl0MjMyNTI5ODowNzAxYTllNjQ5YmYwZmZkYWMwYTc2MWQzYzNkMTA0MWY1Mzc1ZDkw;"slob: fix bug - when slob allocates ""struct kmem_cache"", it does not force alignment.";1;1
+MDY6Q29tbWl0MjMyNTI5ODowNzAxYTllNjQ5YmYwZmZkYWMwYTc2MWQzYzNkMTA0MWY1Mzc1ZDkw;This may trigger misaligned memory access exception.;0;1
+MDY6Q29tbWl0MjMyNTI5ODoyMGNlY2JhZTQ0NTI4ZDM0N2M0NmU3MWY0MDY1MGI3NWUwZGNiYzhl;slob: reduce external fragmentation by using three free lists;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMGNlY2JhZTQ0NTI4ZDM0N2M0NmU3MWY0MDY1MGI3NWUwZGNiYzhl;"By putting smaller objects on their own list, we greatly reduce overall
+external fragmentation and increase repeatability";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyMGNlY2JhZTQ0NTI4ZDM0N2M0NmU3MWY0MDY1MGI3NWUwZGNiYzhl;" This reduces total SLOB
+overhead from > 50% to ~6% on a simple boot test.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2NzkyOTliMzJkYmY5YmFjNGJkYWVkYzg1MGZiOTVkMGY4MWI0OTYz;slob: fix free block merging at head of subpage;1;1
+MDY6Q29tbWl0MjMyNTI5ODo2NzkyOTliMzJkYmY5YmFjNGJkYWVkYzg1MGZiOTVkMGY4MWI0OTYz;We weren't merging freed blocks at the beginning of the free list;0;0
+MDY6Q29tbWl0MjMyNTI5ODo2NzkyOTliMzJkYmY5YmFjNGJkYWVkYzg1MGZiOTVkMGY4MWI0OTYz;" Fixing
+this showed a 2.5% efficiency improvement in a userspace test harness.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo3ZmQyNzI1NTBiZDQzY2MxZDcyODllZjBhYjJmYTUwZGUxMzdlNzY3;Avoid double memclear() in SLOB/SLUB;1;1
+MDY6Q29tbWl0MjMyNTI5ODo3ZmQyNzI1NTBiZDQzY2MxZDcyODllZjBhYjJmYTUwZGUxMzdlNzY3;"Both slob and slub react to __GFP_ZERO by clearing the allocation, which
+means that passing the GFP_ZERO bit down to the page allocator is just
+wasteful and pointless.";0;1
+MDY6Q29tbWl0MjMyNTI5ODpmOGZjYzkzMzE5ZmFhMDkyNzIxODVhZjEwMGZiMjRlNzFiMDJhYjAz;"Add EXPORT_SYMBOL(ksize);";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmOGZjYzkzMzE5ZmFhMDkyNzIxODVhZjEwMGZiMjRlNzFiMDJhYjAz;mm/slub.c exports ksize(), but mm/slob.c and mm/slab.c don't;0;1
+MDY6Q29tbWl0MjMyNTI5ODpmOGZjYzkzMzE5ZmFhMDkyNzIxODVhZjEwMGZiMjRlNzFiMDJhYjAz;It's used by binfmt_flat, which can be built as a module.;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMzJkZGQ4ZjIwZTdkN2E0OWM0NWMzMzdjMjA3OWJlMDNjNzdkYzQx;slob: fix memory corruption;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkMzJkZGQ4ZjIwZTdkN2E0OWM0NWMzMzdjMjA3OWJlMDNjNzdkYzQx;"Previously, it would be possible for prev->next to point to
+&free_slob_pages, and thus we would try to move a list onto itself, and
+bad things would happen";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMzJkZGQ4ZjIwZTdkN2E0OWM0NWMzMzdjMjA3OWJlMDNjNzdkYzQx;"It seems a bit hairy to be doing list operations with the list marker as
+an entry, rather than a head, but..";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkMzJkZGQ4ZjIwZTdkN2E0OWM0NWMzMzdjMjA3OWJlMDNjNzdkYzQx;this resolves the following crash:;1;1
+MDY6Q29tbWl0MjMyNTI5ODo0YmE5YjlkMGJhMGE0OWQ5MWZhNjQxN2M3NTEwZWUzNmY0OGNmOTU3;Slab API: remove useless ctor parameter and reorder parameters;1;1
+MDY6Q29tbWl0MjMyNTI5ODo0YmE5YjlkMGJhMGE0OWQ5MWZhNjQxN2M3NTEwZWUzNmY0OGNmOTU3;Slab constructors currently have a flags parameter that is never used;0;0
+MDY6Q29tbWl0MjMyNTI5ODo0YmE5YjlkMGJhMGE0OWQ5MWZhNjQxN2M3NTEwZWUzNmY0OGNmOTU3;" And
+the order of the arguments is opposite to other slab functions";0;0
+MDY6Q29tbWl0MjMyNTI5ODo0YmE5YjlkMGJhMGE0OWQ5MWZhNjQxN2M3NTEwZWUzNmY0OGNmOTU3;" The object
+pointer is placed before the kmem_cache pointer";0;0
+MDY6Q29tbWl0MjMyNTI5ODo0YmE5YjlkMGJhMGE0OWQ5MWZhNjQxN2M3NTEwZWUzNmY0OGNmOTU3;"Convert
+        ctor(void *object, struct kmem_cache *s, unsigned long flags)
+        ctor(struct kmem_cache *s, void *object)
+throughout the kernel";0;0
+MDY6Q29tbWl0MjMyNTI5ODplZjhiNDUyMGJkOWY4Mjk0ZmZjZTlhYmQ2MTU4MDg1YmRlNWRjOTAy;Slab allocators: fail if ksize is called with a NULL parameter;0;0
+MDY6Q29tbWl0MjMyNTI5ODplZjhiNDUyMGJkOWY4Mjk0ZmZjZTlhYmQ2MTU4MDg1YmRlNWRjOTAy;A NULL pointer means that the object was not allocated;0;1
+MDY6Q29tbWl0MjMyNTI5ODplZjhiNDUyMGJkOWY4Mjk0ZmZjZTlhYmQ2MTU4MDg1YmRlNWRjOTAy;" One cannot
+determine the size of an object that has not been allocated";1;0
+MDY6Q29tbWl0MjMyNTI5ODplZjhiNDUyMGJkOWY4Mjk0ZmZjZTlhYmQ2MTU4MDg1YmRlNWRjOTAy;" Currently we
+return 0 but we really should BUG() on attempts to determine the size of
+something nonexistent";1;1
+MDY6Q29tbWl0MjMyNTI5ODplZjhiNDUyMGJkOWY4Mjk0ZmZjZTlhYmQ2MTU4MDg1YmRlNWRjOTAy;krealloc() interprets NULL to mean a zero sized object;0;0
+MDY6Q29tbWl0MjMyNTI5ODplZjhiNDUyMGJkOWY4Mjk0ZmZjZTlhYmQ2MTU4MDg1YmRlNWRjOTAy;" Handle that
+separately in krealloc().";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyNDA4YzU1MDM3YzNmN2Q1MWE4YTEwMDAyNWM0NzU5NWU3MWI4Mzhj;{slub, slob}: use unlikely() for kfree(ZERO_OR_NULL_PTR) check;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyNDA4YzU1MDM3YzNmN2Q1MWE4YTEwMDAyNWM0NzU5NWU3MWI4Mzhj;"Considering kfree(NULL) would normally occur only in error paths and
+kfree(ZERO_SIZE_PTR) is uncommon as well, so let's use unlikely() for the
+condition check in SLUB's and SLOB's kfree() to optimize for the common
+case";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyNDA4YzU1MDM3YzNmN2Q1MWE4YTEwMDAyNWM0NzU5NWU3MWI4Mzhj; SLAB has this already.;0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjI2OTU0M2VmMjRhYTAxMmFhMjI4YzI3YWYzYWRiMDc0ZjdiMzZi;slob: reduce list scanning;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjI2OTU0M2VmMjRhYTAxMmFhMjI4YzI3YWYzYWRiMDc0ZjdiMzZi;"The version of SLOB in -mm always scans its free list from the beginning,
+which results in small allocations and free segments clustering at the
+beginning of the list over time";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkNjI2OTU0M2VmMjRhYTAxMmFhMjI4YzI3YWYzYWRiMDc0ZjdiMzZi;" This causes the average search to scan
+over a large stretch at the beginning on each allocation";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjI2OTU0M2VmMjRhYTAxMmFhMjI4YzI3YWYzYWRiMDc0ZjdiMzZi;"By starting each page search where the last one left off, we evenly
+distribute the allocations and greatly shorten the average search";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjI2OTU0M2VmMjRhYTAxMmFhMjI4YzI3YWYzYWRiMDc0ZjdiMzZi;"Without this patch, kernel compiles on a 1.5G machine take a large amount
+of system time for list scanning";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkNjI2OTU0M2VmMjRhYTAxMmFhMjI4YzI3YWYzYWRiMDc0ZjdiMzZi;" With this patch, compiles are within a
+few seconds of performance of a SLAB kernel with no notable change in
+system time.";1;0
+MDY6Q29tbWl0MjMyNTI5ODoyMGMyZGY4M2QyNWM2YTk1YWZmZTYxNTdhNGM5Y2FjNGNmNWZmYWFj;mm: Remove slab destructors from kmem_cache_create().;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyMGMyZGY4M2QyNWM2YTk1YWZmZTYxNTdhNGM5Y2FjNGNmNWZmYWFj;"Slab destructors were no longer supported after Christoph's
+c59def9f222d44bb7e2f0a559f2906191a0862d7 change";1;0
+MDY6Q29tbWl0MjMyNTI5ODoyMGMyZGY4M2QyNWM2YTk1YWZmZTYxNTdhNGM5Y2FjNGNmNWZmYWFj;"They've been
+BUGs for both slab and slub, and slob never supported them
+either";0;0
+MDY6Q29tbWl0MjMyNTI5ODoyMGMyZGY4M2QyNWM2YTk1YWZmZTYxNTdhNGM5Y2FjNGNmNWZmYWFj;"This rips out support for the dtor pointer from kmem_cache_create()
+completely and fixes up every single callsite in the kernel (there were
+about 224, not including the slab allocator definitions themselves,
+or the documentation references).";1;1
+MDY6Q29tbWl0MjMyNTI5ODo4MWNkYTY2MjYxNzhjZDU1Mjk3ODMxMjk2YmE4ZWNlZGJmZDhiNTJk;Slab allocators: Cleanup zeroing allocations;1;1
+MDY6Q29tbWl0MjMyNTI5ODo4MWNkYTY2MjYxNzhjZDU1Mjk3ODMxMjk2YmE4ZWNlZGJmZDhiNTJk;"It becomes now easy to support the zeroing allocs with generic inline
+functions in slab.h";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4MWNkYTY2MjYxNzhjZDU1Mjk3ODMxMjk2YmE4ZWNlZGJmZDhiNTJk;" Provide inline definitions to allow the continued use of
+kzalloc, kmem_cache_zalloc etc but remove other definitions of zeroing
+functions from the slab allocators and util.c.";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;Slab allocators: support __GFP_ZERO in all allocators;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;"A kernel convention for many allocators is that if __GFP_ZERO is passed to an
+allocator then the allocated memory should be zeroed";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;This is currently not supported by the slab allocators;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;" The inconsistency
+makes it difficult to implement in derived allocators such as in the uncached
+allocator and the pool allocators";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;"In addition the support zeroed allocations in the slab allocators does not
+have a consistent API";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;" There are no zeroing allocator functions for NUMA node
+placement (kmalloc_node, kmem_cache_alloc_node)";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;" The zeroing allocations are
+only provided for default allocs (kzalloc, kmem_cache_zalloc_node)";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;"__GFP_ZERO will make zeroing universally available and does not require any
+addititional functions";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;So add the necessary logic to all slab allocators to support __GFP_ZERO;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;The code is added to the hot path;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;" The gfp flags are on the stack and so the
+cacheline is readily available for checking if we want a zeroed object";0;1
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;"Zeroing while allocating is now a frequent operation and we seem to be
+gradually approaching a 1-1 parity between zeroing and not zeroing allocs";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDdkYmVhNDY0MDViMzdkNTk0OTVlYjRkZTlkMTA1NmRjZmI3YzZk;The current tree has 3476 uses of kmalloc vs 2731 uses of kzalloc.;0;0
+MDY6Q29tbWl0MjMyNTI5ODo2Y2I4ZjkxMzIwZDNlNzIwMzUxYzIxNzQxZGE3OTVmZWQ1ODBiMjFi;Slab allocators: consistent ZERO_SIZE_PTR support and NULL result semantics;1;0
+MDY6Q29tbWl0MjMyNTI5ODo2Y2I4ZjkxMzIwZDNlNzIwMzUxYzIxNzQxZGE3OTVmZWQ1ODBiMjFi;"Define ZERO_OR_NULL_PTR macro to be able to remove the checks from the
+allocators";0;0
+MDY6Q29tbWl0MjMyNTI5ODo2Y2I4ZjkxMzIwZDNlNzIwMzUxYzIxNzQxZGE3OTVmZWQ1ODBiMjFi; Move ZERO_SIZE_PTR related stuff into slab.h;1;0
+MDY6Q29tbWl0MjMyNTI5ODo2Y2I4ZjkxMzIwZDNlNzIwMzUxYzIxNzQxZGE3OTVmZWQ1ODBiMjFi;"Make ZERO_SIZE_PTR work for all slab allocators and get rid of the
+WARN_ON_ONCE(size == 0) that is still remaining in SLAB";1;0
+MDY6Q29tbWl0MjMyNTI5ODo2Y2I4ZjkxMzIwZDNlNzIwMzUxYzIxNzQxZGE3OTVmZWQ1ODBiMjFi;"Make slub return NULL like the other allocators if a too large memory segment
+is requested via __kmalloc.";1;1
+MDY6Q29tbWl0MjMyNTI5ODplZjJhZDgwYzdkMjU1ZWQwNDQ5ZWRhOTQ3YzJkNzAwNjM1YjdlMGY1;Slab allocators: consolidate code for krealloc in mm/util.c;0;1
+MDY6Q29tbWl0MjMyNTI5ODplZjJhZDgwYzdkMjU1ZWQwNDQ5ZWRhOTQ3YzJkNzAwNjM1YjdlMGY1;The size of a kmalloc object is readily available via ksize();1;0
+MDY6Q29tbWl0MjMyNTI5ODplZjJhZDgwYzdkMjU1ZWQwNDQ5ZWRhOTQ3YzJkNzAwNjM1YjdlMGY1;" ksize is
+provided by all allocators and thus we can implement krealloc in a generic
+way";0;1
+MDY6Q29tbWl0MjMyNTI5ODplZjJhZDgwYzdkMjU1ZWQwNDQ5ZWRhOTQ3YzJkNzAwNjM1YjdlMGY1;"Implement krealloc in mm/util.c and drop slab specific implementations of
+krealloc.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo4NGEwMWMyZjhlYTliZjIxMGI5NjFjNjMwMWU4ZTg3MGE0NjUwNWE2;slob: sparsemem support;0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NGEwMWMyZjhlYTliZjIxMGI5NjFjNjMwMWU4ZTg3MGE0NjUwNWE2;"Currently slob is disabled if we're using sparsemem, due to an earlier
+patch from Goto-san";0;0
+MDY6Q29tbWl0MjMyNTI5ODo4NGEwMWMyZjhlYTliZjIxMGI5NjFjNjMwMWU4ZTg3MGE0NjUwNWE2;" Slob and static sparsemem work without any trouble as
+it is, and the only hiccup is a missing slab_is_available() in the case of
+sparsemem extreme";0;1
+MDY6Q29tbWl0MjMyNTI5ODo4NGEwMWMyZjhlYTliZjIxMGI5NjFjNjMwMWU4ZTg3MGE0NjUwNWE2;" With this, we're rid of the last set of restrictions
+for slob usage.";0;0
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;slob: initial NUMA support;0;0
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;"This adds preliminary NUMA support to SLOB, primarily aimed at systems with
+small nodes (tested all the way down to a 128kB SRAM block), whether
+asymmetric or otherwise";1;0
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;"We follow the same conventions as SLAB/SLUB, preferring current node
+placement for new pages, or with explicit placement, if a node has been
+specified";0;1
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;" Presently on UP NUMA this has the side-effect of preferring
+node#0 allocations (since numa_node_id() == 0, though this could be
+reworked if we could hand off a pfn to determine node placement), so
+single-CPU NUMA systems will want to place smaller nodes further out in
+terms of node id";0;1
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;" Once a page has been bound to a node (via explicit node
+id typing), we only do block allocations from partial free pages that have
+a matching node id in the page flags";0;0
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;"The current implementation does have some scalability problems, in that all
+partial free pages are tracked in the global freelist (with contention due
+to the single spinlock)";0;0
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;" However, these are things that are being reworked
+for SMP scalability first, while things like per-node freelists can easily
+be built on top of this sort of functionality once it's been added";0;1
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;More background can be found in;0;1
+MDY6Q29tbWl0MjMyNTI5ODo2MTkzYTJmZjE4MDkyMGY4NGVlMDY5NzcxNjVlYmYzMjQzMWZjMmQy;and subsequent threads.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1NTM5NDg0OTFjMTg0MTM5MjhiODVhOTAyNWI5MmFmODBlN2Q2MWQ2;slob: improved alignment handling;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1NTM5NDg0OTFjMTg0MTM5MjhiODVhOTAyNWI5MmFmODBlN2Q2MWQ2;"Remove the core slob allocator's minimum alignment restrictions, and instead
+introduce the alignment restrictions at the slab API layer";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTM5NDg0OTFjMTg0MTM5MjhiODVhOTAyNWI5MmFmODBlN2Q2MWQ2;" This lets us heed
+the ARCH_KMALLOC/SLAB_MINALIGN directives, and also use __alignof__ (unsigned
+long) for the default alignment (which should allow relaxed alignment
+architectures to take better advantage of SLOB's small minimum alignment).";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkODdhMTMzZmMyMWQ4NDJlM2NjMjg1ZTZiYmZmNzI3MTgxYWJlYzgx;slob: remove bigblock tracking;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkODdhMTMzZmMyMWQ4NDJlM2NjMjg1ZTZiYmZmNzI3MTgxYWJlYzgx;"Remove the bigblock lists in favour of using compound pages and going directly
+to the page allocator";1;0
+MDY6Q29tbWl0MjMyNTI5ODpkODdhMTMzZmMyMWQ4NDJlM2NjMjg1ZTZiYmZmNzI3MTgxYWJlYzgx;" Allocation size is stored in page->private, which also
+makes ksize more accurate than it previously was";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkODdhMTMzZmMyMWQ4NDJlM2NjMjg1ZTZiYmZmNzI3MTgxYWJlYzgx;Saves ~.5K of code, and 12-24 bytes overhead per >= PAGE_SIZE allocation.;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;slob: rework freelist handling;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"Improve slob by turning the freelist into a list of pages using struct page
+fields, then each page has a singly linked freelist of slob blocks via a
+pointer in the struct page";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"- The first benefit is that the slob freelists can be indexed by a smaller
+  type (2 bytes, if the PAGE_SIZE is reasonable)";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"- Next is that freeing is much quicker because it does not have to traverse
+  the entire freelist";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"Allocation can be slightly faster too, because we can
+  skip almost-full freelist pages completely";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"- Slob pages are then freed immediately when they become empty, rather than
+  having a periodic timer try to free them";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"This gives efficiency and memory
+  consumption improvement";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"Then, we don't encode seperate size and next fields into each slob block,
+rather we use the sign bit to distinguish between ""size"" or ""next""";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"Then
+size 1 blocks contain a ""next"" offset, and others contain the ""size"" in
+the first unit and ""next"" in the second unit";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"- This allows minimum slob allocation alignment to go from 8 bytes to 2
+  bytes on 32-bit and 12 bytes to 2 bytes on 64-bit";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"In practice, it is
+  best to align them to word size, however some architectures (eg";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"cris)
+  could gain space savings from turning off this extra alignment";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"Then, make kmalloc use its own slob_block at the front of the allocation
+in order to encode allocation size, rather than rely on not overwriting
+slob's existing header block";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;- This reduces kmalloc allocation overhead similarly to alignment reductions;0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;- Decouples kmalloc layer from the slob allocator;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;Then, add a page flag specific to slob pages;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"- This means kfree of a page aligned slob block doesn't have to traverse
+  the bigblock list";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"I would get benchmarks, but my test box's network doesn't come up with
+slob before this patch";0;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;I think something is timing out;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"Anyway, things
+are faster after the patch";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"Code size goes up about 1K, however dynamic memory usage _should_ be
+lower even on relatively small memory systems";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NWIzNTEyN2YxMzY2MWFiYjBkYzM0NTkwNDJjZGI0MTdkMjFlNjky;"Future todo item is to restore the cyclic free list search, rather than
+to always begin at the start.";0;0
+MDY6Q29tbWl0MjMyNTI5ODphMzVhZmI4MzBmOGQ3MWVjMjExNTMxYWViOWE2MjFiMDlhMmVmYjM5;Remove SLAB_CTOR_CONSTRUCTOR;1;0
+MDY6Q29tbWl0MjMyNTI5ODphMzVhZmI4MzBmOGQ3MWVjMjExNTMxYWViOWE2MjFiMDlhMmVmYjM5;SLAB_CTOR_CONSTRUCTOR is always specified;1;0
+MDY6Q29tbWl0MjMyNTI5ODphMzVhZmI4MzBmOGQ3MWVjMjExNTMxYWViOWE2MjFiMDlhMmVmYjM5;No point in checking it.;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjNTlkZWY5ZjIyMmQ0NGJiN2UyZjBhNTU5ZjI5MDYxOTFhMDg2MmQ3;Slab allocators: Drop support for destructors;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjNTlkZWY5ZjIyMmQ0NGJiN2UyZjBhNTU5ZjI5MDYxOTFhMDg2MmQ3;There is no user of destructors left;0;1
+MDY6Q29tbWl0MjMyNTI5ODpjNTlkZWY5ZjIyMmQ0NGJiN2UyZjBhNTU5ZjI5MDYxOTFhMDg2MmQ3;" There is no reason why we should keep
+checking for destructors calls in the slab allocators";0;1
+MDY6Q29tbWl0MjMyNTI5ODpjNTlkZWY5ZjIyMmQ0NGJiN2UyZjBhNTU5ZjI5MDYxOTFhMDg2MmQ3;"The RFC for this patch was discussed at
+Destructors were mainly used for list management which required them to take a
+spinlock";1;0
+MDY6Q29tbWl0MjMyNTI5ODpjNTlkZWY5ZjIyMmQ0NGJiN2UyZjBhNTU5ZjI5MDYxOTFhMDg2MmQ3;" Taking a spinlock in a destructor is a bit risky since the slab
+allocators may run the destructors anytime they decide a slab is no longer
+needed";1;1
+MDY6Q29tbWl0MjMyNTI5ODpjNTlkZWY5ZjIyMmQ0NGJiN2UyZjBhNTU5ZjI5MDYxOTFhMDg2MmQ3;Patch drops destructor support;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjNTlkZWY5ZjIyMmQ0NGJiN2UyZjBhNTU5ZjI5MDYxOTFhMDg2MmQ3; Any attempt to use a destructor will BUG().;1;1
+MDY6Q29tbWl0MjMyNTI5ODphZmMwY2VkYmU5MTM4ZTNlOGIzOGJmYTFlNGRmZDAxYTJjNTM3ZDYy;slob: implement RCU freeing;1;0
+MDY6Q29tbWl0MjMyNTI5ODphZmMwY2VkYmU5MTM4ZTNlOGIzOGJmYTFlNGRmZDAxYTJjNTM3ZDYy;"The SLOB allocator should implement SLAB_DESTROY_BY_RCU correctly, because
+even on UP, RCU freeing semantics are not equivalent to simply freeing
+immediately";1;1
+MDY6Q29tbWl0MjMyNTI5ODphZmMwY2VkYmU5MTM4ZTNlOGIzOGJmYTFlNGRmZDAxYTJjNTM3ZDYy; This also allows SLOB to be used on SMP.;1;1
+MDY6Q29tbWl0MjMyNTI5ODo0YWI2ODhjNTEyMjYxODhmMmQ0YWQ0Zjc4OTAzMmMxMDc5NDRlZjg5;slob: fix page order calculation on not 4KB page;1;1
+MDY6Q29tbWl0MjMyNTI5ODo0YWI2ODhjNTEyMjYxODhmMmQ0YWQ0Zjc4OTAzMmMxMDc5NDRlZjg5;SLOB doesn't calculate correct page order when page size is not 4KB;0;1
+MDY6Q29tbWl0MjMyNTI5ODo0YWI2ODhjNTEyMjYxODhmMmQ0YWQ0Zjc4OTAzMmMxMDc5NDRlZjg5;" This
+patch fixes it with using get_order() instead of find_order() which is SLOB
+version of get_order().";1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;slab allocators: Remove obsolete SLAB_MUST_HWCACHE_ALIGN;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;This patch was recently posted to lkml and acked by Pekka;1;1
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;"The flag SLAB_MUST_HWCACHE_ALIGN is
+1";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;Never checked by SLAB at all;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;2;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;"A duplicate of SLAB_HWCACHE_ALIGN for SLUB
+3";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;Fulfills the role of SLAB_HWCACHE_ALIGN for SLOB;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;"The only remaining use is in sparc64 and ppc64 and their use there
+reflects some earlier role that the slab flag once may have had";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;"If
+its specified then SLAB_HWCACHE_ALIGN is also specified";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;The flag is confusing, inconsistent and has no purpose;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1YWY2MDgzOTkwOWI4ZTNiMjhjYTdjZDc5MTJmYTBiMjM0NzU2MTdm;Remove it.;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiYzAwNTVhZWU0MGJhNDA2MjczNjFkOGZmZDg1MzBkMzE1OTIwZjE4;slob: handle SLAB_PANIC flag;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiYzAwNTVhZWU0MGJhNDA2MjczNjFkOGZmZDg1MzBkMzE1OTIwZjE4;kmem_cache_create() for slob doesn't handle SLAB_PANIC.;1;0
+MDY6Q29tbWl0MjMyNTI5ODpmZDc2YmFiMmZhNmQ4ZjNlZjZiMzI2YTRjNmFlNDQyZmEyMWQzMGE0;slab: introduce krealloc;1;0
+MDY6Q29tbWl0MjMyNTI5ODpmZDc2YmFiMmZhNmQ4ZjNlZjZiMzI2YTRjNmFlNDQyZmEyMWQzMGE0;"This introduce krealloc() that reallocates memory while keeping the contents
+unchanged";1;1
+MDY6Q29tbWl0MjMyNTI5ODpmZDc2YmFiMmZhNmQ4ZjNlZjZiMzI2YTRjNmFlNDQyZmEyMWQzMGE0;" The allocator avoids reallocation if the new size fits the
+currently used cache";1;0
+MDY6Q29tbWl0MjMyNTI5ODpmZDc2YmFiMmZhNmQ4ZjNlZjZiMzI2YTRjNmFlNDQyZmEyMWQzMGE0;" I also added a simple non-optimized version for
+mm/slob.c for compatibility.";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiY2I0ZGRiNDZhNGM2NmQ2NGQwOTFlN2ZmYTk1MWIyYWExYmE1Mzdm;[PATCH] MM: SLOB is broken by recent cleanup of slab.h;1;1
+MDY6Q29tbWl0MjMyNTI5ODpiY2I0ZGRiNDZhNGM2NmQ2NGQwOTFlN2ZmYTk1MWIyYWExYmE1Mzdm;"Recent cleanup of slab.h broke SLOB allocator: the routine kmem_cache_init
+has now the __init attribute for both slab.c and slob.c";0;0
+MDY6Q29tbWl0MjMyNTI5ODpiY2I0ZGRiNDZhNGM2NmQ2NGQwOTFlN2ZmYTk1MWIyYWExYmE1Mzdm;" This routine
+cannot be removed after init in the case of slob.c -- it serves as a timer
+callback";1;1
+MDY6Q29tbWl0MjMyNTI5ODpiY2I0ZGRiNDZhNGM2NmQ2NGQwOTFlN2ZmYTk1MWIyYWExYmE1Mzdm;"Provide a separate timer callback routine, call it once from kmem_cache_init,
+keep the __init attribute on the latter.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;[PATCH] More slab.h cleanups;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;"More cleanups for slab.h
+1";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;"Remove tabs from weird locations as suggested by Pekka
+2";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;"Drop the check for NUMA and SLAB_DEBUG from the fallback section
+   as suggested by Pekka";1;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;3;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;Uses static inline for the fallback defs as also suggested by Pekka;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;4;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;Make kmem_ptr_valid take a const * argument;0;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;5;1;0
+MDY6Q29tbWl0MjMyNTI5ODo1NTkzNWEzNGE0MjhhMTQ5N2UzYjM3OTgyZTI3ODJjMDljNmY5MTRk;"Separate the NUMA fallback definitions from the kmalloc_track fallback
+   definitions.";0;0
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;[PATCH] Cleanup slab headers / API to allow easy addition of new slab allocators;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;"This is a response to an earlier discussion on linux-mm about splitting
+slab.h components per allocator";0;1
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi; Patch is against 2.6.19-git11;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;" See
+This patch cleans up the slab header definitions";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;" We define the common
+functions of slob and slab in slab.h and put the extra definitions needed
+for slab's kmalloc implementations in <linux/slab_def.h>";0;1
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;" In order to get
+a greater set of common functions we add several empty functions to slob.c
+and also rename slob's kmalloc to __kmalloc";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;"Slob does not need any special definitions since we introduce a fallback
+case";1;1
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;" If there is no need for a slab implementation to provide its own
+kmalloc mess^H^H^Hacros then we simply fall back to __kmalloc functions";1;0
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;That is sufficient for SLOB;0;1
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;Sort the function in slab.h according to their functionality;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;" First the
+functions operating on struct kmem_cache * then the kmalloc related
+functions followed by special debug and fallback definitions";0;0
+MDY6Q29tbWl0MjMyNTI5ODoyZTg5MmY0M2NjYjYwMmU4ZmZhZDczMzk2YTEwMDBmMjA0MGM5ZTBi;Also redo a lot of comments.;1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzNkMjA1YTE4YjdhNGQ4Y2I1Mjk1OWM1MzEwZjY2NjQyNzdjZjYx;[PATCH] Make kmem_cache_destroy() return void;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzNkMjA1YTE4YjdhNGQ4Y2I1Mjk1OWM1MzEwZjY2NjQyNzdjZjYx;"un-, de-, -free, -destroy, -exit, etc functions should in general return
+void";0;0
+MDY6Q29tbWl0MjMyNTI5ODoxMzNkMjA1YTE4YjdhNGQ4Y2I1Mjk1OWM1MzEwZjY2NjQyNzdjZjYx;" Also,
+There is very little, say, filesystem driver code can do upon failed
+kmem_cache_destroy()";0;1
+MDY6Q29tbWl0MjMyNTI5ODoxMzNkMjA1YTE4YjdhNGQ4Y2I1Mjk1OWM1MzEwZjY2NjQyNzdjZjYx;" If it will be decided to BUG in this case, BUG
+should be put in generic code, instead.";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NzJkMWE3YjE0MDU2OTA4NDQzOWE4MTI2NWEwZjE1Yjc0ZTkyNGUw;[PATCH] ZVC: Support NR_SLAB_RECLAIMABLE / NR_SLAB_UNRECLAIMABLE;1;0
+MDY6Q29tbWl0MjMyNTI5ODo5NzJkMWE3YjE0MDU2OTA4NDQzOWE4MTI2NWEwZjE1Yjc0ZTkyNGUw;"Remove the atomic counter for slab_reclaim_pages and replace the counter
+and NR_SLAB with two ZVC counter that account for unreclaimable and
+reclaimable slab pages: NR_SLAB_RECLAIMABLE and NR_SLAB_UNRECLAIMABLE";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5NzJkMWE3YjE0MDU2OTA4NDQzOWE4MTI2NWEwZjE1Yjc0ZTkyNGUw;Change the check in vmscan.c to refer to to NR_SLAB_RECLAIMABLE;0;0
+MDY6Q29tbWl0MjMyNTI5ODo5NzJkMWE3YjE0MDU2OTA4NDQzOWE4MTI2NWEwZjE1Yjc0ZTkyNGUw;" The
+intend seems to be to check for slab pages that could be freed.";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDBiY2M5OGQ3ZWMyYzg3MzkxYzlkOWUxY2NhNTE5ZWY2NGQzM2Vm;[PATCH] Extract the allocpercpu functions from the slab allocator;1;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDBiY2M5OGQ3ZWMyYzg3MzkxYzlkOWUxY2NhNTE5ZWY2NGQzM2Vm;"The allocpercpu functions __alloc_percpu and __free_percpu() are heavily
+using the slab allocator";0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDBiY2M5OGQ3ZWMyYzg3MzkxYzlkOWUxY2NhNTE5ZWY2NGQzM2Vm; However, they are conceptually slab;0;0
+MDY6Q29tbWl0MjMyNTI5ODpkMDBiY2M5OGQ3ZWMyYzg3MzkxYzlkOWUxY2NhNTE5ZWY2NGQzM2Vm;" This also
+simplifies SLOB (at this point slob may be broken in mm";1;1
+MDY6Q29tbWl0MjMyNTI5ODpkMDBiY2M5OGQ3ZWMyYzg3MzkxYzlkOWUxY2NhNTE5ZWY2NGQzM2Vm;" This should fix
+it).";1;1
+MDY6Q29tbWl0MjMyNTI5ODo2YWIzZDU2MjRlMTcyYzU1MzAwNGVjYzg2MmJmZWFjMTZkOWQ2OGI3;Remove obsolete #include <linux/config.h>;1;0
+MDY6Q29tbWl0MjMyNTI5ODo2YWIzZDU2MjRlMTcyYzU1MzAwNGVjYzg2MmJmZWFjMTZkOWQ2OGI3;;0;0
+MDY6Q29tbWl0MjMyNTI5ODo3NTEyOWUyOTdlODYxZTZjNjEwMzhhYTRjZGJmNjA0YjAyMmRlNGZm;[PATCH] mm/slob.c: for_each_possible_cpu(), not NR_CPUS;1;1
+MDY6Q29tbWl0MjMyNTI5ODo3NTEyOWUyOTdlODYxZTZjNjEwMzhhYTRjZGJmNjA0YjAyMmRlNGZm;"Convert for-loops that explicitly reference ""NR_CPUS"" into the
+potentially more efficient for_each_possible_cpu() construct.";0;1
+MDY6Q29tbWl0MjMyNTI5ODphOGMwZjlhNDFmODhkYTcwM2FkZTMzZjljMTYyNmE1NWM3ODZlOGJi;[PATCH] slab: introduce kmem_cache_zalloc allocator;1;0
+MDY6Q29tbWl0MjMyNTI5ODphOGMwZjlhNDFmODhkYTcwM2FkZTMzZjljMTYyNmE1NWM3ODZlOGJi;Introduce a memory-zeroing variant of kmem_cache_alloc;1;1
+MDY6Q29tbWl0MjMyNTI5ODphOGMwZjlhNDFmODhkYTcwM2FkZTMzZjljMTYyNmE1NWM3ODZlOGJi;" The allocator
+already exits in XFS and there are potential users for it so this patch
+makes the allocator available for the general public.";1;0
+MDY6Q29tbWl0MjMyNTI5ODo5OTM0YTc5MzllMWNkY2U2MmVjZTllZjdkMjVlYmIzYzU1NTQ3ZmFj;[PATCH] SLOB=y && SMP=y fix;1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OTM0YTc5MzllMWNkY2U2MmVjZTllZjdkMjVlYmIzYzU1NTQ3ZmFj;"fix CONFIG_SLOB=y (when CONFIG_SMP=y): get rid of the 'align' parameter
+from its __alloc_percpu() implementation";1;1
+MDY6Q29tbWl0MjMyNTI5ODo5OTM0YTc5MzllMWNkY2U2MmVjZTllZjdkMjVlYmIzYzU1NTQ3ZmFj;Boot-tested on x86.;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;[PATCH] slob: introduce the SLOB allocator;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;"configurable replacement for slab allocator
+This adds a CONFIG_SLAB option under CONFIG_EMBEDDED";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;" When CONFIG_SLAB is
+disabled, the kernel falls back to using the 'SLOB' allocator";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;"SLOB is a traditional K&R/UNIX allocator with a SLAB emulation layer,
+similar to the original Linux kmalloc allocator that SLAB replaced";0;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;" It's
+signicantly smaller code and is more memory efficient";0;1
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;" But like all
+similar allocators, it scales poorly and suffers from fragmentation more
+than SLAB, so it's only appropriate for small systems";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;It's been tested extensively in the Linux-tiny tree;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;" I've also
+stress-tested it with make -j 8 compiles on a 3G SMP+PREEMPT box (not
+recommended)";1;0
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;"Here's a comparison for otherwise identical builds, showing SLOB saving
+nearly half a megabyte of RAM";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;"$ size vmlinux*
+   text    data     bss     dec     hex filename
+3336372  529360  190812 4056544  3de5e0 vmlinux-slab
+3323208  527948  190684 4041840  3dac70 vmlinux-slob
+$ size mm/{slab,slob}.o
+   text    data     bss     dec     hex filename
+  13221     752      48   14021    36c5 mm/slab.o
+   1896      52       8    1956     7a4 mm/slob.o
+/proc/meminfo";1;1
+MDY6Q29tbWl0MjMyNTI5ODoxMGNlZjYwMjk1MDI5MTViZGIzY2YwODIxZDQyNWNmOWRjMzBjODE3;"                  SLAB          SLOB      delta
+MemTotal:        27964 kB      27980 kB     +16 kB
+MemFree:         24596 kB      25092 kB    +496 kB
+Buffers:            36 kB         36 kB       0 kB
+Cached:           1188 kB       1188 kB       0 kB
+SwapCached:          0 kB          0 kB       0 kB
+Active:            608 kB        600 kB      -8 kB
+Inactive:          808 kB        812 kB      +4 kB
+HighTotal:           0 kB          0 kB       0 kB
+HighFree:            0 kB          0 kB       0 kB
+LowTotal:        27964 kB      27980 kB     +16 kB
+LowFree:         24596 kB      25092 kB    +496 kB
+SwapTotal:           0 kB          0 kB       0 kB
+SwapFree:            0 kB          0 kB       0 kB
+Dirty:               4 kB         12 kB      +8 kB
+Writeback:           0 kB          0 kB       0 kB
+Mapped:            560 kB        556 kB      -4 kB
+Slab:             1756 kB          0 kB   -1756 kB
+CommitLimit:     13980 kB      13988 kB      +8 kB
+Committed_AS:     4208 kB       4208 kB       0 kB
+PageTables:         28 kB         28 kB       0 kB
+VmallocTotal:  1007312 kB    1007312 kB       0 kB
+VmallocUsed:        48 kB         48 kB       0 kB
+VmallocChunk:  1007264 kB    1007264 kB       0 kB
+(this work has been sponsored in part by CELF)
+From: Ingo Molnar <mingo@elte.hu>
+   Fix 32-bitness bugs in mm/slob.c.";1;1

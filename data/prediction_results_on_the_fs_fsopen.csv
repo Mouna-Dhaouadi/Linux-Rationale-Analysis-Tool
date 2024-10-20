@@ -1,0 +1,399 @@
+commit ID;text;author name;commit date;predicted_decision;predicted_rationale
+C_kwDOACN7MtoAKGNiNzg3ZjRhYzBjMmU0MzllYThkN2U2Mzg3YjkyNWY3NDU3NmJkZjg;[tree-wide] finally take no_llseek out;Al Viro;2024-09-27;1;0
+C_kwDOACN7MtoAKGNiNzg3ZjRhYzBjMmU0MzllYThkN2U2Mzg3YjkyNWY3NDU3NmJkZjg;"no_llseek had been defined to NULL two years ago, in commit 868941b14441
+(""fs: remove no_llseek"")
+To quote that commit,
+  At -rc1 we'll need do a mechanical removal of no_llseek -
+	sed -i '/\<no_llseek\>/d' $i
+  done
+  would do it";Al Viro;2024-09-27;1;1
+C_kwDOACN7MtoAKGNiNzg3ZjRhYzBjMmU0MzllYThkN2U2Mzg3YjkyNWY3NDU3NmJkZjg;Unfortunately, that hadn't been done;Al Viro;2024-09-27;0;1
+C_kwDOACN7MtoAKGNiNzg3ZjRhYzBjMmU0MzllYThkN2U2Mzg3YjkyNWY3NDU3NmJkZjg;" Linus, could you do that now, so
+that we could finally put that thing to rest? All instances are of the
+form
+	.llseek = no_llseek,
+so it's obviously safe.";Al Viro;2024-09-27;1;1
+C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ;introduce fd_file(), convert all accessors to it.;Al Viro;2024-05-31;1;0
+C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ;"	For any changes of struct fd representation we need to
+turn existing accesses to fields into calls of wrappers";Al Viro;2024-05-31;0;1
+C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ;"Accesses to struct fd::flags are very few (3 in linux/file.h,
+1 in net/socket.c, 3 in fs/overlayfs/file.c and 3 more in
+explicit initializers)";Al Viro;2024-05-31;0;1
+C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ;"	Those can be dealt with in the commit converting to
+new layout; accesses to struct fd::file are too many for that";Al Viro;2024-05-31;1;0
+C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ;"	This commit converts (almost) all of f.file to
+fd_file(f)";Al Viro;2024-05-31;0;1
+C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ;" It's not entirely mechanical ('file' is used as
+a member name more than just in struct fd) and it does not
+even attempt to distinguish the uses in pointer context from
+those in boolean context; the latter will be eventually turned
+into a separate helper (fd_empty())";Al Viro;2024-05-31;1;1
+C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ;"	NOTE: mass conversion to fd_empty(), tempting as it
+might be, is a bad idea; better do that piecewise in commit
+that convert from fdget...() to CLASS(...)";Al Viro;2024-05-31;1;1
+C_kwDOACN7MtoAKDFkYTkxZWE4N2FlZmUyYzI1YjY4YzlmOTY5NDdhOTI3MWJhNjMyNWQ;"[conflicts in fs/fhandle.c, kernel/bpf/syscall.c, mm/memcontrol.c
+caught by git; fs/stat.c one got caught by git grep]
+[fs/xattr.c conflict]";Al Viro;2024-05-31;1;1
+C_kwDOACN7MtoAKGRmZjYwNzM0ZmM3NjA2ZmFiZGU2NjhhYjZhMjZmZWFjZWM4Nzg3Y2M;vfs: retire user_path_at_empty and drop empty arg from getname_flags;Mateusz Guzik;2024-06-04;1;0
+C_kwDOACN7MtoAKGRmZjYwNzM0ZmM3NjA2ZmFiZGU2NjhhYjZhMjZmZWFjZWM4Nzg3Y2M;No users after do_readlinkat started doing the job on its own.;Mateusz Guzik;2024-06-04;0;1
+C_kwDOACN7MtoAKGVmNDRjOGFiMDZiMzAwYTViOWIzMGU1YjYzMGY0OTFhYzdiYzRkM2U;fs: fsconfig: intercept non-new mount API in advance for FSCONFIG_CMD_CREATE_EXCL command;Hongbo Li;2024-05-22;1;1
+C_kwDOACN7MtoAKGVmNDRjOGFiMDZiMzAwYTViOWIzMGU1YjYzMGY0OTFhYzdiYzRkM2U;"fsconfig with FSCONFIG_CMD_CREATE_EXCL command requires the new mount api,
+here we should return -EOPNOTSUPP in advance to avoid extra procedure.";Hongbo Li;2024-05-22;1;1
+C_kwDOACN7MtoAKDljZjE2YjM4MGFmNWJhYjdkMDk1MmI5YWFkMDYwMWViZjk4NmRlNjk;fsconfig: ensure that dirfd is set to aux;Christian Brauner;2023-09-22;0;0
+C_kwDOACN7MtoAKDljZjE2YjM4MGFmNWJhYjdkMDk1MmI5YWFkMDYwMWViZjk4NmRlNjk;"The code in fs_param_is_fd() expects param->dirfd to be set to the fd
+that was used to set param->file to initialize result->uint_32";Christian Brauner;2023-09-22;0;0
+C_kwDOACN7MtoAKDljZjE2YjM4MGFmNWJhYjdkMDk1MmI5YWFkMDYwMWViZjk4NmRlNjk;"So make
+sure it's set so users like autofs using FSCONFIG_SET_FD with the new
+mount api can rely on this to be set to the correct value.";Christian Brauner;2023-09-22;0;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;fs: add FSCONFIG_CMD_CREATE_EXCL;Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Summary
+This introduces FSCONFIG_CMD_CREATE_EXCL which will allows userspace to
+implement something like mount -t ext4 --exclusive /dev/sda /B which
+fails if a superblock for the requested filesystem does already exist";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Before this patch
+$ sudo ./move-mount -f xfs -o source=/dev/sda4 /A
+Requesting filesystem type xfs
+Mount options requested: source=/dev/sda4
+Attaching mount at /A
+Moving single attached mount
+Setting key(source) with val(/dev/sda4)
+$ sudo ./move-mount -f xfs -o source=/dev/sda4 /B
+Requesting filesystem type xfs
+Mount options requested: source=/dev/sda4
+Attaching mount at /B
+Moving single attached mount
+Setting key(source) with val(/dev/sda4)
+After this patch with --exclusive as a switch for FSCONFIG_CMD_CREATE_EXCL
+$ sudo ./move-mount -f xfs --exclusive -o source=/dev/sda4 /A
+Requesting filesystem type xfs
+Request exclusive superblock creation
+Mount options requested: source=/dev/sda4
+Attaching mount at /A
+Moving single attached mount
+Setting key(source) with val(/dev/sda4)
+$ sudo ./move-mount -f xfs --exclusive -o source=/dev/sda4 /B
+Requesting filesystem type xfs
+Request exclusive superblock creation
+Mount options requested: source=/dev/sda4
+Attaching mount at /B
+Moving single attached mount
+Setting key(source) with val(/dev/sda4)
+Device or resource busy | move-mount.c: 300: do_fsconfig: i xfs: reusing existing filesystem not allowed
+Details
+As mentioned on the list (cf";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"[1]-[3]) mount requests like
+mount -t ext4 /dev/sda /A are ambigous for userspace";Christian Brauner;2023-08-02;0;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Either a new
+superblock has been created and mounted or an existing superblock has
+been reused and a bind-mount has been created";Christian Brauner;2023-08-02;0;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"This becomes clear in the following example where two processes create
+the same mount for the same block device";Christian Brauner;2023-08-02;0;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"P1                                                              P2
+// wins and creates superblock
+fsconfig(fd_fs, FSCONFIG_CMD_CREATE, ...)
+                                                                // finds compatible superblock of P1
+                                                                // spins until P1 sets SB_BORN and grabs a reference
+                                                                fsconfig(fd_fs, FSCONFIG_CMD_CREATE, ...)
+move_mount(fd_mnt1, ""/A"")                                       move_mount(fd_mnt2, ""/B"")
+Not just does P2 get a bind-mount but the mount options that P2
+requestes are silently ignored";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"The VFS itself doesn't, can't and
+shouldn't enforce filesystem specific mount option compatibility";Christian Brauner;2023-08-02;0;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"It
+only enforces incompatibility for read-only <-> read-write transitions";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"mount -t ext4       /dev/sda /A
+mount -t ext4 -o ro /dev/sda /B
+The read-only request will fail with EBUSY as the VFS can't just
+silently transition a superblock from read-write to read-only or vica
+versa without risking security issues";Christian Brauner;2023-08-02;0;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"To userspace this silent superblock reuse can become a security issue in
+because there is currently no straightforward way for userspace to know
+that they did indeed manage to create a new superblock and didn't just
+reuse an existing one";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"This adds a new FSCONFIG_CMD_CREATE_EXCL command to fsconfig() that
+returns EBUSY if an existing superblock would be reused";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Userspace that
+needs to be sure that it did create a new superblock with the requested
+mount options can request superblock creation using this command";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"If the
+command succeeds they can be sure that they did create a new superblock
+with the requested mount options";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;This requires the new mount api;Christian Brauner;2023-08-02;0;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"With the old mount api it would be
+necessary to plumb this through every legacy filesystem's
+file_system_type->mount() method";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"If they want this feature they are
+most welcome to switch to the new mount api";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Following is an analysis of the effect of FSCONFIG_CMD_CREATE_EXCL on
+each high-level superblock creation helper";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(1) get_tree_nodev()
+    Always allocate new superblock";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Hence, FSCONFIG_CMD_CREATE and
+    FSCONFIG_CMD_CREATE_EXCL are equivalent";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;    The binderfs or overlayfs filesystems are examples;Christian Brauner;2023-08-02;0;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(4) get_tree_keyed()
+    Finds an existing superblock based on sb->s_fs_info";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Hence,
+    FSCONFIG_CMD_CREATE would reuse an existing superblock whereas
+    FSCONFIG_CMD_CREATE_EXCL would reject it with EBUSY";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;    The mqueue or nfsd filesystems are examples;Christian Brauner;2023-08-02;0;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(2) get_tree_bdev()
+    This effectively works like get_tree_keyed()";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;    The ext4 or xfs filesystems are examples;Christian Brauner;2023-08-02;0;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(3) get_tree_single()
+    Only one superblock of this filesystem type can ever exist";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"    Hence, FSCONFIG_CMD_CREATE would reuse an existing superblock
+    whereas FSCONFIG_CMD_CREATE_EXCL would reject it with EBUSY";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;    The securityfs or configfs filesystems are examples;Christian Brauner;2023-08-02;0;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"    Note that some single-instance filesystems never destroy the
+    superblock once it has been created during the first mount";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"For
+    example, if securityfs has been mounted at least onces then the
+    created superblock will never be destroyed again as long as there is
+    still an LSM making use it";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Consequently, even if securityfs is
+    unmounted and the superblock seemingly destroyed it really isn't
+    which means that FSCONFIG_CMD_CREATE_EXCL will continue rejecting
+    reusing an existing superblock";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"    This is acceptable thugh since special purpose filesystems such as
+    this shouldn't have a need to use FSCONFIG_CMD_CREATE_EXCL anyway
+    and if they do it's probably to make sure that mount options aren't
+    ignored";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Following is an analysis of the effect of FSCONFIG_CMD_CREATE_EXCL on
+filesystems that make use of the low-level sget_fc() helper directly";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"They're all effectively variants on get_tree_keyed(), get_tree_bdev(),
+or get_tree_nodev()";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(5) mtd_get_sb()
+    Similar logic to get_tree_keyed()";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(6) afs_get_tree()
+    Similar logic to get_tree_keyed()";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(7) ceph_get_tree()
+    Similar logic to get_tree_keyed()";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"    Already explicitly allows forcing the allocation of a new superblock
+    via CEPH_OPT_NOSHARE";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;This turns it into get_tree_nodev();Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(8) fuse_get_tree_submount()
+    Similar logic to get_tree_nodev()";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(9) fuse_get_tree()
+    Forces reuse of existing FUSE superblock";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"    Forces reuse of existing superblock if passed in file refers to an
+    existing FUSE connection";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"    If FSCONFIG_CMD_CREATE_EXCL is specified together with an fd
+    referring to an existing FUSE connections this would cause the
+    superblock reusal to fail";Christian Brauner;2023-08-02;0;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"If reusing is the intent then
+    FSCONFIG_CMD_CREATE_EXCL shouldn't be specified";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(10) fuse_get_tree()
+     -> get_tree_nodev()
+    Same logic as in get_tree_nodev()";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(11) fuse_get_tree()
+     -> get_tree_bdev()
+    Same logic as in get_tree_bdev()";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(12) virtio_fs_get_tree()
+     Same logic as get_tree_keyed()";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(13) gfs2_meta_get_tree()
+     Forces reuse of existing gfs2 superblock";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"     Mounting gfs2meta enforces that a gf2s superblock must already
+     exist";Christian Brauner;2023-08-02;0;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;If not, it will error out;Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"Consequently, mounting gfs2meta
+     with FSCONFIG_CMD_CREATE_EXCL would always fail";Christian Brauner;2023-08-02;0;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"If reusing is the
+     intent then FSCONFIG_CMD_CREATE_EXCL shouldn't be specified";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(14) kernfs_get_tree()
+     Similar logic to get_tree_keyed()";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"(15) nfs_get_tree_common()
+    Similar logic to get_tree_keyed()";Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"    Already explicitly allows forcing the allocation of a new superblock
+    via NFS_MOUNT_UNSHARED";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDIyZWQ3ZWNkYWVmZTBjYWMwYzZlNjI5NWU4MzA0OGFmNjA0MzViMTM;"This effectively turns it into
+    get_tree_nodev().";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKDExYTUxZDhjMTNhNzVmNmIyNGNmZmVkYThlNWUxMWZjOGE3NDlmMWU;fs: add vfs_cmd_reconfigure();Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKDExYTUxZDhjMTNhNzVmNmIyNGNmZmVkYThlNWUxMWZjOGE3NDlmMWU;"Split the steps to reconfigure a superblock into a tiny helper instead
+of open-coding it in the switch.";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKGRhZThiMDhkNWQ4M2I3NTUwOTE3YWYwNmNmYmE3NmYwYjkwOGJmMTU;fs: add vfs_cmd_create();Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKGRhZThiMDhkNWQ4M2I3NTUwOTE3YWYwNmNmYmE3NmYwYjkwOGJmMTU;Split the steps to create a superblock into a tiny helper;Christian Brauner;2023-08-02;1;0
+C_kwDOACN7MtoAKGRhZThiMDhkNWQ4M2I3NTUwOTE3YWYwNmNmYmE3NmYwYjkwOGJmMTU;"This will
+make the next patch easier to follow.";Christian Brauner;2023-08-02;1;1
+C_kwDOACN7MtoAKGE1Zjg1ZDc4MzRmN2UxNDU2ZTc5OWM3OWEyYTgzZmMxMWI5MGNmZTI;uninline may_mount() and don't opencode it in fspick(2)/fsopen(2);Al Viro;2022-03-01;1;0
+C_kwDOACN7MtoAKGE1Zjg1ZDc4MzRmN2UxNDU2ZTc5OWM3OWEyYTgzZmMxMWI5MGNmZTI;"It's done once per (mount-related) syscall and there's no point
+whatsoever making it inline.";Al Viro;2022-03-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZjU2MWY2Njg4ZmVmNzc1YmFhMzQxYTBmNWQ5NjBiZWNkMjQ4YjEx;treewide: Use fallthrough pseudo-keyword;Gustavo A. R. Silva;2020-08-23;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZjU2MWY2Njg4ZmVmNzc1YmFhMzQxYTBmNWQ5NjBiZWNkMjQ4YjEx;"Replace the existing /* fall through */ comments and its variants with
+the new pseudo-keyword macro fallthrough[1]";Gustavo A. R. Silva;2020-08-23;1;1
+MDY6Q29tbWl0MjMyNTI5ODpkZjU2MWY2Njg4ZmVmNzc1YmFhMzQxYTBmNWQ5NjBiZWNkMjQ4YjEx;"Also, remove unnecessary
+fall-through markings when it is the case.";Gustavo A. R. Silva;2020-08-23;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjYzNjMGI1MzNhYjkxNDJlYWMyZTI5MTYyOGZiZmNhMzY4NWYzOGNk;add prefix to fs_context->log;Al Viro;2019-12-21;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjYzNjMGI1MzNhYjkxNDJlYWMyZTI5MTYyOGZiZmNhMzY4NWYzOGNk;..;Al Viro;2019-12-21;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjYzNjMGI1MzNhYjkxNDJlYWMyZTI5MTYyOGZiZmNhMzY4NWYzOGNk;turning it into struct p_log embedded into fs_context;Al Viro;2019-12-21;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjYzNjMGI1MzNhYjkxNDJlYWMyZTI5MTYyOGZiZmNhMzY4NWYzOGNk;" Initialize
+the prefix with fs_type->name, turning fs_parse() into a trivial
+inline wrapper for __fs_parse()";Al Viro;2019-12-21;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjYzNjMGI1MzNhYjkxNDJlYWMyZTI5MTYyOGZiZmNhMzY4NWYzOGNk;This makes fs_parameter_description->name completely unused.;Al Viro;2019-12-21;1;1
+MDY6Q29tbWl0MjMyNTI5ODphYTE5MThmOTQ5MTQ0MmEwMDdhMGNiZTQxYTMxNTM5MjMzMjA5Nzc3;get rid of fs_value_is_filename_empty;Al Viro;2019-12-18;1;1
+MDY6Q29tbWl0MjMyNTI5ODphYTE5MThmOTQ5MTQ0MmEwMDdhMGNiZTQxYTMxNTM5MjMzMjA5Nzc3;Its behaviour is identical to that of fs_value_is_filename;Al Viro;2019-12-18;0;0
+MDY6Q29tbWl0MjMyNTI5ODphYTE5MThmOTQ5MTQ0MmEwMDdhMGNiZTQxYTMxNTM5MjMzMjA5Nzc3;"It makes no sense, anyway - LOOKUP_EMPTY affects nothing
+whatsoever once the pathname has been imported from userland";Al Viro;2019-12-18;1;1
+MDY6Q29tbWl0MjMyNTI5ODphYTE5MThmOTQ5MTQ0MmEwMDdhMGNiZTQxYTMxNTM5MjMzMjA5Nzc3;"And both fs_value_is_filename and fs_value_is_filename_empty
+carry an already imported pathname.";Al Viro;2019-12-18;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk;move mount_capable() further out;Al Viro;2019-05-13;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk;Call graph of vfs_get_tree();Al Viro;2019-05-13;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk;"	vfs_fsconfig_locked()	# neither kernmount, nor submount
+	do_new_mount()		# neither kernmount, nor submount
+	fc_mount()
+		afs_mntpt_do_automount()	# submount
+		mount_one_hugetlbfs()		# kernmount
+		pid_ns_prepare_proc()		# kernmount
+		mq_create_mount()		# kernmount
+		vfs_kern_mount()
+			simple_pin_fs()		# kernmount
+			vfs_submount()		# submount
+			kern_mount()		# kernmount
+			init_mount_tree()
+			btrfs_mount()
+			nfs_do_root_mount()
+	The first two need the check (unconditionally)";Al Viro;2019-05-13;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk;"init_mount_tree() is setting rootfs up; any capability
+checks make zero sense for that one";Al Viro;2019-05-13;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk;" And btrfs_mount()/
+nfs_do_root_mount() have the checks already done in their
+callers";Al Viro;2019-05-13;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk;"	IOW, we can shift mount_capable() handling into
+the two callers - one in the normal case of mount(2),
+another - in fsconfig(2) handling of FSCONFIG_CMD_CREATE";Al Viro;2019-05-13;0;1
+MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk;I.e;Al Viro;2019-05-13;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjM2FhYmYwNzgwYTUwNjIyNWI1M2JmZTJiNTE3N2RkNWRmZWMwOTNk;the syscalls that set a new filesystem up.;Al Viro;2019-05-13;0;0
+MDY6Q29tbWl0MjMyNTI5ODpiNGQwZDIzMGNjZmI1ZDFhOWVhODVkYTY0YWE1ODRkZjdjMTQ4ZWU5;treewide: Replace GPLv2 boilerplate/reference with SPDX - rule 36;Thomas Gleixner;2019-05-20;1;0
+MDY6Q29tbWl0MjMyNTI5ODpiNGQwZDIzMGNjZmI1ZDFhOWVhODVkYTY0YWE1ODRkZjdjMTQ4ZWU5;Based on 1 normalized pattern(s);Thomas Gleixner;2019-05-20;0;0
+MDY6Q29tbWl0MjMyNTI5ODpiNGQwZDIzMGNjZmI1ZDFhOWVhODVkYTY0YWE1ODRkZjdjMTQ4ZWU5;"  this program is free software you can redistribute it and or modify
+  it under the terms of the gnu general public licence as published by
+  the free software foundation either version 2 of the licence or at
+  your option any later version
+extracted by the scancode license scanner the SPDX license identifier
+  GPL-2.0-or-later
+has been chosen to replace the boilerplate/reference in 114 file(s).";Thomas Gleixner;2019-05-20;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxY2RjNDE1ZjEwODMxYzE4OTEyOTQzMDE3ZDA2YjJiZTk0OGM2N2I0;"uapi, fsopen: use square brackets around ""fscontext"" [ver #2]";Christian Brauner;2019-05-16;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxY2RjNDE1ZjEwODMxYzE4OTEyOTQzMDE3ZDA2YjJiZTk0OGM2N2I0;"Make the name of the anon inode fd ""[fscontext]"" instead of ""fscontext""";Christian Brauner;2019-05-16;1;0
+MDY6Q29tbWl0MjMyNTI5ODoxY2RjNDE1ZjEwODMxYzE4OTEyOTQzMDE3ZDA2YjJiZTk0OGM2N2I0;"This is minor but most core-kernel anon inode fds already carry square
+brackets around their name";Christian Brauner;2019-05-16;0;0
+MDY6Q29tbWl0MjMyNTI5ODoxY2RjNDE1ZjEwODMxYzE4OTEyOTQzMDE3ZDA2YjJiZTk0OGM2N2I0;"[eventfd]
+[eventpoll]
+[fanotify]
+[io_uring]
+[pidfd]
+[signalfd]
+[timerfd]
+[userfaultfd]
+For the sake of consistency lets do the same for the fscontext anon inode
+fd that comes with the new mount api.";Christian Brauner;2019-05-16;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjNjYmE0YTQyOWJlNDNlNTUyN2EzZjc4ODU5YjFiZmQ5ZWJjNWZi;vfs: syscall: Add fspick() to select a superblock for reconfiguration;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjNjYmE0YTQyOWJlNDNlNTUyN2EzZjc4ODU5YjFiZmQ5ZWJjNWZi;"Provide an fspick() system call that can be used to pick an existing
+mountpoint into an fs_context which can thereafter be used to reconfigure a
+superblock (equivalent of the superblock side of -o remount)";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODpjZjNjYmE0YTQyOWJlNDNlNTUyN2EzZjc4ODU5YjFiZmQ5ZWJjNWZi;This looks like;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODpjZjNjYmE0YTQyOWJlNDNlNTUyN2EzZjc4ODU5YjFiZmQ5ZWJjNWZi;"	int fd = fspick(AT_FDCWD, ""/mnt"",
+At the point of fspick being called, the file descriptor referring to the
+filesystem context is in exactly the same state as the one that was created
+by fsopen() after fsmount() has been successfully called.";David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;vfs: syscall: Add fsconfig() for configuring and managing a context;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;"Add a syscall for configuring a filesystem creation context and triggering
+actions upon it, to be used in conjunction with fsopen, fspick and fsmount";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;"    long fsconfig(int fs_fd, unsigned int cmd, const char *key,
+Where fs_fd indicates the context, cmd indicates the action to take, key
+indicates the parameter name for parameter-setting actions and, if needed,
+value points to a buffer containing the value and aux can give more
+information for the value";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;The following command IDs are proposed;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy; (*) FSCONFIG_SET_FLAG: No value is specified;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" The parameter must be
+     boolean in nature";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" The key may be prefixed with ""no"" to invert the
+     setting";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;value must be NULL and aux must be 0;David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy; (*) FSCONFIG_SET_STRING: A string value is specified;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" The parameter can
+     be expecting boolean, integer, string or take a path";David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" A conversion to
+     an appropriate type will be attempted (which may include looking up as
+     a path)";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy; value points to a NUL-terminated string and aux must be 0;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy; (*) FSCONFIG_SET_BINARY: A binary blob is specified;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" value points to
+     the blob and aux indicates its size";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" The parameter must be expecting
+     a blob";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy; (*) FSCONFIG_SET_PATH: A non-empty path is specified;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" The parameter must
+     be expecting a path object";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" value points to a NUL-terminated string
+     that is the path and aux is a file descriptor at which to start a
+     relative lookup or AT_FDCWD";David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" (*) FSCONFIG_SET_PATH_EMPTY: As fsconfig_set_path, but with AT_EMPTY_PATH
+     implied";David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy; (*) FSCONFIG_SET_FD: An open file descriptor is specified;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" value must
+     be NULL and aux indicates the file descriptor";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy; (*) FSCONFIG_CMD_CREATE: Trigger superblock creation;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy; (*) FSCONFIG_CMD_RECONFIGURE: Trigger superblock reconfiguration;David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;"For the ""set"" command IDs, the idea is that the file_system_type will point
+to a list of parameters and the types of value that those parameters expect
+to take";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" The core code can then do the parse and argument conversion and
+then give the LSM and FS a cooked option or array of options to use";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;"Source specification is also done the same way same way, using special keys
+""source"", ""source1"", ""source2"", etc.";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;"[!] Note that, for the moment, the key and value are just glued back
+together and handed to the filesystem";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;" Every filesystem that uses options
+uses match_token() and co";David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;"to do this, and this will need to be changed -
+but not all at once";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODplY2RhYjE1MGZkZGI0MmZlNmE3MzkzMzUyNTc5NDkyMjAwMzNiNzgy;Example usage:;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;vfs: Implement logging through fs_context;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;"Implement the ability for filesystems to log error, warning and
+informational messages through the fs_context";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;" These can be extracted by
+userspace by reading from an fd created by fsopen()";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;"Error messages are prefixed with ""e "", warnings with ""w "" and informational
+messages with ""i """;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;"Inside the kernel, formatted messages are malloc'd but unformatted messages
+are not copied if they're either in the core .rodata section or in the
+.rodata section of the filesystem module pinned by fs_context::fs_type";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;The messages are only good till the fs_type is released;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;"Note that the logging object is shared between duplicated fs_context
+structures";David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;" This is so that such as NFS which do a mount within a mount
+can get at least some of the errors from the inner mount";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;Five logging functions are provided for this;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;     This logs a message into the context;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;" If the buffer is full, the
+     earliest message is discarded";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;     This wraps logfc() to log an error;David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;     This wraps errorf() and returns -EINVAL for convenience;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;     This wraps logfc() to log a warning;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODowMDdlYzI2Y2RjOWZlZmFjYmVkODViNTkyYWZjNjk0MTMxOTQ0OTlj;     This wraps logfc() to log an informational message.;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;vfs: syscall: Add fsopen() to prepare for superblock creation;David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;"Provide an fsopen() system call that starts the process of preparing to
+create a superblock that will then be mountable, using an fd as a context
+handle";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1; fsopen() is given the name of the filesystem that will be used;David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;where flags can be 0 or FSOPEN_CLOEXEC;David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;For example;David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;"	fsinfo(sfd, NULL, ...); // query new superblock attributes
+	fsconfig(fd, FSCONFIG_SET_STRING, ""source"",
+If an error is reported at any step, an error message may be available to be
+read() back (ENODATA will be reported if there isn't an error available) in
+the form";David Howells;2018-11-01;1;1
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;"	""e <subsys>:<problem>""
+	""e SELinux:Mount on mountpoint not permitted""
+Once fsmount() has been called, further fsconfig() calls will incur EBUSY,
+even if the fsmount() fails";David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;" read() is still possible to retrieve error
+information";David Howells;2018-11-01;0;0
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;"The fsopen() syscall creates a mount context and hangs it of the fd that it
+returns";David Howells;2018-11-01;1;0
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;"Netlink is not used because it is optional and would make the core VFS
+dependent on the networking layer and also potentially add network
+namespace issues";David Howells;2018-11-01;0;1
+MDY6Q29tbWl0MjMyNTI5ODoyNGRjYjNkOTBhMWY2N2ZlMDhjNjhhMDA0YWYzN2RmMDU5ZDc0MDA1;"Note that, for the moment, the caller must have SYS_CAP_ADMIN to use
+fsopen().";David Howells;2018-11-01;1;1
