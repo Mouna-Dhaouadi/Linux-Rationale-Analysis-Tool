@@ -43,6 +43,7 @@ optree==0.13.0
 packaging==24.1
 pandas==2.2.3
 pillow==10.4.0
+pip==24.2
 protobuf==4.25.5
 pyarrow==17.0.0
 pyasn1==0.6.1
@@ -59,6 +60,7 @@ rich==13.9.2
 rpds-py==0.20.0
 rsa==4.9
 seaborn==0.13.2
+setuptools==75.2.0
 six==1.16.0
 smmap==5.0.1
 streamlit==1.39.0
@@ -68,6 +70,7 @@ tensorboard==2.13.0
 tensorboard-data-server==0.7.2
 tensorflow==2.13.0
 tensorflow-estimator==2.13.0
+tensorflow-intel==2.13.0
 tensorflow-io-gcs-filesystem==0.31.0
 termcolor==2.5.0
 toml==0.10.2
@@ -77,5 +80,6 @@ tzdata==2024.2
 urllib3==2.2.3
 watchdog==5.0.3
 Werkzeug==3.0.4
+wheel==0.44.0
 wordcloud==1.9.3
 wrapt==1.16.0
