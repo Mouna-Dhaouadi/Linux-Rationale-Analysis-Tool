@@ -175,7 +175,6 @@ async def main():
     ######################### CLASSIFICATION
 
     ########  get the classifiers
-    path = os.path.join(subdir,filename)
     with st.spinner('Classification - Loading models'):
       model_rationale = load_model(".\\models\\bi_lstm_model_rationale.h5")
       model_decision = load_model(".\\models\\bi_lstm_model_decision.h5")
