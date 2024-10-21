@@ -181,7 +181,7 @@ async def main():
 
     with st.spinner('Classification - Preparing Tokenizer'):
       ### prepare tokenizer: same preprocessing  as training
-      df = pd.read_csv('data\dataset_3_labels_merged.csv', sep=';')
+      df = pd.read_csv('data/dataset_3_labels_merged.csv', sep=';')
       texts = df['message_preprocessed']
       dataf = pd.DataFrame({'text': texts})
       max_words = 1000
