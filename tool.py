@@ -121,7 +121,7 @@ async def main():
     url_doc= "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic"
     st.markdown("See how to [create a Github token](%s)" % url_doc) 
   
-  if st.button("Start Analysis"): 
+  if st.button("Start Analysis", disabled=not bool(url.strip()) ): 
 
     # Parse the URL and extract query parameters
     parsed_url = urlparse(url)
