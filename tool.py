@@ -14,6 +14,8 @@ import json
 import csv
 from datetime import datetime
 from urllib.parse import urlparse, parse_qs
+import streamlit as st
+
 
 
 
@@ -106,10 +108,18 @@ async def main():
     https://api.github.com/repos/torvalds/linux/commits?path=drivers/acpi/button.c \n 
     """ ) 
 
-  username = st.text_input("Enter your Github Username", 'Mouna-Dhaouadi')
-  token = st.text_input("Enter your Github API Token", "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")  # TODO chnage these 
-  url_doc= "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic"
-  st.markdown("See how to [create a Github token](%s)" % url_doc) 
+  credentials = st.radio(
+    "Github credentials",
+    ["Use Mine", "Use Mouna's"],
+  )
+  if credentials == "Use Mouna's":
+    username = st.secrets["github_username"]
+    token = st.secrets["github_token"]
+  else:
+    username = st.text_input("Enter your Github Username", "")
+    token = st.text_input("Enter your Github API Token", "")  
+    url_doc= "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic"
+    st.markdown("See how to [create a Github token](%s)" % url_doc) 
   
   if st.button("Start Analysis"): 
 
@@ -237,7 +247,7 @@ async def main():
                                 'predicted_decision' : 'Decision' } )
       
       st.markdown('Resulting dataset:')
-      st.write(df.head())
+      st.write(df)
 
       #TODO: make appear when file ready
       download_link_html = get_download_link(file_path, file_name, "Download CSV file")
