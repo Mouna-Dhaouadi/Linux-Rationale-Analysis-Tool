@@ -32,6 +32,6 @@ if __name__ == '__main__':
     st.title("Linux Rationale Analyses Tool")
     # Sidebar navigation
     st.sidebar.page_link('tool.py', label='Module Analyzer')
-    st.sidebar.page_link('pages\commit.py', label='Commit Message Analyzer')
+    st.sidebar.page_link('pages/commit.py', label='Commit Message Analyzer')
     
     asyncio.run(user_commit_page())
