@@ -26,7 +26,6 @@ async def user_commit_page():
 
      I changed the visibility of function get_attribute(). 
      Now, bug number #333 is fixed.
-
      Debbuged-by: Mouna
      """
     user_commit = st.text_area("Enter your commit message",sample_commit, height = 200)
@@ -86,7 +85,6 @@ async def user_commit_page():
 
     
         ################## Visualizae
-            st.markdown('Your Commit Message:')
             st.write(df_predicted)
             st.write( "Number of sentences: " + str(len(df_predicted)))
             user_commit_rationale_density = user_rationale_density(df_predicted)
@@ -94,6 +92,10 @@ async def user_commit_page():
             st.write( f"Your commit message's rationale density: {user_commit_rationale_density:.2%}")
             st.write( f"Your commit message's decision density: {user_commit_decision_density:.2%}")
 
+            if user_commit_rationale_density < 0.5 : 
+                st.error('Low Rationale! Please justify more explicitly your changes', icon="🚨")
+            else:
+                st.success('High Rationale! Your commit message is well justified!', icon="✅")
 
 
 
