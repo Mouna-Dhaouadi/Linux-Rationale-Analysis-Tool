@@ -1,7 +1,6 @@
 import streamlit as st
 from helpers import *
 import asyncio
-from st_pages import get_nav_from_toml
 
 
 async def run_async_user_rationale(placeholder7, user_commit):
@@ -10,9 +9,9 @@ async def run_async_user_rationale(placeholder7, user_commit):
    with placeholder7.container():
        st.write( f"Your commit message's rationale density: {user_commit_rationale_density:.2%}")
 
+
 ############### Page
 async def user_commit_page():
-    st.set_page_config(page_title="Linux Rationale Analyses Tool")
     st.header("Commit Message Rationale Analyses")
     
     user_commit = st.text_input("Enter your commit message","")
@@ -29,5 +28,10 @@ async def user_commit_page():
 
 ##############
 if __name__ == '__main__':
-    # Streamlit is synchronous, but we can trigger asynchronous tasks with create_task
+    st.set_page_config(page_title="Linux Rationale Analyses Tool")
+    st.title("Linux Rationale Analyses Tool")
+    # Sidebar navigation
+    st.sidebar.page_link('tool.py', label='Module Analyzer')
+    st.sidebar.page_link('pages\commit.py', label='Commit Message Analyzer')
+    
     asyncio.run(user_commit_page())

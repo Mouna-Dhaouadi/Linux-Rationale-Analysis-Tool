@@ -15,7 +15,6 @@ from datetime import datetime
 from urllib.parse import urlparse, parse_qs
 import streamlit as st
 
-
 # import h5py
 # f = h5py.File('models\\bi_lstm_model_rationale.h5', 'r') 
 # print(f.attrs.get('keras_version')) # keras 2.15.0 
@@ -83,7 +82,6 @@ async def run_async_rationale_evolution(placeholder, dff6_y, option):
 
 ################################### MAIN
 async def main():
-  st.set_page_config(page_title="Linux Rationale Analyses Tool")
   st.header("Module Rationale Analyses")
 
   # SLOB_FILE = 'prediction_results_on_the_slob.csv'
@@ -447,5 +445,11 @@ async def main():
       
 ############## 
 if __name__ == '__main__':
-    asyncio.run(main())
+  st.set_page_config(page_title="Linux Rationale Analyses Tool")
+  st.title("Linux Rationale Analyses Tool")
+  # Sidebar navigation
+  st.sidebar.page_link('tool.py', label='Module Analyzer')
+  st.sidebar.page_link('pages\commit.py', label='Commit Message Analyzer')
+
+  asyncio.run(main())
 
