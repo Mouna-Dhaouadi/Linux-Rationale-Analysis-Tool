@@ -8,6 +8,8 @@ import asyncio
 import pandas as pd
 import re
 import requests
+from tensorflow.keras.models import load_model
+
 
 
 # Define a function to fetch commits from paginated GitHub API
@@ -209,6 +211,11 @@ def is_decision(row):
     return True
   return False
 
+
+def load_models():
+    model_rationale = load_model("models/bi_lstm_model_rationale.h5")
+    model_decision = load_model("models/bi_lstm_model_decision.h5")
+    return model_rationale, model_decision
    
 
 def commit_contains_rationale(commitID,  df_current):
@@ -360,6 +367,10 @@ def number_of_authors_with_number_of_commits_and_rationale_density(ci,ri, dff4):
     if ( c == ci ) & ( r == ri) :
       n = n +1
   return n
+
+
+async def commit_density(user_commit):
+  return 0.15
 
 
 async def factors_developers(dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list , x,y):
