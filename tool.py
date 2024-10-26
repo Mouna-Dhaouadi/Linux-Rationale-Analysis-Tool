@@ -349,6 +349,10 @@ async def main():
       st.write( f"Average Rationale Density: {average_rationale_density:.2f}"  )
       with st.expander("See explanation"):
         st.latex(r'''
+         Commit \ Rationale \ Density = \frac {number \ of \ sentences \ labelled \ as \  Rationale }
+         {total \ number \ of \ sentences \ in \ a \ commit}
+            ''')
+        st.latex(r'''
           Average \ Rationale \ Density = \frac { 
             \sum { commit \  rationale \ density  } 
             }
