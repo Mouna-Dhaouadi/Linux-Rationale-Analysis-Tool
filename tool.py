@@ -59,13 +59,13 @@ async def run_async_word_cloud(placeholder, text_list, df, option, L):
     placeholder.pyplot(img)  
 
 
-async def run_async_factors_commit_size(placeholder, df, commits_length_list, commits_rationale_density_list, commits_IDs_list ):
-    img = await factors_commit_size(df, commits_length_list, commits_rationale_density_list, commits_IDs_list )
+async def run_async_factors_commit_size(placeholder, df, commits_length_list, commits_rationale_density_list, commits_IDs_list, option ):
+    img = await factors_commit_size(df, commits_length_list, commits_rationale_density_list, commits_IDs_list, option )
     placeholder.pyplot(img) 
 
         
-async def run_async_factors_developers(placeholder, dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x,y ):
-    img = await factors_developers(dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x, y )
+async def run_async_factors_developers(placeholder, dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x,y, option ):
+    img = await factors_developers(dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x, y , option)
     placeholder.pyplot(img) 
 
 
@@ -353,7 +353,7 @@ async def main():
               """<div style='text-align:center; font-size:24px; color:gray;'>Loading... ⏳</div>""",
               unsafe_allow_html=True,
         )
-        asyncio.create_task(run_async_factors_commit_size(placeholder3, df, commits_length_list, commits_rationale_density_list, commits_IDs_list ))
+        asyncio.create_task(run_async_factors_commit_size(placeholder3, df, commits_length_list, commits_rationale_density_list, commits_IDs_list, option ))
 
 
     ############################ ANALYSES :   factors - Developers experience
@@ -383,7 +383,7 @@ async def main():
               """<div style='text-align:center; font-size:24px; color:gray;'>Loading... ⏳</div>""",
               unsafe_allow_html=True,
         )
-        asyncio.create_task(run_async_factors_developers(placeholder4, dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x,y ))
+        asyncio.create_task(run_async_factors_developers(placeholder4, dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x,y, option ))
         #factors_developers(dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x,y )
 
     

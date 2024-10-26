@@ -316,7 +316,7 @@ def convert_df(df):
     return df.to_csv().encode("utf-8")
 
 
-async def factors_commit_size(df_current, commits_length_list, commits_rationale_density_list, commits_IDs_list ):
+async def factors_commit_size(df_current, commits_length_list, commits_rationale_density_list, commits_IDs_list, system_name ):
   sns.set_style('white')
 
   title_font_size = 24
@@ -353,6 +353,7 @@ async def factors_commit_size(df_current, commits_length_list, commits_rationale
            )#, shadow=True)
 
   plt.tight_layout()
+  plt.savefig("figures/factors__commit_size__"+ system_name +'.pdf', bbox_inches='tight')
   plt.show() 
   #st.pyplot(fig) 
   return fig
@@ -372,7 +373,7 @@ async def commit_density(user_commit):
   return 0.15
 
 
-async def factors_developers(dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list , x,y):
+async def factors_developers(dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list , x,y, system_name):
   
   title_font_size = 24
   text_font_size = 10
@@ -406,12 +407,12 @@ async def factors_developers(dff4, commits_length_list, commits_rationale_densit
   plt.tick_params(axis='both', which='minor', labelsize=tick_label_size)
 
   # only one line may be specified; ymin & ymax specified as a percentage of y-range
-  axvline1 = plt.axvline(x=16, ymin=0.5, ymax=0.8, color='purple', ls='--')
+  #axvline1 = plt.axvline(x=16, ymin=0.5, ymax=0.8, color='purple', ls='--')
 
-  axhline2 = plt.hlines(y=0.2, xmin=0, xmax=15, color='teal', ls='--')
-  axhline3 = plt.hlines(y=0.7, xmin=0, xmax=15, color='green', ls='--')
+  #axhline2 = plt.hlines(y=0.2, xmin=0, xmax=15, color='teal', ls='--')
+  #axhline3 = plt.hlines(y=0.7, xmin=0, xmax=15, color='green', ls='--')
 
-  legend1 = plt.legend([axvline1, axhline2, axhline3],['Number of commits = 16', 'Rationale density = 0.2', 'Rationale density = 0.7'], loc='lower right')
+  #legend1 = plt.legend([axvline1, axhline2, axhline3],['Number of commits = 16', 'Rationale density = 0.2', 'Rationale density = 0.7'], loc='lower right')
 
   plt.legend(*sc1.legend_elements(),
             title="Number of authors", loc='upper right',
@@ -421,9 +422,10 @@ async def factors_developers(dff4, commits_length_list, commits_rationale_densit
             fontsize=legend_font_size
             )#, shadow=True)
 
-  plt.gca().add_artist(legend1)
+  #plt.gca().add_artist(legend1)
 
   plt.tight_layout()
+  plt.savefig("figures/factors__developers__"+ system_name +'.pdf', bbox_inches='tight')
   plt.show()
   return fig
   #st.pyplot(fig) 
