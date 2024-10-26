@@ -291,10 +291,8 @@ def distribution_categories(df_current):
     return decision_only_sentences, rationale_only_sentences, decision_rationale_sentences, no_no_sentences 
 
 
-async def word_clouds(df_current, text_list):
-    more_stopwords = set({"OOM", "mm", "memory", "killer", "kernel", "victim", 
-                        "task", "linux", "thread", "process", "system", "patch", 
-                        "oom_kill","memcg"})
+async def word_clouds(df_current, text_list, system_name, L):
+    more_stopwords = set({"kernel", "linux", "task", "thread", "process", "system", "patch"})
     fig = plt.figure(figsize=(4,4))
     cloud_im = WordCloud(
                           stopwords=STOPWORDS.union(more_stopwords),
@@ -308,6 +306,7 @@ async def word_clouds(df_current, text_list):
     plt.xticks([], [])  # a workaround to have a frame with an SVG
     plt.yticks([], [])
     plt.imshow(cloud_im,  interpolation="bilinear")
+    plt.savefig('figures\word_clouds_'+ system_name + "_" +  L+ '_.pdf', bbox_inches='tight')
     return fig
 
 

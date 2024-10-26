@@ -14,6 +14,8 @@ import csv
 from datetime import datetime
 from urllib.parse import urlparse, parse_qs
 import streamlit as st
+import time
+
 
 
 # import h5py
@@ -50,9 +52,9 @@ def get_download_link(file_path, file_name, button_text):
     return download_link
 
 
-async def run_async_word_cloud(placeholder, text_list, df):
+async def run_async_word_cloud(placeholder, text_list, df, option, L):
     # Generate the word cloud asynchronously
-    img = await word_clouds(df, text_list)
+    img = await word_clouds(df, text_list, option, L)
     # Display the word cloud image in the placeholder
     placeholder.pyplot(img)  
 
@@ -77,9 +79,12 @@ async def run_async_commit_structure(placeholder, decision_positions, rationale_
     st.markdown(download_link_html, unsafe_allow_html=True)
 
 
-async def run_async_rationale_evolution(placeholder, dff6_y, option):
+async def run_async_rationale_evolution(placeholder, dff6_y, option, start):
   img = await rationale_evolution(dff6_y, option)
   placeholder.pyplot(img) 
+  
+  end = time.time()
+  print('Execution Time:', end - start)
 
 ################################### MAIN
 async def main():
@@ -113,7 +118,11 @@ async def main():
     url_doc= "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic"
     st.markdown("See how to [create a Github token](%s)" % url_doc) 
   
+
+  ##### Button Clicked
   if st.button("Start Module Analysis", disabled=not bool(url.strip()) ): 
+
+    start = time.time()
 
     # Parse the URL and extract query parameters
     parsed_url = urlparse(url)
@@ -267,7 +276,7 @@ async def main():
               """<div style='text-align:center; font-size:24px; color:gray;'>Loading... ⏳</div>""",
               unsafe_allow_html=True,
           )
-        asyncio.create_task(run_async_word_cloud(placeholder1, decision_only_sentences, df))
+        asyncio.create_task(run_async_word_cloud(placeholder1, decision_only_sentences, df, option, "D"))
         #word_clouds(df, decision_only_sentences)
 
       with col2:
@@ -278,7 +287,7 @@ async def main():
               unsafe_allow_html=True,
           )     
         #word_clouds(df, rationale_only_sentences)
-        asyncio.create_task(run_async_word_cloud(placeholder2, rationale_only_sentences, df))
+        asyncio.create_task(run_async_word_cloud(placeholder2, rationale_only_sentences, df, option, "R"))
 
 
 
@@ -439,9 +448,8 @@ async def main():
               """<div style='text-align:center; font-size:24px; color:gray;'>Loading... ⏳</div>""",
               unsafe_allow_html=True,
       )
-      asyncio.create_task(run_async_rationale_evolution(placeholder6, dff6_y, option)    )
+      asyncio.create_task(run_async_rationale_evolution(placeholder6, dff6_y, option, start)    )
 
-    
     # TODO: call a function for analysis
       
 ############## 
