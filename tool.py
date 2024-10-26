@@ -61,12 +61,22 @@ async def run_async_word_cloud(placeholder, text_list, df, option, L):
 
 async def run_async_factors_commit_size(placeholder, df, commits_length_list, commits_rationale_density_list, commits_IDs_list, option ):
     img = await factors_commit_size(df, commits_length_list, commits_rationale_density_list, commits_IDs_list, option )
-    placeholder.pyplot(img) 
+    file_path = "figures/factors__commit_size__"+ option +'.pdf'
+    file_name = "factors__commit_size__"+ option +'.pdf'
+    download_link_html = get_download_link(file_path, file_name, "Download Figure")
+    with placeholder.container():
+      st.pyplot(img) 
+      st.markdown(download_link_html, unsafe_allow_html=True)
 
         
 async def run_async_factors_developers(placeholder, dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x,y, option ):
     img = await factors_developers(dff4, commits_length_list, commits_rationale_density_list, commits_IDs_list, x, y , option)
-    placeholder.pyplot(img) 
+    file_path = "figures/factors__developers__"+ option +'.pdf'
+    file_name = "factors__developers__"+ option +'.pdf'
+    download_link_html = get_download_link(file_path, file_name, "Download Figure")
+    with placeholder.container():
+      st.pyplot(img) 
+      st.markdown(download_link_html, unsafe_allow_html=True)
 
 
 async def run_async_commit_structure(placeholder, decision_positions, rationale_positions, option):
@@ -81,7 +91,12 @@ async def run_async_commit_structure(placeholder, decision_positions, rationale_
 
 async def run_async_rationale_evolution(placeholder, dff6_y, option, start):
   img = await rationale_evolution(dff6_y, option)
-  placeholder.pyplot(img) 
+  file_path = 'figures\evolution_decision_rationale_'+ option +'.pdf'
+  file_name = 'evolution_decision_rationale_'+ option +'.pdf'
+  download_link_html = get_download_link(file_path, file_name, "Download Figure")
+  with placeholder.container():
+    st.pyplot(img) 
+    st.markdown(download_link_html, unsafe_allow_html=True)
   
   end = time.time()
   print('Execution Time:', end - start)
