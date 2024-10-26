@@ -89,8 +89,8 @@ async def user_commit_page():
             st.write( "Number of sentences: " + str(len(df_predicted)))
             user_commit_rationale_density = user_rationale_density(df_predicted)
             user_commit_decision_density = user_decision_density(df_predicted)
-            st.write( f"Your commit message's rationale density: {user_commit_rationale_density:.2%}")
-            st.write( f"Your commit message's decision density: {user_commit_decision_density:.2%}")
+            st.write( f"Your commit message's rationale density: {user_commit_rationale_density:.2f}")
+            st.write( f"Your commit message's decision density: {user_commit_decision_density:.2f}")
 
             if user_commit_rationale_density < 0.5 : 
                 st.error('Low Rationale! Please justify more explicitly your changes.', icon="🚨")
