@@ -110,7 +110,7 @@ async def main():
   # FS_FILE = 'prediction_results_on_the_fs.csv'
   # MIGRATE_FILE = 'prediction_results_on_the_migrate.csv'
 ####################################
-  url = st.text_input("Enter the API URL of the Linux Module", "")
+  url = st.text_input("Enter the API URL of the module", "")
 
   st.markdown(""" API URL examples: \n 
     http://api.github.com/repos/torvalds/linux/commits?path=mm/oom_kill.c \n
@@ -473,8 +473,8 @@ async def main():
       
 ############## 
 if __name__ == '__main__':
-  st.set_page_config(page_title="Linux Rationale Analyses Tool")
-  st.title("Linux Rationale Analyses Tool")
+  st.set_page_config(page_title="Rationale Analyses Tool")
+  st.title("Rationale Analyses Tool")
   # Sidebar navigation
   st.sidebar.page_link('tool.py', label='Module Analyzer')
   st.sidebar.page_link('pages/commit.py', label='Commit Message Analyzer')

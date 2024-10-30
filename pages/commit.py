@@ -101,8 +101,8 @@ async def user_commit_page():
 
 ##############
 if __name__ == '__main__':
-    st.set_page_config(page_title="Linux Rationale Analyses Tool")
-    st.title("Linux Rationale Analyses Tool")
+    st.set_page_config(page_title="Rationale Analyses Tool")
+    st.title("Rationale Analyses Tool")
     # Sidebar navigation
     st.sidebar.page_link('tool.py', label='Module Analyzer')
     st.sidebar.page_link('pages/commit.py', label='Commit Message Analyzer')
