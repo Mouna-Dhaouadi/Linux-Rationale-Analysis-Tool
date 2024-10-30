@@ -1,0 +1,1229 @@
+commit ID;text;author name;commit date;predicted_decision;predicted_rationale
+C_kwDOAyxcHdoAKDAyY2VmOTY4YTJiMzViNmM1NzAwMzA3OGNhYmE4YzE0MjExZTQ0MjM;dev-cmd/bump-formula-pr: always use full git repo as tap remote;Dawid Dziurla;2024-10-15;1;1
+C_kwDOAyxcHdoAKDAyY2VmOTY4YTJiMzViNmM1NzAwMzA3OGNhYmE4YzE0MjExZTQ0MjM;;Dawid Dziurla;2024-10-15;0;0
+C_kwDOAyxcHdoAKGMyZTJiMjNjNTAxYjZjNzhlNDM1YzA2MjJjMjcyNTczMGM2ZmQwYzc;`brew style --fix`;Patrick Linnane;2024-09-04;1;1
+C_kwDOAyxcHdoAKGMyZTJiMjNjNTAxYjZjNzhlNDM1YzA2MjJjMjcyNTczMGM2ZmQwYzc;;Patrick Linnane;2024-09-04;0;0
+C_kwDOAyxcHdoAKDU0ZDQ4NGQ0Mjg5MDNiY2M5YTE5NDk2MDUwOGU4NjI4MjVhMTY0ODQ;Merge pull request #18464 from benknoble/bk/tap-info-commit;Mike McQuaid;2024-10-01;0;0
+C_kwDOAyxcHdoAKDU0ZDQ4NGQ0Mjg5MDNiY2M5YTE5NDk2MDUwOGU4NjI4MjVhMTY0ODQ;feat(tap-info): display Git information about non-Core/non-API taps;Mike McQuaid;2024-10-01;1;1
+C_kwDOAyxcHdoAKDM0MjllNzRkN2UwODkxM2ViM2NkNDY2NWVhMDJmOTNiYWM2NzNlNWQ;feat(tap-info): display Git information about non-Core/non-API taps;D. Ben Knoble;2024-09-30;1;1
+C_kwDOAyxcHdoAKDM0MjllNzRkN2UwODkxM2ViM2NkNDY2NWVhMDJmOTNiYWM2NzNlNWQ;"Copy and tweak code from Library/Homebrew/system_config.rb:110 to commit
+and date information";D. Ben Knoble;2024-09-30;1;0
+C_kwDOAyxcHdoAKDM0MjllNzRkN2UwODkxM2ViM2NkNDY2NWVhMDJmOTNiYWM2NzNlNWQ;"This information can be useful when debugging
+formulae in custom taps to ensure the tap has been correctly updated
+recently or to suss out important differences from one version of a tap
+to another";D. Ben Knoble;2024-09-30;0;1
+C_kwDOAyxcHdoAKDM0MjllNzRkN2UwODkxM2ViM2NkNDY2NWVhMDJmOTNiYWM2NzNlNWQ;"This removes the need to ask users to run something like
+    git -C $(brew --repository)/Library/Taps/<tap> show -s --decorate
+Close https://github.com/Homebrew/brew/issues/18381";D. Ben Knoble;2024-09-30;1;1
+C_kwDOAyxcHdoAKDVjOGZmNzc4OGZkZWRiOWUxZjNkY2JiZTUzYzljZjFlNzljN2IyNzA;tap: add repository key.;Mike McQuaid;2024-09-30;1;1
+C_kwDOAyxcHdoAKDVjOGZmNzc4OGZkZWRiOWUxZjNkY2JiZTUzYzljZjFlNzljN2IyNzA;"Follow up from #18445 that may allow us to
+deprecate the old name in future.";Mike McQuaid;2024-09-30;0;1
+C_kwDOAyxcHdoAKDRhYjhmNDg1ZDU5Mzg4OWQyMTQ3YjRlMDY0ZGY0NGVlNDZlZjVkMWY;tap: restore old `repo` key;Carlo Cabrera;2024-09-27;0;1
+C_kwDOAyxcHdoAKDRhYjhmNDg1ZDU5Mzg4OWQyMTQ3YjRlMDY0ZGY0NGVlNDZlZjVkMWY;Fixes #18444;Carlo Cabrera;2024-09-27;1;1
+C_kwDOAyxcHdoAKDk0NDE2ZTgyZjBlNTljZWE1NTE1MzAwNWRiOTMzMzVmZmViNzQ0Zjk;Add new odeprecated, odisabled, remove disabled code.;Mike McQuaid;2024-09-24;1;1
+C_kwDOAyxcHdoAKDk0NDE2ZTgyZjBlNTljZWE1NTE1MzAwNWRiOTMzMzVmZmViNzQ0Zjk;Prepare the usual deprecation cycle for Homebrew 4.4.0.;Mike McQuaid;2024-09-24;1;0
+C_kwDOAyxcHdoAKDYzOGEzZGMzYTMzYzRjMjAyOWRiMDU4Y2YzZDM5OTAwODYyMWU5NzM;Merge pull request #18167 from Homebrew/fix-cask-formula-file-validation-v2;Mike McQuaid;2024-08-29;1;1
+C_kwDOAyxcHdoAKDYzOGEzZGMzYTMzYzRjMjAyOWRiMDU4Y2YzZDM5OTAwODYyMWU5NzM;;Mike McQuaid;2024-08-29;0;0
+C_kwDOAyxcHdoAKDYwYjg4NzhmMjE3NmQ3Njk4YmY3ODljNWZkYmJlZmM4MjFiOGFiMDU;tap: share components of formula and cask file path regexes;apainintheneck;2024-08-29;1;0
+C_kwDOAyxcHdoAKDYwYjg4NzhmMjE3NmQ3Njk4YmY3ODljNWZkYmJlZmM4MjFiOGFiMDU;"The goal here is to make things easier to read by better
+describing how different regexes are similar to each other.";apainintheneck;2024-08-29;1;1
+C_kwDOAyxcHdoAKDYyYTQ3MzRjOTAyNjUwMGI3N2QzMGQwOTIyNTJiN2UxYWQ1OWU2Y2M;tap: add tests for formula_file? and cask_file?;apainintheneck;2024-08-27;1;1
+C_kwDOAyxcHdoAKDYyYTQ3MzRjOTAyNjUwMGI3N2QzMGQwOTIyNTJiN2UxYWQ1OWU2Y2M;;apainintheneck;2024-08-27;0;0
+C_kwDOAyxcHdoAKDJkNmQwODBmMzI0YTA5NmYxMDA1ODE4MjI4MTUxM2Q4MWMwMTRjYzU;Simplify globbing for casks and formula in taps;apainintheneck;2024-08-27;1;1
+C_kwDOAyxcHdoAKDJkNmQwODBmMzI0YTA5NmYxMDA1ODE4MjI4MTUxM2Q4MWMwMTRjYzU;"This is yet another approach to f3a5a3c449cf004aee662966e6c8dd2ebe122c0f
+which got merged in over the weekend";apainintheneck;2024-08-27;1;0
+C_kwDOAyxcHdoAKDJkNmQwODBmMzI0YTA5NmYxMDA1ODE4MjI4MTUxM2Q4MWMwMTRjYzU;"It is much simpler than what we've
+got now with almost exactly the same performance characteristics";apainintheneck;2024-08-27;0;1
+C_kwDOAyxcHdoAKDJkNmQwODBmMzI0YTA5NmYxMDA1ODE4MjI4MTUxM2Q4MWMwMTRjYzU;"A great
+combination of maintability and performance";apainintheneck;2024-08-27;0;0
+C_kwDOAyxcHdoAKDJkNmQwODBmMzI0YTA5NmYxMDA1ODE4MjI4MTUxM2Q4MWMwMTRjYzU;"```console
+$ hyperfine --parameter-list branch master,speed-up-loading-cask-and-formula-file-names_v4 --warmup 5 --setup 'git switch {branch}' 'brew cat gimp'
+Benchmark 1: brew cat gimp (branch = master)
+  Time (mean ± σ):      1.459 s ±  0.012 s    [User: 0.892 s, System: 0.536 s]
+  Range (min … max):    1.448 s …  1.483 s    10 runs
+Benchmark 2: brew cat gimp (branch = speed-up-loading-cask-and-formula-file-names_v4)
+  Time (mean ± σ):      1.456 s ±  0.009 s    [User: 0.889 s, System: 0.536 s]
+  Range (min … max):    1.445 s …  1.468 s    10 runs
+Summary
+  brew cat gimp (branch = speed-up-loading-cask-and-formula-file-names_v4) ran
+    1.00 ± 0.01 times faster than brew cat gimp (branch = master)";apainintheneck;2024-08-27;1;1
+C_kwDOAyxcHdoAKGNkNDMwYzRkMzQ1ZjI0MTkwOTBhYWMwOGM2OTA1NWRiZmMwNWUzMGE;cmd/update-report: improve formula file validation;apainintheneck;2023-05-21;1;1
+C_kwDOAyxcHdoAKGNkNDMwYzRkMzQ1ZjI0MTkwOTBhYWMwOGM2OTA1NWRiZmMwNWUzMGE;"Currently, ruby files that are not in the Cask directory are
+considered to be formulae if a Formula or HomebrewFormula directory
+doesn't exist  which doesn't make sense";apainintheneck;2023-05-21;0;0
+C_kwDOAyxcHdoAKGNkNDMwYzRkMzQ1ZjI0MTkwOTBhYWMwOGM2OTA1NWRiZmMwNWUzMGE;"We know that these should
+only be in a few directories so we can check for that explicitly";apainintheneck;2023-05-21;0;1
+C_kwDOAyxcHdoAKGNkNDMwYzRkMzQ1ZjI0MTkwOTBhYWMwOGM2OTA1NWRiZmMwNWUzMGE;"Beyond that the `Tap#cask_file?` and `Tap.formula_file?` methods
+were only used inside update-report so it doesn't make sense to
+turn them into pathnames and expand things when we know that
+each string will be a relative path from a tap that we can just
+check with a regex";apainintheneck;2023-05-21;1;1
+C_kwDOAyxcHdoAKGNkNDMwYzRkMzQ1ZjI0MTkwOTBhYWMwOGM2OTA1NWRiZmMwNWUzMGE;"This change will stop other tap changes like new commands or
+changes to other directories like lib/ from showing up as new formulae";apainintheneck;2023-05-21;1;1
+C_kwDOAyxcHdoAKGNkNDMwYzRkMzQ1ZjI0MTkwOTBhYWMwOGM2OTA1NWRiZmMwNWUzMGE;"I tried opening a PR for this a long time ago but I got busy
+with other things and it got closed by the stale bot";apainintheneck;2023-05-21;0;0
+C_kwDOAyxcHdoAKGNkNDMwYzRkMzQ1ZjI0MTkwOTBhYWMwOGM2OTA1NWRiZmMwNWUzMGE;- https://github.com/Homebrew/brew/pull/15489;apainintheneck;2023-05-21;0;1
+C_kwDOAyxcHdoAKGYzYTVhM2M0NDljZjAwNGFlZTY2Mjk2NmU2YzhkZDJlYmUxMjJjMGY;Speed up the Tap#formula_files and Tap#cask_files methods;apainintheneck;2024-08-25;1;1
+C_kwDOAyxcHdoAKGYzYTVhM2M0NDljZjAwNGFlZTY2Mjk2NmU2YzhkZDJlYmUxMjJjMGY;"These are slow because of some Pathname related reasons so it's been
+changed up to use `Dir.glob` instead and that makes a large difference";apainintheneck;2024-08-25;0;1
+C_kwDOAyxcHdoAKGYzYTVhM2M0NDljZjAwNGFlZTY2Mjk2NmU2YzhkZDJlYmUxMjJjMGY;"$ hyperfine --parameter-list branch master,speed-up-loading-cask-and-formula-file-names,speed-up-loading-cask-and-formula-file-names_v2 --warmup 5 --setup 'git switch {branch}' 'brew cat gimp'
+Benchmark 1: brew cat gimp (branch = master)
+  Time (mean ± σ):      2.150 s ±  0.014 s    [User: 1.369 s, System: 0.745 s]
+  Range (min … max):    2.126 s …  2.174 s    10 runs
+Benchmark 2: brew cat gimp (branch = speed-up-loading-cask-and-formula-file-names)
+  Time (mean ± σ):      1.814 s ±  0.012 s    [User: 1.068 s, System: 0.711 s]
+  Range (min … max):    1.797 s …  1.840 s    10 runs
+Benchmark 3: brew cat gimp (branch = speed-up-loading-cask-and-formula-file-names_v2)
+  Time (mean ± σ):      1.489 s ±  0.009 s    [User: 0.905 s, System: 0.550 s]
+  Range (min … max):    1.478 s …  1.503 s    10 runs
+Summary
+  brew cat gimp (branch = speed-up-loading-cask-and-formula-file-names_v2) ran
+    1.22 ± 0.01 times faster than brew cat gimp (branch = speed-up-loading-cask-and-formula-file-names)
+    1.44 ± 0.01 times faster than brew cat gimp (branch = master)";apainintheneck;2024-08-25;1;1
+C_kwDOAyxcHdoAKGZmZjRlMGE4ZjBmZTUzNzA4OWUxYTAxNmFkM2IwOWNkZTY3YmIzOWQ;Speed up Tap#cask_files_by_name;apainintheneck;2024-08-22;1;1
+C_kwDOAyxcHdoAKGZmZjRlMGE4ZjBmZTUzNzA4OWUxYTAxNmFkM2IwOWNkZTY3YmIzOWQ;"This is most noticeable when you have a large local tap and it ends
+up taking a nontrivial percentage of the overall run time for simple
+commands like `brew info gimp`";apainintheneck;2024-08-22;1;1
+C_kwDOAyxcHdoAKGZmZjRlMGE4ZjBmZTUzNzA4OWUxYTAxNmFkM2IwOWNkZTY3YmIzOWQ;"The improvement here is to just
+create paths later on in the loop which copies what we already do
+for formulae";apainintheneck;2024-08-22;0;0
+C_kwDOAyxcHdoAKGZmZjRlMGE4ZjBmZTUzNzA4OWUxYTAxNmFkM2IwOWNkZTY3YmIzOWQ;"See b1ddb05
+```console
+$ hyperfine --parameter-list branch master,speed-up-cask-files-by-name --warmup 5 --setup 'git switch {branch}' 'brew info gimp'
+Benchmark 1: brew info gimp (branch = master)
+  Time (mean ± σ):      2.737 s ±  0.010 s    [User: 1.958 s, System: 0.732 s]
+  Range (min … max):    2.720 s …  2.748 s    10 runs
+Benchmark 2: brew info gimp (branch = speed-up-cask-files-by-name)
+  Time (mean ± σ):      2.597 s ±  0.017 s    [User: 1.828 s, System: 0.724 s]
+  Range (min … max):    2.577 s …  2.624 s    10 runs
+Summary
+  brew info gimp (branch = speed-up-cask-files-by-name) ran
+    1.05 ± 0.01 times faster than brew info gimp (branch = master)";apainintheneck;2024-08-22;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;rubocop: Use `Sorbet/StrictSigil` as it's better than comments;Issy Long;2024-08-12;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"- Previously I thought that comments were fine to discourage people from
+  wasting their time trying to bump things that used `undef` that Sorbet
+  didn't support";Issy Long;2024-08-12;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"But RuboCop is better at this since it'll complain if
+  the comments are unnecessary";Issy Long;2024-08-12;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"- Suggested in 
+- I've gone for a mixture of `rubocop:disable` for the files that can't
+  be `typed: strict` (use of undef, required before everything else, etc)
+  and `rubocop:todo` for everything else that should be tried to make
+  strictly typed";Issy Long;2024-08-12;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"There's no functional difference between the two as
+  `rubocop:todo` is `rubocop:disable` with a different name";Issy Long;2024-08-12;0;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"- And I entirely disabled the cop for the docs/ directory since
+  `typed: strict` isn't going to gain us anything for some Markdown
+  linting config files";Issy Long;2024-08-12;1;0
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"- This means that now it's easier to track what needs to be done rather
+  than relying on checklists of files in our big Sorbet issue";Issy Long;2024-08-12;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"```shell
+$ git grep 'typed: true # rubocop:todo Sorbet/StrictSigil' | wc -l
+- And this is confirmed working for new files";Issy Long;2024-08-12;0;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"```shell
+$ git status
+On branch use-rubocop-for-sorbet-strict-sigils
+Untracked files";Issy Long;2024-08-12;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;"  (use ""git add <file>..."" to include in what will be committed)
+        Library/Homebrew/bad.rb
+        Library/Homebrew/good.rb
+nothing added to commit but untracked files present (use ""git add"" to track)
+$ brew style
+Offenses";Issy Long;2024-08-12;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;bad.rb:1:1: C: Sorbet/StrictSigil: Sorbet sigil should be at least strict got true;Issy Long;2024-08-12;1;1
+C_kwDOAyxcHdoAKDQ1OTc4NDM1ZTc2MjA0NzExMGVmNTcyZDMwZjMwMGUwN2M1MTc5NGQ;1340 files inspected, 1 offense detected;Issy Long;2024-08-12;0;0
+C_kwDOAyxcHdoAKGEzZTkxN2FmZTE5OTkzMjA5YzEyN2ExYzgwYThhMDcwMDEzMGZkZDM;Refactor method to remove extra tap requires;apainintheneck;2024-08-10;1;0
+C_kwDOAyxcHdoAKGEzZTkxN2FmZTE5OTkzMjA5YzEyN2ExYzgwYThhMDcwMDEzMGZkZDM;"We were selectively requiring the tap.rb file in a few places for
+performance reasons";apainintheneck;2024-08-10;0;1
+C_kwDOAyxcHdoAKGEzZTkxN2FmZTE5OTkzMjA5YzEyN2ExYzgwYThhMDcwMDEzMGZkZDM;"The main method we were referencing was the
+`Tap.cmd_directories` method which uses `Pathname` and the `TAP_DIRECTORY`
+constant internally";apainintheneck;2024-08-10;0;0
+C_kwDOAyxcHdoAKGEzZTkxN2FmZTE5OTkzMjA5YzEyN2ExYzgwYThhMDcwMDEzMGZkZDM;"`Tap.cmd_directories` is mostly used in the `Commands`
+module and that is loaded very early on in the program so it made sense
+to move that command to that module";apainintheneck;2024-08-10;0;0
+C_kwDOAyxcHdoAKGEzZTkxN2FmZTE5OTkzMjA5YzEyN2ExYzgwYThhMDcwMDEzMGZkZDM;"To facilitate that I moved the
+`TAP_DIRECTORY` constant to the top-level and renamed it to
+`HOMEBREW_TAP_DIRECTORY`";apainintheneck;2024-08-10;0;0
+C_kwDOAyxcHdoAKGEzZTkxN2FmZTE5OTkzMjA5YzEyN2ExYzgwYThhMDcwMDEzMGZkZDM;It now lies in the tap_constants.rb file;apainintheneck;2024-08-10;1;1
+C_kwDOAyxcHdoAKGEzZTkxN2FmZTE5OTkzMjA5YzEyN2ExYzgwYThhMDcwMDEzMGZkZDM;"A nice bonus of this refactor is that it speeds up loading external
+commands since the tap.rb file is no longer required by default in
+those cases.";apainintheneck;2024-08-10;1;1
+C_kwDOAyxcHdoAKDc0YTg0YTBkMTJhYzc4MmIwMmIxODU3MmNjYmM2NTkwNmM0NGM1NzQ;Fix missing requires for `tap-info` command;Kevin Montag;2024-07-16;1;1
+C_kwDOAyxcHdoAKDc0YTg0YTBkMTJhYzc4MmIwMmIxODU3MmNjYmM2NTkwNmM0NGM1NzQ;"Previously, running `brew tap-info --installed --json` in a github
+actions linux runner would throw";Kevin Montag;2024-07-16;0;0
+C_kwDOAyxcHdoAKDc0YTg0YTBkMTJhYzc4MmIwMmIxODU3MmNjYmM2NTkwNmM0NGM1NzQ;"Error: uninitialized constant Homebrew::API
+/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/tap.rb:1359:in `formula_names'
+/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/tap.rb:868:in `to_hash'
+/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/cmd/tap-info.rb:87:in `map'
+/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/cmd/tap-info.rb:87:in `print_tap_json'
+/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/cmd/tap-info.rb:37:in `run'
+/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/brew.rb:95:in `<main>'
+After the setup steps";Kevin Montag;2024-07-16;1;1
+C_kwDOAyxcHdoAKDc0YTg0YTBkMTJhYzc4MmIwMmIxODU3MmNjYmM2NTkwNmM0NGM1NzQ;    steps;Kevin Montag;2024-07-16;0;0
+C_kwDOAyxcHdoAKDc0YTg0YTBkMTJhYzc4MmIwMmIxODU3MmNjYmM2NTkwNmM0NGM1NzQ;"      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+        with";Kevin Montag;2024-07-16;0;1
+C_kwDOAyxcHdoAKDc0YTg0YTBkMTJhYzc4MmIwMmIxODU3MmNjYmM2NTkwNmM0NGM1NzQ;"          token: ${{ github.token }}
+      - name: Cache Homebrew Bundler RubyGems
+        id: cache
+        uses: actions/cache@v3
+        with";Kevin Montag;2024-07-16;0;1
+C_kwDOAyxcHdoAKDc0YTg0YTBkMTJhYzc4MmIwMmIxODU3MmNjYmM2NTkwNmM0NGM1NzQ;"          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+      - name: Install Homebrew Bundler RubyGems
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: brew install-bundler-gems";Kevin Montag;2024-07-16;0;0
+C_kwDOAyxcHdoAKGM1ZGJkM2NhMjRmMjkzNDE3NDYyY2ZhZDhkNDY4ZGEwNmFhYmQyOGE;Rearrange `require`s;Mike McQuaid;2024-07-14;0;0
+C_kwDOAyxcHdoAKGM1ZGJkM2NhMjRmMjkzNDE3NDYyY2ZhZDhkNDY4ZGEwNmFhYmQyOGE;This improves the load time of most brew commands;Mike McQuaid;2024-07-14;0;1
+C_kwDOAyxcHdoAKGM1ZGJkM2NhMjRmMjkzNDE3NDYyY2ZhZDhkNDY4ZGEwNmFhYmQyOGE;"For an example of
+one of the simplest commands this speeds up";Mike McQuaid;2024-07-14;0;1
+C_kwDOAyxcHdoAKGM1ZGJkM2NhMjRmMjkzNDE3NDYyY2ZhZDhkNDY4ZGEwNmFhYmQyOGE;Without Bootsnap;Mike McQuaid;2024-07-14;0;1
+C_kwDOAyxcHdoAKGM1ZGJkM2NhMjRmMjkzNDE3NDYyY2ZhZDhkNDY4ZGEwNmFhYmQyOGE;"$ hyperfine 'git checkout master; brew help' 'git checkout optimise_requires; brew help'
+Benchmark 1: git checkout master; brew help
+  Time (mean ± σ):     525.0 ms ±  35.8 ms    [User: 229.9 ms, System: 113.1 ms]
+  Range (min … max):   465.3 ms … 576.6 ms    10 runs
+Benchmark 2: git checkout optimise_requires; brew help
+  Time (mean ± σ):     383.3 ms ±  25.1 ms    [User: 133.0 ms, System: 72.1 ms]
+  Range (min … max):   353.0 ms … 443.6 ms    10 runs
+Summary
+  git checkout optimise_requires; brew help ran
+    1.37 ± 0.13 times faster than git checkout master; brew help
+With Bootsnap";Mike McQuaid;2024-07-14;1;1
+C_kwDOAyxcHdoAKGM1ZGJkM2NhMjRmMjkzNDE3NDYyY2ZhZDhkNDY4ZGEwNmFhYmQyOGE;"$ hyperfine 'git checkout master; brew help' 'git checkout optimise_requires; brew help'
+Benchmark 1: git checkout master; brew help
+  Time (mean ± σ):     386.0 ms ±  30.9 ms    [User: 130.2 ms, System: 93.8 ms]
+  Range (min … max):   359.5 ms … 469.3 ms    10 runs
+Benchmark 2: git checkout optimise_requires; brew help
+  Time (mean ± σ):     330.2 ms ±  32.4 ms    [User: 93.4 ms, System: 73.0 ms]
+  Range (min … max):   302.9 ms … 413.9 ms    10 runs
+Summary
+  git checkout optimise_requires; brew help ran
+    1.17 ± 0.15 times faster than git checkout master; brew help";Mike McQuaid;2024-07-14;1;1
+C_kwDOAyxcHdoAKGMxMzcwMGFmMDA3MTUyM2IzNGY3ZmVhMDY4NDAwYzI4MTRmMzY0MWU;Use repository consistently instead of repo;Mike McQuaid;2024-06-10;1;1
+C_kwDOAyxcHdoAKGMxMzcwMGFmMDA3MTUyM2IzNGY3ZmVhMDY4NDAwYzI4MTRmMzY0MWU;"The documentation linting job doesn't like `repo` so let's fix this
+globally rather than naming it differently in documentation and code.";Mike McQuaid;2024-06-10;1;1
+C_kwDOAyxcHdoAKDFiMjg2YmVmZWRjNzUwZjkwNWEyOTRlMDAxOGRlZDE2ZTI4YzE2MDA;tap: fix sharding for `font-*` casks;Bevan Kay;2024-05-16;1;1
+C_kwDOAyxcHdoAKDFiMjg2YmVmZWRjNzUwZjkwNWEyOTRlMDAxOGRlZDE2ZTI4YzE2MDA;;Bevan Kay;2024-05-16;0;0
+C_kwDOAyxcHdoAKDUwYjY1YWE4OTFlM2M3NDljMmFjNTRhOWI3MWM4NDZjMDk5MzI2MjY;tap: adjust font cask path;Patrick Linnane;2024-05-12;0;1
+C_kwDOAyxcHdoAKDUwYjY1YWE4OTFlM2M3NDljMmFjNTRhOWI3MWM4NDZjMDk5MzI2MjY;;Patrick Linnane;2024-05-12;0;0
+C_kwDOAyxcHdoAKDgzNmQ4MTljNDMzN2RlZDE5MDcxMjY0NmZmYWE5OTFkNTAyMDk0ZWQ;Support font sharding in Homebrew/cask;Justin Krehel;2024-05-10;0;1
+C_kwDOAyxcHdoAKDgzNmQ4MTljNDMzN2RlZDE5MDcxMjY0NmZmYWE5OTFkNTAyMDk0ZWQ;;Justin Krehel;2024-05-10;0;0
+C_kwDOAyxcHdoAKDUwMDU5MTYwOTNkYjFlYTNlNjg2MmM0OTI2ZWM4MmYxNzkwZmQzNDA;tap: update core tap --force messaging;apainintheneck;2024-05-08;0;1
+C_kwDOAyxcHdoAKDUwMDU5MTYwOTNkYjFlYTNlNjg2MmM0OTI2ZWM4MmYxNzkwZmQzNDA;Per this suggestion: https://github.com/Homebrew/brew/pull/17227#discussion_r1590630520;apainintheneck;2024-05-08;0;1
+C_kwDOAyxcHdoAKDMxMGM3NWZhYjFkMWYxZjFlMmE5Y2IwZDBkZTg2YzY2NzQwYzk5YmY;Merge pull request #17233 from Homebrew/deprecate_disable_remove;Mike McQuaid;2024-05-07;1;0
+C_kwDOAyxcHdoAKDMxMGM3NWZhYjFkMWYxZjFlMmE5Y2IwZDBkZTg2YzY2NzQwYzk5YmY;Homebrew 4.3.0 deprecation/disable/removals.;Mike McQuaid;2024-05-07;1;0
+C_kwDOAyxcHdoAKDIyMmZlOGVmMGJiMDhjYjljZWMwMTNjOTVmNTgzNDAzZjJkNTU5NGM;Homebrew 4.3.0 deprecation/disable/removals.;Mike McQuaid;2024-05-07;1;0
+C_kwDOAyxcHdoAKDIyMmZlOGVmMGJiMDhjYjljZWMwMTNjOTVmNTgzNDAzZjJkNTU5NGM;"The usual pass of deprecating/disabling/removing code for the next
+minor Homebrew release.";Mike McQuaid;2024-05-07;1;0
+C_kwDOAyxcHdoAKGFiODQ1ZWYyMmU2MDkwMDUyN2NkNWI3MDRiODY2NDJkMWJhMGJkMmM;tap: allow/forbid installation of taps from environment variables.;Mike McQuaid;2024-05-07;1;0
+C_kwDOAyxcHdoAKGFiODQ1ZWYyMmU2MDkwMDUyN2NkNWI3MDRiODY2NDJkMWJhMGJkMmM;"Extend the allow/forbid of taps during formula installation to allow or
+forbid the installation of taps themselves based on the values of the
+`HOMEBREW_ALLOWED_TAPS` and `HOMEBREW_FORBIDDEN_TAPS` environment
+variables";Mike McQuaid;2024-05-07;1;0
+C_kwDOAyxcHdoAKGFiODQ1ZWYyMmU2MDkwMDUyN2NkNWI3MDRiODY2NDJkMWJhMGJkMmM;Co-authored-by: Carlo Cabrera <30379873+carlocab@users.noreply.github.com>;Mike McQuaid;2024-05-07;0;0
+C_kwDOAyxcHdoAKGZjMTNlYjgzYzg0M2UxZGM1ZThhMWJmOWUyMWY3NTI0ZmQ2YzZmMDA;Merge pull request #17213 from Homebrew/allowed-taps;Mike McQuaid;2024-05-07;0;0
+C_kwDOAyxcHdoAKGZjMTNlYjgzYzg0M2UxZGM1ZThhMWJmOWUyMWY3NTI0ZmQ2YzZmMDA;env_config: add `HOMEBREW_ALLOWED_TAPS`;Mike McQuaid;2024-05-07;1;1
+C_kwDOAyxcHdoAKGJlMjlhZmE1ZjdmMzg0NWM4YWY4MzY1OThjYTZkMmYzYTNkYjhmYjc;Fix `brew style`;Carlo Cabrera;2024-05-06;1;1
+C_kwDOAyxcHdoAKGJlMjlhZmE1ZjdmMzg0NWM4YWY4MzY1OThjYTZkMmYzYTNkYjhmYjc;;Carlo Cabrera;2024-05-06;0;0
+C_kwDOAyxcHdoAKDA3OGEzMjhlOGUyMjE4MjgwODBkYjUwYWJjZGJiM2U5NGNiM2VhMDc;tap: avoid class vars;Carlo Cabrera;2024-05-06;1;1
+C_kwDOAyxcHdoAKDA3OGEzMjhlOGUyMjE4MjgwODBkYjUwYWJjZGJiM2U5NGNiM2VhMDc;Avoiding them also allows us to write proper tests.;Carlo Cabrera;2024-05-06;1;1
+C_kwDOAyxcHdoAKDM3M2I3ZDFkYmI4NzRiN2Y0MGM1ZTJlOTdjZmUxZmY0NmI0NjAyOWY;tap: tweak core tap warning;apainintheneck;2024-05-04;0;0
+C_kwDOAyxcHdoAKDM3M2I3ZDFkYmI4NzRiN2Y0MGM1ZTJlOTdjZmUxZmY0NmI0NjAyOWY;"Most users don't need the core taps to be installed locally but the
+current message doesn't communicate that they're sometimes necessary
+for local development";apainintheneck;2024-05-04;0;1
+C_kwDOAyxcHdoAKDM3M2I3ZDFkYmI4NzRiN2Y0MGM1ZTJlOTdjZmUxZmY0NmI0NjAyOWY;"This just tweaks the message to be more
+informative";apainintheneck;2024-05-04;1;1
+C_kwDOAyxcHdoAKDM3M2I3ZDFkYmI4NzRiN2Y0MGM1ZTJlOTdjZmUxZmY0NmI0NjAyOWY;"```console
+$ brew tap homebrew/cask
+Error: Tapping homebrew/cask is no longer typically necessary";apainintheneck;2024-05-04;1;0
+C_kwDOAyxcHdoAKDM3M2I3ZDFkYmI4NzRiN2Y0MGM1ZTJlOTdjZmUxZmY0NmI0NjAyOWY;Add --force if you are sure you need it for local development.;apainintheneck;2024-05-04;1;1
+C_kwDOAyxcHdoAKDUyMjJjOWUzMmQxYWI5ZWViMDVhNGFiM2VmMjNjOTU4Y2U1NjA0NGE;Improve error message for allowed and forbidden taps;Carlo Cabrera;2024-05-03;1;1
+C_kwDOAyxcHdoAKDUyMjJjOWUzMmQxYWI5ZWViMDVhNGFiM2VmMjNjOTU4Y2U1NjA0NGE;;Carlo Cabrera;2024-05-03;0;0
+C_kwDOAyxcHdoAKDdjOWU4OTI3ZTk0ZTg2MzdlYjdjNzVjZTg3Y2E3OGZmZTIwNGY3M2M;tap: memoize allowed and forbidden taps;Carlo Cabrera;2024-05-03;1;1
+C_kwDOAyxcHdoAKDdjOWU4OTI3ZTk0ZTg2MzdlYjdjNzVjZTg3Y2E3OGZmZTIwNGY3M2M;;Carlo Cabrera;2024-05-03;0;0
+C_kwDOAyxcHdoAKDY2NjM1MTZlNzk0OGYwZjg0MDIxNDdiMmM4ZTdiMTQ2NTAwZTZkMzM;tap: define `#allowed_by_env?`;Carlo Cabrera;2024-05-03;0;0
+C_kwDOAyxcHdoAKDY2NjM1MTZlNzk0OGYwZjg0MDIxNDdiMmM4ZTdiMTQ2NTAwZTZkMzM;;Carlo Cabrera;2024-05-03;0;0
+C_kwDOAyxcHdoAKDQ4MGUyNjRkOWE1ZjhhZTg4ZDlmYTc2OGNmMGRiN2Y3YTdjNjAxZGI;Lint Ruby docs.;Markus Reiter;2024-04-30;0;1
+C_kwDOAyxcHdoAKDQ4MGUyNjRkOWE1ZjhhZTg4ZDlmYTc2OGNmMGRiN2Y3YTdjNjAxZGI;;Markus Reiter;2024-04-30;0;0
+C_kwDOAyxcHdoAKGNhZjg3YzAzMzZkZWExNGJhZmUzNTQ0MWVhOTBkZmQzMmJlMjdkODU;Warn about undocumented non-private APIs.;Markus Reiter;2024-04-26;1;1
+C_kwDOAyxcHdoAKGNhZjg3YzAzMzZkZWExNGJhZmUzNTQ0MWVhOTBkZmQzMmJlMjdkODU;;Markus Reiter;2024-04-26;0;0
+C_kwDOAyxcHdoAKGY3MzYxYzhkMjk1OGQ0NzQxNGE3MTBmODZjNTAwMzUxMzhmNDJkY2M;Remove disabled `extend`.;Markus Reiter;2024-04-30;1;0
+C_kwDOAyxcHdoAKGY3MzYxYzhkMjk1OGQ0NzQxNGE3MTBmODZjNTAwMzUxMzhmNDJkY2M;;Markus Reiter;2024-04-30;0;0
+C_kwDOAyxcHdoAKDBmMDA1NWVkZTQ2MTllOWEwZmQ0ZWY3ODRhOGIwOTVhZTZkMmM2MjY;Make documentation `@api private` by default.;Markus Reiter;2024-03-06;1;1
+C_kwDOAyxcHdoAKDBmMDA1NWVkZTQ2MTllOWEwZmQ0ZWY3ODRhOGIwOTVhZTZkMmM2MjY;;Markus Reiter;2024-03-06;0;0
+C_kwDOAyxcHdoAKGM3NjE3MGE0NTYzOTFhOTU5MmE0ZDRlODE0OWE2NDUxMzY1MGRhYTE;Hide `#to_s` in docs.;Markus Reiter;2024-04-26;1;1
+C_kwDOAyxcHdoAKGM3NjE3MGE0NTYzOTFhOTU5MmE0ZDRlODE0OWE2NDUxMzY1MGRhYTE;;Markus Reiter;2024-04-26;0;0
+C_kwDOAyxcHdoAKDczMmJkNTJjNzI5NDMxNWJmM2NjMGQxNTFiNmQ5Y2I4Mzg0M2Y3MmE;Fix typo.;Markus Reiter;2024-04-22;1;1
+C_kwDOAyxcHdoAKDczMmJkNTJjNzI5NDMxNWJmM2NjMGQxNTFiNmQ5Y2I4Mzg0M2Y3MmE;Co-authored-by: Eric Knibbe <enk3@outlook.com>;Markus Reiter;2024-04-22;0;0
+C_kwDOAyxcHdoAKDRiNDMyYzdlYTQ3NmEzMGUzNjMzZTQ5ZWE5NzQ1OTBjNDNlNjNhMjc;Explicitly mark non-private APIs.;Markus Reiter;2024-04-22;1;1
+C_kwDOAyxcHdoAKDRiNDMyYzdlYTQ3NmEzMGUzNjMzZTQ5ZWE5NzQ1OTBjNDNlNjNhMjc;;Markus Reiter;2024-04-22;0;0
+C_kwDOAyxcHdoAKDU2ZmM5YTFmYjI4MDJhODdmNDBmMDZiYzEwMzU5ODQxZmE0OWI0YWI;Merge pull request #17047 from Homebrew/block-params;Mike McQuaid;2024-04-08;0;0
+C_kwDOAyxcHdoAKDU2ZmM5YTFmYjI4MDJhODdmNDBmMDZiYzEwMzU5ODQxZmE0OWI0YWI;Prefer numbered block params over proc conversion, cont'd;Mike McQuaid;2024-04-08;0;0
+C_kwDOAyxcHdoAKGM1OWQ5ZmE4MzM1MGNjYWVhNzYxY2YwNDYzYTEyMjMxN2QzZDY5MWQ;Prefer numbered block params over proc conversion, cont'd;Douglas Eichelberger;2024-04-08;0;0
+C_kwDOAyxcHdoAKGM1OWQ5ZmE4MzM1MGNjYWVhNzYxY2YwNDYzYTEyMjMxN2QzZDY5MWQ;;Douglas Eichelberger;2024-04-08;0;0
+C_kwDOAyxcHdoAKDE0NzQ4MDY1MjdhMjNlNTNmNjUwZmNhMzcxYzQwMjcyMTk1NThiOWU;Add more `HOMEBREW_FORBIDDEN_*` configuration;Mike McQuaid;2024-04-08;1;1
+C_kwDOAyxcHdoAKDE0NzQ4MDY1MjdhMjNlNTNmNjUwZmNhMzcxYzQwMjcyMTk1NThiOWU;"We already had `HOMEBREW_FORBIDDEN_LICENSES` but this commit adds
+`HOMEBREW_FORBIDDEN_CASKS`, `HOMEBREW_FORBIDDEN_FORMULAE` and
+`HOMEBREW_FORBIDDEN_TAPS` for also forbidding those";Mike McQuaid;2024-04-08;0;1
+C_kwDOAyxcHdoAKDE0NzQ4MDY1MjdhMjNlNTNmNjUwZmNhMzcxYzQwMjcyMTk1NThiOWU;"Relatedly, add `HOMEBREW_FORBIDDEN_OWNER` and
+`HOMEBREW_FORBIDDEN_OWNER_CONTACT` to allow customising these
+messages";Mike McQuaid;2024-04-08;1;0
+C_kwDOAyxcHdoAKDE0NzQ4MDY1MjdhMjNlNTNmNjUwZmNhMzcxYzQwMjcyMTk1NThiOWU;"There were no existing tests for `HOMEBREW_FORBIDDEN_LICENSES` so have
+added more tests for all of these checks";Mike McQuaid;2024-04-08;0;1
+C_kwDOAyxcHdoAKDE0NzQ4MDY1MjdhMjNlNTNmNjUwZmNhMzcxYzQwMjcyMTk1NThiOWU;Co-authored-by: Bo Anderson <mail@boanderson.me>;Mike McQuaid;2024-04-08;0;0
+C_kwDOAyxcHdoAKDU4Yjg0YzM5NzlhOWRhNjA2MGNiMDM3NDRiODA0ZTYyM2M1YWY2ZGQ;Merge pull request #16867 from Homebrew/stop-using-full-name-as-key-in-cask-json-v3;Kevin;2024-03-13;0;1
+C_kwDOAyxcHdoAKDU4Yjg0YzM5NzlhOWRhNjA2MGNiMDM3NDRiODA0ZTYyM2M1YWY2ZGQ;cask: always return short cask tokens from core cask tap;Kevin;2024-03-13;0;1
+C_kwDOAyxcHdoAKGIxOTkwZWQ0YjY2NjhiZjVkYzA5OTM4MDdlOTUyNWNmMWMwODA1MWE;Merge pull request #16863 from apainintheneck/memoize-installed-tap-loading-v2;Mike McQuaid;2024-03-12;0;1
+C_kwDOAyxcHdoAKGIxOTkwZWQ0YjY2NjhiZjVkYzA5OTM4MDdlOTUyNWNmMWMwODA1MWE;Memoize installed tap loading v2;Mike McQuaid;2024-03-12;0;1
+C_kwDOAyxcHdoAKDZlMGU3OGNhZGQyNjM5NGJlYjEyNzYyMmExNWU5NDZiZmViNTc4N2Y;tap: CoreCaskTap#cask_tokens should always return short names;apainintheneck;2024-03-10;0;1
+C_kwDOAyxcHdoAKDZlMGU3OGNhZGQyNjM5NGJlYjEyNzYyMmExNWU5NDZiZmViNTc4N2Y;"This seems to be a bug with how we handle name shortening for the
+core cask tap";apainintheneck;2024-03-10;1;1
+C_kwDOAyxcHdoAKDZlMGU3OGNhZGQyNjM5NGJlYjEyNzYyMmExNWU5NDZiZmViNTc4N2Y;"The core tap always returns short formula names
+and returning long names from the core cask tap when not using
+the API leads to unexpected behavior";apainintheneck;2024-03-10;0;0
+C_kwDOAyxcHdoAKDZlMGU3OGNhZGQyNjM5NGJlYjEyNzYyMmExNWU5NDZiZmViNTc4N2Y;"Specifically this can trick the `brew untap` command into thinking
+that there aren't any installed casks in the core cask tap and that
+it can be removed even when that is not the case";apainintheneck;2024-03-10;0;1
+C_kwDOAyxcHdoAKDZlMGU3OGNhZGQyNjM5NGJlYjEyNzYyMmExNWU5NDZiZmViNTc4N2Y;"One risk here is that the full names were used when caching
+descriptions so descriptions could be out of date for people in
+the short term though hopefully that's not the end of the world.";apainintheneck;2024-03-10;1;1
+C_kwDOAyxcHdoAKDA4NDQyNzM0YWI5YTYyYTMzM2U5MmYwODc0N2Y2NTVmZmU1ZGNhMGY;s/Tap.reverse_tap_migrations_renames/Tap.tap_migration_oldnames/;apainintheneck;2024-03-09;0;1
+C_kwDOAyxcHdoAKDA4NDQyNzM0YWI5YTYyYTMzM2U5MmYwODc0N2Y2NTVmZmU1ZGNhMGY;;apainintheneck;2024-03-09;0;0
+C_kwDOAyxcHdoAKGQ0YTI3MzQ0M2MwZDViYjdkODRkNGM5NmE1MTE4YWVmZWZhYzY1OTk;tap: add #reverse_tap_migrations_renames to speed things up;apainintheneck;2024-03-07;1;1
+C_kwDOAyxcHdoAKGQ0YTI3MzQ0M2MwZDViYjdkODRkNGM5NmE1MTE4YWVmZWZhYzY1OTk;"This gets used by `Tap.reverse_tap_migrations_renames` and reduces
+the amount of information that needs to be calculated on the fly
+every time.";apainintheneck;2024-03-07;0;1
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;tap: cache more things at the Tap level;apainintheneck;2024-03-06;1;1
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;I added two new methods to cache both installed and all taps;apainintheneck;2024-03-06;1;1
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;"All taps includes core taps no matter if they're installed locally
+since they're always provided by the API anyway";apainintheneck;2024-03-06;0;1
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;"This makes it easier to cache `Tap.each` while making the code
+easier to reason about";apainintheneck;2024-03-06;0;1
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;"It also will be useful because we'll
+be able to avoid the `Tap.select(&:installed?` pattern that has
+recently invaded the codebase";apainintheneck;2024-03-06;1;1
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;"Note: I also stopped clearing all tap instance caches before
+tests";apainintheneck;2024-03-06;1;0
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;"Running `Tap.each` would cache existing taps which would
+lead to unexpected behavior since the only existing tap before
+each test is the core tap";apainintheneck;2024-03-06;0;1
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;"This is the only tap whose directory
+is not cleaned up between tests so we just clear it's cache directly";apainintheneck;2024-03-06;1;1
+C_kwDOAyxcHdoAKDM4MzRlZjFiNzM4YjZjMGRlMjlkZmE0ODVkZWY4ZThhODQ1MTQ3MTM;"We also now clear all tap instances after tests as well regardless
+of whether the API was used that time.";apainintheneck;2024-03-06;1;1
+C_kwDOAyxcHdoAKDlhYzMxODI3YTBlYWVjYzg0NThiMzZjOWQzYzI0ZDllNjAwMDJhZTg;Various `brew update` behaviour improvements;Mike McQuaid;2024-03-08;1;1
+C_kwDOAyxcHdoAKDlhYzMxODI3YTBlYWVjYzg0NThiMzZjOWQzYzI0ZDllNjAwMDJhZTg;"- Output a message every time auto-update is run rather than a 3 second
+  timer";Mike McQuaid;2024-03-08;0;1
+C_kwDOAyxcHdoAKDlhYzMxODI3YTBlYWVjYzg0NThiMzZjOWQzYzI0ZDllNjAwMDJhZTg;"This makes it more obvious that Homebrew isn't just sitting
+  doing nothing for 2.9 seconds";Mike McQuaid;2024-03-08;0;1
+C_kwDOAyxcHdoAKDlhYzMxODI3YTBlYWVjYzg0NThiMzZjOWQzYzI0ZDllNjAwMDJhZTg;"- Output a message when running `brew update` so Homebrew doesn't just
+  sit there silently doing nothing";Mike McQuaid;2024-03-08;1;1
+C_kwDOAyxcHdoAKDlhYzMxODI3YTBlYWVjYzg0NThiMzZjOWQzYzI0ZDllNjAwMDJhZTg;"- Update all taps when `brew update` is run, not just those hosted on
+  GitHub";Mike McQuaid;2024-03-08;1;1
+C_kwDOAyxcHdoAKDlhYzMxODI3YTBlYWVjYzg0NThiMzZjOWQzYzI0ZDllNjAwMDJhZTg;"This makes it more obvious that people don't need to explictly
+  run `brew update` ""just in case""";Mike McQuaid;2024-03-08;0;1
+C_kwDOAyxcHdoAKDlhYzMxODI3YTBlYWVjYzg0NThiMzZjOWQzYzI0ZDllNjAwMDJhZTg;"- As a result of this, remove `brew tap --force-auto-update` as it's no
+  longer necessary.";Mike McQuaid;2024-03-08;1;1
+C_kwDOAyxcHdoAKGI3MDg4NGE0NzRlZGVlODBlYmI5ZDc0NDEwYzUxYzM0NDgyZjI3MDc;Merge pull request #16848 from Homebrew/rubocop_default_hash_syntax;Mike McQuaid;2024-03-08;0;1
+C_kwDOAyxcHdoAKGI3MDg4NGE0NzRlZGVlODBlYmI5ZDc0NDEwYzUxYzM0NDgyZjI3MDc;rubocop: default hash syntax.;Mike McQuaid;2024-03-08;0;1
+C_kwDOAyxcHdoAKGUwY2VhOTAzZWM0NDMwOGMyM2M3YzYyZWMxNjFiNDM4NzYwNGQ3Mzg;s/to_api_hash/to_internal_api_hash/;apainintheneck;2024-03-05;0;1
+C_kwDOAyxcHdoAKGUwY2VhOTAzZWM0NDMwOGMyM2M3YzYyZWMxNjFiNDM4NzYwNGQ3Mzg;;apainintheneck;2024-03-05;0;0
+C_kwDOAyxcHdoAKDEyZDVhNDAyNjIyODBmYmE4YmY1OTJiYTFhYTIwYWU1MjA5ZDIwYWI;dev-cmd/generate-cask-api: start generating cask internal JSON v3;apainintheneck;2024-03-02;1;1
+C_kwDOAyxcHdoAKDEyZDVhNDAyNjIyODBmYmE4YmY1OTJiYTFhYTIwYWU1MjA5ZDIwYWI;"This adds a new file to the output of `brew generate-cask-api` which
+represents the new internal JSON v3 file";apainintheneck;2024-03-02;1;1
+C_kwDOAyxcHdoAKDEyZDVhNDAyNjIyODBmYmE4YmY1OTJiYTFhYTIwYWU1MjA5ZDIwYWI;"It involves removing
+a bunch of unneeded hash keys while removing blank ones as well";apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDEyZDVhNDAyNjIyODBmYmE4YmY1OTJiYTFhYTIwYWU1MjA5ZDIwYWI;"I've made some slight changes to the cask loader as well but more
+might be necessary before this starts loading things correctly";apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDEyZDVhNDAyNjIyODBmYmE4YmY1OTJiYTFhYTIwYWU1MjA5ZDIwYWI;The full loader code will be added in a separate PR.;apainintheneck;2024-03-02;1;0
+C_kwDOAyxcHdoAKGVhMjg5MmY4ZWU1ODQ5NDYyM2ZjM2MxNWNjOGNlODFiOTEyNGU2ZTY;brew.rb: handle missing args.;Mike McQuaid;2024-03-07;1;1
+C_kwDOAyxcHdoAKGVhMjg5MmY4ZWU1ODQ5NDYyM2ZjM2MxNWNjOGNlODFiOTEyNGU2ZTY;;Mike McQuaid;2024-03-07;0;0
+C_kwDOAyxcHdoAKDM2NTRjMWFkMmMyMGUxNGUxMjQwNzEwOGZhMmYwN2M4M2E3ZGQ2YTg;Merge pull request #16844 from reitermarkus/tap-clear-all-caches;Mike McQuaid;2024-03-07;0;0
+C_kwDOAyxcHdoAKDM2NTRjMWFkMmMyMGUxNGUxMjQwNzEwOGZhMmYwN2M4M2E3ZGQ2YTg;Actually clear all tap caches.;Mike McQuaid;2024-03-07;1;1
+C_kwDOAyxcHdoAKDQ3ZmYwYjc2YzhhMmU4NDE2ZGY0MGI5M2Y1YWRlMDJiZWM3MjQxNDY;Actually clear all tap caches.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDQ3ZmYwYjc2YzhhMmU4NDE2ZGY0MGI5M2Y1YWRlMDJiZWM3MjQxNDY;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKGJlOWMwYjg3ODc1NzNlNGVmYmJmNzMzNDdiN2YyYTc4YzQxNzZhNjI;Simplify `TapConfig`.;Markus Reiter;2024-03-04;1;1
+C_kwDOAyxcHdoAKGJlOWMwYjg3ODc1NzNlNGVmYmJmNzMzNDdiN2YyYTc4YzQxNzZhNjI;;Markus Reiter;2024-03-04;0;0
+C_kwDOAyxcHdoAKDEyZDFlNTZmZjViZTY1NWNkZmNlMzE5YThlMGRiNWU4MTU5ZTkwNGE;dev-cmd/bump: skip autobump formulae & casks;Michael Cho;2024-03-06;1;0
+C_kwDOAyxcHdoAKDEyZDFlNTZmZjViZTY1NWNkZmNlMzE5YThlMGRiNWU4MTU5ZTkwNGE;"Instead output a message that corresponding formula/cask is on the
+autobump list";Michael Cho;2024-03-06;1;1
+C_kwDOAyxcHdoAKDEyZDFlNTZmZjViZTY1NWNkZmNlMzE5YThlMGRiNWU4MTU5ZTkwNGE;"This avoids deferring the information to the error
+message within `bump-{formula,cask}-pr`.";Michael Cho;2024-03-06;0;0
+C_kwDOAyxcHdoAKDNlYTc0ZWE0MTczODBlYzBmM2RhN2Q3MzE5NzZjZmJhMDhmNzZmNmY;Merge pull request #16835 from reitermarkus/tap-config-private;Mike McQuaid;2024-03-06;0;0
+C_kwDOAyxcHdoAKDNlYTc0ZWE0MTczODBlYzBmM2RhN2Q3MzE5NzZjZmJhMDhmNzZmNmY;Don't store tap config when value is unknown.;Mike McQuaid;2024-03-06;1;1
+C_kwDOAyxcHdoAKDAyNmNhNjhjNWM5ZWNjZTVjYjI4N2FlODczMGZkOWEwYTJjZjgxNzY;Merge pull request #16834 from reitermarkus/tap-new-private;Mike McQuaid;2024-03-06;0;0
+C_kwDOAyxcHdoAKDAyNmNhNjhjNWM5ZWNjZTVjYjI4N2FlODczMGZkOWEwYTJjZjgxNzY;Make `Tap::new` private.;Mike McQuaid;2024-03-06;1;0
+C_kwDOAyxcHdoAKGM3ZjRlMDA2ZjQ4NDJmYTYyZDhhMjBjNTc1YjE3YjJhZDhmZDZjMGM;Don't store tap config when value is unknown.;Markus Reiter;2024-03-06;1;1
+C_kwDOAyxcHdoAKGM3ZjRlMDA2ZjQ4NDJmYTYyZDhhMjBjNTc1YjE3YjJhZDhmZDZjMGM;;Markus Reiter;2024-03-06;0;0
+C_kwDOAyxcHdoAKGUzYTEwMmVmZDQxNzFmZGM3YzIyOGM5MzBiZjFhODE5YTgzOGNhYWM;Make `Tap::new` private.;Markus Reiter;2024-03-06;1;0
+C_kwDOAyxcHdoAKGUzYTEwMmVmZDQxNzFmZGM3YzIyOGM5MzBiZjFhODE5YTgzOGNhYWM;;Markus Reiter;2024-03-06;0;0
+C_kwDOAyxcHdoAKGE4NTFiYjg2ZWZmZGM3ZWNkN2ViNTc4YjNhNDM2OWZjOGY2YmFmNDM;Add type signature for `Tap::fetch`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKGE4NTFiYjg2ZWZmZGM3ZWNkN2ViNTc4YjNhNDM2OWZjOGY2YmFmNDM;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKGE4NjA5NGQ3OTRkZTcxNWZlYjQwY2ZjNjYxYjQxMzkxY2M1OWRlNWQ;Merge pull request #16808 from reitermarkus/tap-sig-alias-table;Kevin;2024-03-05;0;1
+C_kwDOAyxcHdoAKGE4NjA5NGQ3OTRkZTcxNWZlYjQwY2ZjNjYxYjQxMzkxY2M1OWRlNWQ;Simplify `Tap#alias_table`.;Kevin;2024-03-05;1;1
+C_kwDOAyxcHdoAKGE5ZjY1NWI1MTVhNTQ0NWU2NmZlYjE1M2M3MGMxNWQ3Nzk5YTJmMWI;Merge pull request #16811 from reitermarkus/tapconfig-sig;Mike McQuaid;2024-03-04;0;0
+C_kwDOAyxcHdoAKGE5ZjY1NWI1MTVhNTQ0NWU2NmZlYjE1M2M3MGMxNWQ3Nzk5YTJmMWI;Add type signatures for `TapConfig`.;Mike McQuaid;2024-03-04;1;1
+C_kwDOAyxcHdoAKDAwZDY5Mjg0ZTRmOWM5ODAwNWUwMmM5NmE5YzAxMzBiN2Y1MmNiMjI;Add type signatures for `TapConfig`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDAwZDY5Mjg0ZTRmOWM5ODAwNWUwMmM5NmE5YzAxMzBiN2Y1MmNiMjI;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDFhMTMwOTdhODY2ZTRlMmNmZmQ0ZWE2ZTExZGJlMDcyNjU5ZmI2ZDI;Actually cache `Tap#pypi_formula_mappings`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDFhMTMwOTdhODY2ZTRlMmNmZmQ0ZWE2ZTExZGJlMDcyNjU5ZmI2ZDI;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDM0YWYzMWEwNWRhMTA5YWZmNTE0NjNlMjlmNjViNGMyNDY5ZjBiN2E;Actually cache `Tap#style_exceptions`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDM0YWYzMWEwNWRhMTA5YWZmNTE0NjNlMjlmNjViNGMyNDY5ZjBiN2E;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDllOGFjYjYzMTI4NTVhZjRiNTExZTQ5Y2E2ZGRkMjRjYjM0NTQ1NDA;Actually cache `Tap#audit_exceptions`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDllOGFjYjYzMTI4NTVhZjRiNTExZTQ5Y2E2ZGRkMjRjYjM0NTQ1NDA;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDg5MGJlYzY1MTVhYmU3ZGI5OTliMzUzZGJmYTMwMDg4OWFjN2U3NTk;Simplify `Tap#alias_reverse_table`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDg5MGJlYzY1MTVhYmU3ZGI5OTliMzUzZGJmYTMwMDg4OWFjN2U3NTk;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDA1OTJmN2FjMDcyYzBiMTA0ZDA4MWViNjE3ZDY2ZmQzMDg3NWVjNWY;Simplify `Tap#alias_table`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDA1OTJmN2FjMDcyYzBiMTA0ZDA4MWViNjE3ZDY2ZmQzMDg3NWVjNWY;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDhkNGU4NDE5NjU4MzdlNTdmOTk4YTZlZjFhMDZjMzY1ZWIwMmFiYWI;Merge pull request #16778 from reitermarkus/tap-sig-4;Mike McQuaid;2024-03-04;0;0
+C_kwDOAyxcHdoAKDhkNGU4NDE5NjU4MzdlNTdmOTk4YTZlZjFhMDZjMzY1ZWIwMmFiYWI;Simplify `Tap#custom_remote?`.;Mike McQuaid;2024-03-04;1;1
+C_kwDOAyxcHdoAKGFiYzU5MWU3MDI2MjBhMjZhN2M2YWE2NzEwYzkwNDMzZjM4YjU5ZTM;Simplify `Tap#custom_remote?`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKGFiYzU5MWU3MDI2MjBhMjZhN2M2YWE2NzEwYzkwNDMzZjM4YjU5ZTM;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKGI0MTY3Zjk3ZDY5NWZjNDBhMDlhZjJhNTU5NDYwMmQxZjdiYjNjOGY;Simplify `Tap#remote_repo`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKGI0MTY3Zjk3ZDY5NWZjNDBhMDlhZjJhNTU5NDYwMmQxZjdiYjNjOGY;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDcyZjgzOTkxMTA4NzE3YTM1ZDJkMDY4YmZhYjUzZWZlMmEwZWI5ZTQ;formula_auditor: move out synced_versions_formulae logic;Michael Cho;2024-03-03;1;0
+C_kwDOAyxcHdoAKDcyZjgzOTkxMTA4NzE3YTM1ZDJkMDY4YmZhYjUzZWZlMmEwZWI5ZTQ;;Michael Cho;2024-03-03;0;0
+C_kwDOAyxcHdoAKGZiMDU1ZjdhYWYxMmI1NDY5YmQ0MWFhOGEyODYzMzRhZGE1NTIzZGM;tap: revert caching `Tap.reverse_tap_migrations_renames`;apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKGZiMDU1ZjdhYWYxMmI1NDY5YmQ0MWFhOGEyODYzMzRhZGE1NTIzZGM;"This could cause problems if a tap is installed during the lifetime
+of the program which happens occasionally with `Tap#ensure_installed!`";apainintheneck;2024-03-02;0;0
+C_kwDOAyxcHdoAKGZiMDU1ZjdhYWYxMmI1NDY5YmQ0MWFhOGEyODYzMzRhZGE1NTIzZGM;"It also seems to be slow mainly because of intermediate arrays and
+Pathname objects that get created in `Tap.each`";apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKGZiMDU1ZjdhYWYxMmI1NDY5YmQ0MWFhOGEyODYzMzRhZGE1NTIzZGM;"Maybe that should
+be optimized instead.";apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDJkYTFjOTNkZjdkOTM5YmU3NWI1YzRjOTQzMmFhYWU1ZDE0MWIwMjQ;tap: memoize Tap.reverse_tap_migrations_renames;apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDJkYTFjOTNkZjdkOTM5YmU3NWI1YzRjOTQzMmFhYWU1ZDE0MWIwMjQ;"This should be a relatively small hash but it gets recalculated
+every time we call Cask#oldnames or Formula#oldnames which ends
+up being a lot if you run certain commands with --eval-all";apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDJkYTFjOTNkZjdkOTM5YmU3NWI1YzRjOTQzMmFhYWU1ZDE0MWIwMjQ;"For example, when running the following, it took 10% of the total
+runtime";apainintheneck;2024-03-02;0;0
+C_kwDOAyxcHdoAKDJkYTFjOTNkZjdkOTM5YmU3NWI1YzRjOTQzMmFhYWU1ZDE0MWIwMjQ;brew deps --casks --eval-all;apainintheneck;2024-03-02;0;0
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;tap: fix performance regression in *_files_by_name;apainintheneck;2024-03-02;1;1
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;"We essentially stopped caching these accidentally and they get
+called every time we try to load a cask or formula from the API";apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;It gets really, really, really slow;apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;I ran `brew deps --casks --eval-all` before and after the changes;apainintheneck;2024-03-02;1;0
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;I let it run for 3 minutes before killing it;apainintheneck;2024-03-02;1;0
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;"No output had been
+printed to the screen";apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;"It finished printing all output (pages and pages of it) in less
+than a minute";apainintheneck;2024-03-02;1;1
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;"This should match the caching behavior we had before the
+recent changes in these two PRs";apainintheneck;2024-03-02;1;0
+C_kwDOAyxcHdoAKDk5ZDUyMDBkYjNhZDMxNGNlNjMxNjAxNTAwMTk5ZDI0MDc0MmViOGQ;- - https://github.com/Homebrew/brew/pull/16775;apainintheneck;2024-03-02;0;1
+C_kwDOAyxcHdoAKDM4YjY3MWQ4YmJhZmQ3NjJlOWNhNDcyYjJlODVjYjlmZDk4N2NiMWY;Merge pull request #16750 from iMichka/autobump;Ruoyu Zhong;2024-03-01;0;0
+C_kwDOAyxcHdoAKDM4YjY3MWQ4YmJhZmQ3NjJlOWNhNDcyYjJlODVjYjlmZDk4N2NiMWY;bump-formula|cask-pr: do not allow to bump autobumped packages;Ruoyu Zhong;2024-03-01;1;1
+C_kwDOAyxcHdoAKDM4NzMzMmFiNjg2ZWNlZGFlM2ZlYzE0MDRkNDRlMDI2ZWU5ZWIxNDk;Merge pull request #16782 from reitermarkus/tap-sig-5;Mike McQuaid;2024-03-01;0;0
+C_kwDOAyxcHdoAKDM4NzMzMmFiNjg2ZWNlZGFlM2ZlYzE0MDRkNDRlMDI2ZWU5ZWIxNDk;Rename `Tap#reverse_cask_renames` to `Tap#cask_reverse_renames`.;Mike McQuaid;2024-03-01;1;1
+C_kwDOAyxcHdoAKDZjNmM0MThkZmZlNmEyMjdkMzI2NTE0ODkxZjI3YjRiOTk0ZWIzMTc;Merge pull request #16785 from reitermarkus/tap-sig-remote;Mike McQuaid;2024-03-01;0;0
+C_kwDOAyxcHdoAKDZjNmM0MThkZmZlNmEyMjdkMzI2NTE0ODkxZjI3YjRiOTk0ZWIzMTc;Actually return `super` in `CoreTap#remote`.;Mike McQuaid;2024-03-01;1;1
+C_kwDOAyxcHdoAKDU2YjM5ODJlN2EyZTFhZmZiNTY4YTEwZDk3ODE1ZTFiODk3Nzk5MGU;Merge pull request #16784 from reitermarkus/tap-sig-7;Mike McQuaid;2024-03-01;0;0
+C_kwDOAyxcHdoAKDU2YjM5ODJlN2EyZTFhZmZiNTY4YTEwZDk3ODE1ZTFiODk3Nzk5MGU;Add signature for `Tap#config`.;Mike McQuaid;2024-03-01;1;0
+C_kwDOAyxcHdoAKDU2N2VhNDRjOTlkZGNmNTVmMDNmNWQ1YmM5ZTFjN2UxZDkzNDQ4NWI;Actually return `super` in `CoreTap#remote`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDU2N2VhNDRjOTlkZGNmNTVmMDNmNWQ1YmM5ZTFjN2UxZDkzNDQ4NWI;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDA5NjZkMmNkOGZmMThkMWQ4M2ZkNjNkOGI4Y2JjZTFjYjdiMWYwOTQ;Add signature for `Tap#config`.;Markus Reiter;2024-02-23;1;0
+C_kwDOAyxcHdoAKDA5NjZkMmNkOGZmMThkMWQ4M2ZkNjNkOGI4Y2JjZTFjYjdiMWYwOTQ;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDAxMTMzNzY5YmFhOWExN2Y0MDNhNDYxNDU5ZDgyODllYmZhYzQzNjA;Clear cache for `Tap#formula_reverse_renames`.;Markus Reiter;2024-02-23;0;1
+C_kwDOAyxcHdoAKDAxMTMzNzY5YmFhOWExN2Y0MDNhNDYxNDU5ZDgyODllYmZhYzQzNjA;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKGMzYzU0MzdjNGYzNDQ0YTk3MWI3OWFmYWNmYmI0MWQyOGY1NmY4MTY;Rename `Tap#reverse_cask_renames` to `Tap#cask_reverse_renames`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKGMzYzU0MzdjNGYzNDQ0YTk3MWI3OWFmYWNmYmI0MWQyOGY1NmY4MTY;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKGY5NjI5MGViMzliOTk4NWFmMDE2ODNiNGQ0NzliNjMzMzhjMWU0YjA;bump-formula|cask-pr: do not allow to bump autobumped packages;Michka Popoff;2024-03-01;1;1
+C_kwDOAyxcHdoAKGY5NjI5MGViMzliOTk4NWFmMDE2ODNiNGQ0NzliNjMzMzhjMWU0YjA;Avoids;Michka Popoff;2024-03-01;0;0
+C_kwDOAyxcHdoAKGY5NjI5MGViMzliOTk4NWFmMDE2ODNiNGQ0NzliNjMzMzhjMWU0YjA;"- Bumping stuff by mistake that will get autobumped anyway
+- Abusing the system to get ""free"" commits";Michka Popoff;2024-03-01;1;1
+C_kwDOAyxcHdoAKGYxZWVhNjQ1MjMwNGRhZjA4YWQ1ZDUyZTEyMTlkNzE3NWVmNDA3YjI;Merge pull request #16779 from reitermarkus/fix-load-from-path;Mike McQuaid;2024-03-01;1;1
+C_kwDOAyxcHdoAKGYxZWVhNjQ1MjMwNGRhZjA4YWQ1ZDUyZTEyMTlkNzE3NWVmNDA3YjI;Fix loading casks/formulae from relative paths.;Mike McQuaid;2024-03-01;1;1
+C_kwDOAyxcHdoAKDBlMWMxZTM0MzVlODczZjU2MTYzYjBmZjU0NGY5NDFmMTk5NDA3MWQ;Merge pull request #16777 from reitermarkus/tap-sig-3;Mike McQuaid;2024-03-01;0;0
+C_kwDOAyxcHdoAKDBlMWMxZTM0MzVlODczZjU2MTYzYjBmZjU0NGY5NDFmMTk5NDA3MWQ;Simplify `Tap#formula_files_by_name`.;Mike McQuaid;2024-03-01;1;1
+C_kwDOAyxcHdoAKDNkYTBmOGM0YTY1MGExMDc3NjFiOGE3ODI0YmE1YjE3YzY2ZDc1YjQ;Fix loading casks/formulae from relative paths.;Markus Reiter;2024-03-01;1;1
+C_kwDOAyxcHdoAKDNkYTBmOGM0YTY1MGExMDc3NjFiOGE3ODI0YmE1YjE3YzY2ZDc1YjQ;;Markus Reiter;2024-03-01;0;0
+C_kwDOAyxcHdoAKDJhNzhlYmExYWRlYzljOWRjMzUxMTc3ZGNiZDYyNTJlYmM4ZDI0OWM;Simplify `Tap#formula_files_by_name`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDJhNzhlYmExYWRlYzljOWRjMzUxMTc3ZGNiZDYyNTJlYmM4ZDI0OWM;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDc1NWM4YWVjYWQyNzlhMTE0NzgwNmNkZjZlMjM5MjEyYTc3ZDU1ZGI;Simplify `Tap#cask_files_by_name`.;Markus Reiter;2024-02-23;1;1
+C_kwDOAyxcHdoAKDc1NWM4YWVjYWQyNzlhMTE0NzgwNmNkZjZlMjM5MjEyYTc3ZDU1ZGI;;Markus Reiter;2024-02-23;0;0
+C_kwDOAyxcHdoAKDhhODQ2ZmIxYzIxYjVjNDhjM2JmNDJlZDAyMzQ2NjdlYjVkYTA0ZjM;Merge pull request #16766 from reitermarkus/tap-installed;Mike McQuaid;2024-02-29;0;0
+C_kwDOAyxcHdoAKDhhODQ2ZmIxYzIxYjVjNDhjM2JmNDJlZDAyMzQ2NjdlYjVkYTA0ZjM;Only show installed taps in `brew tap` output.;Mike McQuaid;2024-02-29;1;0
+C_kwDOAyxcHdoAKGUwOGU4NzM5MjFhNGQ0NDJiOWQ4MTE1ZWFiZDc1NWRiOWMzYzhhYTQ;Only show installed taps in `brew tap` output.;Markus Reiter;2024-02-28;1;0
+C_kwDOAyxcHdoAKGUwOGU4NzM5MjFhNGQ0NDJiOWQ4MTE1ZWFiZDc1NWRiOWMzYzhhYTQ;;Markus Reiter;2024-02-28;0;0
+C_kwDOAyxcHdoAKGJmZTVlNDNmZjRlNzBiNWRmNzgzMmFlMDdhZmM2OTA3ZDJlZmYzNDY;api/formula: Fix failing specs;apainintheneck;2024-02-25;1;1
+C_kwDOAyxcHdoAKGJmZTVlNDNmZjRlNzBiNWRmNzgzMmFlMDdhZmM2OTA3ZDJlZmYzNDY;"- clear the formula API cache
+- make the API cache directory
+- fix stubbed return values (thanks Sorbet!)";apainintheneck;2024-02-25;1;1
+C_kwDOAyxcHdoAKGNlZmQzMjczY2M1ZDM3NTQwZTQ3ODlmZmJmOThmYjU0YmRiMTgyZTI;tap: Add helper to generate core formula API hash;apainintheneck;2024-02-17;1;1
+C_kwDOAyxcHdoAKGNlZmQzMjczY2M1ZDM3NTQwZTQ3ODlmZmJmOThmYjU0YmRiMTgyZTI;"This abstracts away this helper to make it easier to test and
+reason about.";apainintheneck;2024-02-17;1;1
+C_kwDOAyxcHdoAKGQ2NGRlNDBlNTIzODdhMGUwYzhmMWQ2Nzc5MWY3MThiOTk2OGE4MzA;Update api code to load internal JSON v3 file;apainintheneck;2024-02-11;1;1
+C_kwDOAyxcHdoAKGQ2NGRlNDBlNTIzODdhMGUwYzhmMWQ2Nzc5MWY3MThiOTk2OGE4MzA;;apainintheneck;2024-02-11;0;0
+C_kwDOAyxcHdoAKDEzMmE4N2FmZjVlYWFmMWNkZWI4ZDE2YzA0ZmU2YjQ5YTNmYThjNzM;Rename `Tap#repo_var` to `Tap#repo_var_suffix`.;Markus Reiter;2024-02-15;1;1
+C_kwDOAyxcHdoAKDEzMmE4N2FmZjVlYWFmMWNkZWI4ZDE2YzA0ZmU2YjQ5YTNmYThjNzM;;Markus Reiter;2024-02-15;0;0
+C_kwDOAyxcHdoAKGFiMjdlZmJkOWRkNzM3OTUzOTM5YmE4NTIxMmVlZDZiYmViNDllMDA;Make `Tap::each` respect the API.;Markus Reiter;2024-02-20;1;0
+C_kwDOAyxcHdoAKGFiMjdlZmJkOWRkNzM3OTUzOTM5YmE4NTIxMmVlZDZiYmViNDllMDA;;Markus Reiter;2024-02-20;0;0
+C_kwDOAyxcHdoAKDg5ZmQ2OTY0ZjkyNDFhMGM0MGJiMmU5OTdmZTYxOWMwMzJlMzQyNDg;Merge pull request #16715 from reitermarkus/tap-ensure-installed;Mike McQuaid;2024-02-22;0;0
+C_kwDOAyxcHdoAKDg5ZmQ2OTY0ZjkyNDFhMGM0MGJiMmU5OTdmZTYxOWMwMzJlMzQyNDg;Clean up `Tap#ensure_installed!` usage.;Mike McQuaid;2024-02-22;1;0
+C_kwDOAyxcHdoAKDY4OWI3NmNiYWQ2OWE4ZGJiMjhjODMyYjVjMTg2YzY2Nzc5ODA4ZjU;Merge pull request #16714 from reitermarkus/tap-cask-files;Mike McQuaid;2024-02-22;0;1
+C_kwDOAyxcHdoAKDY4OWI3NmNiYWQ2OWE4ZGJiMjhjODMyYjVjMTg2YzY2Nzc5ODA4ZjU;Support `Tap#cask_files` when using API.;Mike McQuaid;2024-02-22;0;0
+C_kwDOAyxcHdoAKDlmNWUxZjI4NzA1MzU0YWZiNjdlMDJjNTUyMjE5YWU3YTliYjA1YWQ;Clean up `Tap#ensure_installed!` usage.;Markus Reiter;2024-02-20;1;0
+C_kwDOAyxcHdoAKDlmNWUxZjI4NzA1MzU0YWZiNjdlMDJjNTUyMjE5YWU3YTliYjA1YWQ;;Markus Reiter;2024-02-20;0;0
+C_kwDOAyxcHdoAKDJkNDFmZThmZWJkZTY1ZGFiZTRjODYyNmRlMTM0ZTNkNmEyYjc1ZjU;Support `Tap#formula_files` when using API.;Markus Reiter;2024-02-20;0;0
+C_kwDOAyxcHdoAKDJkNDFmZThmZWJkZTY1ZGFiZTRjODYyNmRlMTM0ZTNkNmEyYjc1ZjU;;Markus Reiter;2024-02-20;0;0
+C_kwDOAyxcHdoAKDRjZjBmNzkzNjgwNmFjNTJhODQ4ZjI0MTc5MzU5OTU1MWNhZTk1NjI;Support `Tap#cask_files` when using API.;Markus Reiter;2024-02-20;0;0
+C_kwDOAyxcHdoAKDRjZjBmNzkzNjgwNmFjNTJhODQ4ZjI0MTc5MzU5OTU1MWNhZTk1NjI;;Markus Reiter;2024-02-20;0;0
+C_kwDOAyxcHdoAKGU5NjMxM2Y2ZWRkYmQwZDUxNmY2ZmZmNzlmN2M3MTdlZWQ0ZGIzMDQ;formulary_spec: update API tests to avoid mocking;apainintheneck;2024-02-17;1;1
+C_kwDOAyxcHdoAKGU5NjMxM2Y2ZWRkYmQwZDUxNmY2ZmZmNzlmN2M3MTdlZWQ0ZGIzMDQ;Stop mocking the formulary loader method;apainintheneck;2024-02-17;0;0
+C_kwDOAyxcHdoAKGU5NjMxM2Y2ZWRkYmQwZDUxNmY2ZmZmNzlmN2M3MTdlZWQ0ZGIzMDQ;"We just need to set the
+environment variable so that it knows to load things from the API";apainintheneck;2024-02-17;0;1
+C_kwDOAyxcHdoAKGU5NjMxM2Y2ZWRkYmQwZDUxNmY2ZmZmNzlmN2M3MTdlZWQ0ZGIzMDQ;Fix spec that doesn't work with the `CoreTap.formula_names`;apainintheneck;2024-02-17;1;1
+C_kwDOAyxcHdoAKGU5NjMxM2Y2ZWRkYmQwZDUxNmY2ZmZmNzlmN2M3MTdlZWQ0ZGIzMDQ;"That method assumes that we always have a valid `ruby_source_path`
+in the API JSON even though that was optional for a while after
+launching the API if my memory serves me";apainintheneck;2024-02-17;1;0
+C_kwDOAyxcHdoAKGU5NjMxM2Y2ZWRkYmQwZDUxNmY2ZmZmNzlmN2M3MTdlZWQ0ZGIzMDQ;"It's probably fine
+to assume this should always be set though and I changed it to use
+`Hash#fetch` to give use better error messages if something goes wrong in the future";apainintheneck;2024-02-17;1;1
+C_kwDOAyxcHdoAKGU5NjMxM2Y2ZWRkYmQwZDUxNmY2ZmZmNzlmN2M3MTdlZWQ0ZGIzMDQ;Remove unused `allow(x).to receive(y).and_call_original` in tap spec.;apainintheneck;2024-02-17;1;1
+C_kwDOAyxcHdoAKGFhZjM5YWE5MGI1ZjgyNzRmZTA5NjIwMjcyNGYyMWI0MTVkN2E3ZWI;Fix `Tap#alias_table` when using the API.;Markus Reiter;2024-02-16;1;1
+C_kwDOAyxcHdoAKGFhZjM5YWE5MGI1ZjgyNzRmZTA5NjIwMjcyNGYyMWI0MTVkN2E3ZWI;;Markus Reiter;2024-02-16;0;0
+C_kwDOAyxcHdoAKGEzYTFiNGMyNTM2MTRjNDA5ZTE0NjM5ZTNiYTNlMDliNzViMWU4ZWI;Check tap migrations for renames.;Markus Reiter;2024-02-13;1;1
+C_kwDOAyxcHdoAKGEzYTFiNGMyNTM2MTRjNDA5ZTE0NjM5ZTNiYTNlMDliNzViMWU4ZWI;;Markus Reiter;2024-02-13;0;0
+C_kwDOAyxcHdoAKDNmZGJhNTMyYTJiMTc2YmUxYjMyYWRkODg0OTkxNDcxNTI0MzNhNDA;various: fix miscellaneous typos;Patrick Linnane;2024-01-12;1;1
+C_kwDOAyxcHdoAKDNmZGJhNTMyYTJiMTc2YmUxYjMyYWRkODg0OTkxNDcxNTI0MzNhNDA;;Patrick Linnane;2024-01-12;0;0
+C_kwDOAyxcHdoAKGI0MjI1NmQyODY3N2JhMWYzZWJmNDNlNjg1Yzk2NGY2OWMwZTlkYmU;Deprecate, disable & delete code for Homebrew 4.2.0;Bo Anderson;2023-12-07;1;0
+C_kwDOAyxcHdoAKGI0MjI1NmQyODY3N2JhMWYzZWJmNDNlNjg1Yzk2NGY2OWMwZTlkYmU;;Bo Anderson;2023-12-07;0;0
+C_kwDOAyxcHdoAKDVmOTVjYTcyNTkyMzg5MGE3MjJiZTk5YTFhMjliOTEyMmNmNGIyZGI;tap: don't display file info for uninstalled taps;Bo Anderson;2023-11-25;1;1
+C_kwDOAyxcHdoAKDVmOTVjYTcyNTkyMzg5MGE3MjJiZTk5YTFhMjliOTEyMmNmNGIyZGI;;Bo Anderson;2023-11-25;0;0
+C_kwDOAyxcHdoAKGIxZGRiMDU2ZGIxZmQ2NWYwOTRkZTgwYTIyOGQ4MWNkZDQzZTU5NTg;tap: optimise `CoreTap#formula_files_by_name`;Bo Anderson;2023-11-18;0;1
+C_kwDOAyxcHdoAKGIxZGRiMDU2ZGIxZmQ2NWYwOTRkZTgwYTIyOGQ4MWNkZDQzZTU5NTg;;Bo Anderson;2023-11-18;0;0
+C_kwDOAyxcHdoAKDM0ZTRlYzI0NjBkOTYwYjVmY2FiNzkxZTc2ZjNiMmI4ZTczN2U0MmQ;tap: fix repair not working in some cases;Bo Anderson;2023-11-05;1;1
+C_kwDOAyxcHdoAKDM0ZTRlYzI0NjBkOTYwYjVmY2FiNzkxZTc2ZjNiMmI4ZTczN2U0MmQ;;Bo Anderson;2023-11-05;0;0
+C_kwDOAyxcHdoAKDBjMDhhM2NjY2I2Y2UwNDA3ZmUyZmYxMzY3NWNkMjZiOTU5ZTFjMTI;Improve performance of `Formula#to_hash`;Bo Anderson;2023-09-28;1;1
+C_kwDOAyxcHdoAKDBjMDhhM2NjY2I2Y2UwNDA3ZmUyZmYxMzY3NWNkMjZiOTU5ZTFjMTI;;Bo Anderson;2023-09-28;0;0
+C_kwDOAyxcHdoAKDU3NjBhZTRmYjIzZGU3MTc0NDVlYjRmZGQwODk4YTU4YWZmMDI1MzI;cmd/readall: Cleanup todos;apainintheneck;2023-09-20;1;1
+C_kwDOAyxcHdoAKDU3NjBhZTRmYjIzZGU3MTc0NDVlYjRmZGQwODk4YTU4YWZmMDI1MzI;"- keep running the command against all os/arch combinations
+  as the default
+- remove todos and deprecations related to changing the behavior
+- create constants for os/arch combinations";apainintheneck;2023-09-20;1;1
+C_kwDOAyxcHdoAKDdlMDVhOWI1NzQ0Mjc1NGExZmM1Y2UxYzY0Y2IzNTYwMWM4M2FiYTc;cmd/audit: improve performance of versioned formula names;apainintheneck;2023-09-15;1;1
+C_kwDOAyxcHdoAKDdlMDVhOWI1NzQ0Mjc1NGExZmM1Y2UxYzY0Y2IzNTYwMWM4M2FiYTc;"There is a check for other versioned formula with the same name
+in the file audit";apainintheneck;2023-09-15;0;1
+C_kwDOAyxcHdoAKDdlMDVhOWI1NzQ0Mjc1NGExZmM1Y2UxYzY0Y2IzNTYwMWM4M2FiYTc;"This just memoizes all of the versioned
+formulae in a tap during the first call and then uses that much
+shorter list everytime it checks for things.";apainintheneck;2023-09-15;1;0
+C_kwDOAyxcHdoAKDkzMWY3NjI1OTgyZmVhYWY5YTczODJkYmZjYjg0ZGIyYzY2YTMzMzM;docs+rubydoc: various grammar/wording fixes;Eric Knibbe;2023-09-08;1;1
+C_kwDOAyxcHdoAKDkzMWY3NjI1OTgyZmVhYWY5YTczODJkYmZjYjg0ZGIyYzY2YTMzMzM;;Eric Knibbe;2023-09-08;0;0
+C_kwDOAyxcHdoAKDIyNTUzY2QzNGFkOThhZDRmMjY4MDk4OGRmZTE0NTViMmE1ZTE1ZGE;Fix cask sharding issues;Mike McQuaid;2023-08-10;1;1
+C_kwDOAyxcHdoAKDIyNTUzY2QzNGFkOThhZDRmMjY4MDk4OGRmZTE0NTViMmE1ZTE1ZGE;"- Fix cask info output being incorrect
+- Improve some code referring to casks as formulae
+- Move livecheck cask fixtures to not shadow existing names
+- Adjust the cask tap symlinking logic to make handling outdated
+  shadowed casks significantly easier
+- Fix various flaky tests caused by casks sharding logic
+- Prefer longer paths when there's multiple formulae or casks in a tap
+  with the same name rather than always using the first";Mike McQuaid;2023-08-10;1;1
+C_kwDOAyxcHdoAKGNmNzFiNWIzZWEzNGQyN2MwY2QxNDcyYjczZDA0NGE2NmU5MjEwZWI;tap: always create new casks in subdirectory.;Mike McQuaid;2023-08-09;1;0
+C_kwDOAyxcHdoAKGNmNzFiNWIzZWEzNGQyN2MwY2QxNDcyYjczZDA0NGE2NmU5MjEwZWI;"For homebrew-cask, all casks should now be created in subdirectories,
+even if that subdirectory doesn't yet exist.";Mike McQuaid;2023-08-09;1;0
+C_kwDOAyxcHdoAKGIzYzMzZDM0YWIyM2ViYTllMGMzYWIzNGE0ZjllNjMyMzJkZDE3MDQ;Various sharding fixes;Mike McQuaid;2023-08-04;1;1
+C_kwDOAyxcHdoAKGIzYzMzZDM0YWIyM2ViYTllMGMzYWIzNGE0ZjllNjMyMzJkZDE3MDQ;- Load paths with no API when needed (e.g;Mike McQuaid;2023-08-04;0;1
+C_kwDOAyxcHdoAKGIzYzMzZDM0YWIyM2ViYTllMGMzYWIzNGE0ZjllNjMyMzJkZDE3MDQ;"for `brew edit`)
+- Use no API mode for `brew log` as it's needed there
+- Define sharding format for homebrew-cask and homebrew-core inside
+  `Tap` methods
+- Create new formulae/casks in location defined by these `Tap` methods
+- Fix a bug in Formulary that made sharded formulae lookup less
+  efficient (and possibly broke it for core and some API usage)
+- Fix various other hardcoded Formula/Cask directory assumptions
+Co-authored-by: Bo Anderson <mail@boanderson.me>";Mike McQuaid;2023-08-04;1;1
+C_kwDOAyxcHdoAKGI2YzQ5YjdhMmQzYmFmNTg3NDUyN2IxZTkyYjQzZTJjYWFkMGRiZTM;docs: assume core repositories are untapped;Eric Knibbe;2023-07-24;0;1
+C_kwDOAyxcHdoAKGI2YzQ5YjdhMmQzYmFmNTg3NDUyN2IxZTkyYjQzZTJjYWFkMGRiZTM;;Eric Knibbe;2023-07-24;0;0
+C_kwDOAyxcHdoAKGQ0N2FhMTAzZDI2ZjM0OTYyNDRiYTlkOGI4NmQzNDdkNTM3N2FlZWM;cmd/tap: ensure remote exists before repairing;EricFromCanada;2023-07-23;0;0
+C_kwDOAyxcHdoAKGQ0N2FhMTAzZDI2ZjM0OTYyNDRiYTlkOGI4NmQzNDdkNTM3N2FlZWM;;EricFromCanada;2023-07-23;0;0
+C_kwDOAyxcHdoAKGJhMDJjNjY5ZTFjYzgyNDQ0YTYxMGRlOWY2NTJmMjY3MGY5ODZlMjk;Introduce CoreCaskTap class;Bo Anderson;2023-07-13;1;0
+C_kwDOAyxcHdoAKGJhMDJjNjY5ZTFjYzgyNDQ0YTYxMGRlOWY2NTJmMjY3MGY5ODZlMjk;;Bo Anderson;2023-07-13;0;0
+C_kwDOAyxcHdoAKDBhOWU2OWZmZGZjNDU2NmU4YTA1ZGYzNGIzN2MzODA3YWIxMzdmYjU;tap: fix handling of taps without formulae;Bo Anderson;2023-07-07;1;1
+C_kwDOAyxcHdoAKDBhOWU2OWZmZGZjNDU2NmU4YTA1ZGYzNGIzN2MzODA3YWIxMzdmYjU;;Bo Anderson;2023-07-07;0;0
+C_kwDOAyxcHdoAKDdkYTkzNGY3ZTIwM2E5MDYwODI3MzkxMDc2MGE4NTY5YTQxM2ZlZTY;Deprecate/disable/delete code.;Mike McQuaid;2023-07-06;0;0
+C_kwDOAyxcHdoAKDdkYTkzNGY3ZTIwM2E5MDYwODI3MzkxMDc2MGE4NTY5YTQxM2ZlZTY;The next release after this is merged will be 4.1.0;Mike McQuaid;2023-07-06;0;0
+C_kwDOAyxcHdoAKDdkYTkzNGY3ZTIwM2E5MDYwODI3MzkxMDc2MGE4NTY5YTQxM2ZlZTY;Co-authored-by: Markus Reiter <me@reitermark.us>;Mike McQuaid;2023-07-06;0;1
+C_kwDOAyxcHdoAKDhkMWFhYmJhODE2ZDMzMmY1ZTA2YWM3YmE3ZDdkYzAyYTY4YjI2YTI;tap: warn if tapping core taps under API mode;Bo Anderson;2023-07-05;1;0
+C_kwDOAyxcHdoAKDhkMWFhYmJhODE2ZDMzMmY1ZTA2YWM3YmE3ZDdkYzAyYTY4YjI2YTI;;Bo Anderson;2023-07-05;0;0
+C_kwDOAyxcHdoAKDI3ZGRhNTJhNWQ2ZTk2Nzk5MDMxZmQ1MmE2NDg0NzEzMDg2MWEyMGQ;Download `tap_migrations.json` files from the API;Mike McQuaid;2023-07-05;0;0
+C_kwDOAyxcHdoAKDI3ZGRhNTJhNWQ2ZTk2Nzk5MDMxZmQ1MmE2NDg0NzEzMDg2MWEyMGQ;"Download the previously stored tap migrations files for homebrew/core
+and homebrew/cask from the formulae.brew.sh API";Mike McQuaid;2023-07-05;0;0
+C_kwDOAyxcHdoAKDI3ZGRhNTJhNWQ2ZTk2Nzk5MDMxZmQ1MmE2NDg0NzEzMDg2MWEyMGQ;"This adds a much longer stale time (24 hours) to decide whether or not
+the migrations files need downloaded from the API in Ruby land";Mike McQuaid;2023-07-05;1;1
+C_kwDOAyxcHdoAKDI3ZGRhNTJhNWQ2ZTk2Nzk5MDMxZmQ1MmE2NDg0NzEzMDg2MWEyMGQ;`brew update` will still update them every time;Mike McQuaid;2023-07-05;1;0
+C_kwDOAyxcHdoAKDI3ZGRhNTJhNWQ2ZTk2Nzk5MDMxZmQ1MmE2NDg0NzEzMDg2MWEyMGQ;Requires Fixes https://github.com/Homebrew/brew/issues/14897;Mike McQuaid;2023-07-05;0;1
+C_kwDOAyxcHdoAKDIyOWExZjZjMWUwNTQwYjU4ZDIwNTFkNDZjNzRiMzU2NjQ2M2UwZWU;Remove `Tap#versioned_formula_files`;Mike McQuaid;2023-07-05;1;1
+C_kwDOAyxcHdoAKDIyOWExZjZjMWUwNTQwYjU4ZDIwNTFkNDZjNzRiMzU2NjQ2M2UwZWU;"This doesn't work with the API and the single caller can be
+refactored to not need it instead.";Mike McQuaid;2023-07-05;0;1
+C_kwDOAyxcHdoAKGY2ZTQ4NDljMGZlNGE4NGZhZTY2MDE4ZGFlZDNjMWIzN2VjYjQyMDY;tap: disable fsmonitor for third-party taps;Alexander Bayandin;2023-07-04;0;0
+C_kwDOAyxcHdoAKGY2ZTQ4NDljMGZlNGE4NGZhZTY2MDE4ZGFlZDNjMWIzN2VjYjQyMDY;;Alexander Bayandin;2023-07-04;0;0
+C_kwDOAyxcHdoAKGNkNDE0YmQ5NWZmY2ZmYTMyMzRiMGEzNDcyNGE5ZjZkNGEzNGYyOWQ;Include core formulae from API in `Formula.all`.;Mike McQuaid;2023-06-28;1;0
+C_kwDOAyxcHdoAKGNkNDE0YmQ5NWZmY2ZmYTMyMzRiMGEzNDcyNGE5ZjZkNGEzNGYyOWQ;"This is needed to allow `Formula.all` to behave as expected when using
+the API";Mike McQuaid;2023-06-28;0;1
+C_kwDOAyxcHdoAKGNkNDE0YmQ5NWZmY2ZmYTMyMzRiMGEzNDcyNGE5ZjZkNGEzNGYyOWQ;"Let's also (immediately, because it's broken) deprecate the
+`CoreTap#formula_files` method";Mike McQuaid;2023-06-28;1;1
+C_kwDOAyxcHdoAKGNkNDE0YmQ5NWZmY2ZmYTMyMzRiMGEzNDcyNGE5ZjZkNGEzNGYyOWQ;Fixes #15122;Mike McQuaid;2023-06-28;1;1
+C_kwDOAyxcHdoAKGEzMjMxYTAzZmExNzFkN2U3MDExNTA5NTdlZjRmNmY3NGMyYjY5NDg;Implement cask renames.;Markus Reiter;2023-04-08;1;0
+C_kwDOAyxcHdoAKGEzMjMxYTAzZmExNzFkN2U3MDExNTA5NTdlZjRmNmY3NGMyYjY5NDg;;Markus Reiter;2023-04-08;0;0
+C_kwDOAyxcHdoAKDU1MTBjM2ZiMmJkMjRmZTMxMTM4ZjRkNzdkNDI0YmUzMTFkMmQ3ZWY;Support formula renames in API;Bo Anderson;2023-04-27;0;1
+C_kwDOAyxcHdoAKDU1MTBjM2ZiMmJkMjRmZTMxMTM4ZjRkNzdkNDI0YmUzMTFkMmQ3ZWY;;Bo Anderson;2023-04-27;0;0
+C_kwDOAyxcHdoAKDI0Y2Y2MDc2ZTg2ZTA3MzI0MDM3YTVjYjdhNmYzZmVhZjU3OGRlODA;brew style --fix;Douglas Eichelberger;2023-04-25;1;1
+C_kwDOAyxcHdoAKDI0Y2Y2MDc2ZTg2ZTA3MzI0MDM3YTVjYjdhNmYzZmVhZjU3OGRlODA;;Douglas Eichelberger;2023-04-25;0;0
+C_kwDOAyxcHdoAKDQwM2YwOGRiOGJlM2E5NDNkNDQzZGYwMjYxY2IxMjJjYTg0ZjQyZDU;Remove delegation;Douglas Eichelberger;2023-04-16;1;0
+C_kwDOAyxcHdoAKDQwM2YwOGRiOGJlM2E5NDNkNDQzZGYwMjYxY2IxMjJjYTg0ZjQyZDU;;Douglas Eichelberger;2023-04-16;0;0
+C_kwDOAyxcHdoAKGI5MDg5N2UyODA1MWIyZWFjNDQ5MjdjMzFlZmQwNzZkYWYyZmJiMTI;Create git_repo attr;Douglas Eichelberger;2023-04-16;1;1
+C_kwDOAyxcHdoAKGI5MDg5N2UyODA1MWIyZWFjNDQ5MjdjMzFlZmQwNzZkYWYyZmJiMTI;;Douglas Eichelberger;2023-04-16;0;0
+C_kwDOAyxcHdoAKDFmZmI3N2Y4MjE1NGMzNDgwNDc4NTIyZWI5YTRlYWRjY2U3ODU4OWQ;cleanup;Douglas Eichelberger;2023-04-16;0;1
+C_kwDOAyxcHdoAKDFmZmI3N2Y4MjE1NGMzNDgwNDc4NTIyZWI5YTRlYWRjY2U3ODU4OWQ;;Douglas Eichelberger;2023-04-16;0;0
+C_kwDOAyxcHdoAKDgzMDcyNTVjZTg2M2E3ZGVjZGU0YjkyYzFlNjc5Y2UzNzU5NTJhZTA;Update call sites;Douglas Eichelberger;2023-04-15;0;0
+C_kwDOAyxcHdoAKDgzMDcyNTVjZTg2M2E3ZGVjZGU0YjkyYzFlNjc5Y2UzNzU5NTJhZTA;;Douglas Eichelberger;2023-04-15;0;0
+C_kwDOAyxcHdoAKDQyOWYyM2RjYzYwNTc3NmEyZTI2NjBmMzUxNmI4ZDQ2NWU2ZGMwZDc;Create GitRepoPath;Douglas Eichelberger;2023-04-15;1;0
+C_kwDOAyxcHdoAKDQyOWYyM2RjYzYwNTc3NmEyZTI2NjBmMzUxNmI4ZDQ2NWU2ZGMwZDc;;Douglas Eichelberger;2023-04-15;0;0
+C_kwDOAyxcHdoAKDEwNDQzNGMxZDlmODZiMzcxMTU2ODBiZDNkMGRiODhmZWYxZjRiYjc;Merge pull request #15150 from muzimuzhi/tap-formula-file;Mike McQuaid;2023-04-06;0;0
+C_kwDOAyxcHdoAKDEwNDQzNGMxZDlmODZiMzcxMTU2ODBiZDNkMGRiODhmZWYxZjRiYjc;Tighten `tap.formula_file?(file)` and `tap.formula_files` to not detect cask file as formula;Mike McQuaid;2023-04-06;1;1
+C_kwDOAyxcHdoAKDBjZmM0YWIxZThiY2E2NmJiYzA4Y2FlNmI5NjRhMzQ4ZTQ4MTE2ZWM;fixup! avoid duplicating logic;Yukai Chou;2023-04-05;1;1
+C_kwDOAyxcHdoAKDBjZmM0YWIxZThiY2E2NmJiYzA4Y2FlNmI5NjRhMzQ4ZTQ4MTE2ZWM;;Yukai Chou;2023-04-05;0;0
+C_kwDOAyxcHdoAKDE2YzgxZDdhNTViNTY1MTlkMzIzNWMyZTI5MjkwYjcwODJiN2NhNzI;tighten `tap.formula_files` similarly;Yukai Chou;2023-04-05;1;1
+C_kwDOAyxcHdoAKDE2YzgxZDdhNTViNTY1MTlkMzIzNWMyZTI5MjkwYjcwODJiN2NhNzI;;Yukai Chou;2023-04-05;0;0
+C_kwDOAyxcHdoAKDEwOThjYjZhN2QyZGRiNjIzMDJjMWYwOTM1OGM5NTBjMGZjZGIwMDY;avoid duplicating logic;Yukai Chou;2023-04-05;1;1
+C_kwDOAyxcHdoAKDEwOThjYjZhN2QyZGRiNjIzMDJjMWYwOTM1OGM5NTBjMGZjZGIwMDY;;Yukai Chou;2023-04-05;0;0
+C_kwDOAyxcHdoAKDYxZWVjMDAwMmQ5ODBkMmIzYzMxMjZhYTMxNjQxMGU0YTVkMjk4MWI;tap: remove some CoreTap installed? checks.;Mike McQuaid;2023-04-05;1;0
+C_kwDOAyxcHdoAKDYxZWVjMDAwMmQ5ODBkMmIzYzMxMjZhYTMxNjQxMGU0YTVkMjk4MWI;We should be using the API unless specifically requested not to;Mike McQuaid;2023-04-05;1;0
+C_kwDOAyxcHdoAKDYxZWVjMDAwMmQ5ODBkMmIzYzMxMjZhYTMxNjQxMGU0YTVkMjk4MWI;Fixes #15153.;Mike McQuaid;2023-04-05;1;1
+C_kwDOAyxcHdoAKGIxYjk0MTg3YWYzZGM0MTk0NzIxYmMxYTE1YmZmMWVjN2E5MDRlYjY;tap: tighten `formula_file?(file)`;Yukai Chou;2023-04-04;1;1
+C_kwDOAyxcHdoAKGIxYjk0MTg3YWYzZGM0MTk0NzIxYmMxYTE1YmZmMWVjN2E5MDRlYjY;Cask is never a formula.;Yukai Chou;2023-04-04;0;0
+C_kwDOAyxcHdoAKGI3NzZmYjMyZGU5M2VmMWFlMWY3OTdiYjY5ODA1MmMyMDlkNGExZTA;change includecount to include_count for readability;Dustin Rodrigues;2023-03-20;1;0
+C_kwDOAyxcHdoAKGI3NzZmYjMyZGU5M2VmMWFlMWY3OTdiYjY5ODA1MmMyMDlkNGExZTA;;Dustin Rodrigues;2023-03-20;0;0
+C_kwDOAyxcHdoAKGU1ZmJhODgwMzU2YmNkMjk1ZGExZjkyODBmMDEzZWU0YjkyNjJmNjY;use includecount argument in pluralize;Dustin Rodrigues;2023-03-20;1;1
+C_kwDOAyxcHdoAKGU1ZmJhODgwMzU2YmNkMjk1ZGExZjkyODBmMDEzZWU0YjkyNjJmNjY;;Dustin Rodrigues;2023-03-20;0;0
+C_kwDOAyxcHdoAKDBlY2NjMGU5ODc2M2FhMTQ3OTFhNGUwMTRkZmU0YzcyMmRlNWExOWQ;git grep -l Utils::Inflection | xargs gsed -i 's|Utils::Inflection|Utils|g';Douglas Eichelberger;2023-02-28;1;1
+C_kwDOAyxcHdoAKDBlY2NjMGU5ODc2M2FhMTQ3OTFhNGUwMTRkZmU0YzcyMmRlNWExOWQ;;Douglas Eichelberger;2023-02-28;0;0
+C_kwDOAyxcHdoAKDNkYTY4NjUxZTVlYmVmMDRjNTcyMzdlNWY4MzE2NjdkZjdkMzdkNzI;Port more call sites;Douglas Eichelberger;2023-02-24;1;1
+C_kwDOAyxcHdoAKDNkYTY4NjUxZTVlYmVmMDRjNTcyMzdlNWY4MzE2NjdkZjdkMzdkNzI;;Douglas Eichelberger;2023-02-24;0;0
+C_kwDOAyxcHdoAKGU4NmE4YzI0NzcwMzJiZGEyMmMwNzVmOTQ4ZjJjNTI2YzdjZTRlMDI;Move `HOMEBREW_NO_INSTALL_FROM_API` defaults to shell;Bo Anderson;2023-02-24;1;0
+C_kwDOAyxcHdoAKGU4NmE4YzI0NzcwMzJiZGEyMmMwNzVmOTQ4ZjJjNTI2YzdjZTRlMDI;;Bo Anderson;2023-02-24;0;0
+C_kwDOAyxcHdoAKGYyODBjZTA2OWJhMTJmMTg1ZmZkNjRmNzVlMWQ4YWQ0ODU0M2RhM2Y;Support loading formulae/casks from subdirectories;Mike McQuaid;2023-02-24;0;0
+C_kwDOAyxcHdoAKGYyODBjZTA2OWJhMTJmMTg1ZmZkNjRmNzVlMWQ4YWQ0ODU0M2RhM2Y;"Previously, we required all formulae and casks to be in a specific
+formula or cask directory but did not check any subdirectories";Mike McQuaid;2023-02-24;1;1
+C_kwDOAyxcHdoAKGYyODBjZTA2OWJhMTJmMTg1ZmZkNjRmNzVlMWQ4YWQ0ODU0M2RhM2Y;"This commit allows using subdirectories for official taps, the only
+ones likely to be big enough to warrant sharding in this way and to
+avoid potentially breaking backwards compatibility for existing taps";Mike McQuaid;2023-02-24;0;1
+C_kwDOAyxcHdoAKGYyODBjZTA2OWJhMTJmMTg1ZmZkNjRmNzVlMWQ4YWQ0ODU0M2RhM2Y;This was inspired by the most recent issues with homebrew-cask.;Mike McQuaid;2023-02-24;0;0
+C_kwDOAyxcHdoAKDUzYzU3ZDdhNzAyM2EyMTYxOTZlMzVhMWZhZTMwZDc2MzcwY2MxNmU;tap: return the default_remote if not installed.;Mike McQuaid;2023-02-16;1;1
+C_kwDOAyxcHdoAKDUzYzU3ZDdhNzAyM2EyMTYxOTZlMzVhMWZhZTMwZDc2MzcwY2MxNmU;Fixes #14656.;Mike McQuaid;2023-02-16;1;1
+C_kwDOAyxcHdoAKDdlZjBjNDgzNjI4NzBmNzE3ZjcyYmMyZGI5NjU0M2UyYWI3NDZmODU;Fix analytics handling when core/cask taps are untapped;Bo Anderson;2023-02-15;1;1
+C_kwDOAyxcHdoAKDdlZjBjNDgzNjI4NzBmNzE3ZjcyYmMyZGI5NjU0M2UyYWI3NDZmODU;;Bo Anderson;2023-02-15;0;0
+C_kwDOAyxcHdoAKDRjOGVkNzczMDIwNGQwZjQ0Y2U3OGYzZjJiNjlhNWUxNGIxNDQ3MGY;Improve homebrew/{core,cask} autotapping.;Mike McQuaid;2023-02-14;1;1
+C_kwDOAyxcHdoAKDRjOGVkNzczMDIwNGQwZjQ0Y2U3OGYzZjJiNjlhNWUxNGIxNDQ3MGY;"Don't automatically tap these when running a developer command that's
+not using the API";Mike McQuaid;2023-02-14;0;0
+C_kwDOAyxcHdoAKDRjOGVkNzczMDIwNGQwZjQ0Y2U3OGYzZjJiNjlhNWUxNGIxNDQ3MGY;Fixes #14606;Mike McQuaid;2023-02-14;1;1
+C_kwDOAyxcHdoAKGRmYzk5MDYxODRkYWU2OTUyYTBlYjU1MGZlNTFjMTZlZGZjZDM4YjI;internal messaging fixes;EricFromCanada;2023-02-11;1;1
+C_kwDOAyxcHdoAKGRmYzk5MDYxODRkYWU2OTUyYTBlYjU1MGZlNTFjMTZlZGZjZDM4YjI;;EricFromCanada;2023-02-11;0;0
+C_kwDOAyxcHdoAKGEzNzY1ZDBhODAwYmRhZjdkY2ZkN2E4M2RhODQ1M2Q1N2RkNGEwNzU;making core tap install an in-process call;Asutosh Palai;2023-02-03;0;0
+C_kwDOAyxcHdoAKGEzNzY1ZDBhODAwYmRhZjdkY2ZkN2E4M2RhODQ1M2Q1N2RkNGEwNzU;This helps fixes problems with fresh install on ARM Linux;Asutosh Palai;2023-02-03;0;1
+C_kwDOAyxcHdoAKGEzNzY1ZDBhODAwYmRhZjdkY2ZkN2E4M2RhODQ1M2Q1N2RkNGEwNzU;"When brew is relaunched with filtered PATH, it is not able to
+find user installed Ruby.";Asutosh Palai;2023-02-03;0;0
+C_kwDOAyxcHdoAKGZkMThjN2IwYWMwNGRmYmJkZDAwNWZhY2Y4MDZiMGJjNGE0MzhjNzU;Tweak cask-source API handling;Mike McQuaid;2023-01-26;0;1
+C_kwDOAyxcHdoAKGZkMThjN2IwYWMwNGRmYmJkZDAwNWZhY2Y4MDZiMGJjNGE0MzhjNzU;"- Use raw.githubusercontent.com to download cask source rather than
+  formulae.brew.sh";Mike McQuaid;2023-01-26;0;1
+C_kwDOAyxcHdoAKGZkMThjN2IwYWMwNGRmYmJkZDAwNWZhY2Y4MDZiMGJjNGE0MzhjNzU;"This allows us to remove these files
+- output the tap's current `HEAD` for both formulae and cask JSON
+- use this `HEAD` for the cask-source API to get the exact file on
+  raw.githubusercontent.com rather than just whatever is newest (which
+  is what the previous API did)
+- set the `Tap` correctly when creating a `Cask` from the API
+- if the `formula.json` file exists: print its modified time include
+  `brew config`
+- memoize `tap.git_head` as we'll be calling it a lot in the same
+  process with the same value";Mike McQuaid;2023-01-26;1;1
+C_kwDOAyxcHdoAKGNjNjE1ZWY3ZmJmYjU5MmU3ZGI3ZGZhZGI1NTRjZjA3Y2EwMWY4NzI;Fix `brew search` for `HOMEBREW_INSTALL_FROM_API`;Rylan Polster;2023-01-23;1;1
+C_kwDOAyxcHdoAKGNjNjE1ZWY3ZmJmYjU5MmU3ZGI3ZGZhZGI1NTRjZjA3Y2EwMWY4NzI;;Rylan Polster;2023-01-23;0;0
+C_kwDOAyxcHdoAKDU5ZjRiNTIyNmE2NjBkMDU3MjIyZmUwYWM3ZDFjM2FmY2MyOGU0ODQ;tests: test on Ubuntu 18.04.;Mike McQuaid;2022-11-09;0;1
+C_kwDOAyxcHdoAKDU5ZjRiNTIyNmE2NjBkMDU3MjIyZmUwYWM3ZDFjM2FmY2MyOGU0ODQ;;Mike McQuaid;2022-11-09;0;0
+C_kwDOAyxcHdoAKGUyNzU5ZmJkZmY0ZTliNWU4Nzk1Y2JjMjhlZjRkY2QwNGMwZWUyZWY;Deprecate reading all formulae through commands;Mike McQuaid;2022-09-05;1;0
+C_kwDOAyxcHdoAKGUyNzU5ZmJkZmY0ZTliNWU4Nzk1Y2JjMjhlZjRkY2QwNGMwZWUyZWY;"We added the `--all` flag (now renamed to `--eval-all`) for various
+commands for this behaviour so let's start deprecating this";Mike McQuaid;2022-09-05;1;1
+C_kwDOAyxcHdoAKGUyNzU5ZmJkZmY0ZTliNWU4Nzk1Y2JjMjhlZjRkY2QwNGMwZWUyZWY;"Also, introduce a `HOMEBREW_EVAL_ALL` environment variable to use the
+existing, less secure, behaviour by default and avoid passing
+`--eval-all` everywhere.";Mike McQuaid;2022-09-05;1;1
+C_kwDOAyxcHdoAKDY3N2JiOTJiYTkzMjc2YTk4NmExNzRjZTA1YWE1ZDk4NjUzNDYzOWM;tap: add versioned_formula_files;Bo Anderson;2022-08-25;1;1
+C_kwDOAyxcHdoAKDY3N2JiOTJiYTkzMjc2YTk4NmExNzRjZTA1YWE1ZDk4NjUzNDYzOWM;;Bo Anderson;2022-08-25;0;0
+C_kwDOAyxcHdoAKDZiNjk3NDcwZmQ3Zjg0NGUzYmU3MDljZDJiM2RhNWQwYzEyOTQxNDc;brew style --fix;Mike McQuaid;2022-08-10;1;1
+C_kwDOAyxcHdoAKDZiNjk3NDcwZmQ3Zjg0NGUzYmU3MDljZDJiM2RhNWQwYzEyOTQxNDc;For https://github.com/Homebrew/brew/pull/13671;Mike McQuaid;2022-08-10;0;1
+C_kwDOAyxcHdoAKDFkMzZjNDJmYjdiZjc0NDBhNDE0ZTI1NGE2NjhhOGRiMjFlMGQwM2U;Support offline usage under HOMEBREW_INSTALL_FROM_API;Bo Anderson;2021-12-07;0;0
+C_kwDOAyxcHdoAKDFkMzZjNDJmYjdiZjc0NDBhNDE0ZTI1NGE2NjhhOGRiMjFlMGQwM2U;;Bo Anderson;2021-12-07;0;0
+C_kwDOAyxcHdoAKDJlODk5ZGE3YzcxOWY3MDYwYTlmMGFhZTk3OTg0ZWQxZWM0MWY2NjI;Add `--no-force-auto-update` option to `brew tap`;xxyzz;2022-05-06;1;1
+C_kwDOAyxcHdoAKDJlODk5ZGE3YzcxOWY3MDYwYTlmMGFhZTk3OTg0ZWQxZWM0MWY2NjI;Enable this option to delete `homebrew.forceautoupdate` git config option;xxyzz;2022-05-06;1;1
+C_kwDOAyxcHdoAKDBiYWRlNzJiYzA0ZDRmZDQxYmEwZDBlYTc0NjQ4ZTY1MGE1OTNlNjA;Don't print set git credential cache message if a helper exists;xxyzz;2022-04-11;1;1
+C_kwDOAyxcHdoAKDBiYWRlNzJiYzA0ZDRmZDQxYmEwZDBlYTc0NjQ4ZTY1MGE1OTNlNjA;for the tapped private repository;xxyzz;2022-04-11;0;1
+C_kwDOAyxcHdoAKDJmZGM3MGMzYmYwOTg1NDdjZTFjMmU4NWEwZWM1OTJjZWVjM2IyYjI;desc, search: also search cask descriptions;EricFromCanada;2022-03-23;1;1
+C_kwDOAyxcHdoAKDJmZGM3MGMzYmYwOTg1NDdjZTFjMmU4NWEwZWM1OTJjZWVjM2IyYjI;;EricFromCanada;2022-03-23;0;0
+C_kwDOAyxcHdoAKDc5ODkxYTcxMDMwNjMzMjYwYmI1YjhmMTBhNzlmMjc4NjE4MDI1YzE;Update uses of `Formula.all`/`Cask::Cask.all`;Mike McQuaid;2022-03-08;0;1
+C_kwDOAyxcHdoAKDc5ODkxYTcxMDMwNjMzMjYwYmI1YjhmMTBhNzlmMjc4NjE4MDI1YzE;"Add some `--all` flags we'll eventually migrate to to ensure that we'll
+eventually require their usage to read all formulae";Mike McQuaid;2022-03-08;1;0
+C_kwDOAyxcHdoAKDc5ODkxYTcxMDMwNjMzMjYwYmI1YjhmMTBhNzlmMjc4NjE4MDI1YzE;"Where we need to
+do stuff later, add some comments.";Mike McQuaid;2022-03-08;1;1
+C_kwDOAyxcHdoAKDZmYTcwMzM3ZTMyMTE3OTg2NzI4Nzc1NmFkNzE2MTE1MGY4ZmQwM2M;Fix linuxbrew-core migration not applying to Linuxbrew/homebrew-core;Bo Anderson;2021-12-11;1;1
+C_kwDOAyxcHdoAKDZmYTcwMzM3ZTMyMTE3OTg2NzI4Nzc1NmFkNzE2MTE1MGY4ZmQwM2M;;Bo Anderson;2021-12-11;0;0
+C_kwDOAyxcHdoAKGQ0MzU1NWRkNzU2NDYzNDAxOGYwMDg5MDI1YTVmZTU0NGU0ODgzMzE;brew style --fix;Mike McQuaid;2021-11-02;1;1
+C_kwDOAyxcHdoAKGQ0MzU1NWRkNzU2NDYzNDAxOGYwMDg5MDI1YTVmZTU0NGU0ODgzMzE;;Mike McQuaid;2021-11-02;0;0
+C_kwDOAyxcHdoAKDBiODAzMmQ0MjE3NGRmNDQzZjE2MjY4MWEwMzdiZjRkNmIxOGM3ZWQ;Document `HOMEBREW_INSTALL_FROM_API`;Rylan Polster;2021-10-22;0;1
+C_kwDOAyxcHdoAKDBiODAzMmQ0MjE3NGRmNDQzZjE2MjY4MWEwMzdiZjRkNmIxOGM3ZWQ;;Rylan Polster;2021-10-22;0;0
+C_kwDOAyxcHdoAKGZhNGJiN2Q3NGE1YTllMmJmMjE1MzY2OTlkZTg5ODBjMWMwNDAzZGE;Refactor audit exception handling;Rylan Polster;2021-10-05;1;0
+C_kwDOAyxcHdoAKGZhNGJiN2Q3NGE1YTllMmJmMjE1MzY2OTlkZTg5ODBjMWMwNDAzZGE;;Rylan Polster;2021-10-05;0;0
+C_kwDOAyxcHdoAKDFjYzdjYTMzYzBhZjhmYjc2MDdmMWI0ZGM2ZGE1YWFmN2Y2MmFlZWI;update: migrate everyone from linuxbrew-core to homebrew-core;Michka Popoff;2021-10-20;1;0
+C_kwDOAyxcHdoAKDFjYzdjYTMzYzBhZjhmYjc2MDdmMWI0ZGM2ZGE1YWFmN2Y2MmFlZWI;Co-authored-by: Mike McQuaid <mike@mikemcquaid.com>;Michka Popoff;2021-10-20;0;0
+C_kwDOAyxcHdoAKDMzZjljYWIzYzY3NGJmNWQ4MTJkMDI5NmEzZDY1ZTEzYjVlMWZiYTI;tap: handle `brew tap homebrew/core` without a URL while `HOMEBREW_CORE_GIT_REMOTE` set;XuehaiPan;2021-10-13;0;1
+C_kwDOAyxcHdoAKDMzZjljYWIzYzY3NGJmNWQ4MTJkMDI5NmEzZDY1ZTEzYjVlMWZiYTI;;XuehaiPan;2021-10-13;0;0
+C_kwDOAyxcHdoAKGNmYzE4MjFlMmM2YjBjMTYyY2IyZDY3NWZhZTMzY2E2ZjA4YTYyYmI;tap: fix unexpected wrong variable name;XuehaiPan;2021-10-12;1;1
+C_kwDOAyxcHdoAKGNmYzE4MjFlMmM2YjBjMTYyY2IyZDY3NWZhZTMzY2E2ZjA4YTYyYmI;;XuehaiPan;2021-10-12;0;0
+C_kwDOAyxcHdoAKDJiZTE5ZDhmMDZlMzI2MDllOGMwMWJhMzk0MDg2M2U5NTdiMDA4MDc;"tap: remove ""rubocop:disable"" comment";XuehaiPan;2021-10-12;1;0
+C_kwDOAyxcHdoAKDJiZTE5ZDhmMDZlMzI2MDllOGMwMWJhMzk0MDg2M2U5NTdiMDA4MDc;;XuehaiPan;2021-10-12;0;0
+C_kwDOAyxcHdoAKDg4OWIzMGIzMmU2YjBkOGQ2YmZjY2JkMjhhNTU3YzY2MTIxZmE3YTY;tap: apply suggestions from code review;Xuehai Pan;2021-10-12;0;0
+C_kwDOAyxcHdoAKDg4OWIzMGIzMmU2YjBkOGQ2YmZjY2JkMjhhNTU3YzY2MTIxZmE3YTY;Co-authored-by: Mike McQuaid <mike@mikemcquaid.com>;Xuehai Pan;2021-10-12;0;0
+C_kwDOAyxcHdoAKDNkY2ZjN2UyNmU2NjNmODM3OGQ0OGFhNmE2ZDQ4NTQxYWVhMzFkOWQ;tap: apply suggestions from code review;Xuehai Pan;2021-10-12;0;0
+C_kwDOAyxcHdoAKDNkY2ZjN2UyNmU2NjNmODM3OGQ0OGFhNmE2ZDQ4NTQxYWVhMzFkOWQ;Co-authored-by: Mike McQuaid <mike@mikemcquaid.com>;Xuehai Pan;2021-10-12;0;0
+C_kwDOAyxcHdoAKDYzZjJmNmNjYTdkYTc4NzIyOWQ3MmNiOGIzODQwMmE1ZGY4YTM0OGE;tap: allow to change tap remote with `brew tap --custom-remote`;XuehaiPan;2021-10-11;1;0
+C_kwDOAyxcHdoAKDYzZjJmNmNjYTdkYTc4NzIyOWQ3MmNiOGIzODQwMmE1ZGY4YTM0OGE;;XuehaiPan;2021-10-11;0;0
+C_kwDOAyxcHdoAKDQxZTk0YWZkYTUxZDZiZTVkYzk2NzMwNjZmMDExNTA4MmU5OTdkZmQ;Fix `brew style`;Mike McQuaid;2021-09-30;1;1
+C_kwDOAyxcHdoAKDQxZTk0YWZkYTUxZDZiZTVkYzk2NzMwNjZmMDExNTA4MmU5OTdkZmQ;"Fixes for 
+Extracted into a separate PR so this can be merged immediately.";Mike McQuaid;2021-09-30;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NWQ1MzZkNjZmY2ZlZTM4ZTUyYmE3YTkwYWE1YzFlOTIxZTQxYTlhMg==;Rename `HOMEBREW_JSON_CORE` to `HOMEBREW_INSTALL_FROM_API`;Rylan Polster;2021-08-27;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NWQ1MzZkNjZmY2ZlZTM4ZTUyYmE3YTkwYWE1YzFlOTIxZTQxYTlhMg==;;Rylan Polster;2021-08-27;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6N2FhY2RhMTc1NDY1ZDEwNWQxZGIwN2UyMjY4NzgyZTcyYTljYmY5OQ==;formula: add fuzzy_search method;Alexander Bayandin;2021-06-18;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6N2FhY2RhMTc1NDY1ZDEwNWQxZGIwN2UyMjY4NzgyZTcyYTljYmY5OQ==;;Alexander Bayandin;2021-06-18;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjAyMDNhZmRkNTAxMzA4MzYwZjcxMDY2MTQwZWJiNWE2Y2JmNmY0Yg==;Merge env variables into `HOMEBREW_JSON_CORE`;Rylan Polster;2021-06-18;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjAyMDNhZmRkNTAxMzA4MzYwZjcxMDY2MTQwZWJiNWE2Y2JmNmY0Yg==;;Rylan Polster;2021-06-18;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWQ1MTZiNjI4YmE2MWViYzFkMTAzNThiNWE0ODM4NjRmNGMwNzNhNg==;Use `#present?` and `#blank?` to check env variable;Rylan Polster;2021-06-18;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWQ1MTZiNjI4YmE2MWViYzFkMTAzNThiNWE0ODM4NjRmNGMwNzNhNg==;;Rylan Polster;2021-06-18;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Mjc2MGQ5ODFkM2Q3Yjc0YmIxZmYxOTRlZDg0M2Y2ZDE1MDkwNGRkMA==;Allow for homebrew/core to be untapped;Rylan Polster;2021-06-12;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6Mjc2MGQ5ODFkM2Q3Yjc0YmIxZmYxOTRlZDg0M2Y2ZDE1MDkwNGRkMA==;;Rylan Polster;2021-06-12;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YTdjYTE1ZDhlOWNkMTViMjZkNTNkZDVhZjY2ZDBiODAzMzU4YmU3ZQ==;Override user-set default git template;Connor Mann;2021-05-14;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YTdjYTE1ZDhlOWNkMTViMjZkNTNkZDVhZjY2ZDBiODAzMzU4YmU3ZQ==;;Connor Mann;2021-05-14;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGI1ZjQ0MGNmYzQ3OWFlYTRlMjY2MDBmN2Q4M2YzZGIyNjYwNmM2Mw==;Remove reference to full_clone in CoreTap;cnnrmnn;2021-05-07;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGI1ZjQ0MGNmYzQ3OWFlYTRlMjY2MDBmN2Q4M2YzZGIyNjYwNmM2Mw==;;cnnrmnn;2021-05-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YjU1NjlmZmQzMzFjNmVhOTVmNDkyZjBhYzdmNDJhMWRiZjExYWUyOQ==;Remove full_clone from CoreTap;cnnrmnn;2021-05-07;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6YjU1NjlmZmQzMzFjNmVhOTVmNDkyZjBhYzdmNDJhMWRiZjExYWUyOQ==;;cnnrmnn;2021-05-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Njc0NTk0Zjc1Y2VlMjFlYjA1YjA0ZThiMGNhYzIyZWExNTdlMGRmZQ==;Stop using shallow clones for taps;cnnrmnn;2021-05-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Njc0NTk0Zjc1Y2VlMjFlYjA1YjA0ZThiMGNhYzIyZWExNTdlMGRmZQ==;;cnnrmnn;2021-05-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OTVjOGY0NDVmYTIxNjUwYWFkNTllM2YyYWE1ZWZiMWI1M2ZlNzk5OQ==;Fix bump-formula-pr for taps with ssh remote url.;Zach Auten;2021-04-23;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OTVjOGY0NDVmYTIxNjUwYWFkNTllM2YyYWE1ZWZiMWI1M2ZlNzk5OQ==;;Zach Auten;2021-04-23;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGIyMTRkYTRlYjViMGZiMmM2OWU4ZmFkNGVlYmRhOWExYjM0MDgwZA==;tap: cleanup `remote_repo` method;Rylan Polster;2021-03-22;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGIyMTRkYTRlYjViMGZiMmM2OWU4ZmFkNGVlYmRhOWExYjM0MDgwZA==;Co-authored-by: Mike McQuaid <mike@mikemcquaid.com>;Rylan Polster;2021-03-22;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGU2MWY2MWEyMDhjMDA3NGJkZjYwZmM2OGI3YmIwZTg4ZTY3YzNkNw==;utils/github: handle non-standard tap remotes;Rylan Polster;2021-03-21;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGU2MWY2MWEyMDhjMDA3NGJkZjYwZmM2OGI3YmIwZTg4ZTY3YzNkNw==;;Rylan Polster;2021-03-21;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZGMxZmRjOWY4ZDMxYTcyYjlmMDJiYTc2MzQ4Yjc1ZDYzZjgyN2Q4NA==;Speedup `brew --version`.;Mike McQuaid;2021-03-03;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZGMxZmRjOWY4ZDMxYTcyYjlmMDJiYTc2MzQ4Yjc1ZDYzZjgyN2Q4NA==;Port `brew --version` to Bash to speed it up;Mike McQuaid;2021-03-03;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZGMxZmRjOWY4ZDMxYTcyYjlmMDJiYTc2MzQ4Yjc1ZDYzZjgyN2Q4NA==;While we're here;Mike McQuaid;2021-03-03;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZGMxZmRjOWY4ZDMxYTcyYjlmMDJiYTc2MzQ4Yjc1ZDYzZjgyN2Q4NA==;"- remove (now) unused `Tap` Git methods
+- use `--quiet` instead of `-q` to be more verbose
+Benchmarks";Mike McQuaid;2021-03-03;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZGMxZmRjOWY4ZDMxYTcyYjlmMDJiYTc2MzQ4Yjc1ZDYzZjgyN2Q4NA==;"$ hyperfine --min-runs=3 --warmup=2 ""git checkout origin/master; brew --version"" ""git checkout speedup_brew_version; brew --version""
+Benchmark #1: git checkout origin/master; brew --version
+  Time (mean ± σ):      2.083 s ±  0.004 s    [User: 396.8 ms, System: 597.2 ms]
+  Range (min … max):    2.080 s …  2.088 s    3 runs
+Benchmark #2: git checkout speedup_brew_version; brew --version
+  Time (mean ± σ):     847.9 ms ±  35.2 ms    [User: 100.0 ms, System: 247.9 ms]
+  Range (min … max):   824.1 ms … 888.3 ms    3 runs
+Summary
+  'git checkout speedup_brew_version; brew --version' ran
+    2.46 ± 0.10 times faster than 'git checkout origin/master; brew --version'";Mike McQuaid;2021-03-03;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NTZlMGMzZDllODM5ODNiZTk0M2JiNDYwMGNiM2M1YTc5YzVmMTZiNw==;Update GitHub API usage;nandahkrishna;2021-02-15;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NTZlMGMzZDllODM5ODNiZTk0M2JiNDYwMGNiM2M1YTc5YzVmMTZiNw==;;nandahkrishna;2021-02-15;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGY0ODQ5OGFkODJkOGIwZGUwNDZhNjRlMzg1MzhiNmYxZTYwMDM4Ng==;fix(tap): set clone remote name to origin explicitly;Gibson Fahnestock;2021-02-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGY0ODQ5OGFkODJkOGIwZGUwNDZhNjRlMzg1MzhiNmYxZTYwMDM4Ng==;"Git now allows setting a different default remote name than `origin`
+when you do a fresh clone by running";Gibson Fahnestock;2021-02-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGY0ODQ5OGFkODJkOGIwZGUwNDZhNjRlMzg1MzhiNmYxZTYwMDM4Ng==;"```shell
+git config --global clone.defaultRemoteName notorigin
+This causes `brew tap <tap_name> && brew update` to fail, as it clones
+with a different remote name in the `tap` and then expects the remote to
+be `origin` in the `update`";Gibson Fahnestock;2021-02-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGY0ODQ5OGFkODJkOGIwZGUwNDZhNjRlMzg1MzhiNmYxZTYwMDM4Ng==;Fix this by explicitly setting the origin remote in the clone command.;Gibson Fahnestock;2021-02-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODRmYzE2YzFjMTg0NmJjYzc2OGE3MjQzMTFjMzBjN2JmOThlMmNiZA==;Apply suggestions from code review;Rylan Polster;2021-01-28;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODRmYzE2YzFjMTg0NmJjYzc2OGE3MjQzMTFjMzBjN2JmOThlMmNiZA==;Co-Authored-By: Mike McQuaid <mike@mikemcquaid.com>;Rylan Polster;2021-01-28;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGJkYzExZGRjOTdjY2YyYzdiODIyZTc0ODViYWI2NWY5NDBhNjllOQ==;tap: fix renamed branches with `brew tap --repair`;Rylan Polster;2021-01-26;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGJkYzExZGRjOTdjY2YyYzdiODIyZTc0ODViYWI2NWY5NDBhNjllOQ==;;Rylan Polster;2021-01-26;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YTQyN2RlNWJlZTUwNjQ2YTk3NGZhOGFjZDk2YTYyZWQwZmJjMTBmYQ==;capitalization fixes;EricFromCanada;2020-07-29;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTQyN2RlNWJlZTUwNjQ2YTk3NGZhOGFjZDk2YTYyZWQwZmJjMTBmYQ==;"""curl"" is the binary, while ""cURL"" is the umbrella project.";EricFromCanada;2020-07-29;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZWNmYWQyOTM0N2Q5ZTU4Yjk0OTkxNDRjYWIwYTUzOWQ5ZTg2M2NlOQ==;tap: write untapped setting only on manual untap;Rylan Polster;2021-01-21;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZWNmYWQyOTM0N2Q5ZTU4Yjk0OTkxNDRjYWIwYTUzOWQ5ZTg2M2NlOQ==;;Rylan Polster;2021-01-21;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjQ4MTY2NTFkMGQwY2UyM2JmZmU0YjdlYTI3MjNlYTM0ZjFhMjY0OQ==;Only tap homebrew/cask on CaskUnavailableError in brew install;Rylan Polster;2021-01-20;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjQ4MTY2NTFkMGQwY2UyM2JmZmU0YjdlYTI3MjNlYTM0ZjFhMjY0OQ==;;Rylan Polster;2021-01-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZWJiYTM2OTg4NzdiNmJlYjE0ZmRhZjJmOGY0MjBjN2I5OWM5MTNkZg==;Tap: add untapped_official_taps method;Rylan Polster;2021-01-20;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZWJiYTM2OTg4NzdiNmJlYjE0ZmRhZjJmOGY0MjBjN2I5OWM5MTNkZg==;;Rylan Polster;2021-01-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2NhNjhjMDc2ZWY1OGM1NGUxYWY1ODk1MGIxZGM3OGQxZDMyZGEyMw==;Don't tap user-untapped official taps;Rylan Polster;2021-01-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6M2NhNjhjMDc2ZWY1OGM1NGUxYWY1ODk1MGIxZGM3OGQxZDMyZGEyMw==;;Rylan Polster;2021-01-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NzAxOTg5OTY4ZDIyMzBjZWY4NjRmMzNmNjhhYjZmODdhOGM0M2FiYQ==;Merge pull request #10268 from Rylan12/completions-opt-out;Rylan Polster;2021-01-13;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NzAxOTg5OTY4ZDIyMzBjZWY4NjRmMzNmNjhhYjZmODdhOGM0M2FiYQ==;completions: make opt-in only;Rylan Polster;2021-01-13;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGI4NDc3YmE3MGFkZGNjMDk1NmVjODExZTQwM2E2N2NhNzExZTg4Yg==;Completions, Settings: move to Homebrew namespace;Rylan Polster;2021-01-13;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGI4NDc3YmE3MGFkZGNjMDk1NmVjODExZTQwM2E2N2NhNzExZTg4Yg==;;Rylan Polster;2021-01-13;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZjFmM2ZkYzMxNTIzOGU2Zjg2ODkyZjYyMjhmN2RhNWM1ZWI0NjJhMw==;settings: add module for managing git config settings;Rylan Polster;2021-01-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjFmM2ZkYzMxNTIzOGU2Zjg2ODkyZjYyMjhmN2RhNWM1ZWI0NjJhMw==;;Rylan Polster;2021-01-12;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZTdiMzY5MjczYTliMjNmMDY3NDQ5MWZlMzNhOGQzYWFmMTk3YzI5Mg==;completions: link official taps automatically;Rylan Polster;2021-01-11;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZTdiMzY5MjczYTliMjNmMDY3NDQ5MWZlMzNhOGQzYWFmMTk3YzI5Mg==;;Rylan Polster;2021-01-11;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Yjk4NTRiZDRjZjI2NTU5ZjJmNDkxN2E2MTZlYjcyZTkwMjNmZjc3Mg==;rubocops: add `unless_multiple_conditions`;Seeker;2021-01-07;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6Yjk4NTRiZDRjZjI2NTU5ZjJmNDkxN2E2MTZlYjcyZTkwMjNmZjc3Mg==;;Seeker;2021-01-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MDJjMjA3YTllYzZjY2VjMTg5OWNmODQyOGEwNWJiMjY4MjIzNWY5MA==;git_repository: replace compound `unless` with equivalent `if`;Seeker;2021-01-07;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDJjMjA3YTllYzZjY2VjMTg5OWNmODQyOGEwNWJiMjY4MjIzNWY5MA==;;Seeker;2021-01-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OTY0OWVmOTc1YzZhYzlmOGNmMTY5NmRlOGRiMzkzYmJhZDVjMTMxNg==;Only install default cask tap automatically on macOS.;Markus Reiter;2020-12-05;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6OTY0OWVmOTc1YzZhYzlmOGNmMTY5NmRlOGRiMzkzYmJhZDVjMTMxNg==;;Markus Reiter;2020-12-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODBhNDZlZGVlNDg3MTYzY2I4NTNjNmE0YWI4MWU1YjgxZGM1NGQ3Nw==;tap: add style_exceptions configuration;Rylan Polster;2020-11-27;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODBhNDZlZGVlNDg3MTYzY2I4NTNjNmE0YWI4MWU1YjgxZGM1NGQ3Nw==;;Rylan Polster;2020-11-27;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YTM5MzQ0ZTdlMzcxYjJiYjlkYWI3ZmE3NTMxNTk3NGI4OWZjMzk0Nw==;tap: read_formula_list JSON file can be an array;Jonathan Chang;2020-11-27;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YTM5MzQ0ZTdlMzcxYjJiYjlkYWI3ZmE3NTMxNTk3NGI4OWZjMzk0Nw==;;Jonathan Chang;2020-11-27;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZWU0N2I4NjNjNDllZTE1MWZkNDkxZjVlNjg3NDYwMTk4YWUyNTZmZQ==;move mapping from formula_lists to pypi_formula_mappings;Rylan Polster;2020-11-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZWU0N2I4NjNjNDllZTE1MWZkNDkxZjVlNjg3NDYwMTk4YWUyNTZmZQ==;;Rylan Polster;2020-11-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NTFhMWI3YzllMWIzOWUxOWNjOTNjYjllNDAwMTcyMThhMWQyZDhjZA==;move pypi list to tap formula_lists directory;Rylan Polster;2020-11-20;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NTFhMWI3YzllMWIzOWUxOWNjOTNjYjllNDAwMTcyMThhMWQyZDhjZA==;;Rylan Polster;2020-11-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MDE4NGUyNzFkODQ0YzA0Y2NmMDIzYjg2ZjE1NzQ2NGE4NmEyYTE5MA==;Fix RuboCop offenses.;Markus Reiter;2020-11-16;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDE4NGUyNzFkODQ0YzA0Y2NmMDIzYjg2ZjE1NzQ2NGE4NmEyYTE5MA==;;Markus Reiter;2020-11-16;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZGE5Mjg5ZWZmMGJkMzYwMzQxNDI0ZTMzNjZmMjUyNmI0ZTdjODljMA==;Add more type signatures.;Markus Reiter;2020-10-20;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZGE5Mjg5ZWZmMGJkMzYwMzQxNDI0ZTMzNjZmMjUyNmI0ZTdjODljMA==;;Markus Reiter;2020-10-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NTliMTMwOTkwMGE3OTlhYmY0NTMwN2ExYjcyZjg4Mzk0OGU4ZjNmMw==;Merge pull request #9039 from Rylan12/move-audit-allowlist-to-core;Rylan Polster;2020-11-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NTliMTMwOTkwMGE3OTlhYmY0NTMwN2ExYjcyZjg4Mzk0OGU4ZjNmMw==;audit: migrate throttle list to Homebrew/core;Rylan Polster;2020-11-09;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGFlNzJlMGJkZmVhYjgyNThkYTRjYWY0MTAzZjc1ZWMxNGM4YjA5Yw==;tap: add constants for json files;Rylan Polster;2020-11-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGFlNzJlMGJkZmVhYjgyNThkYTRjYWY0MTAzZjc1ZWMxNGM4YjA5Yw==;;Rylan Polster;2020-11-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Mzc2OGI3YTZlOWRiNjU5ZTI3NDdjMmMzOTY5MzZjNWNmZTI0OGQ1MQ==;apidoc: update comment wording, punctuation, formatting;EricFromCanada;2020-11-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6Mzc2OGI3YTZlOWRiNjU5ZTI3NDdjMmMzOTY5MzZjNWNmZTI0OGQ1MQ==;;EricFromCanada;2020-11-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmE5NDFlYzZiMTdiY2IwZDk1NTdjZjM2MDRkNjRhMzk1NGNjMTk5ZQ==;audit, tap: incorporate suggestions from code review;Rylan Polster;2020-11-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmE5NDFlYzZiMTdiY2IwZDk1NTdjZjM2MDRkNjRhMzk1NGNjMTk5ZQ==;;Rylan Polster;2020-11-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZjMzYTRiZmYzNzcwMWM4NTRjMTI2MmQ3M2FmYmU3NGU4ZGExZDQ4OA==;tap: no-op on invalid audit exception files;Rylan Polster;2020-11-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjMzYTRiZmYzNzcwMWM4NTRjMTI2MmQ3M2FmYmU3NGU4ZGExZDQ4OA==;Also shift logic to directory-based organization instead of a single file with all lists;Rylan Polster;2020-11-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODY5OTQxYmNjZDg0ZTc2MmYwZTEyNzY0NjQ4YTI1NmNiN2UyZWIxZA==;audit: migrate throttle list to Homebrew/core;Rylan Polster;2020-11-03;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODY5OTQxYmNjZDg0ZTc2MmYwZTEyNzY0NjQ4YTI1NmNiN2UyZWIxZA==;;Rylan Polster;2020-11-03;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjRhZTMxOGEzZDVmMDUxOWY1ZmUyOWQwOGUwMWU4YTA0NGQ5OWQ4Nw==;Move type annotations into files.;Markus Reiter;2020-10-10;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjRhZTMxOGEzZDVmMDUxOWY1ZmUyOWQwOGUwMWU4YTA0NGQ5OWQ4Nw==;;Markus Reiter;2020-10-10;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmJkZjNkZWI2ZmJhNzVjNzRlOTdkODRlYjlmMDAxZjA3NmY0YmRkYg==;Reduce shallow clone usage;Mike McQuaid;2020-10-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmJkZjNkZWI2ZmJhNzVjNzRlOTdkODRlYjlmMDAxZjA3NmY0YmRkYg==;GitHub has requested we request our usage of shallow clones;Mike McQuaid;2020-10-09;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmJkZjNkZWI2ZmJhNzVjNzRlOTdkODRlYjlmMDAxZjA3NmY0YmRkYg==;"As a
+result";Mike McQuaid;2020-10-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmJkZjNkZWI2ZmJhNzVjNzRlOTdkODRlYjlmMDAxZjA3NmY0YmRkYg==;"- do default to shallow clones on CI
+- do not do --shallow-since when setting up new repositories in
+  `brew update`
+- do not support shallow clones of homebrew-core at all
+We may consider in future unshallowing all clones unconditionally.";Mike McQuaid;2020-10-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjVmZmQ3MTI2NjgxNTZhYWY1Y2EwY2Y0NjhkOWQyMzhkOWY3ZWNmNw==;tap: remove redundant exception.;Mike McQuaid;2020-09-30;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjVmZmQ3MTI2NjgxNTZhYWY1Y2EwY2Y0NjhkOWQyMzhkOWY3ZWNmNw==;Don't raise an exception only to catch it.;Mike McQuaid;2020-09-30;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmM5YTc0ZGQyODJiNmEwMGJmYWE2NjNkOTAxYjQ3OGY0ZjkzN2M0Yg==;Prevent tapping `phinze/cask`.;Markus Reiter;2020-09-28;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZmM5YTc0ZGQyODJiNmEwMGJmYWE2NjNkOTAxYjQ3OGY0ZjkzN2M0Yg==;;Markus Reiter;2020-09-28;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MDVhODRjNWEzZjYxMDZkYWEzNThjNzlkMGU4MGQxMzlhYjNmZTkwMQ==;Explicitly specify `block` argument for `each` methods.;Markus Reiter;2020-09-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MDVhODRjNWEzZjYxMDZkYWEzNThjNzlkMGU4MGQxMzlhYjNmZTkwMQ==;;Markus Reiter;2020-09-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzE5MDllODBiNDIzMjY0Nzk2YjRhZTRkZDVhNjIzMmRlOTlmZGQxOA==;utils/tty: fix TTY handling for stderr;nandahkrishna;2020-09-16;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzE5MDllODBiNDIzMjY0Nzk2YjRhZTRkZDVhNjIzMmRlOTlmZGQxOA==;;nandahkrishna;2020-09-16;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OGI5N2MyN2MyMTJjYjgwYjY0ZmIzNGNlYjdmMDljYzJhYWVlYTI0NA==;brew style manual fixes;Mike McQuaid;2020-09-01;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OGI5N2MyN2MyMTJjYjgwYjY0ZmIzNGNlYjdmMDljYzJhYWVlYTI0NA==;;Mike McQuaid;2020-09-01;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MzExOGZlZGFiOWU0ODdlZGI5YjI5YzBjOTUyZGJmM2UyMjBiYTVjOQ==;Refactor and document `Git`.;Markus Reiter;2020-08-23;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MzExOGZlZGFiOWU0ODdlZGI5YjI5YzBjOTUyZGJmM2UyMjBiYTVjOQ==;;Markus Reiter;2020-08-23;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZTMzNzJlMmExNGRkZTNhZGFiMDQyMzM3OWE5ZGU5YjcyYTQ3ZDYxNg==;Lazily require some heavy files;Bo Anderson;2020-08-17;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZTMzNzJlMmExNGRkZTNhZGFiMDQyMzM3OWE5ZGU5YjcyYTQ3ZDYxNg==;;Bo Anderson;2020-08-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NzJjZTNmYWJlMjJiNmFmZTU2ZTdlODViZTdkYTg3Y2I2ODEyYjUxMQ==;Add `cask-eid` to list of deprecated taps.;Markus Reiter;2020-08-13;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NzJjZTNmYWJlMjJiNmFmZTU2ZTdlODViZTdkYTg3Y2I2ODEyYjUxMQ==;;Markus Reiter;2020-08-13;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmIwYTYzMzhiMTgwYzFkMmE2ODY1NTkwNTU0Njg1ZDVhZGRlODc5ZA==;Remove more tap pinning code.;Mike McQuaid;2020-08-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZmIwYTYzMzhiMTgwYzFkMmE2ODY1NTkwNTU0Njg1ZDVhZGRlODc5ZA==;This was deprecated and removed a while ago.;Mike McQuaid;2020-08-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTUzYzkyYmQ3ZjA5YjdiYTIyOGVmZTk3YTU2MzMyNGRiMmU3MTYwYw==;Cache commands list for faster shell completions;Caleb Xu;2020-06-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YTUzYzkyYmQ3ZjA5YjdiYTIyOGVmZTk3YTU2MzMyNGRiMmU3MTYwYw==;;Caleb Xu;2020-06-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Zjk0YTM4ZTRiMWMwMjc2NTU3YTJlMjgwNzU1NGJkNzI5ZGVkNjg2NA==;tap-new: restrict new tap names.;Mike McQuaid;2020-06-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6Zjk0YTM4ZTRiMWMwMjc2NTU3YTJlMjgwNzU1NGJkNzI5ZGVkNjg2NA==;"Don't want to restrict this for all taps otherwise existing ones may
+explode";Mike McQuaid;2020-06-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6Zjk0YTM4ZTRiMWMwMjc2NTU3YTJlMjgwNzU1NGJkNzI5ZGVkNjg2NA==;Fixes #7734;Mike McQuaid;2020-06-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NWFjYjU5Mjc3OWMxN2IwYWFiYzdhOTY2ZWY2M2VlNjFkNDZkN2MxMw==;tap: check for invalid fetched tap name.;Mike McQuaid;2020-06-12;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NWFjYjU5Mjc3OWMxN2IwYWFiYzdhOTY2ZWY2M2VlNjFkNDZkN2MxMw==;Fixes #7732.;Mike McQuaid;2020-06-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmFjYjQ3NzFmZTkxNzBhNmMyMzY4YzNhMTVlZjY2NTJhZDE2MzJjNQ==;tap: permit creating shallow taps for CI;Jonathan Chang;2020-04-09;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmFjYjQ3NzFmZTkxNzBhNmMyMzY4YzNhMTVlZjY2NTJhZDE2MzJjNQ==;;Jonathan Chang;2020-04-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MzM4MWNiZjVjNzIxN2NlZDdiODI3NGU5NzYwM2ZjY2NjMTk1YmRjZA==;Use Homebrew::EnvConfig.;Mike McQuaid;2020-04-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MzM4MWNiZjVjNzIxN2NlZDdiODI3NGU5NzYwM2ZjY2NjMTk1YmRjZA==;;Mike McQuaid;2020-04-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODk3ZjJiYzIyNWU3MWM5MWFmZjVjZDkwNzMzMzk3NDA0OTNiNWNkZA==;tap-info: drop commands' `brew(cask)` naming requirement;EricFromCanada;2020-02-21;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODk3ZjJiYzIyNWU3MWM5MWFmZjVjZDkwNzMzMzk3NDA0OTNiNWNkZA==;;EricFromCanada;2020-02-21;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YmJkYjcyYzVkNTI0MmU1M2RkYjFmMDAxNzhhYmUyOTBlNTYzM2I0OA==;tap-info: list cask tokens in JSON output;EricFromCanada;2020-02-21;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6YmJkYjcyYzVkNTI0MmU1M2RkYjFmMDAxNzhhYmUyOTBlNTYzM2I0OA==;;EricFromCanada;2020-02-21;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmM4NmU3ZTEyNzk0ZmZiZDQ2NGE1MzkyNzNjZDA0MjE4NzgyMmFiNA==;feat: expose casks in tap.to_hash for tap-info --json;Emily Marigold Klassen;2020-02-16;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmM4NmU3ZTEyNzk0ZmZiZDQ2NGE1MzkyNzNjZDA0MjE4NzgyMmFiNA==;;Emily Marigold Klassen;2020-02-16;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YTkxNTExNGVhN2RlMjVlY2E5ZDZjYTAyNTI3MjE0NjhhOWI0ZGEwMw==;tap: fix arguments.;Mike McQuaid;2020-02-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTkxNTExNGVhN2RlMjVlY2E5ZDZjYTAyNTI3MjE0NjhhOWI0ZGEwMw==;- Use Ruby attribute arguments;Mike McQuaid;2020-02-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTkxNTExNGVhN2RlMjVlY2E5ZDZjYTAyNTI3MjE0NjhhOWI0ZGEwMw==;- Fix use of `full_clone` in `cmd/tap` to be on by default;Mike McQuaid;2020-02-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTkxNTExNGVhN2RlMjVlY2E5ZDZjYTAyNTI3MjE0NjhhOWI0ZGEwMw==;- Remove unnecessary argument in test.;Mike McQuaid;2020-02-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjQzZTcwMzcwMGZkMGMwNmFlYTk4MmU1YjJiN2Y0NWI2ZGVkY2FiYg==;tap: default to full clones.;Mike McQuaid;2020-02-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjQzZTcwMzcwMGZkMGMwNmFlYTk4MmU1YjJiN2Y0NWI2ZGVkY2FiYg==;This makes `Tap` consistent with what the installer is doing;Mike McQuaid;2020-02-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjQzZTcwMzcwMGZkMGMwNmFlYTk4MmU1YjJiN2Y0NWI2ZGVkY2FiYg==;"Generally shallow clones get slower and slower (and more and more
+pointless) the more they are fetched so don't make sense for our
+use-case";Mike McQuaid;2020-02-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjQzZTcwMzcwMGZkMGMwNmFlYTk4MmU1YjJiN2Y0NWI2ZGVkY2FiYg==;Keep the option around anyway because it's useful for integration tests.;Mike McQuaid;2020-02-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmYzOTA1NzI0M2RjZmM3MWQxNjQxNWJmODAwNWQzZjM3ZTBlYTQxYQ==;Improve handling of *_GIT_REMOTE env vars;Mike McQuaid;2020-01-13;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmYzOTA1NzI0M2RjZmM3MWQxNjQxNWJmODAwNWQzZjM3ZTBlYTQxYQ==;- Output a message whenever a non-default remote is set;Mike McQuaid;2020-01-13;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmYzOTA1NzI0M2RjZmM3MWQxNjQxNWJmODAwNWQzZjM3ZTBlYTQxYQ==;- Ensure that `CoreTap.instance.install` uses the right remote.;Mike McQuaid;2020-01-13;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDI1MjRiYTMyMjJlZTZlNzY3MjUyYjBhNmE3ODY1ZDE0ZWQ4YThmYg==;Remove `--local` from `git config` commands as it's the default;Issy Long;2019-11-16;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDI1MjRiYTMyMjJlZTZlNzY3MjUyYjBhNmE3ODY1ZDE0ZWQ4YThmYg==;"- The `--local` option doesn't exist in early versions of git (~1.7),
+  but its behaviour is the default (saving in the current repo's .git
+  directory)";Issy Long;2019-11-16;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MDI1MjRiYTMyMjJlZTZlNzY3MjUyYjBhNmE3ODY1ZDE0ZWQ4YThmYg==;"- As it's the default across versions, we don't need to specify it
+  everywhere";Issy Long;2019-11-16;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDI1MjRiYTMyMjJlZTZlNzY3MjUyYjBhNmE3ODY1ZDE0ZWQ4YThmYg==;- Reported in Linuxbrew/install issue 78.;Issy Long;2019-11-16;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YmQ2NjZmYmM3OTM0YjVmNDc0NmUyZjI1ZTA0N2UwNGIzZDQ4MzBhYw==;Disable tapping of `caskroom` taps.;Markus Reiter;2019-10-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YmQ2NjZmYmM3OTM0YjVmNDc0NmUyZjI1ZTA0N2UwNGIzZDQ4MzBhYw==;;Markus Reiter;2019-10-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MzZkYmFkMzkyMmFkOTg0ZjdjMzk2YTk3NTdmZThhZTk3NTBjNDRiMA==;Add frozen_string_literal to all files.;Mike McQuaid;2019-04-19;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MzZkYmFkMzkyMmFkOTg0ZjdjMzk2YTk3NTdmZThhZTk3NTBjNDRiMA==;;Mike McQuaid;2019-04-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDFlYTZmMzhkM2VhMWFkOGQxNjY1YWQxODI2N2VkMWEyYWQwOGI4Yw==;Fix mutable constants violations.;Mike McQuaid;2019-04-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDFlYTZmMzhkM2VhMWFkOGQxNjY1YWQxODI2N2VkMWEyYWQwOGI4Yw==;;Mike McQuaid;2019-04-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MTVjMzhhMmQ4YmNlNmE2OGM2MGViNjEzMjZjYTA3MDljM2NmMjQ2Yg==;formatting fixes;EricFromCanada;2019-04-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MTVjMzhhMmQ4YmNlNmE2OGM2MGViNjEzMjZjYTA3MDljM2NmMjQ2Yg==;;EricFromCanada;2019-04-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NDVjNjFjZGNkYmUxODJkMmVkMmQ4ZGViOGRhYjJiM2FiMjUwNzA5NQ==;pull: fix tap name for linuxbrew;Michka Popoff;2019-02-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDVjNjFjZGNkYmUxODJkMmVkMmQ4ZGViOGRhYjJiM2FiMjUwNzA5NQ==;;Michka Popoff;2019-02-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDY0NDI5YTczNmRiMmQ5ZmJlNGM4NWY5YzhjNDQ4MGQ1OGZkZjY1Ng==;rubocop: enable Style/IfUnlessModifier.;Mike McQuaid;2019-02-19;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDY0NDI5YTczNmRiMmQ5ZmJlNGM4NWY5YzhjNDQ4MGQ1OGZkZjY1Ng==;;Mike McQuaid;2019-02-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDEzYTI4Nzk1NGRjNzhkZTcwMGVmZGE1OTEyNzVhYTcwYzExNjdhYg==;Fix check_coretap_git_origin;Shaun Jackman;2019-01-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDEzYTI4Nzk1NGRjNzhkZTcwMGVmZGE1OTEyNzVhYTcwYzExNjdhYg==;check_coretap_git_origin was not working as intended;Shaun Jackman;2019-01-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDEzYTI4Nzk1NGRjNzhkZTcwMGVmZGE1OTEyNzVhYTcwYzExNjdhYg==;Permit Linuxbrew/homebrew-core as a valid origin;Shaun Jackman;2019-01-25;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDEzYTI4Nzk1NGRjNzhkZTcwMGVmZGE1OTEyNzVhYTcwYzExNjdhYg==;Factor out check_coretap_git_branch.;Shaun Jackman;2019-01-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NzM3Yjg0YjU0Yjg2MzAxY2EyODJmYzI3MmZlYmYxM2I0MzQ0ZmQyMw==;`brew style --fix` fixes.;Mike McQuaid;2018-11-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NzM3Yjg0YjU0Yjg2MzAxY2EyODJmYzI3MmZlYmYxM2I0MzQ0ZmQyMw==;;Mike McQuaid;2018-11-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjAxNjdlNWYxYjQ1YzQ4NmEwNWQzYmU0YzBiNTIwOWQ1ZDFhODM4ZA==;Adjust comments to tidy API docs output.;EricFromCanada;2018-10-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjAxNjdlNWYxYjQ1YzQ4NmEwNWQzYmU0YzBiNTIwOWQ1ZDFhODM4ZA==;;EricFromCanada;2018-10-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmU2Yjc4YTNmMzkwYTcyMDczYjM1ZDE2NGQ2MDFiYmQ4NGRiMDlhOQ==;Use cache_store for descriptions;Mike McQuaid;2018-10-13;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZmU2Yjc4YTNmMzkwYTcyMDczYjM1ZDE2NGQ2MDFiYmQ4NGRiMDlhOQ==;"This makes use of both the existing interfaces and could use the
+existing cache file but we'll create a new one and cleanup the old one
+to avoid issues and use a more consistent name.";Mike McQuaid;2018-10-13;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGZjZGM5YmEwNzI2NTcwZTI5ZDZjZTkzOTU2ZjZhNWRhNDkwN2JhMw==;Create method ruby_file?;Emiel Wiedijk;2018-10-10;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGZjZGM5YmEwNzI2NTcwZTI5ZDZjZTkzOTU2ZjZhNWRhNDkwN2JhMw==;"Both formula_files and cask_files need to check whether a file is
+a Ruby file";Emiel Wiedijk;2018-10-10;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGZjZGM5YmEwNzI2NTcwZTI5ZDZjZTkzOTU2ZjZhNWRhNDkwN2JhMw==;Also, use this method in formula_file? and cask_file?;Emiel Wiedijk;2018-10-10;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NmFjMzA4MjZkMDA3MDg5YmU2NzUxOGYxNDQwMWQ3YjI5MGViYjVkNw==;Remove redundant check in formula_files and cask_files;Emiel Wiedijk;2018-10-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NmFjMzA4MjZkMDA3MDg5YmU2NzUxOGYxNDQwMWQ3YjI5MGViYjVkNw==;"Formula_files consists of every non-recursive child of formula_dir,
+for which formula_file? evaluates to true";Emiel Wiedijk;2018-10-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NmFjMzA4MjZkMDA3MDg5YmU2NzUxOGYxNDQwMWQ3YjI5MGViYjVkNw==;"formula_file? checks if the file
+is a child of formula_dir, which it is by definition";Emiel Wiedijk;2018-10-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NmFjMzA4MjZkMDA3MDg5YmU2NzUxOGYxNDQwMWQ3YjI5MGViYjVkNw==;"It turns out that by
+removing the check, the time used for 'brew search' decreased from 800 ms to
+700 ms, noticably faster during tab completion";Emiel Wiedijk;2018-10-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NmFjMzA4MjZkMDA3MDg5YmU2NzUxOGYxNDQwMWQ3YjI5MGViYjVkNw==;"The same happens with
+cask_files and cask_file?";Emiel Wiedijk;2018-10-06;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NWRkNTcxYWRlYmViM2FiNzQ5YzM5MzlhZjI5OGFjYWI1YjM3NGVjMA==;Replace `#chuzzle` with ActiveSupport’s `#presence`.;Markus Reiter;2018-09-17;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NWRkNTcxYWRlYmViM2FiNzQ5YzM5MzlhZjI5OGFjYWI1YjM3NGVjMA==;;Markus Reiter;2018-09-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MTY2MThkMGZjNzcxOTY4ODU1YjFkOTRjYWU1NzQzZGQ5OWUxZWI2NA==;Use ActiveSupport’s `#pluralize` and `#to_sentence`.;Markus Reiter;2018-09-17;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MTY2MThkMGZjNzcxOTY4ODU1YjFkOTRjYWU1NzQzZGQ5OWUxZWI2NA==;;Markus Reiter;2018-09-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzRkNDE4ZTEyNjYzMDJkNWFmMTEwMDliNGQxZjhmMDY4ZTZhNjA5Yg==;Use ActiveSupport’s `#second`.;Markus Reiter;2018-09-17;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzRkNDE4ZTEyNjYzMDJkNWFmMTEwMDliNGQxZjhmMDY4ZTZhNjA5Yg==;;Markus Reiter;2018-09-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmRjZGY3Y2I1YzJiZDg2ZTJhYjg5NDNiY2FiZjBhOTZjYjZlMGM4Mg==;CoreTap.default_remote: Use Linuxbrew/core [Linux];Shaun Jackman;2018-10-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZmRjZGY3Y2I1YzJiZDg2ZTJhYjg5NDNiY2FiZjBhOTZjYjZlMGM4Mg==;;Shaun Jackman;2018-10-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZTliOWVhNDlhMTZiNzg3OTczMWQwMWZmMjg0MjQ2MGQzMzI1N2EwNg==;Update to RuboCop 0.59.1.;Markus Reiter;2018-09-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZTliOWVhNDlhMTZiNzg3OTczMWQwMWZmMjg0MjQ2MGQzMzI1N2EwNg==;;Markus Reiter;2018-09-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2EwYTlmOTA3MzRiZDRkNmZlZTE0ZjQyMWMxMTczZWQ1MmRiZDg2Yg==;Add `String#delete_prefix` backport.;Markus Reiter;2018-09-14;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6M2EwYTlmOTA3MzRiZDRkNmZlZTE0ZjQyMWMxMTczZWQ1MmRiZDg2Yg==;;Markus Reiter;2018-09-14;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZWNhNDg4YTk2NmYzM2RiNzc3OTU2NDBkYThhMzkzNjYyNmI3ZTQ2Nw==;Add `$LOAD_PATH` for RuboCop cops.;Markus Reiter;2018-09-02;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZWNhNDg4YTk2NmYzM2RiNzc3OTU2NDBkYThhMzkzNjYyNmI3ZTQ2Nw==;;Markus Reiter;2018-09-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NmRiNGI3MjIwMDk0MjA1NDI0ZTQxNzRjNDMzMTliZTI3M2E0YjlkZQ==;tap: fix GitHub naming.;Mike McQuaid;2018-09-04;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NmRiNGI3MjIwMDk0MjA1NDI0ZTQxNzRjNDMzMTliZTI3M2E0YjlkZQ==;;Mike McQuaid;2018-09-04;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2I5MWM1ZjFhZTEzODFlZTkwZWQ1YzEzOTFhOWE3YThmZjcwMjAyYw==;Merge pull request #4797 from MikeMcQuaid/rubocop-tweaks;Mike McQuaid;2018-09-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2I5MWM1ZjFhZTEzODFlZTkwZWQ1YzEzOTFhOWE3YThmZjcwMjAyYw==;.rubocop: tweak rules.;Mike McQuaid;2018-09-02;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGFhOWRjZTAzYzM1MWJjN2Y2NmQ4ZTc0Njc2ZWZmMDU2NjY4N2QxZg==;"Revert ""Add `$LOAD_PATH` for RuboCop cops.""";Mike McQuaid;2018-09-02;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGFhOWRjZTAzYzM1MWJjN2Y2NmQ4ZTc0Njc2ZWZmMDU2NjY4N2QxZg==;;Mike McQuaid;2018-09-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODBkNzViYzBkOGMzZmRiYTM2MGU3YzkxNjNjZmU1NWYxMDk5NDMyNQ==;Homebrew/.rubocop: tweak rules.;Mike McQuaid;2018-09-02;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODBkNzViYzBkOGMzZmRiYTM2MGU3YzkxNjNjZmU1NWYxMDk5NDMyNQ==;Adjust the rules based on the current codebase;Mike McQuaid;2018-09-02;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODBkNzViYzBkOGMzZmRiYTM2MGU3YzkxNjNjZmU1NWYxMDk5NDMyNQ==;"Remove various enable,
+disables and default values that are unnecessary";Mike McQuaid;2018-09-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODBkNzViYzBkOGMzZmRiYTM2MGU3YzkxNjNjZmU1NWYxMDk5NDMyNQ==;"Add more comments
+explaining why";Mike McQuaid;2018-09-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODBkNzViYzBkOGMzZmRiYTM2MGU3YzkxNjNjZmU1NWYxMDk5NDMyNQ==;Make minor changes needed to enable a few more rules.;Mike McQuaid;2018-09-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjZlN2EzZWQ5ZDgxZWI1ODVkOGQ3NDlkOGZmZTM1NWUzYTFlNzUwMw==;Fix style.;Markus Reiter;2018-07-17;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjZlN2EzZWQ5ZDgxZWI1ODVkOGQ3NDlkOGZmZTM1NWUzYTFlNzUwMw==;;Markus Reiter;2018-07-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZGZhNWJmZGY5ZGI3ZmFhNzE5ZGUyODA3YjhlNjVjZDk5MjgzYzhhNQ==;Add `Tap#command_file?` method.;Markus Reiter;2018-07-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZGZhNWJmZGY5ZGI3ZmFhNzE5ZGUyODA3YjhlNjVjZDk5MjgzYzhhNQ==;;Markus Reiter;2018-07-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzZjMWVhY2MxOGRlNmFkOTU4MGFlYjQzZDRmMmQ5MGY5YWQ0YzViYg==;Rename `enumeration` to `comma_and`.;Markus Reiter;2018-06-30;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzZjMWVhY2MxOGRlNmFkOTU4MGFlYjQzZDRmMmQ5MGY5YWQ0YzViYg==;;Markus Reiter;2018-06-30;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Nzg1NzUwZWU2MzY0YjE0ZTQ3ZGZhYzM1MjM3MmNiNTFhODNlZTljOQ==;Add `Tap#contents` methods.;Markus Reiter;2018-06-20;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6Nzg1NzUwZWU2MzY0YjE0ZTQ3ZGZhYzM1MjM3MmNiNTFhODNlZTljOQ==;;Markus Reiter;2018-06-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmFhNzU5N2U3MGQ4YWE1YmQ1Mjk0OTQ4ODQ2NDY3OTdlYTU0N2NiMA==;Show tapped casks.;Markus Reiter;2018-06-19;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmFhNzU5N2U3MGQ4YWE1YmQ1Mjk0OTQ4ODQ2NDY3OTdlYTU0N2NiMA==;;Markus Reiter;2018-06-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MTJhYjI2Mzc4NDBiYTg5Y2QyNmQ3ZjIwYzVlNWQzNWZlYzZiOGE3NQ==;Remove `Hbc.default_tap`.;Markus Reiter;2018-06-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MTJhYjI2Mzc4NDBiYTg5Y2QyNmQ3ZjIwYzVlNWQzNWZlYzZiOGE3NQ==;;Markus Reiter;2018-06-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NTBhNDNjZjY3ODBjYzUzODBiYjAwZDE5MjI5NmQ5MWViYjNjZGRjOQ==;Reset `repo_var` in `clear_cache`.;Markus Reiter;2018-05-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NTBhNDNjZjY3ODBjYzUzODBiYjAwZDE5MjI5NmQ5MWViYjNjZGRjOQ==;;Markus Reiter;2018-05-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NTQ4MzRjY2JlM2I5NzcwN2JhZTE0ODJkM2JjMTAwMzllYzFjMDFkNg==;Move `repo_var` method to `Tap` class.;Markus Reiter;2018-05-25;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NTQ4MzRjY2JlM2I5NzcwN2JhZTE0ODJkM2JjMTAwMzllYzFjMDFkNg==;;Markus Reiter;2018-05-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODczNDg0ODgyOTdmYmNkMDUzYWZmMDUzZmNiMjM0OTg0ZTEyYmQxMQ==;Support enabling auto-updates for non-GitHub taps;Eli Young;2018-04-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODczNDg0ODgyOTdmYmNkMDUzYWZmMDUzZmNiMjM0OTg0ZTEyYmQxMQ==;;Eli Young;2018-04-12;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OWZjYTE3MmQwMzY2ZGEwNzYyOTViMTRiNGUwMTkxNzkxOTk2MzI4Mg==;"Fix HOMEBREW_RUBY_WARNINGS=""-w""";Mike McQuaid;2018-04-07;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWZjYTE3MmQwMzY2ZGEwNzYyOTViMTRiNGUwMTkxNzkxOTk2MzI4Mg==;Fix various circular requirements, method redefinitions, etc.;Mike McQuaid;2018-04-07;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OTRmMjA5OGMzNjE4MWZkMjk2ODQ2ZTQwMzYzNTgyYzQzMmQ1ZThjYw==;Only use `HOMEBREW_TAP_PATH_REGEX` once inside `Tap` class.;Markus Reiter;2018-03-29;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6OTRmMjA5OGMzNjE4MWZkMjk2ODQ2ZTQwMzYzNTgyYzQzMmQ1ZThjYw==;;Markus Reiter;2018-03-29;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NzBhOWE2NzQxMTJlNTVmZjdmN2ZlOWU4Y2E4ZjM1N2YzOGU5ODhmMQ==;Don't use Linuxbrew/homebrew-core (yet, at least).;Mike McQuaid;2018-03-16;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NzBhOWE2NzQxMTJlNTVmZjdmN2ZlOWU4Y2E4ZjM1N2YzOGU5ODhmMQ==;This can't be tapped on vanilla Homebrew/brew because things like e.g;Mike McQuaid;2018-03-16;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NzBhOWE2NzQxMTJlNTVmZjdmN2ZlOWU4Y2E4ZjM1N2YzOGU5ODhmMQ==;`GlibcRequirement` are missing;Mike McQuaid;2018-03-16;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NzBhOWE2NzQxMTJlNTVmZjdmN2ZlOWU4Y2E4ZjM1N2YzOGU5ODhmMQ==;"We will put this back when the Linuxbrew
+to Homebrew migration is complete.";Mike McQuaid;2018-03-16;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzlmMDJhYTNmNzY3MmZlODdlMjllMDhmOTA4ZGQyYTE0MjQ5NjUzZQ==;tap: don’t tap deprecated taps.;Mike McQuaid;2018-01-28;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzlmMDJhYTNmNzY3MmZlODdlMjllMDhmOTA4ZGQyYTE0MjQ5NjUzZQ==;These no longer have any files in them.;Mike McQuaid;2018-01-28;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MTdmODBhNDRlNjNkMWZiMGNiZmM0OGRjNjAyYzYyYmJjMDFhZDhmYQ==;"Revert ""Use Homebrew's gitconfig for various commands""";ilovezfs;2018-01-15;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MTdmODBhNDRlNjNkMWZiMGNiZmM0OGRjNjAyYzYyYmJjMDFhZDhmYQ==;;ilovezfs;2018-01-15;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjI4Y2JkODFjOWU1ZDg4MTI0ZDA5YjczZTQ0YmM3YmNlYjQwOTcyZA==;Use Homebrew's gitconfig for various commands;Mike McQuaid;2018-01-11;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjI4Y2JkODFjOWU1ZDg4MTI0ZDA5YjczZTQ0YmM3YmNlYjQwOTcyZA==;"Git is a transport and storage mechanism for us so we don't want to
+allow arbitrary customisation of this due to user issues e.g";Mike McQuaid;2018-01-11;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjI4Y2JkODFjOWU1ZDg4MTI0ZDA5YjczZTQ0YmM3YmNlYjQwOTcyZA==;"#3664
+and #3561";Mike McQuaid;2018-01-11;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjI4Y2JkODFjOWU1ZDg4MTI0ZDA5YjczZTQ0YmM3YmNlYjQwOTcyZA==;Fixes #3664.;Mike McQuaid;2018-01-11;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6N2E2OGI0YTNmOTZjMGNjNzZmOTRkZTJjZDcyYjQ2M2I0MGJlMDM0Mw==;Refactor command handling code;Mike McQuaid;2017-11-05;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6N2E2OGI0YTNmOTZjMGNjNzZmOTRkZTJjZDcyYjQ2M2I0MGJlMDM0Mw==;"Don’t rely on having external commands always present in the PATH in
+order to find them";Mike McQuaid;2017-11-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6N2E2OGI0YTNmOTZjMGNjNzZmOTRkZTJjZDcyYjQ2M2I0MGJlMDM0Mw==;"Instead, provide an accessory method to Tap so
+they can be added and used when needed";Mike McQuaid;2017-11-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6N2E2OGI0YTNmOTZjMGNjNzZmOTRkZTJjZDcyYjQ2M2I0MGJlMDM0Mw==;"While we’re here, do some general refactoring and cleanup of the
+command code in these places.";Mike McQuaid;2017-11-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjlkNDI2NTllYTk1MTg5NjczM2Y0OTM5NGE1MDM2NmZiNTVlYWFmYg==;pull: Fix pull --bottle 1234;Shaun Jackman;2017-10-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjlkNDI2NTllYTk1MTg5NjczM2Y0OTM5NGE1MDM2NmZiNTVlYWFmYg==;Fix the error;Shaun Jackman;2017-10-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjlkNDI2NTllYTk1MTg5NjczM2Y0OTM5NGE1MDM2NmZiNTVlYWFmYg==;Error: undefined method `casecmp' for nil:NilClass;Shaun Jackman;2017-10-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWJlZTljYTU3NTdkMWM1ZjcyMDc4NzczN2ZlZDZhNTM0YTYyMGQ3Mg==;Use “squiggly” heredocs.;Markus Reiter;2017-10-15;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWJlZTljYTU3NTdkMWM1ZjcyMDc4NzczN2ZlZDZhNTM0YTYyMGQ3Mg==;;Markus Reiter;2017-10-15;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2E2MDZhYmFhMTNhMzA5MGYzYzYzMzZlZmVkNDM1MDA2ZjA5MWM2MA==;Merge pull request #3229 from BenMusch/check-for-master-no-refactor;Mike McQuaid;2017-10-18;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6M2E2MDZhYmFhMTNhMzA5MGYzYzYzMzZlZmVkNDM1MDA2ZjA5MWM2MA==;doctor: Check for branch of core tap (take 2);Mike McQuaid;2017-10-18;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZTk4ZDBmZGE4NjcxOTc5NGZkMzVmNDJiMjVhMjJmYWQ0MDhmZDdlZg==;tap: pass explicit sort to handle APFS;Dominyk Tiller;2017-10-14;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZTk4ZDBmZGE4NjcxOTc5NGZkMzVmNDJiMjVhMjJmYWQ0MDhmZDdlZg==;;Dominyk Tiller;2017-10-14;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MTc1Y2E5MDllZTFhNWI1N2FhMGNhZTJjODc5OTIwNTExZjMxMWIxNA==;Clean up code style and remove `.rubocop_todo.yml`.;Markus Reiter;2017-10-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MTc1Y2E5MDllZTFhNWI1N2FhMGNhZTJjODc5OTIwNTExZjMxMWIxNA==;;Markus Reiter;2017-10-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmU1Yzg4NWRhMGI4YjY5YTVkZTc0NjQ3ZTQxODFiMTM3YWNiODM1Zg==;Implement changes;Ben Muschol;2017-09-27;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmU1Yzg4NWRhMGI4YjY5YTVkZTc0NjQ3ZTQxODFiMTM3YWNiODM1Zg==;;Ben Muschol;2017-09-27;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Y2Y1ZmRlZWYxZDhlOWZkMDUzMTIxMTQ1ODgyODM1Yjg3ZWVjMmE0Mw==;Rubocop: manual rule fixes.;Mike McQuaid;2017-09-24;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6Y2Y1ZmRlZWYxZDhlOWZkMDUzMTIxMTQ1ODgyODM1Yjg3ZWVjMmE0Mw==;;Mike McQuaid;2017-09-24;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YjZkMzYwMDNiMzM2ZGVlMzZkNGMxMWE2MjFiNDA2MWJjMDYxNTI4NA==;Always output when tapping core;Alyssa Ross;2017-09-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YjZkMzYwMDNiMzM2ZGVlMzZkNGMxMWE2MjFiNDA2MWJjMDYxNTI4NA==;"Hiding all output makes it look like Homebrew is hanging while the tap
+operation (which can take a long time!) is running";Alyssa Ross;2017-09-07;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6YjZkMzYwMDNiMzM2ZGVlMzZkNGMxMWE2MjFiNDA2MWJjMDYxNTI4NA==;Closes #3053.;Alyssa Ross;2017-09-07;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzI2YzkyMDRmYTQ4YzhkMmJmYTM4MzcxOTNlYWYyYTgyYjYxMWZhNg==;Merge pull request #2965 from reitermarkus/cask-tap;Markus Reiter;2017-08-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzI2YzkyMDRmYTQ4YzhkMmJmYTM4MzcxOTNlYWYyYTgyYjYxMWZhNg==;Detect `Tap` in `CaskLoader`.;Markus Reiter;2017-08-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWMzZWNlMTJiOTk3MjA2ZmQ5Y2IwYjJiZjk4YzI1ZGE4MzMyZmUxMA==;Tap.each: return an enumerable when no block given;Misty De Meo;2017-08-04;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWMzZWNlMTJiOTk3MjA2ZmQ5Y2IwYjJiZjk4YzI1ZGE4MzMyZmUxMA==;;Misty De Meo;2017-08-04;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NmQ2Y2U3Y2YwYTUzMGI0N2E1NTdlYTc0OGRlOTcwMjQyMGY2ZmFiNA==;Detect `Tap` in `CaskLoader`.;Markus Reiter;2017-07-29;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NmQ2Y2U3Y2YwYTUzMGI0N2E1NTdlYTc0OGRlOTcwMjQyMGY2ZmFiNA==;;Markus Reiter;2017-07-29;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Y2Q3ZTNjZDM5ZDRmZDQ4Y2VkZjA5NjNjMTY2MGZlOWE3MDU0NGFkNQ==;Merge pull request #2778 from jasonkarns/tap-full-name;Mike McQuaid;2017-06-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Y2Q3ZTNjZDM5ZDRmZDQ4Y2VkZjA5NjNjMTY2MGZlOWE3MDU0NGFkNQ==;refactor: DRY up redundant formulations of {#user}/homebrew-{#repo};Mike McQuaid;2017-06-19;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzI4OTliNjU1OTFjMmE5NjZjY2ZhODdmMGNkZDQ3ZGFjOGZkMDc4MQ==;Tap learns to form its own full_name;Jason Karns;2017-06-12;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzI4OTliNjU1OTFjMmE5NjZjY2ZhODdmMGNkZDQ3ZGFjOGZkMDc4MQ==;"full_name is formed from `{user}/homebrew-{repo}` and is always
+lowercase.";Jason Karns;2017-06-12;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6N2EwYWZmMTA4MGJhNDc1ZjQ5NTM1M2NmODY4NmZiZTkyOGI2ZWJkZQ==;Autocorrect Rubocop Style/PerlBackrefs.;Mike McQuaid;2017-06-10;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6N2EwYWZmMTA4MGJhNDc1ZjQ5NTM1M2NmODY4NmZiZTkyOGI2ZWJkZQ==;;Mike McQuaid;2017-06-10;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MzU4OWUyNGRmMDNhZGMwNzQwODE1NDkyMjlkOGNjMjQ0NjQzZWVlNA==;tap: fix env typo.;Mike McQuaid;2017-04-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MzU4OWUyNGRmMDNhZGMwNzQwODE1NDkyMjlkOGNjMjQ0NjQzZWVlNA==;;Mike McQuaid;2017-04-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjI4MjM5YWYzMWYxYzVmMzUwNzg4NGZhNmI4OWQwNjA2NDRlZjJhOA==;Allow forcing Homebrew GitHub organisation.;Mike McQuaid;2017-04-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjI4MjM5YWYzMWYxYzVmMzUwNzg4NGZhNmI4OWQwNjA2NDRlZjJhOA==;On Linux this defaults to Linuxbrew but in some cases (i.e;Mike McQuaid;2017-04-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjI4MjM5YWYzMWYxYzVmMzUwNzg4NGZhNmI4OWQwNjA2NDRlZjJhOA==;"a Linux
+machine performing uploads for Homebrew) we want to allow this to be
+overridden back to the defaults";Mike McQuaid;2017-04-25;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjI4MjM5YWYzMWYxYzVmMzUwNzg4NGZhNmI4OWQwNjA2NDRlZjJhOA==;Relies on a change incoming to `brew test-bot` to set this there.;Mike McQuaid;2017-04-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZTA0Y2I4OTlhY2I0MGE2MTE0NDY4ZjI2NjE0NGY5MmQ5ODFmMTRhMA==;tap: warn on tapping deprecated, official taps.;Mike McQuaid;2017-04-22;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZTA0Y2I4OTlhY2I0MGE2MTE0NDY4ZjI2NjE0NGY5MmQ5ODFmMTRhMA==;"They don't contain any formulae so tapping them will add pointless
+clutter.";Mike McQuaid;2017-04-22;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YWMxMGIyYWI1MGU5ODc4NThiOWZhNTUxNDc4NWIxMmI3NjAwNzg3Zg==;Tap: add from_path helper method.;Mike McQuaid;2017-03-18;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6YWMxMGIyYWI1MGU5ODc4NThiOWZhNTUxNDc4NWIxMmI3NjAwNzg3Zg==;This makes it easier to turn an arbitrary path into a tap path.;Mike McQuaid;2017-03-18;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDE5OTVkYWQ0YmY3NmI0NDdkOWM5N2YxYzJkYjk5YzZiMzg1NGI1MQ==;Use a `Formulary`-like approach to load Casks.;Markus Reiter;2017-03-12;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDE5OTVkYWQ0YmY3NmI0NDdkOWM5N2YxYzJkYjk5YzZiMzg1NGI1MQ==;;Markus Reiter;2017-03-12;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzU5NGZmZWZiYzE4OTMzZmJkODk3NTBhODcyMGUxYzA1NzZmNGVlNw==;Add `Formatter::pluralize`.;Markus Reiter;2017-03-11;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzU5NGZmZWZiYzE4OTMzZmJkODk3NTBhODcyMGUxYzA1NzZmNGVlNw==;;Markus Reiter;2017-03-11;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjUzOTZkOWM0ZDdhN2ExMTFlZWJmMDJmMGViZGJiMGU2OWFhZDNiMA==;Install tap command completions and manpages;Joshua McKinney;2016-09-30;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjUzOTZkOWM0ZDdhN2ExMTFlZWJmMDJmMGViZGJiMGU2OWFhZDNiMA==;"Taps can include completion scripts for external commands under
+`completions/bash`, `completions/fish`, or `completions/zsh`";Joshua McKinney;2016-09-30;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjUzOTZkOWM0ZDdhN2ExMTFlZWJmMDJmMGViZGJiMGU2OWFhZDNiMA==;"`brew tap`
+will automatically install these into the correct directories during
+install.";Joshua McKinney;2016-09-30;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6OGY4MGNjNjU2ODZiZDZiNWVlZDM2NWZkN2Q5ZjgyMjM2NmMwMTk0Mw==;diagnostic: check for bad tap files.;Mike McQuaid;2016-12-13;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6OGY4MGNjNjU2ODZiZDZiNWVlZDM2NWZkN2Q5ZjgyMjM2NmMwMTk0Mw==;"Check for Ruby files in taps that are outside of the detected `Formula`
+directory for a tap but inside one of the other potential directories";Mike McQuaid;2016-12-13;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OGY4MGNjNjU2ODZiZDZiNWVlZDM2NWZkN2Q5ZjgyMjM2NmMwMTk0Mw==;"This usually indicates a formula has been added in the wrong directory
+in a tap and is used to fail CI in this case.";Mike McQuaid;2016-12-13;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDA3YjllZDdmMmU4ODA2YjE4NDBiNGY2MDYwNWVmNDU0ODc2NTVlMQ==;Replace Utils::JSON with corelib JSON calls.;William Woodruff;2016-11-20;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDA3YjllZDdmMmU4ODA2YjE4NDBiNGY2MDYwNWVmNDU0ODc2NTVlMQ==;;William Woodruff;2016-11-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWY5NjMyNjdiNmJkNDE1Y2UzMDI0YmI3ODYwZDUyNTNhZDhlMDEzMg==;Update Rubocop style.;Mike McQuaid;2016-10-22;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWY5NjMyNjdiNmJkNDE1Y2UzMDI0YmI3ODYwZDUyNTNhZDhlMDEzMg==;"Another look at the current Rubocop rules and how they fit with our
+existing and desired future style";Mike McQuaid;2016-10-22;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWY5NjMyNjdiNmJkNDE1Y2UzMDI0YmI3ODYwZDUyNTNhZDhlMDEzMg==;"Almost all of these changes were
+automatic";Mike McQuaid;2016-10-22;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWY5NjMyNjdiNmJkNDE1Y2UzMDI0YmI3ODYwZDUyNTNhZDhlMDEzMg==;"Split some rules between formulae/brew where brew doesn't
+have millions of cases that need fixed.";Mike McQuaid;2016-10-22;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjNkZWM1ODdmZDI2YzYwNmU0NTllNzJiMjk4N2U3M2JjOTEwYTA5NQ==;Make `core_tap_version_string` reusable.;Markus Reiter;2016-10-03;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjNkZWM1ODdmZDI2YzYwNmU0NTllNzJiMjk4N2U3M2JjOTEwYTA5NQ==;;Markus Reiter;2016-10-03;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NThlMzZjNzMxOTNiZWZiNTdkMzUxMzQ0Y2VhMmE0YTMzZmVmODUwZA==;Fix Style/GuardClause.;Markus Reiter;2016-09-23;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NThlMzZjNzMxOTNiZWZiNTdkMzUxMzQ0Y2VhMmE0YTMzZmVmODUwZA==;;Markus Reiter;2016-09-23;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Mzk4Mjk1MGU2MTA2ZDQ1ODExYTM5NmE2YTc0NzhlZWVlZTI4MTdkNw==;rubocop --auto-correct all hash-rocket usage.;Mike McQuaid;2016-09-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6Mzk4Mjk1MGU2MTA2ZDQ1ODExYTM5NmE2YTc0NzhlZWVlZTI4MTdkNw==;;Mike McQuaid;2016-09-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjY5MzkxNTM5OWE1ZDlmMWYwOTI1NWM1MDA4ZDJjYzEyMDlmNzY2Mg==;rubocop --auto-correct all remaining files.;Mike McQuaid;2016-09-17;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjY5MzkxNTM5OWE1ZDlmMWYwOTI1NWM1MDA4ZDJjYzEyMDlmNzY2Mg==;"But remove some manual `.freeze`s on constants that shouldn't be
+constants.";Mike McQuaid;2016-09-17;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODlhNjNmYjE3NzhkYmZkNDE0MGE3NzRjMzJkZWRlZGY1YjJhNDU4NQ==;Add `cask_files` method to `Tap` class.;Markus Reiter;2016-08-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODlhNjNmYjE3NzhkYmZkNDE0MGE3NzRjMzJkZWRlZGY1YjJhNDU4NQ==;;Markus Reiter;2016-08-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MDMzNTI4MDVjNjZjOGY1NDVmYWQ1OWY3MDA3ZjYxNWE1NWQzZTM3Yg==;tap: use utils link_path_manpages.;Mike McQuaid;2016-08-24;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDMzNTI4MDVjNjZjOGY1NDVmYWQ1OWY3MDA3ZjYxNWE1NWQzZTM3Yg==;;Mike McQuaid;2016-08-24;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGRkMzIwMzE4NzA2YmVkNjY1MDM4MzUwZjExYTc0YTBmYjhlN2YzNA==;Install Cask’s default tap if untapped.;Markus Reiter;2016-08-20;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGRkMzIwMzE4NzA2YmVkNjY1MDM4MzUwZjExYTc0YTBmYjhlN2YzNA==;;Markus Reiter;2016-08-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OWQ4YzRlNjI3OWFlNTBiMWU0NzZjYTNlMmZiMWY2NDY5YTNlNzFhNQ==;tap: allow Homebrew developers to tap broken taps.;Mike McQuaid;2016-08-08;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWQ4YzRlNjI3OWFlNTBiMWU0NzZjYTNlMmZiMWY2NDY5YTNlNzFhNQ==;;Mike McQuaid;2016-08-08;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NDMzOGYzNWI4NDhhZDYxNDYyZmM0ZjczZTEzNjVlNmMwMDIyMDFhMg==;tap: add cask methods.;Anastasia Sulyagina;2016-08-04;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDMzOGYzNWI4NDhhZDYxNDYyZmM0ZjczZTEzNjVlNmMwMDIyMDFhMg==;;Anastasia Sulyagina;2016-08-04;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YTYwMzM1MjljZmRjZmM2NDU4YWFhODNhMGJjOWM0YzE0MWM2MGY5Ng==;"Revert ""tap: add cask methods.""";Mike McQuaid;2016-08-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTYwMzM1MjljZmRjZmM2NDU4YWFhODNhMGJjOWM0YzE0MWM2MGY5Ng==;This reverts commit 05daa0574732a7884bd158b2c3e14bd0709367da.;Mike McQuaid;2016-08-02;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MDVkYWEwNTc0NzMyYTc4ODRiZDE1OGIyYzNlMTRiZDA3MDkzNjdkYQ==;tap: add cask methods.;AnastasiaSulyagina;2016-07-20;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDVkYWEwNTc0NzMyYTc4ODRiZDE1OGIyYzNlMTRiZDA3MDkzNjdkYQ==;Closes #562.;AnastasiaSulyagina;2016-07-20;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDRiNWIyMDgwZDIwODM1ODBmNDgyZThmN2NkNTc0NWNhOWViZGZlNA==;tap: more thoroughly validate tap names;Martin Afanasjew;2016-07-27;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDRiNWIyMDgwZDIwODM1ODBmNDgyZThmN2NkNTc0NWNhOWViZGZlNA==;"`Tap.fetch` and commands building on top of it accepted tap names like
+`homebrew/homebrew/bogus` causing some misbehavior";Martin Afanasjew;2016-07-27;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDRiNWIyMDgwZDIwODM1ODBmNDgyZThmN2NkNTc0NWNhOWViZGZlNA==;"Ensure neither
+`user` nor `repo` include slashes and print a more helpful error message
+that additionally includes the problematic tap name";Martin Afanasjew;2016-07-27;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDRiNWIyMDgwZDIwODM1ODBmNDgyZThmN2NkNTc0NWNhOWViZGZlNA==;Closes #585;Martin Afanasjew;2016-07-27;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDRiNWIyMDgwZDIwODM1ODBmNDgyZThmN2NkNTc0NWNhOWViZGZlNA==;Closes #591.;Martin Afanasjew;2016-07-27;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmM5N2FlMTI3N2M1MTk4N2NkYzFmZWE4MTllNzQyODMzYzI0OTA1Yw==;tap-info: expose whether a tap is private;Martin Afanasjew;2016-07-10;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmM5N2FlMTI3N2M1MTk4N2NkYzFmZWE4MTllNzQyODMzYzI0OTA1Yw==;Or how many taps are private when summarizing all installed taps.;Martin Afanasjew;2016-07-10;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGRhOTkwNTg3ZjcyM2E1NjNlNjAyYTY2NTQwMzM5M2Y2N2ZjOGU3MA==;tap: run readall when tapping. (#396);Mike McQuaid;2016-07-09;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGRhOTkwNTg3ZjcyM2E1NjNlNjAyYTY2NTQwMzM5M2Y2N2ZjOGU3MA==;"This will prevent tapping an tap with syntax errors from causing issues
+for users";Mike McQuaid;2016-07-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGRhOTkwNTg3ZjcyM2E1NjNlNjAyYTY2NTQwMzM5M2Y2N2ZjOGU3MA==;"
+Fixes #58.";Mike McQuaid;2016-07-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NjhiYmU2ZWU1ZmM3MjNmMTU0ZDRhMjM3Mjk5N2Q1YmQ5NjgyYTU1NA==;Use GitRepositoryExtension for 'path' in Tap;Martin Afanasjew;2016-07-02;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NjhiYmU2ZWU1ZmM3MjNmMTU0ZDRhMjM3Mjk5N2Q1YmQ5NjgyYTU1NA==;Closes #464.;Martin Afanasjew;2016-07-02;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YjA1YTU5NmQ1NzBjOGU1Njg2ZmJiNDUzMzFkYThmMTAxMTc5ZjQ5YQ==;tap: --config unsupported on old Gits.;Mike McQuaid;2016-06-20;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YjA1YTU5NmQ1NzBjOGU1Njg2ZmJiNDUzMzFkYThmMTAxMTc5ZjQ5YQ==;;Mike McQuaid;2016-06-20;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OWE2ZDVhNGZlZWQ0MTFhODc5OTM1MjgzM2Y3ZWM3M2Q0MzMyMDMxYg==;add Tap#default_remote;Xu Cheng;2016-04-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWE2ZDVhNGZlZWQ0MTFhODc5OTM1MjgzM2Y3ZWM3M2Q0MzMyMDMxYg==;  whether user has passed to custom remote to it.;Xu Cheng;2016-04-19;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NzFiNmUwYWExODIxNWNiOTU2ZGNlYjEzZjAzODFkYTExMzE3MzRjMA==;Tap#install: better TapRemoteMismatchError check;Xu Cheng;2016-04-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NzFiNmUwYWExODIxNWNiOTU2ZGNlYjEzZjAzODFkYTExMzE3MzRjMA==;Fixes #108;Xu Cheng;2016-04-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NTQ4YmU4MWIzNDUxN2UxOTRjNjA2YzYzMjM3M2ZmYmE4YjQxMmMzNA==;tap: various improvements (#77);Xu Cheng;2016-04-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NTQ4YmU4MWIzNDUxN2UxOTRjNjA2YzYzMjM3M2ZmYmE4YjQxMmMzNA==;;Xu Cheng;2016-04-12;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWQ1NDU4ODQzZTlkZDY5MTA2MzQ0M2YzNWVlZTJkODY1ZTZhNGM0MA==;Cache `Tap#private?` checks.;Mike McQuaid;2016-04-12;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWQ1NDU4ODQzZTlkZDY5MTA2MzQ0M2YzNWVlZTJkODY1ZTZhNGM0MA==;"Use both an in-class and a `.git/config` cache for this so we can ensure
+that the `Tap#private?` check is fast";Mike McQuaid;2016-04-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWQ1NDU4ODQzZTlkZDY5MTA2MzQ0M2YzNWVlZTJkODY1ZTZhNGM0MA==;"Also, make sure this cache value
+is set both when initially installing and updating a tap";Mike McQuaid;2016-04-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWQ1NDU4ODQzZTlkZDY5MTA2MzQ0M2YzNWVlZTJkODY1ZTZhNGM0MA==;"
+Thanks to @xu-cheng for most of the implementation here.";Mike McQuaid;2016-04-12;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmFkMjM1ZDhlODJhZTU3YjIwMDQ0MjlhMDI5N2YzMTNhYWZhMzE4Ng==;tap: support --full even if installed;ilovezfs;2016-04-04;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmFkMjM1ZDhlODJhZTU3YjIwMDQ0MjlhMDI5N2YzMTNhYWZhMzE4Ng==;Makes `tap` re-runnable and unshallows when requested with `--full`;ilovezfs;2016-04-04;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmFkMjM1ZDhlODJhZTU3YjIwMDQ0MjlhMDI5N2YzMTNhYWZhMzE4Ng==;Tapping with a different URL raises an exception;ilovezfs;2016-04-04;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZmFkMjM1ZDhlODJhZTU3YjIwMDQ0MjlhMDI5N2YzMTNhYWZhMzE4Ng==;"The homebrew/core tap cannot be untapped with `untap` so running
+`brew tap --full homebrew/core` is now a built-in way to get a full
+clone of this tap without resorting to workarounds";ilovezfs;2016-04-04;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZmFkMjM1ZDhlODJhZTU3YjIwMDQ0MjlhMDI5N2YzMTNhYWZhMzE4Ng==;Closes #17.;ilovezfs;2016-04-04;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWI3ZTEzZGY0ZjkzNmRkMzE4YTIzNjk4YjdiNjliZDJjYTBlMjQ4Nw==;CoreTap#install: fix clone target setting;Xu Cheng;2016-04-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWI3ZTEzZGY0ZjkzNmRkMzE4YTIzNjk4YjdiNjliZDJjYTBlMjQ4Nw==;"When invoking `brew tap homebrew/core`, the input options will be like
+`{ :clone_target => nil }`";Xu Cheng;2016-04-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWI3ZTEzZGY0ZjkzNmRkMzE4YTIzNjk4YjdiNjliZDJjYTBlMjQ4Nw==;This renders `Hash#merge` a dead operation;Xu Cheng;2016-04-05;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MWI3ZTEzZGY0ZjkzNmRkMzE4YTIzNjk4YjdiNjliZDJjYTBlMjQ4Nw==;"It doesn't impact Homebrew itself, but could cause problem for
+downstream projects Linxubrew/Tigerbrew when they adopt core/formula
+separation.";Xu Cheng;2016-04-05;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTVjZmMwMTFlMDFmNmE1N2Y5MjUxZWU2ZGM4OGY3MDZkMmFmNzllZA==;various: Homebrew/core is the core tap;Xu Cheng;2016-03-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTVjZmMwMTFlMDFmNmE1N2Y5MjUxZWU2ZGM4OGY3MDZkMmFmNzllZA==;"Also make `Homebrew/homebrew` as an alias of this tap to keep
+backward compatibility.";Xu Cheng;2016-03-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzUxMzJkYWY2MzBmMzg1NGUwYjBhMTE1YmZlZTgyMGFiYTMzNGEwMg==;introduce `Homebrew/core` tap as new default core tap.;Xu Cheng;2016-03-09;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzUxMzJkYWY2MzBmMzg1NGUwYjBhMTE1YmZlZTgyMGFiYTMzNGEwMg==;It will be auto installed whenever necessary.;Xu Cheng;2016-03-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NjNjMGE5ZmE5MmMxMDBlNTA1Y2MyYTUzZTc1MmI1YTQ0OGM2MTQ3Mw==;Tap#install: set autocrlf to false;Xu Cheng;2016-03-29;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjNjMGE5ZmE5MmMxMDBlNTA1Y2MyYTUzZTc1MmI1YTQ0OGM2MTQ3Mw==;"Ensure we don't munge line endings on checkout regardless with user's
+global git config";Xu Cheng;2016-03-29;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjNjMGE5ZmE5MmMxMDBlNTA1Y2MyYTUzZTc1MmI1YTQ0OGM2MTQ3Mw==;Closes Homebrew/homebrew#50514.;Xu Cheng;2016-03-29;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NmUyN2UyZGI3NDFkYTM5ZTNjOGYwZDk2NjhhOWMzNTZhODExMzBkMg==;tap: cache dir path to avoid duplicated Pathname operations;Xu Cheng;2016-03-23;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NmUyN2UyZGI3NDFkYTM5ZTNjOGYwZDk2NjhhOWMzNTZhODExMzBkMg==;"As discovered in Homebrew/homebrew#50256, this becomes a performance bottleneck as we are
+repeating construct same Pathname object";Xu Cheng;2016-03-23;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NmUyN2UyZGI3NDFkYTM5ZTNjOGYwZDk2NjhhOWMzNTZhODExMzBkMg==;"At the same, this commit makes the behaviors between Tap and CoreTap more
+consistence.";Xu Cheng;2016-03-23;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MjhmM2RhZThjZDViZjk3NTEyMTA5MGNiNTgyNjJiODM0NGEzOTE3Yw==;rename CoreFormulaRepository to CoreTap;Xu Cheng;2016-03-07;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjhmM2RhZThjZDViZjk3NTEyMTA5MGNiNTgyNjJiODM0NGEzOTE3Yw==;Core tap will be separated from core code in the near future;Xu Cheng;2016-03-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MjhmM2RhZThjZDViZjk3NTEyMTA5MGNiNTgyNjJiODM0NGEzOTE3Yw==;It makes sense to rename it to CoreTap.;Xu Cheng;2016-03-07;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWY5NmU0MWI0MGY1MjMxM2ZiYzc4MzJkZjYzMTgyN2Y1ZTNiY2FjYg==;tap: add methods to get git related information;Xu Cheng;2016-03-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWY5NmU0MWI0MGY1MjMxM2ZiYzc4MzJkZjYzMTgyN2Y1ZTNiY2FjYg==;"These methods will be used in `brew --version`, `brew config`
+and `brew doctor` after core/formula separation";Xu Cheng;2016-03-05;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWY5NmU0MWI0MGY1MjMxM2ZiYzc4MzJkZjYzMTgyN2Y1ZTNiY2FjYg==;Closes Homebrew/homebrew#49796.;Xu Cheng;2016-03-05;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDNjNjA2MWJjOTVkOGUyMTgwM2IyMjcxODFmNzE2ZTY5MjZlMjhmNA==;Tap#install: support quiet option;Xu Cheng;2016-02-25;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDNjNjA2MWJjOTVkOGUyMTgwM2IyMjcxODFmNzE2ZTY5MjZlMjhmNA==;;Xu Cheng;2016-02-25;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODdlY2Q2MjFlYmQzZjNiZmMxNzBmYzZlMDllYmE4NDMwMWI4MDAyNw==;add Tap#tap_migrations;Xu Cheng;2016-02-25;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODdlY2Q2MjFlYmQzZjNiZmMxNzBmYzZlMDllYmE4NDMwMWI4MDAyNw==;"This enables tap migration feature in per tap case, which will
+ultimately help core/formula separation.";Xu Cheng;2016-02-25;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGU1MWMwYjhlYTM3MWQxNWQyYWU5OTY3MDBlMWM5ODhlNzljYWIxNw==;add Tap#formula_file?;Xu Cheng;2016-02-15;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGU1MWMwYjhlYTM3MWQxNWQyYWU5OTY3MDBlMWM5ODhlNzljYWIxNw==;Return true if given path would present a Formula file in this Tap;Xu Cheng;2016-02-15;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGU1MWMwYjhlYTM3MWQxNWQyYWU5OTY3MDBlMWM5ODhlNzljYWIxNw==;"Accepts both absolute path and relative path (relative to this Tap's path)
+It offer an abstraction such that caller would not need to worry about
+low level file system in the tap";Xu Cheng;2016-02-15;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGU1MWMwYjhlYTM3MWQxNWQyYWU5OTY3MDBlMWM5ODhlNzljYWIxNw==;It will be used in `brew pull` and `brew update`;Xu Cheng;2016-02-15;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGU1MWMwYjhlYTM3MWQxNWQyYWU5OTY3MDBlMWM5ODhlNzljYWIxNw==;Closes Homebrew/homebrew#49191.;Xu Cheng;2016-02-15;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmU4OTJiY2Y2M2ExYjU5NGRkYjM5MDhiYzhjODJjMjA4OWNmYWE0NQ==;Tap: clear_cache for Tap#(un)install;Xu Cheng;2016-02-05;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmU4OTJiY2Y2M2ExYjU5NGRkYjM5MDhiYzhjODJjMjA4OWNmYWE0NQ==;"If a tap is installed during the installation, the original cache need
+to be purged";Xu Cheng;2016-02-05;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MmU4OTJiY2Y2M2ExYjU5NGRkYjM5MDhiYzhjODJjMjA4OWNmYWE0NQ==;Otherwise, it will return wrong information afterwards;Xu Cheng;2016-02-05;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MmU4OTJiY2Y2M2ExYjU5NGRkYjM5MDhiYzhjODJjMjA4OWNmYWE0NQ==;Closes Homebrew/homebrew#48887.;Xu Cheng;2016-02-05;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDlhNzkxMDZkNzYyYmY1Y2Y3YzM2MjNjM2QyN2I0ZTE4NTFmYmI4Mw==;Tap: allow invoking formula_file_to_name by Homebrew internally;Xu Cheng;2016-01-15;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MDlhNzkxMDZkNzYyYmY1Y2Y3YzM2MjNjM2QyN2I0ZTE4NTFmYmI4Mw==;;Xu Cheng;2016-01-15;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDk5Y2ZkMTM5NDI0YjEyZjY2MmVlY2JhMjhhY2IwNTk5NDg2NWFhMA==;tap: require string extensions;Misty De Meo;2016-01-04;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDk5Y2ZkMTM5NDI0YjEyZjY2MmVlY2JhMjhhY2IwNTk5NDg2NWFhMA==;Fixes Homebrew/homebrew#47684.;Misty De Meo;2016-01-04;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzE1YzlkYmFmM2Q2YmJhNGNmNDRiOTQ5NjNjYWQxMjQ5NTJmOTAyYg==;Tap#issues_url added;Baptiste Fontaine;2015-12-28;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzE1YzlkYmFmM2Q2YmJhNGNmNDRiOTQ5NjNjYWQxMjQ5NTJmOTAyYg==;Closes Homebrew/homebrew#47454.;Baptiste Fontaine;2015-12-28;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZWY3YTVjZmEzYWNkODVlZmM1NWI2YWZmOTdmNTVkZGVjYjIzOGI4Yg==;Tap#unlink_manpages: fix symlink path;Xu Cheng;2015-12-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZWY3YTVjZmEzYWNkODVlZmM1NWI2YWZmOTdmNTVkZGVjYjIzOGI4Yg==;;Xu Cheng;2015-12-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6N2VmYWU0NjM1YmUxZWVjNWRhZDA2NmQyYzUyNjE2YTQ4Zjg5MDcwMA==;Tap#unpin: remove PinnedTaps directory if it's empty;Xu Cheng;2015-12-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6N2VmYWU0NjM1YmUxZWVjNWRhZDA2NmQyYzUyNjE2YTQ4Zjg5MDcwMA==;;Xu Cheng;2015-12-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGY4NGI5NzZiYWI5NGQ2NmFmMWY4ZWI2NThiNWNhODI0ZjhkNDlkNA==;move CoreFormulaRepository into separate file;Xu Cheng;2015-12-19;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGY4NGI5NzZiYWI5NGQ2NmFmMWY4ZWI2NThiNWNhODI0ZjhkNDlkNA==;"For users whose local brew is at around 2015-06-11 to 2015-08-06,
+running `brew update` will emit following error";Xu Cheng;2015-12-19;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MGY4NGI5NzZiYWI5NGQ2NmFmMWY4ZWI2NThiNWNhODI0ZjhkNDlkNA==;"  Error: uninitialized constant Formulary::CoreFormulaRepository
+This is caused by the same bug described in Homebrew/homebrew#42553";Xu Cheng;2015-12-19;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGY4NGI5NzZiYWI5NGQ2NmFmMWY4ZWI2NThiNWNhODI0ZjhkNDlkNA==;"This commit workarounds this issue and restores `brew update` compatibility
+for users mentioned above";Xu Cheng;2015-12-19;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MGY4NGI5NzZiYWI5NGQ2NmFmMWY4ZWI2NThiNWNhODI0ZjhkNDlkNA==;"Also cleanup legacy `require ""cmd/tap""`.";Xu Cheng;2015-12-19;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDM2ZDg4ZWRmMjdlYWQ1NWFkYjZlZmUzMTJmN2Y3MGYwOTBiNzI5ZA==;Allow taps to link manpages.;Mike McQuaid;2015-12-08;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDM2ZDg4ZWRmMjdlYWQ1NWFkYjZlZmUzMTJmN2Y3MGYwOTBiNzI5ZA==;A blocker for being merged;Mike McQuaid;2015-12-08;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZDM2ZDg4ZWRmMjdlYWQ1NWFkYjZlZmUzMTJmN2Y3MGYwOTBiNzI5ZA==;Closes Homebrew/homebrew#46795.;Mike McQuaid;2015-12-08;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YjEwMGFkMjIzZDI0YmVmNzliYzJlNDA0OTFiNjhhYTA2YzQzNDQ2NQ==;Tap#==: allow compare with string;Xu Cheng;2015-12-06;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6YjEwMGFkMjIzZDI0YmVmNzliYzJlNDA0OTFiNjhhYTA2YzQzNDQ2NQ==;;Xu Cheng;2015-12-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NWI0MzVkYjNiZmM0OGQ4YmI0MWE1NzczY2Y2ZDdhZTg5NzBhNTVlNA==;add Tap#core_formula_repository?;Xu Cheng;2015-12-07;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6NWI0MzVkYjNiZmM0OGQ4YmI0MWE1NzczY2Y2ZDdhZTg5NzBhNTVlNA==;;Xu Cheng;2015-12-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OWY3YTM4MzAxN2QzZWQzY2I0YWVkZmJjZGI1OGZkMDNlYWE0NTk5Yw==;add CoreFormulaRepository singleton class;Xu Cheng;2015-12-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWY3YTM4MzAxN2QzZWQzY2I0YWVkZmJjZGI1OGZkMDNlYWE0NTk5Yw==;;Xu Cheng;2015-12-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6YzJhNWE4Mzg4ZjgxZDgxNjBkZjYxZjZjY2Q0YjkxNjE5MjFiZDFlNQ==;Tap: add formula_file_to_name and alias_file_to_name;Xu Cheng;2015-12-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YzJhNWE4Mzg4ZjgxZDgxNjBkZjYxZjZjY2Q0YjkxNjE5MjFiZDFlNQ==;;Xu Cheng;2015-12-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ZWE4MTk2M2I4YTRhNjgzZWYxMWIzYWFhZmVmMDUzY2ZhZDY0YmRlYQ==;add Tap#alias_dir;Xu Cheng;2015-12-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZWE4MTk2M2I4YTRhNjgzZWYxMWIzYWFhZmVmMDUzY2ZhZDY0YmRlYQ==;;Xu Cheng;2015-12-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MzI3Mjg2Y2RmYjA2OGU4YTE3NjM4NDliMzIxZmRlYzJjMzUxN2VkMg==;add Tap#formula_dir;Xu Cheng;2015-12-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6MzI3Mjg2Y2RmYjA2OGU4YTE3NjM4NDliMzIxZmRlYzJjMzUxN2VkMg==;;Xu Cheng;2015-12-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6ODliZDk0NWJiN2Q2MjM1NzFkYTM4OWRiMDE2Nzg0M2ZkYmM4MDVkNg==;Tap: use method instead of variable;Xu Cheng;2015-12-06;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ODliZDk0NWJiN2Q2MjM1NzFkYTM4OWRiMDE2Nzg0M2ZkYmM4MDVkNg==;;Xu Cheng;2015-12-06;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NDg5NTBmMmNjMDdkNzRhNTI0MTFjZjFmZTg2NzQ0MDk3MzYyOTFhYg==;centralize the logic of handling `homebrew-` in Tap.fetch;Xu Cheng;2015-12-02;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDg5NTBmMmNjMDdkNzRhNTI0MTFjZjFmZTg2NzQ0MDk3MzYyOTFhYg==;Closes Homebrew/homebrew#46537.;Xu Cheng;2015-12-02;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZTk3NjEwYjkxNjBhM2M5NGU0Y2FmOTRmZjZmMDM2YThjOWI0YTc4YQ==;add Tap#install and Tap#uninstall;Xu Cheng;2015-11-07;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZTk3NjEwYjkxNjBhM2M5NGU0Y2FmOTRmZjZmMDM2YThjOWI0YTc4YQ==;;Xu Cheng;2015-11-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NGUxOTZhMjM0ODM3OTljZTExNDE2OWI4YjA3Y2IzZTE5NWMxMDdkMw==;tap: add more document;Xu Cheng;2015-11-07;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NGUxOTZhMjM0ODM3OTljZTExNDE2OWI4YjA3Y2IzZTE5NWMxMDdkMw==;;Xu Cheng;2015-11-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OTg2MzNlMDNjNjJiZGY5ZjY1ODMzOGY1Nzg5NWRhNzg4YzllYjc2Yw==;add alias_table and alias_reverse_table for core and tap;Xu Cheng;2015-10-07;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OTg2MzNlMDNjNjJiZGY5ZjY1ODMzOGY1Nzg5NWRhNzg4YzllYjc2Yw==;;Xu Cheng;2015-10-07;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2I1MjBjZjE5NWI2ZDc2NmQxMzRhMWYyYmQwMzMzNDdjNzE0YTE0Mw==;cache taps;Xu Cheng;2015-09-27;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6M2I1MjBjZjE5NWI2ZDc2NmQxMzRhMWYyYmQwMzMzNDdjNzE0YTE0Mw==;"There are plenty of IO operations inside Tap object, and it will be more
+when implementing formula alias reverse look up(e.g";Xu Cheng;2015-09-27;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6M2I1MjBjZjE5NWI2ZDc2NmQxMzRhMWYyYmQwMzMzNDdjNzE0YTE0Mw==;"list all of alias
+names for a formula)";Xu Cheng;2015-09-27;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2I1MjBjZjE5NWI2ZDc2NmQxMzRhMWYyYmQwMzMzNDdjNzE0YTE0Mw==;So let's cache them;Xu Cheng;2015-09-27;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2I1MjBjZjE5NWI2ZDc2NmQxMzRhMWYyYmQwMzMzNDdjNzE0YTE0Mw==;Some benchmark;Xu Cheng;2015-09-27;1;0
+MDY6Q29tbWl0NTMyMzg4MTM6M2I1MjBjZjE5NWI2ZDc2NmQxMzRhMWYyYmQwMzMzNDdjNzE0YTE0Mw==;"$ time brew info $(brew ruby -e 'puts Formula.tap_names') > /dev/null
+Before: 6.40s user 2.42s system 96% cpu 9.134 total
+After: 4.75s user 0.77s system 97% cpu 5.637 total
+Closes Homebrew/homebrew#44377.";Xu Cheng;2015-09-27;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjAwMWNkZjc3N2Y0Y2UzZDRhNjk2NzkyNTMwNzM2MWYzZDAxZDMxMw==;Tap#aliases: output fully-qualified name;Xu Cheng;2015-09-13;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjAwMWNkZjc3N2Y0Y2UzZDRhNjk2NzkyNTMwNzM2MWYzZDAxZDMxMw==;;Xu Cheng;2015-09-13;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NDYxM2M5ZWNmNWZiYjAwMjNmZTQ0Y2RlNWMxY2UxNjY0YjYwMmI3NA==;Tap: add alias method;Xu Cheng;2015-09-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDYxM2M5ZWNmNWZiYjAwMjNmZTQ0Y2RlNWMxY2UxNjY0YjYwMmI3NA==;;Xu Cheng;2015-09-12;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NjM4ZWRhNWYyZDYyYWZlMTU3YzRkMmU1NWY4MTc0ZWRiZGViMWUxNg==;tap-info: fix for not installed tap;Xu Cheng;2015-08-13;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NjM4ZWRhNWYyZDYyYWZlMTU3YzRkMmU1NWY4MTc0ZWRiZGViMWUxNg==;Closes Homebrew/homebrew#42890.;Xu Cheng;2015-08-13;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDg4NzUwNjUyYTZhNmEwNGFhNDRjNGVkZWRkYTcyMDcwMWMzMWRiNw==;tap: add formula_renames;Vlad Shablinsky;2015-08-09;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZDg4NzUwNjUyYTZhNmEwNGFhNDRjNGVkZWRkYTcyMDcwMWMzMWRiNw==;"- Tap#formula_renames is a method used for getting information
+about renames in tap formulae.";Vlad Shablinsky;2015-08-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWE4MmIyMTMzZWVkMDU5OWRmMjM3NWI4NzBiZmU0Y2JmMjhhMDJhYQ==;implement pinning of taps;CNA-Bld;2015-08-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MWE4MmIyMTMzZWVkMDU5OWRmMjM3NWI4NzBiZmU0Y2JmMjhhMDJhYQ==;;CNA-Bld;2015-08-09;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6MTNkNTQ0ZTExZTkyYmE4ZWEzNzg4NzIzNDMyMDQ2ZjhkZmU0YWRmOQ==;Core files style updates.;BrewTestBot;2015-08-03;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6MTNkNTQ0ZTExZTkyYmE4ZWEzNzg4NzIzNDMyMDQ2ZjhkZmU0YWRmOQ==;Closes Homebrew/homebrew#42354.;BrewTestBot;2015-08-03;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTliOWM1YWRlNzk4Y2E4Mzc4ZjllOGJmM2Q4MmY2ZjJiMDFkODMxMg==;Tap: allow enumerate non-git taps;Xu Cheng;2015-07-30;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTliOWM1YWRlNzk4Y2E4Mzc4ZjllOGJmM2Q4MmY2ZjJiMDFkODMxMg==;"Also add a `Tap#git?` method to indicate whether the tap is a git
+repository";Xu Cheng;2015-07-30;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6YTliOWM1YWRlNzk4Y2E4Mzc4ZjllOGJmM2Q4MmY2ZjJiMDFkODMxMg==;Closes Homebrew/homebrew#42264.;Xu Cheng;2015-07-30;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6OGY4NTIzODA5NDFmNDJiNDFiODk0MTVhNTAwYWViMzBlY2Q5OGU4Mw==;remove incorrect tag for Tap document;Xu Cheng;2015-06-14;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OGY4NTIzODA5NDFmNDJiNDFiODk0MTVhNTAwYWViMzBlY2Q5OGU4Mw==;;Xu Cheng;2015-06-14;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6NDU2NGVhODk5ZTdkMTA1MWM1MjZjYWM2N2E5Njk0NmQxNGI1MmY2YQ==;document Tap class;Xu Cheng;2015-06-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDU2NGVhODk5ZTdkMTA1MWM1MjZjYWM2N2E5Njk0NmQxNGI1MmY2YQ==;Closes Homebrew/homebrew#40608.;Xu Cheng;2015-06-12;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDEwMWNlZjNjNWUxNjdkYWVlNmE2MTg5ZTM0NTQ2NjE5YzUxMGRkMw==;Tap: make remote a separate method to reduce initial overhead;Xu Cheng;2015-06-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6NDEwMWNlZjNjNWUxNjdkYWVlNmE2MTg5ZTM0NTQ2NjE5YzUxMGRkMw==;Also make remote method only response to installed tap.;Xu Cheng;2015-06-12;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWMzYTZhM2Y1MjMxNzgwOGEwZmIyZGZkNWExZTgwMjEyOGNhZGQ1Nw==;tap: taps don't need to be Git repositories.;Mike McQuaid;2015-06-11;0;1
+MDY6Q29tbWl0NTMyMzg4MTM6OWMzYTZhM2Y1MjMxNzgwOGEwZmIyZGZkNWExZTgwMjEyOGNhZGQ1Nw==;For example e.g;Mike McQuaid;2015-06-11;0;0
+MDY6Q29tbWl0NTMyMzg4MTM6OWMzYTZhM2Y1MjMxNzgwOGEwZmIyZGZkNWExZTgwMjEyOGNhZGQ1Nw==;"Boxen uses just a managed directory and puts formulae
+into it.";Mike McQuaid;2015-06-11;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjdiY2ZlNTExNWY5MmU1ZTg4NTk2YmY3N2QzNGY5YTk1NGU0YzRiMA==;add Tap class;Xu Cheng;2015-06-10;1;1
+MDY6Q29tbWl0NTMyMzg4MTM6ZjdiY2ZlNTExNWY5MmU1ZTg4NTk2YmY3N2QzNGY5YTk1NGU0YzRiMA==;;Xu Cheng;2015-06-10;0;0

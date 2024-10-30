@@ -1,0 +1,476 @@
+commit ID,author name,committer name,message,URL,commit date
+C_kwDOAD-LgtoAKGQ5YjkxZTM4MzYxNjk2MDE0YmRjOTg0MzRkNmQwMThlYWU4MDk1MTk,Syed Waheed,GitHub,Fixed #32923 -- Refactored out Field._clean_bound_field().,https://api.github.com/repos/django/django/git/commits/d9b91e38361696014bdc98434d6d018eae809519,2024-01-23
+C_kwDOAD-LgtoAKGYxNjk3ZWM3YzhmYzg1MWJhYTljODkwYTYwNWFjYjY3ZjA0MjEwZjI,David Smith,GitHub,"Refs #31026 -- Simplified BaseForm.get_context().
+
+bf.errors returns an ErrorList. Access this directly and avoid creating
+a new instance in BaseForm.get_context()
+
+Calling str() on the ErrorList can also be deferred to when the
+variable used in the template.",https://api.github.com/repos/django/django/git/commits/f1697ec7c8fc851baa9c890a605acb67f04210f2,2023-11-20
+C_kwDOAD-LgtoAKDMxODc4YjRkNzM4NzgzNWM1Y2VjNWU3ZmM1YjQ3M2I3MzcwNjVhNTg,Mariusz Felisiak,Mariusz Felisiak,"Refs #31026 -- Removed ability to return string when rendering ErrorDict/ErrorList.
+
+Per deprecation timeline.",https://api.github.com/repos/django/django/git/commits/31878b4d7387835c5cec5e7fc5b473b737065a58,2023-01-11
+C_kwDOAD-LgtoAKDE4MmQyNWViN2EyMjcyMDY3NDZiZmEzMGFhYjEzYWFhMzRkMWRlODQ,Mariusz Felisiak,Mariusz Felisiak,Refs #31026 -- Removed BaseForm._html_output() per deprecation timeline.,https://api.github.com/repos/django/django/git/commits/182d25eb7a227206746bfa30aab13aaa34d1de84,2023-01-10
+C_kwDOAD-LgtoAKDUxZmFmNGJkMTcyY2Q0Y2IyMTlhOTc5M2ZhY2JmYTAwMjQ2YzlmM2M,Francesco Panico,Mariusz Felisiak,"Fixed #34148 -- Reverted ""Fixed #32901 -- Optimized BaseForm.__getitem__().""
+
+This reverts commit edde2a069929c93e37835dc3f7c9a229040058e2.
+
+Thanks Jan Pieter Waagmeester for the report.",https://api.github.com/repos/django/django/git/commits/51faf4bd172cd4cb219a9793facbfa00246c9f3c,2022-11-17
+C_kwDOAD-LgtoAKGQzY2I5MWRiODdiNzg2MjljMGQyNjgyNjMwZTkwYTA0ODI3NTE3OWU,Nick Pope,Mariusz Felisiak,"Used more augmented assignment statements.
+
+Identified using the following command:
+
+$ git grep -I '\(\<[_a-zA-Z0-9]\+\>\) *= *\1 *[-+/*^%&|<>@]'",https://api.github.com/repos/django/django/git/commits/d3cb91db87b78629c0d2682630e90a048275179e,2022-01-28
+C_kwDOAD-LgtoAKGVjNTY1OTM4MmE1ZjVmYzJkYWYwYzg3Y2NjODlkMGZiMDc1MzQ4NzQ,David Smith,Carlton Gibson,Fixed #32339 -- Added div.html form template.,https://api.github.com/repos/django/django/git/commits/ec5659382a5f5fc2daf0c87ccc89d0fb07534874,2022-05-05
+C_kwDOAD-LgtoAKDQ3NmQ0ZDUwODcxNzk3NzEwMWJiYTFhN2Y3NjU2NTNlNDhlODhlNzY,Carlton Gibson,Carlton Gibson,"Refs #32339 -- Allowed renderer to specify default form and formset templates.
+
+Co-authored-by: David Smith <smithdc@gmail.com>",https://api.github.com/repos/django/django/git/commits/476d4d508717977101bba1a7f765653e48e88e76,2022-04-26
+C_kwDOAD-LgtoAKDljMTlhZmY3Yzc1NjFlM2E4Mjk3OGEyNzJlY2RhYWQ0MGRkYTVjMDA,django-bot,Mariusz Felisiak,Refs #33476 -- Reformatted code with Black.,https://api.github.com/repos/django/django/git/commits/9c19aff7c7561e3a82978a272ecdaad40dda5c00,2022-02-03
+MDY6Q29tbWl0NDE2NDQ4Mjo0NTY0NjZkOTMyODMwYjA5NmQzOTgwNmUyOTFmZTIzZWM1ZWQzOGQ1,David Smith,Mariusz Felisiak,"Fixed #31026 -- Switched form rendering to template engine.
+
+Thanks Carlton Gibson, Keryn Knight, Mariusz Felisiak, and Nick Pope
+for reviews.
+
+Co-authored-by: Johannes Hoppe <info@johanneshoppe.com>",https://api.github.com/repos/django/django/git/commits/456466d932830b096d39806e291fe23ec5ed38d5,2021-09-10
+MDY6Q29tbWl0NDE2NDQ4MjowZGMyNTUyNmQ4ZGFhYWE1OTk2OGQ0YjFiNTk3OTY4ZTE5N2YwNDBj,Chris Jerdonek,Carlton Gibson,Fixed #32924 -- Changed BaseForm.get_initial_for_field() to remove microseconds when needed.,https://api.github.com/repos/django/django/git/commits/0dc25526d8daaaa59968d4b1b597968e197f040c,2021-07-14
+MDY6Q29tbWl0NDE2NDQ4MjowOGYwNzc4ODg1NDhhOTUxZjAxYjQ1NGQwZGIwOGQ5NDA3ZjdmMGFh,Chris Jerdonek,Carlton Gibson,Refs #32920 -- Added BoundField._has_changed() for use in BaseForm.changed_data().,https://api.github.com/repos/django/django/git/commits/08f077888548a951f01b454d0db08d9407f7f0aa,2021-07-13
+MDY6Q29tbWl0NDE2NDQ4Mjo5MGEzM2FiMmNlZGRlZjdmMmNkZDExNjEyZjc3ZWE5Mjk2Y2M3ZmI5,Chris Jerdonek,Carlton Gibson,Fixed #32920 -- Changed BaseForm to access its values through bound fields.,https://api.github.com/repos/django/django/git/commits/90a33ab2ceddef7f2cdd11612f77ea9296cc7fb9,2021-07-13
+MDY6Q29tbWl0NDE2NDQ4Mjo0YmU1OGZjYzM2OWEwMjRiZDdhYzcyYmIwOWFmN2QyMzA0OTljY2Ni,Chris Jerdonek,GitHub,Fixed #32917 -- Added BaseForm._widget_data_value()/_field_data_value().,https://api.github.com/repos/django/django/git/commits/4be58fcc369a024bd7ac72bb09af7d230499cccb,2021-07-13
+MDY6Q29tbWl0NDE2NDQ4MjplZGRlMmEwNjk5MjljOTNlMzc4MzVkYzNmN2M5YTIyOTA0MDA1OGUy,Chris Jerdonek,GitHub,Fixed #32901 -- Optimized BaseForm.__getitem__().,https://api.github.com/repos/django/django/git/commits/edde2a069929c93e37835dc3f7c9a229040058e2,2021-07-05
+MDY6Q29tbWl0NDE2NDQ4MjpkMTc5MTUzOWE3ZDg2NzM5Y2Q0NGM5MDlmYTgyMzljYWU3Zjg1ODc0,Vitaliy Yelnik,GitHub,Simplified DeclarativeFieldsMetaclass.__new__() a bit.,https://api.github.com/repos/django/django/git/commits/d1791539a7d86739cd44c909fa8239cae7f85874,2020-11-02
+MDY6Q29tbWl0NDE2NDQ4Mjo0OTI3NWM1NDg4ODc3NjljZDcwYmJkODVhM2IxMjU0OTFmMGM0MDYy,Hasan Ramezani,Mariusz Felisiak,Fixed #30261 -- Prevented Form._html_output() from mutating errors if hidden fields have errors.,https://api.github.com/repos/django/django/git/commits/49275c548887769cd70bbd85a3b125491f0c4062,2020-02-10
+MDY6Q29tbWl0NDE2NDQ4Mjo4NmEwMjMxZTBhMDg3ZDRiOTA5Zjc2MjIzY2M1NWQ1YmJiNjczOTMw,Jon Dufresne,Carlton Gibson,Refs #23919 -- Replaced super(...) with super() in metaclasses.,https://api.github.com/repos/django/django/git/commits/86a0231e0a087d4b909f76223cc55d5bbb673930,2019-11-28
+MDY6Q29tbWl0NDE2NDQ4MjoxMjk1ODNhMGQzY2Y2OWIwOGQwNThjZDc1MWQ3Nzc1ODg4MDFiN2Fk,Mads Jensen,Mariusz Felisiak,"Removed some outdated backwards compatibility imports and misleading comments.
+
+EmptyResultSet moved in 46509cf13dbf049f75077981c29ef2c60b5a96ab.
+FieldDoesNotExist moved in 8958170755b37ce346ae5257c1000bd936faa3b0.
+BoundField and pretty_name moved in 8550161e531a603d57723850fb09c4c9b7ca60b9.
+EMPTY_VALUES moved in 471596fc1afcb9c6258d317c619eaf5fd394e797.
+BaseRunserverCommand moved in 5c53e30607014163872e89c221b206992a9acfef.",https://api.github.com/repos/django/django/git/commits/129583a0d3cf69b08d058cd751d777588801b7ad,2019-07-18
+MDY6Q29tbWl0NDE2NDQ4MjowM2RiNWZkZGZkMGM3NjMwM2VjODNlYjFjZDkxYTZkMmRjNDQ0MWNi,Ville Skyttä,Mariusz Felisiak,"Fixed typos in docs, comments, and exception messages.",https://api.github.com/repos/django/django/git/commits/03db5fddfd0c76303ec83eb1cd91a6d2dc4441cb,2019-04-14
+MDY6Q29tbWl0NDE2NDQ4Mjo0YzA4NmQ3ZGE0YzVjZjIzOTM1YTUzNDBkYmI5YThkNjgzNWNmN2Nj,Andra Denis Ionescu,Tim Graham,Fixed #29459 -- Initialized form data/files with empty MultiValueDicts.,https://api.github.com/repos/django/django/git/commits/4c086d7da4c5cf23935a5340dbb9a8d6835cf7cc,2019-03-05
+MDY6Q29tbWl0NDE2NDQ4MjoxOTMzZTU2ZWNhMWFkMTdkZTdkZDEzM2JmYjdjYmVlOTg1OGE3NWEz,Sergey Fedoseev,Tim Graham,Removed uneeded generator expressions and list comprehensions.,https://api.github.com/repos/django/django/git/commits/1933e56eca1ad17de7dd133bfb7cbee9858a75a3,2019-02-09
+MDY6Q29tbWl0NDE2NDQ4MjoyNGI4MmNkMjAxZTIxMDYwZmJjMDIxMTdkYzE2ZDE3MDI4NzdhMWYz,Nick Pope,Tim Graham,"Fixed #30159 -- Removed unneeded use of OrderedDict.
+
+Dicts preserve order since Python 3.6.",https://api.github.com/repos/django/django/git/commits/24b82cd201e21060fbc02117dc16d1702877a1f3,2019-02-05
+MDY6Q29tbWl0NDE2NDQ4MjozNjI4MTNkNjI4NzkyNWI4ZjYzZjBiMTA3YzU1YTc0ZDk1ZjU4MjVl,Mariusz Felisiak,GitHub,Fixed hanging indentation in various code.,https://api.github.com/repos/django/django/git/commits/362813d6287925b8f63f0b107c55a74d95f5825e,2018-03-16
+MDY6Q29tbWl0NDE2NDQ4MjpkMzY4Nzg0YmFjYzdlNThiNDI2ZjI5OTM3ZWU4NDJhYTE0ZDQzOWFk,Herbert Parentes Fortes Neto,Tim Graham,Fixed #28171 -- Added an exception if Form's empty_permitted and use_required_attribute arguments conflict.,https://api.github.com/repos/django/django/git/commits/d368784bacc7e58b426f29937ee842aa14d439ad,2018-02-12
+MDY6Q29tbWl0NDE2NDQ4MjpmZjA1ZGU3NjBjYzRlZjRjN2YxODhlMTYzYzcyMmVjM2JjMWYwY2Jm,Jon Dufresne,Tim Graham,Fixed #29038 -- Removed closing slash from HTML void tags.,https://api.github.com/repos/django/django/git/commits/ff05de760cc4ef4c7f188e163c722ec3bc1f0cbf,2018-01-21
+MDY6Q29tbWl0NDE2NDQ4Mjo0YzU5OWVjZTU3ZmEwMDljZjM2MTVmMDk0OTdmODFiZmE2YTU4NWE3,Дилян Палаузов,Tim Graham,Fixed #28930 -- Simplified code with any() and all().,https://api.github.com/repos/django/django/git/commits/4c599ece57fa009cf3615f09497f81bfa6a585a7,2017-12-26
+MDY6Q29tbWl0NDE2NDQ4Mjo3YzdiYzYzOTFhM2U4MzU2NmY5YWNlNTk5NTVlNjM1MDNiYzc2Y2Vl,Daniil,Tim Graham,Fixed #28874 -- Prevented double escaping of errors on hidden form fields.,https://api.github.com/repos/django/django/git/commits/7c7bc6391a3e83566f9ace59955e63503bc76cee,2017-12-11
+MDY6Q29tbWl0NDE2NDQ4MjoyYjgxZmFhYjI1NzgzMmQzZGJkNDI5NDdhODg0ZjdlYzk5Njg1ZDE4,Tim Graham,GitHub,Fixed #28906 -- Removed unnecessary bool() calls.,https://api.github.com/repos/django/django/git/commits/2b81faab257832d3dbd42947a884f7ec99685d18,2017-12-07
+MDY6Q29tbWl0NDE2NDQ4Mjo2ZTRjNjI4MWRiYjdlZTEyYmNkYzIyNjIwODk0ZWRiNGU5Y2Y2MjNm,Tim Graham,GitHub,"Reverted ""Fixed #27818 -- Replaced try/except/pass with contextlib.suppress().""
+
+This reverts commit 550cb3a365dee4edfdd1563224d5304de2a57fda
+because try/except performs better.",https://api.github.com/repos/django/django/git/commits/6e4c6281dbb7ee12bcdc22620894edb4e9cf623f,2017-09-07
+MDY6Q29tbWl0NDE2NDQ4Mjo1NTBjYjNhMzY1ZGVlNGVkZmRkMTU2MzIyNGQ1MzA0ZGUyYTU3ZmRh,Mads Jensen,Tim Graham,Fixed #27818 -- Replaced try/except/pass with contextlib.suppress().,https://api.github.com/repos/django/django/git/commits/550cb3a365dee4edfdd1563224d5304de2a57fda,2017-03-09
+MDY6Q29tbWl0NDE2NDQ4MjozMDFkZTc3NGMyMWQwNTVlOWU1YTcwNzNlNWJmZmRiNTJiYzcxMDc5,Claude Paroz,Claude Paroz,"Refs #27795 -- Replaced many force_text() with str()
+
+Thanks Tim Graham for the review.",https://api.github.com/repos/django/django/git/commits/301de774c21d055e9e5a7073e5bffdb52bc71079,2017-04-21
+MDY6Q29tbWl0NDE2NDQ4MjoxYWE4ZTg2MDVjY2E5NWIzMWVhZjZmNWU0N2JjMDc0MmQ2ZjJlMGM3,Stefan Wehrmeyer,Tim Graham,Fixed #27989 -- Preserved empty QueryDicts for form's data/files args.,https://api.github.com/repos/django/django/git/commits/1aa8e8605cca95b31eaf6f5e47bc0742d6f2e0c7,2017-03-28
+MDY6Q29tbWl0NDE2NDQ4Mjo4MzQ2NjgwZTFjYTRhOGRkYzgxOTBiYWYzZjVmOTQ0ZjY0MThkNWNm,Claude Paroz,Claude Paroz,"Refs #27795 -- Removed unneeded force_text calls
+
+Thanks Tim Graham for the review.",https://api.github.com/repos/django/django/git/commits/8346680e1ca4a8ddc8190baf3f5f944f6418d5cf,2017-03-04
+MDY6Q29tbWl0NDE2NDQ4MjozZWI2NzlhODY5NTZkOWVlZGYyNDQ5MmYwMDAyZGUwMDJmNzE4MGY1,Anton Samarchyan,Tim Graham,Refs #27656 -- Updated django.forms/http docstring verbs according to PEP 257.,https://api.github.com/repos/django/django/git/commits/3eb679a86956d9eedf24492f0002de002f7180f5,2017-01-24
+MDY6Q29tbWl0NDE2NDQ4MjpjNjUxMzMxYjM0YjdjMzg0MWMxMjY5NTllNmU1Mjg3OWJjNmYwODM0,Claude Paroz,Claude Paroz,"Converted usage of ugettext* functions to their gettext* aliases
+
+Thanks Tim Graham for the review.",https://api.github.com/repos/django/django/git/commits/c651331b34b7c3841c126959e6e52879bc6f0834,2017-01-26
+MDY6Q29tbWl0NDE2NDQ4MjplMDdlNzQzZTBjMzc1YjM4MDc0ODU2MWQxOGI5NzVjODIxMWE0YTAx,Tim Graham,GitHub,Refs #23919 -- Used DeclarativeFieldsMetaclass.__prepare__() for tracking form field order.,https://api.github.com/repos/django/django/git/commits/e07e743e0c375b380748561d18b975c8211a4a01,2017-01-27
+MDY6Q29tbWl0NDE2NDQ4MjpjZWNjMDc5MTY4ZTg2NjkxMzg3MjhkMzE2MTFmZjNhMWU3ZWIzYTlm,Simon Charette,Claude Paroz,Refs #23919 -- Stopped inheriting from object to define new style classes.,https://api.github.com/repos/django/django/git/commits/cecc079168e8669138728d31611ff3a1e7eb3a9f,2017-01-19
+MDY6Q29tbWl0NDE2NDQ4MjoyYjI4MWNjMzVlZDlkOTk3NjE0Y2EzYzQxNjkyOGQ3ZmFiZmVmMWFk,Claude Paroz,Claude Paroz,"Refs #23919 -- Removed most of remaining six usage
+
+Thanks Tim Graham for the review.",https://api.github.com/repos/django/django/git/commits/2b281cc35ed9d997614ca3c416928d7fabfef1ad,2017-01-07
+MDY6Q29tbWl0NDE2NDQ4Mjo3YjJmMmU3NGFkYjM2YTQzMzRlODMxMzBmNmFiYzJmNzlkMzk1MjM1,Claude Paroz,Claude Paroz,"Refs #23919 -- Removed six.<various>_types usage
+
+Thanks Tim Graham and Simon Charette for the reviews.",https://api.github.com/repos/django/django/git/commits/7b2f2e74adb36a4334e83130f6abc2f79d395235,2016-12-29
+MDY6Q29tbWl0NDE2NDQ4MjpmM2M0M2FkMWZkOTU1NmYwZmQwMjZhNWRmYTkzYzY3YTVjZjE4NmNh,Claude Paroz,Claude Paroz,Refs #23919 -- Removed python_2_unicode_compatible decorator usage,https://api.github.com/repos/django/django/git/commits/f3c43ad1fd9556f0fd026a5dfa93c67a5cf186ca,2016-11-19
+MDY6Q29tbWl0NDE2NDQ4MjpkN2I5YWFhMzY2ZGQ1NGVjYzMxNDJjNTg4MTYyZTNhZGM3YzJmN2Fj,Claude Paroz,Claude Paroz,Refs #23919 -- Removed encoding preambles and future imports,https://api.github.com/repos/django/django/git/commits/d7b9aaa366dd54ecc3142c588162e3adc7c2f7ac,2016-11-19
+MDY6Q29tbWl0NDE2NDQ4MjpiNTJjNzMwMDhhOWQ2N2U5ZGRiYjg0MTg3MmRjMTVjZGQzZDZlZTAx,Preston Timmons,Tim Graham,"Fixed #15667 -- Added template-based widget rendering.
+
+Thanks Carl Meyer and Tim Graham for contributing to the patch.",https://api.github.com/repos/django/django/git/commits/b52c73008a9d67e9ddbb841872dc15cdd3d6ee01,2016-12-27
+MDY6Q29tbWl0NDE2NDQ4MjpmNWM2ZDNjOGQ5ZmEyMTU4NzM0ODU4ZmEwYTdhYzkxN2MzODRjYjk3,Jon Dufresne,GitHub,Fixed #27068 -- Unified form field initial data retrieval.,https://api.github.com/repos/django/django/git/commits/f5c6d3c8d9fa2158734858fa0a7ac917c384cb97,2016-08-19
+MDY6Q29tbWl0NDE2NDQ4MjphNWY4NWQ4OTFiNTFkN2NlYjRmOWU0MjJlM2U0ZjVjNzQxMDYyMjg4,Tim Graham,Tim Graham,"Fixed #26917 -- Fixed crash in disabled ModelChoiceFields.
+
+Partially reverted refs #25532 to fix a regression in Django 1.10.
+This reintroduces a crash for disabled forms.JSONField (refs #26949),
+however, that issue is also present on Django 1.9.
+
+Thanks Ryan Schave for the test.",https://api.github.com/repos/django/django/git/commits/a5f85d891b51d7ceb4f9e422e3e4f5c741062288,2016-07-25
+MDY6Q29tbWl0NDE2NDQ4MjplYzYxMjE2OTNmMTEyYWUzM2I2NTNiNDM2NGU4MTI3MjJkMmViNTY3,Jon Dufresne,Tim Graham,Fixed #22383 -- Added support for HTML5 required attribute on required form fields.,https://api.github.com/repos/django/django/git/commits/ec6121693f112ae33b653b4364e812722d2eb567,2016-03-28
+MDY6Q29tbWl0NDE2NDQ4MjozY2I2M2IwZTQ3MzU2OGNiNTE1OGQ3YTRmMTNjYjdlMWM5ZWU4OWY1,Tim Graham,Tim Graham,Refs #26502 -- Added choices to Form.__getitem__() KeyError message.,https://api.github.com/repos/django/django/git/commits/3cb63b0e473568cb5158d7a4f13cb7e1c9ee89f5,2016-04-14
+MDY6Q29tbWl0NDE2NDQ4MjpkZjhkOGQ0MjkyNjg0ZDZmZmE3NDc0ZjFlMjAxYWVkNDg2ZjAyYjUz,Tim Graham,Tim Graham,Fixed E128 flake8 warnings in django/.,https://api.github.com/repos/django/django/git/commits/df8d8d4292684d6ffa7474f1e201aed486f02b53,2016-03-28
+MDY6Q29tbWl0NDE2NDQ4MjpkYjE5NjE5NTQ1ZGQ5OWExZDI1MDJjNzI5NzRkNzllY2EzM2FjZmY3,Claude Paroz,Claude Paroz,"Fixed #25532 -- Properly redisplayed JSONField form input values
+
+Thanks David Szotten for the report and Tommy Beadle for code inspiration.
+Thanks Tim Graham for the review.",https://api.github.com/repos/django/django/git/commits/db19619545dd99a1d2502c72974d79eca33acff7,2016-03-26
+MDY6Q29tbWl0NDE2NDQ4MjphNTEwNzBlNzQzNDQyNjQ2Nzg2OTE0NzYwOGM1YThjYTU4ZTIxZTAw,Moritz Sichert,Moritz Sichert,Refs #25294 -- Added BoundField import for backwards compatibility.,https://api.github.com/repos/django/django/git/commits/a51070e7434426467869147608c5a8ca58e21e00,2015-09-24
+MDY6Q29tbWl0NDE2NDQ4Mjo4NTUwMTYxZTUzMWE2MDNkNTc3MjM4NTBmYjA5YzRjOWI3Y2E2MGI5,Moritz Sichert,Tim Graham,Refs #25294 -- Moved BoundField to django.forms.boundfield.,https://api.github.com/repos/django/django/git/commits/8550161e531a603d57723850fb09c4c9b7ca60b9,2015-09-09
+MDY6Q29tbWl0NDE2NDQ4Mjo1MzU4MDllMTIxNjFkMjhkYWNhZjUxNjE0MzZmYzA1YTliYjA2NGFh,Moritz Sichert,Tim Graham,Fixed #25294 -- Allowed custom BoundFields on forms.,https://api.github.com/repos/django/django/git/commits/535809e12161d28dacaf5161436fc05a9bb064aa,2015-08-10
+MDY6Q29tbWl0NDE2NDQ4Mjo5N2FjNzdlNTQ0ZjliMWQxZjI4YzBmODU5YmVmOGZiYzE5NWQ4MWE1,Tim Graham,Tim Graham,"Removed BaseForm._raw_value().
+
+Unused since efb0100ee67931329f17bc9988ecd5f0619cea14.",https://api.github.com/repos/django/django/git/commits/97ac77e544f9b1d1f28c0f859bef8fbc195d81a5,2015-08-21
+MDY6Q29tbWl0NDE2NDQ4MjpjNmMwMGZiZmJiNjU5ZGU0YmVhYWQzYzYxMmMyNzFhYzc0Zjg5MmE3,Curtis Maloney,Tim Graham,Used @cached_property for BaseForm.changed_data.,https://api.github.com/repos/django/django/git/commits/c6c00fbfbb659de4beaad3c612c271ac74f892a7,2015-08-04
+MDY6Q29tbWl0NDE2NDQ4MjoxZWY0YWVhYjQwM2Y3ZmI3NGMwYjliMTFmZGU4NTRmZDAzYWZjNDBj,Claude Paroz,Claude Paroz,"Fixed #25078 -- Added support for disabled form fields
+
+Thanks Keryn Knight and Tim Graham for the reviews.",https://api.github.com/repos/django/django/git/commits/1ef4aeab403f7fb74c0b9b11fde854fd03afc40c,2015-07-07
+MDY6Q29tbWl0NDE2NDQ4MjoxODg0YmY4ZThlOWZiM2Y5ZjQ0YTllYzIxNmFjYTk2ZjYzOTc0MjY4,Markus Amalthea Magnuson,Tim Graham,Fixed #12437 -- Added css_classes to Form._html_output(),https://api.github.com/repos/django/django/git/commits/1884bf8e8e9fb3f9f44a9ec216aca96f63974268,2015-06-05
+MDY6Q29tbWl0NDE2NDQ4Mjo1OTg3YjNjNDZkNWE2OTQ4NzM3NjI3ZDI5NGQ5NWVkNTRkNDllYWU2,Alasdair Nicol,Tim Graham,Removed comment from Form.changed_data; refs #24191,https://api.github.com/repos/django/django/git/commits/5987b3c46d5a6948737627d294d95ed54d49eae6,2015-06-04
+MDY6Q29tbWl0NDE2NDQ4Mjo0ZGY3ZTg0ODNiMjY3OWZjMWNiYTM0MTBmMDg5NjBiYWM2ZjUxMTE1,Paweł Marczewski,Tim Graham,Fixed #24788 -- Allowed Forms to specify a prefix at the class level.,https://api.github.com/repos/django/django/git/commits/4df7e8483b2679fc1cba3410f08960bac6f51115,2015-05-24
+MDY6Q29tbWl0NDE2NDQ4Mjo0ZGNjNjQ5MzQxOGM3OGRiMDc3NjExODBiZjYyNjVmNWIyYmJjY2Jm,wdmgsm,Tim Graham,Fixed #24497 -- Added Widget.supports_microseconds attribute,https://api.github.com/repos/django/django/git/commits/4dcc6493418c78db07761180bf6265f5b2bbccbf,2015-04-08
+MDY6Q29tbWl0NDE2NDQ4MjoxZjJhYmY3ODRhOWZlNTUwOTU5ZGUyNDJkOTE5NjNiMmFkNmY3ZTlj,Moritz Sichert,Tim Graham,Fixed #24469 -- Refined escaping of Django's form elements in non-Django templates.,https://api.github.com/repos/django/django/git/commits/1f2abf784a9fe550959de242d91963b2ad6f7e9c,2015-03-18
+MDY6Q29tbWl0NDE2NDQ4Mjo2YmZmMzQzOTg5NGFjMjJkODBmMjcwZjM2NTEzZmM4NjU4NjI3M2Yz,Moritz Sichert,Tim Graham,"Refs #24469 -- Fixed escaping of forms, fields, and media in non-Django templates.",https://api.github.com/repos/django/django/git/commits/6bff3439894ac22d80f270f36513fc86586273f3,2015-03-10
+MDY6Q29tbWl0NDE2NDQ4MjoyODk4NmRhNGNhMTY3YWUyNTdhYmNhZjdjYWVhMjMwZWNhMmJjZDgw,Thomas Tanner,Tim Graham,Fixed #5986 -- Added ability to customize order of Form fields,https://api.github.com/repos/django/django/git/commits/28986da4ca167ae257abcaf7caea230eca2bcd80,2015-03-16
+MDY6Q29tbWl0NDE2NDQ4Mjo2NTQ0MWJiZGIwMjQyNzY1NTg2OWM0Mjc5MWEwYmM1YTljNjMxMjky,Michael Angeletti,Tim Graham,Fixed #24391 -- Made BoundField.value() cache callable values.,https://api.github.com/repos/django/django/git/commits/65441bbdb02427655869c42791a0bc5a9c631292,2015-02-23
+MDY6Q29tbWl0NDE2NDQ4MjowZWQ3ZDE1NTYzNWRhOWY3OWQ0ZGQ2N2U0ODg5MDg3ZDM2NzNjNmRh,Tim Graham,Tim Graham,Sorted imports with isort; refs #23860.,https://api.github.com/repos/django/django/git/commits/0ed7d155635da9f79d4dd67e4889087d3673c6da,2015-01-28
+MDY6Q29tbWl0NDE2NDQ4Mjo5NzA0YjBhODJlMWYxYzZlZDAxMThmOTQ4YTU2NjUyNTk0ZjBhNDNi,Tim Graham,Tim Graham,Removed forms.forms.get_declared_fields() per deprecation timeline; refs #19617.,https://api.github.com/repos/django/django/git/commits/9704b0a82e1f1c6ed0118f948a56652594f0a43b,2015-01-18
+MDY6Q29tbWl0NDE2NDQ4MjozZjllYzEyZDljOWVmZjlhM2IxYTIwNWQ4N2M3ZTY2NTg3Y2Y5OTY3,Yang Liu,Tim Graham,Fixed #23712 -- Fixed KeyError with BaseForm._html_output(),https://api.github.com/repos/django/django/git/commits/3f9ec12d9c9eff9a3b1a205d87c7e66587cf9967,2015-01-06
+MDY6Q29tbWl0NDE2NDQ4Mjo1NjBiNDIwN2IxNDkwYTdkMGNiZjcwY2ZiZWJhN2RhZjIwODJlNWJl,Berker Peksag,Tim Graham,"Removed redundant numbered parameters from str.format().
+
+Since Python 2.7 and 3.1, ""{0} {1}"" is equivalent to ""{} {}"".",https://api.github.com/repos/django/django/git/commits/560b4207b1490a7d0cbf70cfbeba7daf2082e5be,2014-11-27
+MDY6Q29tbWl0NDE2NDQ4MjoxMTAxNDY3Y2UwNzU2MjcyYTU0ZjRjN2JjNjVjNGMzMzVhOTQxMTFi,Tim Graham,Tim Graham,"Limited lines to 119 characters in django/
+
+refs #23395.",https://api.github.com/repos/django/django/git/commits/1101467ce0756272a54f4c7bc65c4c335a94111b,2014-09-04
+MDY6Q29tbWl0NDE2NDQ4MjphNjY5MWU1ZGNmZGZkMTUyOTk4N2JlM2JkY2YwNmU3YWI5OTQ4MzU2,areski,Tim Graham,"Fixed #23167 -- Added BaseForm.__repr__()
+
+Thanks Keryn Knight for the idea.",https://api.github.com/repos/django/django/git/commits/a6691e5dcfdfd1529987be3bdcf06e7ab9948356,2014-08-21
+MDY6Q29tbWl0NDE2NDQ4MjpkZWVkMDBjMGQ4MDNkMzI0YTNkZmRlYmE1MjQ1OGI2YjAwOWMxYTkw,Gabriel Muñumel,Tim Graham,Fixed #23162 -- Renamed forms.Field._has_changed() to has_changed().,https://api.github.com/repos/django/django/git/commits/deed00c0d803d324a3dfdeba52458b6b009c1a90,2014-08-07
+MDY6Q29tbWl0NDE2NDQ4Mjo1ZTA2ZmExNDY5MTgwOTA5YzUxYzA3MTUxNjkyNDEyMjY5ZTUxZWEz,Vincent-Vega,Tim Graham,"Fixed #22745 -- Prevented reevaluation of ModelChoiceField's queryset when accesssing BoundField's attrs.
+
+Thanks Christian Schmitt for review.",https://api.github.com/repos/django/django/git/commits/5e06fa1469180909c51c07151692412269e51ea3,2014-06-16
+MDY6Q29tbWl0NDE2NDQ4MjozOTljZjMwM2NiZmUwODZlNzhmZDk0MjFiNzVjNmRmNTVmYzIzNGQw,Tim Graham,Tim Graham,Corrected a comment in forms/forms.py; refs #16612.,https://api.github.com/repos/django/django/git/commits/399cf303cbfe086e78fd9421b75c6df55fc234d0,2014-08-04
+MDY6Q29tbWl0NDE2NDQ4MjpkZTBhMjJiZTM1YmJlNmYyM2Q4MjZiY2M5YWEyNzc1NmZmZTU5ZThj,Baptiste Mispelon,Baptiste Mispelon,Fixed two typos in docstrings.,https://api.github.com/repos/django/django/git/commits/de0a22be35bbe6f23d826bcc9aa27756ffe59e8c,2014-08-02
+MDY6Q29tbWl0NDE2NDQ4Mjo5MjA5MDQ5MjExYWNiZTFhNTNjM2RjNDA5ZGQ1ZmUyNmVkZjIxNjM0,Claude Paroz,Claude Paroz,"Ensured bound field renders as unicode safe data
+
+Refs #22950.",https://api.github.com/repos/django/django/git/commits/9209049211acbe1a53c3dc409dd5fe26edf21634,2014-07-05
+MDY6Q29tbWl0NDE2NDQ4MjoxMWYwODk5YmJlN2MwNGRjNjEwOWY1N2MzYjM2ZWQ4NjIxYjhmMDhl,Nick Presta,Tim Graham,"Fixed #11776 -- Added CSS class for non-field/top of form errors.
+
+Thanks Daniel Pope for the suggestion.",https://api.github.com/repos/django/django/git/commits/11f0899bbe7c04dc6109f57c3b36ed8621b8f08e,2014-04-15
+MDY6Q29tbWl0NDE2NDQ4Mjo5ZmIwZjVkZGRjNGNmN2YyZDI5NGFmMWJjZGUyYzM1OWNmZmQ5MGE1,Marc Tamlyn,Marc Tamlyn,"Fixed #22510 -- Harden field removal to only None.
+
+Refs #8620.
+
+If we allow any value to remove form fields then we get name clashes
+with method names, media classes etc. There was a backwards
+incompatibility introduced meaning ModelForm subclasses with declared
+fields called media or clean would lose those fields.
+
+Field removal is now only permitted by using the sentinel value None.
+The docs have been slightly reworded to refer to removal of fields
+rather than shadowing.
+
+Thanks to gcbirzan for the report and initial patch, and several of the
+core team for opinions.",https://api.github.com/repos/django/django/git/commits/9fb0f5dddc4cf7f2d294af1bcde2c359cffd90a5,2014-05-24
+MDY6Q29tbWl0NDE2NDQ4Mjo1ZWI4MWNlNDQ1MzI1OTZlY2MxYzc4MWQ5M2YzNDIxYTQ2N2E2MjA2,Julen Ruiz Aizpuru,Tim Graham,"Fixed #22533 -- Added label_suffix parameter to form fields.
+
+Fields can now receive the `label_suffix` attribute, which will override
+a form's `label_suffix`.
+
+This enhances the possibility to customize form's `label_suffix`, allowing
+to use such customizations while using shortcuts such as
+`{{ form.as_p }}`.
+
+Note that the field's own customization can be overridden at runtime by
+using the `label_prefix` parameter to `BoundField.label_tag()`.
+
+Refs #18134.",https://api.github.com/repos/django/django/git/commits/5eb81ce44532596ecc1c781d93f3421a467a6206,2014-04-29
+MDY6Q29tbWl0NDE2NDQ4MjphNWRlMGRmNThiNTQzMWIyNWEzMjQ2YTU3NDMyZGI3Mzg0M2JlODdm,Stephen Burrows,Claude Paroz,"Fixed #22502 -- Fixed microseconds/default/form interaction
+
+Made explicit lack of microsecond handling by built-in datetime form
+fields. Used that explicitness to appropriately nix microsecond
+values in bound fields. Thanks Claude Paroz for the review.",https://api.github.com/repos/django/django/git/commits/a5de0df58b5431b25a3246a57432db73843be87f,2014-05-07
+MDY6Q29tbWl0NDE2NDQ4MjpkZjYwZGIwZTc4NzI3OTZiNGE0OGU2MmU5NzMzZjg1YzhkZGY4MzA2,Ben Davis,Tim Graham,Fixed #22570 -- Made Form.__getitem__ KeyError more descriptive.,https://api.github.com/repos/django/django/git/commits/df60db0e7872796b4a48e62e9733f85c8ddf8306,2014-05-03
+MDY6Q29tbWl0NDE2NDQ4Mjo3ODYyM2QyNTNiNzU0ZWZmZTYxNjIyZGQzZTQ5YzI2NmE1YTg1ZDVm,Tomasz Wysocki,Tim Graham,Removed casting to bool just before negation.,https://api.github.com/repos/django/django/git/commits/78623d253b754effe61622dd3e49c266a5a85d5f,2014-04-04
+MDY6Q29tbWl0NDE2NDQ4Mjo0MTZhODU4MDIzMjA3NWQ1NjljZjNjMzg2YTk3MDY3ODg0YzY3YTYw,Anubhav Joshi,Tim Graham,"Fixed #17922 -- Added required_css_class to form label.
+
+Thanks hanson2010 for the suggestion.",https://api.github.com/repos/django/django/git/commits/416a8580232075d569cf3c386a97067884c67a60,2014-03-03
+MDY6Q29tbWl0NDE2NDQ4Mjo3YWM4MzgwNzk5ZWVkYjM3NDYyMTMxN2I2MmNjZjAyNmQ4NmVhMjQ1,Loic Bistuer,Tim Graham,Fixed #22318 -- Added Form.has_error() to easily check if a given error has happened.,https://api.github.com/repos/django/django/git/commits/7ac8380799eedb374621317b62ccf026d86ea245,2014-03-22
+MDY6Q29tbWl0NDE2NDQ4MjpkNzRlMzNlYjBlYzI4OWQzMTI1YTVhODA0OGQ3NTZmOWQyMzJiZDYy,Tim Graham,Tim Graham,"Removed backwards compatibility code to call field.widget._has_changed()
+
+This logic should be moved to field._has_changed() as described
+in ebb504db692cac496f4f45762d1d14644c9fa6f - refs #16612.",https://api.github.com/repos/django/django/git/commits/d74e33eb0ec289d3125a5a8048d756f9d232bd62,2014-03-21
+MDY6Q29tbWl0NDE2NDQ4MjoyMTBkMDQ4OWM1ZGFhZDU2YjgwNmY4MTY1ZjlmZTA5ZmIzYzJhMDE5,Claude Paroz,Claude Paroz,"Fixed #21188 -- Introduced subclasses for to-be-removed-in-django-XX warnings
+
+Thanks Anssi Kääriäinen for the idea and Simon Charette for the
+review.",https://api.github.com/repos/django/django/git/commits/210d0489c5daad56b806f8165f9fe09fb3c2a019,2014-02-26
+MDY6Q29tbWl0NDE2NDQ4MjowZDkxMjI1ODkyMWE0NDJjNDhkNTc4NzIyOGRiMmRiNWFmN2U4ZmE1,Rodolfo Carvalho,Tim Graham,"Fixed many typos in comments and docstrings.
+
+Thanks Piotr Kasprzyk for help with the patch.",https://api.github.com/repos/django/django/git/commits/0d912258921a442c48d5787228db2db5af7e8fa5,2014-03-02
+MDY6Q29tbWl0NDE2NDQ4Mjo4ODQ3YTBjNjAxZTQyNjE4MjNiMTcyNmIyZGI3M2VlYzJhYzE3OTQw,Loic Bistuer,Tim Graham,"Fixed #16192 -- Made unique error messages in ModelForm customizable.
+
+Overriding the error messages now works for both unique fields, unique_together
+and unique_for_date.
+
+This patch changed the overriding logic to allow customizing NON_FIELD_ERRORS
+since previously only fields' errors were customizable.
+
+Refs #20199.
+
+Thanks leahculver for the suggestion.",https://api.github.com/repos/django/django/git/commits/8847a0c601e4261823b1726b2db73eec2ac17940,2014-02-03
+MDY6Q29tbWl0NDE2NDQ4Mjo4MWJiOGQxMjIwOWE0MTkxNDJiMWJmNjk2MWZiZjlmYzQ0NDE5ZGNk,Marc Sibson,Tim Graham,Fixed docstring typo in django/forms/forms.py.,https://api.github.com/repos/django/django/git/commits/81bb8d12209a419142b1bf6961fbf9fc44419dcd,2014-01-10
+MDY6Q29tbWl0NDE2NDQ4MjozY2U5ODI5YjYxNTMzNmIwZjNhYzM5YjA4MGMyN2ZjOGNmNWFmNDgz,Loic Bistuer,Tim Graham,Fixed #17413 -- Serialization of form errors along with all metadata.,https://api.github.com/repos/django/django/git/commits/3ce9829b615336b0f3ac39b080c27fc8cf5af483,2013-11-29
+MDY6Q29tbWl0NDE2NDQ4MjpmNTYzYzMzOWNhMmVlZDgxNzA2YWIxNzcyNmM3OWE2ZjAwZDdjNTUz,Loic Bistuer,Loic Bistuer,"Fixed #20867 -- Added the Form.add_error() method.
+
+Refs #20199 #16986.
+
+Thanks @akaariai, @bmispelon, @mjtamlyn, @timgraham for the reviews.",https://api.github.com/repos/django/django/git/commits/f563c339ca2eed81706ab17726c79a6f00d7c553,2013-11-11
+MDY6Q29tbWl0NDE2NDQ4MjpjYmM3Y2JiYzViNWVmMDMwNTlkODg3NjA3NDU2MDYzNWYyZjY0N2I3,Milton Mazzarri,Milton Mazzarri,Fixed flake8 E251 violations,https://api.github.com/repos/django/django/git/commits/cbc7cbbc5b5ef03059d8876074560635f2f647b7,2013-11-03
+MDY6Q29tbWl0NDE2NDQ4Mjo3NTQ4YWE4ZmZkNDZlYjZlMGY3MzczMGQxYjJlYjUxNWJhNTgxZjk1,Alex Gaynor,Alex Gaynor,More attacking E302 violators,https://api.github.com/repos/django/django/git/commits/7548aa8ffd46eb6e0f73730d1b2eb515ba581f95,2013-11-02
+MDY6Q29tbWl0NDE2NDQ4MjpkY2ZjOGZhOTcyMTk1NWRjNGZjZmI2ZTVlNTA2YmUxMmY3NGM1Yjg1,Ray Ashman Jr,Ray Ashman Jr,Correct flake8 violation E261,https://api.github.com/repos/django/django/git/commits/dcfc8fa9721955dc4fcfb6e5e506be12f74c5b85,2013-11-02
+MDY6Q29tbWl0NDE2NDQ4MjpmMmQ4MDI3YzlhZWE5Mzc1MGZjNDIxM2Q5ZTczM2M4NTc1ZTg5NTAy,Alex Gaynor,Alex Gaynor,Fixed up some more flake8 violations (this particular violation still has many occurrences in the tests/ dir so it can't be removed from setup.cfg yet),https://api.github.com/repos/django/django/git/commits/f2d8027c9aea93750fc4213d9e733c8575e89502,2013-10-26
+MDY6Q29tbWl0NDE2NDQ4MjpiMTZkZDFmZTAxOWIzOGQwZGNkZjRhNDAwZTkzNzdmYjA2YjMzMTc4,Loic Bistuer,Loic Bistuer,Fixed #8620 -- Updated the Form metaclass to support excluding fields by shadowing them.,https://api.github.com/repos/django/django/git/commits/b16dd1fe019b38d0dcdf4a400e9377fb06b33178,2013-10-14
+MDY6Q29tbWl0NDE2NDQ4MjphYzVlYzdiOGJjYzU2MjNjYzA1ZDRkZjkwMGMzOWUxOTRmNWFmZmNm,Loic Bistuer,Loic Bistuer,"Fixed #19617 -- Refactored Form metaclasses to support more inheritance scenarios.
+
+Thanks apollo13, funkybob and mjtamlyn for the reviews.",https://api.github.com/repos/django/django/git/commits/ac5ec7b8bcc5623cc05d4df900c39e194f5affcf,2013-07-20
+MDY6Q29tbWl0NDE2NDQ4Mjo1Njc0M2NmOWUzMzc4MjZlNGM2MTU5MDk1NzBiYjA1NzE0MmE2YTdi,Florian Apolloner,Florian Apolloner,"Ensured that BoundField.as_widget always returns properly localized fields.
+
+This is a follow-up to #18777 which improperly converted to strings in
+prepare_value and as such caused regressions like #21074.
+
+Refs #18777, #21074",https://api.github.com/repos/django/django/git/commits/56743cf9e337826e4c615909570bb057142a6a7b,2013-09-21
+MDY6Q29tbWl0NDE2NDQ4MjoxOGZmZGIxNzcyYmE2MGUwODVjZmY4ZmQ5YTFkNGE3YjEyOWI0MDMy,Tim Graham,Tim Graham,"Fixed #17627 -- Renamed util.py files to utils.py
+
+Thanks PaulM for the suggestion and Luke Granger-Brown and
+Wiktor Kołodziej for the initial patch.",https://api.github.com/repos/django/django/git/commits/18ffdb1772ba60e085cff8fd9a1d4a7b129b4032,2013-09-16
+MDY6Q29tbWl0NDE2NDQ4MjowNTNkZTYxMzFhZjgzYzYzZWMxN2QzODU3ODg4OWM3MWRlOTEzZDI0,e0ne,Tim Graham,"Fixed #5749 -- Added field_name as a key in the _html_output dict
+
+Thanks SmileyChris for the suggestion.",https://api.github.com/repos/django/django/git/commits/053de6131af83c63ec17d38578889c71de913d24,2013-09-10
+MDY6Q29tbWl0NDE2NDQ4Mjo4Y2Q4NzQyOTgxMDIwZTMxNWFjYzRlNzBiZGYzNjEzZmNmNjhlM2E4,Claude Paroz,Claude Paroz,Moved translator comment just above the target string,https://api.github.com/repos/django/django/git/commits/8cd8742981020e315acc4e70bdf3613fcf68e3a8,2013-08-22
+MDY6Q29tbWl0NDE2NDQ4Mjo5MDdlZjlkMGQxNTdjNDdjNjZiZjI2NWRjYTkzYTBiZWU4NjY0ZWEz,Matt Johnson,Tim Graham,"Fixed #20555 -- Make subwidget id attribute available
+
+In `BoundField.__iter__`, the widget's id attribute is now passed to
+each subwidget. A new id_for_label property was added to ChoiceInput.",https://api.github.com/repos/django/django/git/commits/907ef9d0d157c47c66bf265dca93a0bee8664ea3,2013-06-04
+MDY6Q29tbWl0NDE2NDQ4MjoxYzRhOWJkOWFkMWE4ZTYxODE3YzZhYTJiMGQ4ZDBhZDJjMDgwMDQ3,Marc Tamlyn,Marc Tamlyn,"Revert change to the default Form.clean()
+
+This means it doesn't break for people who are doing
+`cleaned_data = super(FooForm, self).clean()`.",https://api.github.com/repos/django/django/git/commits/1c4a9bd9ad1a8e61817c6aa2b0d8d0ad2c080047,2013-08-08
+MDY6Q29tbWl0NDE2NDQ4MjpmYjFkZDZiMTNhMGU2YjFlZjY0ZWFjODg0NjczMjFkMDk3OTQyY2Qy,Marc Tamlyn,Marc Tamlyn,"Form.clean() does not need to return cleaned_data.
+
+If it does, that will be used as the cleaned_data. The default
+implementation has been changed to match this change.",https://api.github.com/repos/django/django/git/commits/fb1dd6b13a0e6b1ef64eac88467321d097942cd2,2013-08-08
+MDY6Q29tbWl0NDE2NDQ4MjowNzg3NmNmMDJiNmRiNDUzY2EwMzk3YzI5YzIyNTY2ODg3MmZhOTZk,Curtis Maloney,Tim Graham,"Deprecated SortedDict (replaced with collections.OrderedDict)
+
+Thanks Loic Bistuer for the review.",https://api.github.com/repos/django/django/git/commits/07876cf02b6db453ca0397c29c225668872fa96d,2013-08-03
+MDY6Q29tbWl0NDE2NDQ4Mjo1YzExNDM5MTBlMDcxYzczNjcxNDI0MDM2NDA4YzQ1NDg3NDJkMjRm,Claude Paroz,Claude Paroz,"Removed most of absolute_import imports
+
+Should be unneeded with Python 2.7 and up.
+Added some unicode_literals along the way.",https://api.github.com/repos/django/django/git/commits/5c1143910e071c73671424036408c4548742d24f,2013-07-29
+MDY6Q29tbWl0NDE2NDQ4Mjo4Njc2MzE4ZDJkYWU5YTU3MGQyMzE0ZTRlNmRhOGMwMGFhZjJlMmEw,Tim Graham,Tim Graham,"Fixed #20805 -- Removed an extra colon beside checkboxes in the admin.
+
+Thanks CollinAnderson for the report.",https://api.github.com/repos/django/django/git/commits/8676318d2dae9a570d2314e4e6da8c00aaf2e2a0,2013-07-26
+MDY6Q29tbWl0NDE2NDQ4Mjo3NTU3MjA3OTgzOTNlNzhmYzMwOTRjYzNmNzkwODUyNzM3Y2I2ODEz,Claude Paroz,Claude Paroz,"Fixed #20582 -- Allowed default Form.label_suffix to be translated
+
+Thanks Tim Graham for the review.",https://api.github.com/repos/django/django/git/commits/755720798393e78fc3094cc3f790852737cb6813,2013-07-13
+MDY6Q29tbWl0NDE2NDQ4MjphY2Q3YjM0YWFmZTM1MmVmNjA0ZWRjYjczZjc1MDQxYzVjYmJhNmI5,Aymeric Augustin,Aymeric Augustin,Advanced deprecation warnings for Django 1.7.,https://api.github.com/repos/django/django/git/commits/acd7b34aafe352ef604edcb73f75041c5cbba6b9,2013-06-29
+MDY6Q29tbWl0NDE2NDQ4MjozMTI4ZjNkMzhkMWRiMGJjMDFkYTlhNGJmNGJlODExMTkwNzlkNzNh,Baptiste Mispelon,Baptiste Mispelon,Fixed #20618 -- Fixed regression in `BoundField.label_tag`.,https://api.github.com/repos/django/django/git/commits/3128f3d38d1db0bc01da9a4bf4be81119079d73a,2013-06-18
+MDY6Q29tbWl0NDE2NDQ4Mjo1ODRiZDE0ZGNmZGVlOTU4NWZlYzc3OTRkNTNjZTEyMGVhNzNkMGJj,Gabe Jackson,Tim Graham,"Fixed #18134 -- BoundField.label_tag now includes the form's label_suffix
+
+There was an inconsistency between how the label_tag for forms were
+generated depending on which method was used: as_p, as_ul and as_table
+contained code to append the label_suffix where as label_tag called on a
+form field directly did NOT append the label_suffix. The code for
+appending the label_suffix has been moved in to the label_tag code of
+the field and the HTML generation code for as_p, as_ul and as_table now
+calls this code as well.
+
+This is a backwards incompatible change because users who have added the
+label_suffix manually in their templates may now get double label_suffix
+characters in their forms.",https://api.github.com/repos/django/django/git/commits/584bd14dcfdee9585fec7794d53ce120ea73d0bc,2012-06-08
+MDY6Q29tbWl0NDE2NDQ4MjowZmE4ZDQzZTc0MmVlOGI0ODBkOTM4YTQ3ODM2YjVhMzcyMGMyNjc3,Ramiro Morales,Ramiro Morales,Replaced `and...or...` constructs with PEP 308 conditional expressions.,https://api.github.com/repos/django/django/git/commits/0fa8d43e742ee8b480d938a47836b5a3720c2677,2013-05-27
+MDY6Q29tbWl0NDE2NDQ4MjpiZTBiYWIxYmI4ZGE4MDQwMjI0OGNkMWZhMjJmZDRjYzA5YjM0ZmU3,Claude Paroz,Claude Paroz,"Fixed #11725 -- Made possible to create widget label tag without ""for""
+
+Thanks Denis Martinez for the report and initial patch, and
+Sergey Kolosov for bringing the patch up to date.",https://api.github.com/repos/django/django/git/commits/be0bab1bb8da80402248cd1fa22fd4cc09b34fe7,2013-05-25
+MDY6Q29tbWl0NDE2NDQ4MjpkMDc4OGMyNzcwMzU3MjdiN2IwNzBhYmQwZjAyZDA3NWFjZmZjODRm,Jeroen Dekkers,Jeroen Dekkers,"Fixed #18709 -- Check if initial_value is a callable
+
+In _get_changed_data, check if initial_value is a callable and call it
+if it is.",https://api.github.com/repos/django/django/git/commits/d0788c277035727b7b070abd0f02d075acffc84f,2012-08-03
+MDY6Q29tbWl0NDE2NDQ4Mjo5YzQ4N2I1OTc0ZWU3ZTdmMTk2MDc5NjExZDczNTIzNjRlODg3M2Vk,Aymeric Augustin,Aymeric Augustin,"Replaced an antiquated pattern.
+
+Thanks Lennart Regebro for pointing it out.",https://api.github.com/repos/django/django/git/commits/9c487b5974ee7e7f196079611d7352364e8873ed,2013-05-17
+MDY6Q29tbWl0NDE2NDQ4MjphYjY4NjAyMmY4NjE5YjU3ZTdmODUxZmIyY2U4NjE3NTgzZDcwZDhk,Baptiste Mispelon,Claude Paroz,"Fixed #20211: Document backwards-incompatible change in BoundField.label_tag
+
+Also cleaned up label escaping and consolidated the test suite regarding
+label_tag.",https://api.github.com/repos/django/django/git/commits/ab686022f8619b57e7f851fb2ce8617583d70d8d,2013-04-06
+MDY6Q29tbWl0NDE2NDQ4MjpjYmZiOGVkNTNiMzFlYzk3MDFmNWZiOGU1MTlhODY0NGZkNGM4MDk1,Claude Paroz,Claude Paroz,"Fixed a regression in forms changed_data
+
+Thanks Loic Bistuer for spotting the regression and the initial
+patch. Refs #16612.",https://api.github.com/repos/django/django/git/commits/cbfb8ed53b31ec9701f5fb8e519a8644fd4c8095,2013-03-08
+MDY6Q29tbWl0NDE2NDQ4Mjo4OTJiYzkxY2IwMDM2ZDY4NjgwODEzNjM2MjhmNjUwOTRjNDc5MGQ2,Claude Paroz,Claude Paroz,"Fixed #16612 -- Improved has_changed detection for localized field values
+
+Thanks Simon Charette for the review.",https://api.github.com/repos/django/django/git/commits/892bc91cb0036d6868081363628f65094c4790d6,2013-01-26
+MDY6Q29tbWl0NDE2NDQ4Mjo1ZWViYjQ5YzY5MDA5N2VjOTUwYjRkYjJhOGVhYTg5MmMyNzQzM2Mw,Claude Paroz,Claude Paroz,"Fixed #19908 -- Added missing import in forms.py
+
+Thanks loic84 for the report.",https://api.github.com/repos/django/django/git/commits/5eebb49c690097ec950b4db2a8eaa892c27433c0,2013-02-24
+MDY6Q29tbWl0NDE2NDQ4Mjo1MjUzM2E2NGQ1ODY2YTM1ODZkYmZiYTY5YzZjYjllMzliZmY3NDY2,Simon Kerr,Simon Kerr,fixed minor typo #19703,https://api.github.com/repos/django/django/git/commits/52533a64d5866a3586dbfba69c6cb9e39bff7466,2013-01-30
+MDY6Q29tbWl0NDE2NDQ4Mjo5NjJmMTMzZjcyYWJlMmExMTc0ZDQ4YmFhNTJhYTg1NDk3NjJhMDIy,Claude Paroz,Claude Paroz,"Fixed #18483 -- Marked hidden field error string for translation
+
+Thanks Evil Clay for the report and Emil Stenstrom for the initial
+patch.",https://api.github.com/repos/django/django/git/commits/962f133f72abe2a1174d48baa52aa8549762a022,2013-01-26
+MDY6Q29tbWl0NDE2NDQ4Mjo1ODA2MmE2MzAyYTJiZjEwMTNkMTAwZGViMDUzY2NhZTIyOThiYjg0,Claude Paroz,Claude Paroz,Used property decorators in django/forms.py,https://api.github.com/repos/django/django/git/commits/58062a6302a2bf1013d100deb053ccae2298bb84,2013-01-25
+MDY6Q29tbWl0NDE2NDQ4MjplYmI1MDRkYjY5MmNhYzQ5NmY0ZjQ1NzYyZDFkMTQ2NDRjOWZhNmZh,Claude Paroz,Claude Paroz,"Moved has_changed logic from widget to form field
+
+Refs #16612. Thanks Aymeric Augustin for the suggestion.",https://api.github.com/repos/django/django/git/commits/ebb504db692cac496f4f45762d1d14644c9fa6fa,2013-01-25
+MDY6Q29tbWl0NDE2NDQ4MjpkNGEwYjI3ODM4YzgxNWFmODc2OTg5MjBjYzRkYjdkMmFmZDZmMDVi,Aymeric Augustin,Aymeric Augustin,"[py3] Refactored __unicode__ to __str__.
+
+* Renamed the __unicode__ methods
+* Applied the python_2_unicode_compatible decorator
+* Removed the StrAndUnicode mix-in that is superseded by
+  python_2_unicode_compatible
+* Kept the __unicode__ methods in classes that specifically
+  test it under Python 2",https://api.github.com/repos/django/django/git/commits/d4a0b27838c815af87698920cc4db7d2afd6f05b,2012-08-12
+MDY6Q29tbWl0NDE2NDQ4MjpjNWVmNjViY2YzMjRmNGM5MGI1M2JlOTBmNGFlYzA2OWE2OGU4YzU5,Aymeric Augustin,Aymeric Augustin,"[py3] Ported django.utils.encoding.
+
+* Renamed smart_unicode to smart_text (but kept the old name under
+  Python 2 for backwards compatibility).
+* Renamed smart_str to smart_bytes.
+* Re-introduced smart_str as an alias for smart_text under Python 3
+  and smart_bytes under Python 2 (which is backwards compatible).
+  Thus smart_str always returns a str objects.
+* Used the new smart_str in a few places where both Python 2 and 3
+  want a str.",https://api.github.com/repos/django/django/git/commits/c5ef65bcf324f4c90b53be90f4aec069a68e8c59,2012-07-21
+MDY6Q29tbWl0NDE2NDQ4MjplZTE5MTcxNWVhZTczMzYyNzY4MTg0YWE5NTIwNmNmNjFiYWM1ZDM4,Aymeric Augustin,Aymeric Augustin,[py3] Fixed access to dict keys/values/items.,https://api.github.com/repos/django/django/git/commits/ee191715eae73362768184aa95206cf61bac5d38,2012-07-20
+MDY6Q29tbWl0NDE2NDQ4MjoxMjFmZDEwOWRlMDllY2U0ZTI2M2U1MDhmOTAzNGRmOWI1ODNkYTQ2,Claude Paroz,Claude Paroz,"Fixed #5524 -- Do not remove cleaned_data when a form fails validation
+
+cleaned_data is no longer deleted when form validation fails but only
+contains the data that did validate.
+Thanks to the various contributors to this patch (see ticket).",https://api.github.com/repos/django/django/git/commits/121fd109de09ece4e263e508f9034df9b583da46,2012-08-04
+MDY6Q29tbWl0NDE2NDQ4MjpiZGNhNWVhMzQ1YzU0OGE4MmE4MGQxOTg5MDY4MThjOWNjYmVmODk2,Aymeric Augustin,Aymeric Augustin,[py3] Replaced unicode/str by six.text_type/bytes.,https://api.github.com/repos/django/django/git/commits/bdca5ea345c548a82a80d198906818c9ccbef896,2012-07-20
+MDY6Q29tbWl0NDE2NDQ4MjpkMTFkNDVhYWQ5NjliZTMxM2I5ZTA0NmQwZDQyYjE3OWEzZmI2OTA2,Aymeric Augustin,Aymeric Augustin,[py3] Used six.with_metaclass wherever necessary.,https://api.github.com/repos/django/django/git/commits/d11d45aad969be313b9e046d0d42b179a3fb6906,2012-07-20
+MDY6Q29tbWl0NDE2NDQ4Mjo4ZmRjNTZkMmE2Zjc1MzdjZGQ1MjI3MjUwMWFmOWU5NGNhYjk2ZWQ0,Luke Plant,Luke Plant,"Fixed #18572 - Python26 string format incompatibility
+
+Thanks to anonymous/AeroNotix for the report",https://api.github.com/repos/django/django/git/commits/8fdc56d2a6f7537cdd52272501af9e94cab96ed4,2012-07-05
+MDY6Q29tbWl0NDE2NDQ4MjphOTJlN2YzN2M0YWU4NGI2YjhkODAxNmNjNjc4MzIxMWU5MDQ3MjE5,Luke Plant,Luke Plant,Changed a lot of internal code to use 'format_html' where appropriate/possible,https://api.github.com/repos/django/django/git/commits/a92e7f37c4ae84b6b8d8016cc6783211e9047219,2012-07-02
+MDY6Q29tbWl0NDE2NDQ4Mjo0YTEwMzA4NmQ1YzY3ZmE0ZmNjNTNjMTA2YzlmZGY2NDRjNzQyZGQ4,Claude Paroz,Claude Paroz,"Fixed #18269 -- Applied unicode_literals for Python 3 compatibility.
+
+Thanks Vinay Sajip for the support of his django3 branch and
+Jannis Leidel for the review.",https://api.github.com/repos/django/django/git/commits/4a103086d5c67fa4fcc53c106c9fdf644c742dd8,2012-06-07
+MDY6Q29tbWl0NDE2NDQ4MjozOTA0Yjc0YTNmMmY5MmZlZmUxZDM5MjgxZWQ2ODNjNTJmMmZlZjAz,Claude Paroz,Claude Paroz,"Fixed #18013 -- Use the new 'as' syntax for exceptions.
+
+Thanks Clueless for the initial patch.
+Note that unittest has been purposely left out (external package only used by Python 2.6).",https://api.github.com/repos/django/django/git/commits/3904b74a3f2f92fefe1d39281ed683c52f2fef03,2012-04-28
+MDY6Q29tbWl0NDE2NDQ4MjozNzMyYzgyZjU5NDZlYzE5MjMyNGEzNTMwODVjZjE5ODhhZGMwMjY5,Julien Phalip,Julien Phalip,"Made a minor tweak to a doctoring in `django/forms.forms.py` that was missed in r17452. Thanks to Claude Paroz for the tip.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@17453 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/3732c82f5946ec192324a353085cf1988adc0269,2012-02-05
+MDY6Q29tbWl0NDE2NDQ4Mjo0NzdmNGQ4MDYxNjM5MmJiZDMzNTJjYWQ1MGZhZWRiOWMxNDk0YjMz,Alex Gaynor,Alex Gaynor,"Clean up the form's code a little bit, to make it more consistantly go through one code path. Patch from Travis Swicegood.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@17381 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/477f4d80616392bbd3352cad50faedb9c1494b33,2012-01-19
+MDY6Q29tbWl0NDE2NDQ4MjowOGJlYzRmYmMxMGNhNTYzOGFkMjJmMjBhNzUzZWM1ZThkOTJlYjBl,Adrian Holovaty,Adrian Holovaty,"Changed BoundField.subwidgets() to return SubWidget objects instead of rendered strings. This means we can access individual radio buttons' properties in the template (see new docs)
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@17175 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/08bec4fbc10ca5638ad22f20a753ec5e8d92eb0e,2011-12-07
+MDY6Q29tbWl0NDE2NDQ4MjpmYzkwYzA5ZWZkZmJjMDI5ZDQzZTZkNGMwOTUyZWQ2YjQ5ZjZmMzRk,Adrian Holovaty,Adrian Holovaty,"Made BoundFields iterable, so that you can iterate over individual radio buttons of a RadioSelect in a template
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@17173 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/fc90c09efdfbc029d43e6d4c0952ed6b49f6f34d,2011-12-07
+MDY6Q29tbWl0NDE2NDQ4Mjo2NzU2NWE1Mzc5ZjE5YzZjYTk0ZTJjNGYzYjhlMDE2ODRiMzJmZThm,Paul McMillan,Paul McMillan,"Remove comments referencing encryption. Django doesn't do encryption.
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@17012 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/67565a5379f19c6ca94e2c4f3b8e01684b32fe8f,2011-10-18
+MDY6Q29tbWl0NDE2NDQ4MjoxODU2ZTM5OGM1NGY2NWU5N2U2OWVlNzhjOWRhZTYxMDQ0YWI3MzE4,Alex Gaynor,Alex Gaynor,"Remove more relative imports (I will kill them all).
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@17006 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/1856e398c54f65e97e69ee78c9dae61044ab7318,2011-10-17
+MDY6Q29tbWl0NDE2NDQ4MjoxMzg2NDcwM2JjMWQ1ZGQ0ZGFjNjNjOTZjNmE0YjQyYTM5MmJjNTdm,Adrian Holovaty,Adrian Holovaty,"Removed a bunch more Python 2.4 workarounds now that we don't support that version. Refs #15702 -- thanks to jonash for the patch.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@15927 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/13864703bc1d5dd4dac63c96c6a4b42a392bc57f,2011-03-28
+MDY6Q29tbWl0NDE2NDQ4Mjo3NGZmY2ExN2UyY2E2YTlmMDYxOTEzNzk3ZWZlZWJiYzU3ODY5MmM1,Russell Keith-Magee,Russell Keith-Magee,"Fixed #10573 -- Corrected autofocus problem in admin when the first widget displayed is a multiwidget. Thanks to rduffield for the report, and to Ramiro and Julien Phalip for the patch.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@15452 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/74ffca17e2ca6a9f061913797efeebbc578692c5,2011-02-08
+MDY6Q29tbWl0NDE2NDQ4MjpkM2Y1ZjIxOWY1ZjQyYWMzNTA0ZWQ2MjZkY2I5MmY0ZWUyZGMzZDVm,Chris Beaven,Chris Beaven,"Fixes #10427 -- Abstract the value generation of a BoundField
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@14734 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/d3f5f219f5f42ac3504ed626dcb92f4ee2dc3d5f,2010-11-28
+MDY6Q29tbWl0NDE2NDQ4MjozOTJkOTkyZjgyOTVmOTY2MzIxNzllMDFlNzkwNDY1Y2M5YzhkM2Vj,Jannis Leidel,Jannis Leidel,"Fixed #7048 -- Added ClearableFileInput widget to clear file fields. Thanks for report and patch, jarrow and Carl Meyer.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@13968 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/392d992f8295f96632179e01e790465cc9c8d3ec,2010-10-01
+MDY6Q29tbWl0NDE2NDQ4MjoxZGYxMzc4ZjllNmU3MTU4OGY0NTYyNGM0ZGRmOWU1ZDM3Y2M4NzVh,Jannis Leidel,Jannis Leidel,"Fixed #13827 -- Cleaned up a few unnecessary function calls.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@13876 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/1df1378f9e6e71588f45624c4ddf9e5d37cc875a,2010-09-26
+MDY6Q29tbWl0NDE2NDQ4MjpiM2RjM2EwMTA2MDYyYmYyOGEyOGRjNDI2ODg1ZTcwMDJhMTZhNzYx,Russell Keith-Magee,Russell Keith-Magee,"Fixed #13679, #13231, #7287 -- Ensured that models that have ForeignKeys/ManyToManyField can use a a callable default that returns a model instance/queryset. #13679 was a regression in behavior; the other two tickets are pleasant side effects. Thanks to 3point2 for the report.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@13577 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/b3dc3a0106062bf28a28dc426885e7002a16a761,2010-08-14
+MDY6Q29tbWl0NDE2NDQ4MjoxMDkwNmZhNzVkYTljYWNiMTEwZTRlNDE0ZmE3YzdjYTkzYzE4OGUw,Luke Plant,Luke Plant,"Fixed #8426 - 'helptext' CSS class - hopefully for real this time.
+
+This file was missing from [13519]
+
+Thanks to mattmcc for the catch.
+
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@13522 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/10906fa75da9cacb110e4e414fa7c7ca93c188e0,2010-08-07
+MDY6Q29tbWl0NDE2NDQ4MjpjNGI2ZWRmM2I4YjY0N2U3ZWY0M2YxYmE0OWEzMTBmYjkzNDY4OTE5,Russell Keith-Magee,Russell Keith-Magee,"Fixed #12746 -- Updated sorting calls to use 'key' instead of 'cmp'. This will be slightly faster in certain circumstances, but more importantly, is a required step for migration to Python 3. Thanks to Martin van Loewis for the patch.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@13509 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/c4b6edf3b8b647e7ef43f1ba49a310fb93468919,2010-08-06
+MDY6Q29tbWl0NDE2NDQ4MjpiMDU3YThiMjQ3ZDE0MzI4ZjA1OGI4YmM4OWRhMDUxOTUxNmNlZDgy,Jannis Leidel,Jannis Leidel,"Fixed #13560 -- Fixed localization of widgets.
+
+Particularly this fixes the SplitDateTimeField and the AdminDateWidget by localizating the widget's value in its render method instead of the form field. Thanks to David Danier for the report and Russell for help with the patch.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@13296 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/b057a8b247d14328f058b8bc89da0519516ced82,2010-05-21
+MDY6Q29tbWl0NDE2NDQ4MjpjYTRjNmY2NWVhODExMDljZjZmYmRiYTc0ZGE3ZjUwMjdlYjBjNGRi,Jannis Leidel,Jannis Leidel,"Fixed #13032  - Added localize parameter to form fields to be able to selectively enable localization.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@12867 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/ca4c6f65ea81109cf6fbdba74da7f5027eb0c4db,2010-03-27
+MDY6Q29tbWl0NDE2NDQ4MjpjYzZlOWIyMjg2NGEwZGQ3MmJjYzc3OGFiM2Y2NzM4NTNlZTQ5ODdk,Karen Tracey,Karen Tracey,"Fixed #12434: Made pretty_name handle empty string and None as input. Thanks ales_zoulek and gabrielhurley.
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@12794 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/cc6e9b22864a0dd72bcc778ab3f673853ee4987d,2010-03-16
+MDY6Q29tbWl0NDE2NDQ4MjpiODhmOTY5Nzg5YTVkNjljNzcwYzI1ZTFhZjlhMmY0MjkyMTg0YTZm,Joseph Kocherhans,Joseph Kocherhans,"Fixed #12960. The return value of ModelForm.clean() is now applied to the model. Thanks for the report, krejcik.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@12690 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/b88f969789a5d69c770c25e1af9a2f4292184a6f,2010-03-06
+MDY6Q29tbWl0NDE2NDQ4Mjo0MDhkNDMxMDI5MWNkMTI4N2YzZGJjMDVhYWViNWQyMDVlYmE4NzUx,Joseph Kocherhans,Joseph Kocherhans,"Fixed #12596. Calling super from a ModelForm's clean method is once again optional. Failing to call super only skips unique validation as documented. Thanks for the initial patch and tests, carljm.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@12269 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/408d4310291cd1287f3dbc05aaeb5d205eba8751,2010-01-21
+MDY6Q29tbWl0NDE2NDQ4Mjo1ZTgzYjc5ZDI2MDU5OGZjZGNjMjAxNGY5OWU2NjY5YzViMmE0NGY3,Jannis Leidel,Jannis Leidel,"Fixed #12466 - Set HTML class attributes for each field separately. Thanks for the patch, Bernd Schlapsi.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@12153 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/5e83b79d260598fcdcc2014f99e6669c5b2a44f7,2010-01-09
+MDY6Q29tbWl0NDE2NDQ4Mjo0NzE1OTZmYzFhZmNiOWM2MjU4ZDMxN2M2MTllYWY1ZmQzOTRlNzk3,Joseph Kocherhans,Joseph Kocherhans,"Merged soc2009/model-validation to trunk. Thanks, Honza!
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@12098 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/471596fc1afcb9c6258d317c619eaf5fd394e797,2010-01-05
+MDY6Q29tbWl0NDE2NDQ4Mjo1NzRlYWZlNGMwOGM0YTYzODc2ZTE5OWUwZjI2NTc4NjhjOGQwNzE4,Jacob Kaplan-Moss,Jacob Kaplan-Moss,"Fixed #11753 - Q objects with callables no longer explode on Python 2.4. Thanks, Jeremy Dunck.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@11901 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/574eafe4c08c4a63876e199e0f2657868c8d0718,2009-12-17
+MDY6Q29tbWl0NDE2NDQ4Mjo5MjgwMzIwNWNiY2FhZWUxNmFjMGViNzI0YzQ1MDE5YTlkODk2YWFj,Jacob Kaplan-Moss,Jacob Kaplan-Moss,"Fixed #3512: it's now possible to add CSS hooks to required/erroneous form rows. Thanks, SmileyChris.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@11830 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/92803205cbcaaee16ac0eb724c45019a9d896aac,2009-12-12
+MDY6Q29tbWl0NDE2NDQ4Mjo5YzRiZDJhYTMzZmVkOGJhOGJhMzI4YWU0ODdlODAxMzVhYzE0OThm,Karen Tracey,Karen Tracey,"Fixed #11632: Fixed the id for hidden initial widget so that it is different from the id for its visible counterpart. Thanks geber@datacollect.com and Mark Lavin.
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@11826 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/9c4bd2aa33fed8ba8ba328ae487e80135ac1498f,2009-12-12
+MDY6Q29tbWl0NDE2NDQ4Mjo3YzUzYzI2MThkN2RkOWYwNGYzMDlkMTk1ODM1ZTZhYmZjN2UwZTUy,Luke Plant,Luke Plant,"Fixed #10968 - Form.errors should use Form.error_class.
+ 
+Thanks for report and initial patch, matehat.
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@11498 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/7c53c2618d7dd9f04f309d195835e6abfc7e0e52,2009-09-11
+MDY6Q29tbWl0NDE2NDQ4MjoxZTRhZDZmMTE4MDA3NTQ3YzdlNjI3ZjFkNWJkMTFiZmIyOTkyYmY5,Jacob Kaplan-Moss,Jacob Kaplan-Moss,"Fixed #10002: inline file uploads now correctly display prior data. Thanks, dgouldin.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@10588 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/1e4ad6f118007547c7e627f1d5bd11bfb2992bf9,2009-04-18
+MDY6Q29tbWl0NDE2NDQ4MjoxNWJlY2YyM2E5ZTRjOWIyMzA3NDU3MzhkMmQ0MmY2YWI4ZjBmMDMx,Joseph Kocherhans,Joseph Kocherhans,"Forms in model formsets and inline formsets can now be deleted even if they don't validate. Related to #9587.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@10283 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/15becf23a9e4c9b230745738d2d42f6ab8f0f031,2009-03-31
+MDY6Q29tbWl0NDE2NDQ4MjozNTJlZmQxODkzMjhjY2E4ZmY1YWIyYWYyYjY1NTIyZWM0NGZhODg5,Adrian Holovaty,Adrian Holovaty,"Edited docs/topics/forms/index.txt changes from [9569] and fixed a typo in the visible_fields() docstring
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@9592 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/352efd189328cca8ff5ab2af2b65522ec44fa889,2008-12-08
+MDY6Q29tbWl0NDE2NDQ4MjpiZmFiOWQ2MmVlODE1YmFhYzM0YjE4NzI2NzZhZDI2YWY5MWM3ZDk0,Malcolm Tredinnick,Malcolm Tredinnick,"Added a way to iterate over hidden/visible fields in a form. Useful for manual
+form layout.
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@9569 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/bfab9d62ee815baac34b1872676ad26af91c7d94,2008-12-05
+MDY6Q29tbWl0NDE2NDQ4MjpiY2Q2M2NiZmIwNTkwYTJlMmJlZDNlNGJlYWIzZjQ2NzI3OWFkM2Ri,Karen Tracey,Karen Tracey,"Fixed #6160, #9111 -- Consistently apply conditional_escape to form errors and labels when outputing them as HTML.  
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@9365 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/bcd63cbfb0590a2e2bed3e4beab3f467279ad3db,2008-11-06
+MDY6Q29tbWl0NDE2NDQ4Mjo5OTMxYzllMTMyMWUzMjkwYjA2NWJjMGY1ZWM4MzUzYjFiY2I3MWYz,Malcolm Tredinnick,Malcolm Tredinnick,"Fixed #9125 -- When displaying errors for a form with only hidden fields, make sure the resulting XHTML is correct.
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@9067 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/9931c9e1321e3290b065bc0f5ec8353b1bcb71f3,2008-09-18
+MDY6Q29tbWl0NDE2NDQ4MjoyNDg3ZTNhZTM3ODY0ZWI0MWM1MzJjNDZlZjdlMzE4OWVjOTEwY2Ey,Brian Rosner,Brian Rosner,"Removed a conditional that slipped by that makes inline model formsets fail validation when re-submitted.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@8817 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/2487e3ae37864eb41c532c46ef7e3189ec910ca2,2008-09-01
+MDY6Q29tbWl0NDE2NDQ4Mjo3YzdhZDA0MWIzNThhOTgxOWIzYmQ5ZjkzZDQ4MzRkZjRhNWI1ZDU3,Brian Rosner,Brian Rosner,"Fixed #7975 -- Callable defaults in inline model formsets now work correctly. Based on patch from msaelices. Thanks for your hard work msaelices.
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@8816 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/7c7ad041b358a9819b3bd9f93d4834df4a5b5d57,2008-09-01
+MDY6Q29tbWl0NDE2NDQ4MjoyNGJhY2IxOWRlYTI5ODk0M2Y1NDE1NWY5MTFkZjM4MGM3M2Y5ZWEy,Malcolm Tredinnick,Malcolm Tredinnick,"Fixed #5216 -- Fixed a case of a string not being a unicode string.
+Thanks to Vadim Fint for the test case.
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@8761 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/24bacb19dea298943f54155f911df380c73f9ea2,2008-08-31
+MDY6Q29tbWl0NDE2NDQ4Mjo0Njc4NmI0MTkzZTA0ZDM5ODUzMmJiZmMzZGNmNjNjMDNjMTc5M2Ni,Jacob Kaplan-Moss,Jacob Kaplan-Moss,"Fixed #7741: django.newforms is now django.forms. This is obviously a backwards-incompatible change. There's a warning upon import of django.newforms itself, but deeper imports will raise errors.
+
+
+git-svn-id: http://code.djangoproject.com/svn/django/trunk@7971 bcc190cf-cafb-0310-a4f2-bffc1f526a37",https://api.github.com/repos/django/django/git/commits/46786b4193e04d398532bbfc3dcf63c03c1793cb,2008-07-19

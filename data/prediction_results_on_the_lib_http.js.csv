@@ -1,0 +1,1446 @@
+commit ID;text;author name;commit date;predicted_decision;predicted_rationale
+C_kwDOAZ7xs9oAKGExODY5ZmE4N2U4NzRlODFlN2YxNDcwNjg3Yzg0OThlZjM1ZTFlOTU;expose websockets;Natalia Venditto;2024-07-08;0;1
+C_kwDOAZ7xs9oAKGExODY5ZmE4N2U4NzRlODFlN2YxNDcwNjg3Yzg0OThlZjM1ZTFlOTU;"PR-URL: Reviewed-By: Matteo Collina <matteo.collina@gmail.com>
+Reviewed-By: Paolo Insogna <paolo@cowtech.it>
+Reviewed-By: James M Snell <jasnell@gmail.com>";Natalia Venditto;2024-07-08;0;0
+C_kwDOAZ7xs9oAKGNiZDJjMzg3Y2UyOTE3NWI5YzI3MzU0MWVhMmVhY2MzMTZkYTBhMWY;remove prototype primordials;Antoine du Hamel;2024-07-06;1;1
+C_kwDOAZ7xs9oAKGNiZDJjMzg3Y2UyOTE3NWI5YzI3MzU0MWVhMmVhY2MzMTZkYTBhMWY;"Co-authored-by: Yagiz Nizipli <yagiz@nizipli.com>
+PR-URL: Reviewed-By: Yagiz Nizipli <yagiz.nizipli@sentry.io>
+Reviewed-By: Robert Nagy <ronagy@icloud.com>
+Reviewed-By: Moshe Atlow <moshe@atlow.co.il>
+Reviewed-By: Marco Ippolito <marcoippolito54@gmail.com>
+Reviewed-By: Luigi Pinca <luigipinca@gmail.com>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>
+Reviewed-By: Benjamin Gruenbaum <benjamingr@gmail.com>
+Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Rafael Gonzaga <rafael.nunu@hotmail.com>";Antoine du Hamel;2024-07-06;0;0
+C_kwDOAZ7xs9oAKDZhYTcxMDE5NjBiN2ZkNmFmMzJkMmNmOWJkN2I3ZGJkOGI5MWYzMGM;lib: update params in jsdoc for `HTTPRequestOptions`;Jungku Lee;2023-09-29;1;0
+C_kwDOAZ7xs9oAKDZhYTcxMDE5NjBiN2ZkNmFmMzJkMmNmOWJkN2I3ZGJkOGI5MWYzMGM;"PR-URL: Reviewed-By: Marco Ippolito <marcoippolito54@gmail.com>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>";Jungku Lee;2023-09-29;0;1
+C_kwDOAZ7xs9oAKDVlYzBmMzlhN2E1NjViNWE4MmZlOTBiYTlmMDk1NzMxYTdiOGIwMDU;prevent writing to the body when not allowed by HTTP spec;Gerrard Lindsay;2023-05-13;0;1
+C_kwDOAZ7xs9oAKDVlYzBmMzlhN2E1NjViNWE4MmZlOTBiYTlmMDk1NzMxYTdiOGIwMDU;"PR-URL: Reviewed-By: Robert Nagy <ronagy@icloud.com>
+Reviewed-By: Paolo Insogna <paolo@cowtech.it>
+Reviewed-By: Marco Ippolito <marcoippolito54@gmail.com>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>";Gerrard Lindsay;2023-05-13;0;0
+C_kwDOAZ7xs9oAKDJmYmUxMjRlNjhjMDQwOTA0ZTk5MGMyMzA4M2E2M2UxNjNhMzA4NWQ;add highWaterMark opt in ;HinataKah0;2023-04-24;1;0
+C_kwDOAZ7xs9oAKDJmYmUxMjRlNjhjMDQwOTA0ZTk5MGMyMzA4M2E2M2UxNjNhMzA4NWQ;Add highWaterMark option when creating a new HTTP server;HinataKah0;2023-04-24;1;1
+C_kwDOAZ7xs9oAKDJmYmUxMjRlNjhjMDQwOTA0ZTk5MGMyMzA4M2E2M2UxNjNhMzA4NWQ;"This option will override the default (readable|writable)
+highWaterMark values on sockets created";HinataKah0;2023-04-24;1;1
+C_kwDOAZ7xs9oAKDJmYmUxMjRlNjhjMDQwOTA0ZTk5MGMyMzA4M2E2M2UxNjNhMzA4NWQ;"Fixes: PR-URL: Reviewed-By: Robert Nagy <ronagy@icloud.com>
+Reviewed-By: Paolo Insogna <paolo@cowtech.it>
+Reviewed-By: Debadree Chatterjee <debadree333@gmail.com>";HinataKah0;2023-04-24;0;1
+C_kwDOAZ7xs9oAKDlkYmIxNjIzZmZkNmUwNmI1ZGYwYzc0YmVhZjNmNGVlMGExN2M4ZTU;lib: add trailing commas to all public core modules;Antoine du Hamel;2023-02-12;1;0
+C_kwDOAZ7xs9oAKDlkYmIxNjIzZmZkNmUwNmI1ZGYwYzc0YmVhZjNmNGVlMGExN2M4ZTU;"PR-URL: Reviewed-By: Debadree Chatterjee <debadree333@gmail.com>
+Reviewed-By: Moshe Atlow <moshe@atlow.co.il>
+Reviewed-By: Anatoli Papirovski <apapirovski@mac.com>
+Reviewed-By: Benjamin Gruenbaum <benjamingr@gmail.com>
+Reviewed-By: Rafael Gonzaga <rafael.nunu@hotmail.com>
+Reviewed-By: Jiawen Geng <technicalcute@gmail.com>
+Reviewed-By: Trivikram Kamat <trivikr.dev@gmail.com>
+Reviewed-By: Yongsheng Zhang <zyszys98@gmail.com>";Antoine du Hamel;2023-02-12;0;1
+C_kwDOAZ7xs9oAKDQwODBiYWRhMWEwOTRiNTdlYTA5M2FjNGQwNjNjNWI3ZjlmMDA1M2U;join authorization headers;Marco Ippolito;2023-01-03;0;0
+C_kwDOAZ7xs9oAKDQwODBiYWRhMWEwOTRiNTdlYTA5M2FjNGQwNjNjNWI3ZjlmMDA1M2U;"PR-URL: Fixes: Reviewed-By: Matteo Collina <matteo.collina@gmail.com>
+Reviewed-By: Yagiz Nizipli <yagiz@nizipli.com>
+Reviewed-By: Paolo Insogna <paolo@cowtech.it>";Marco Ippolito;2023-01-03;0;1
+C_kwDOAZ7xs9oAKGVkMzYwNGNkNjQ3NjVjYjZkZmIwYjcxNjBjZTFiODI5NjY2ZDMxOTQ;server check Host header, to meet RFC 7230 5.4 requirement;wwwzbwcom;2021-07-09;0;1
+C_kwDOAZ7xs9oAKGVkMzYwNGNkNjQ3NjVjYjZkZmIwYjcxNjBjZTFiODI5NjY2ZDMxOTQ;"PR-URL: Fixes: Co-authored-by: Luigi Pinca <luigipinca@gmail.com>
+Co-authored-by: mscdex <mscdex@users.noreply.github.com>
+Reviewed-By: Robert Nagy <ronagy@icloud.com>
+Reviewed-By: Paolo Insogna <paolo@cowtech.it>
+Reviewed-By: Yagiz Nizipli <yagiz@nizipli.com>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>";wwwzbwcom;2021-07-09;0;1
+C_kwDOAZ7xs9oAKDQyYzhmMDk5ZmYyZGM2YWY2OWNkOTUwM2Y3YWIwM2VhMmRhNzJiMjA;add JSDoc property descriptions;Rich Trott;2022-11-08;1;1
+C_kwDOAZ7xs9oAKDQyYzhmMDk5ZmYyZGM2YWY2OWNkOTUwM2Y3YWIwM2VhMmRhNzJiMjA;"PR-URL: Reviewed-By: Akhil Marsonya <akhil.marsonya27@gmail.com>
+Reviewed-By: Yagiz Nizipli <yagiz@nizipli.com>
+Reviewed-By: Jacob Smith <jacob@frende.me>";Rich Trott;2022-11-08;0;0
+C_kwDOAZ7xs9oAKDIwZTM3MmMyNDJkMTUwZDY3OTViOGY0NzA5YTczNTYyNWFiOGQ5NmY;make idle parser count configurable;theanarkh;2022-07-29;1;0
+C_kwDOAZ7xs9oAKDIwZTM3MmMyNDJkMTUwZDY3OTViOGY0NzA5YTczNTYyNWFiOGQ5NmY;"PR-URL: Reviewed-By: Paolo Insogna <paolo@cowtech.it>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>
+Reviewed-By: Feng Yu <F3n67u@outlook.com>";theanarkh;2022-07-29;0;1
+C_kwDOAZ7xs9oAKDA2ZDg2MDY5NjAzM2I2N2E4ZjRhYTk3YjA4MzAwOWFkM2Q4MmVmMjY;lib: use null-prototype objects for property descriptors;Antoine du Hamel;2022-06-03;0;0
+C_kwDOAZ7xs9oAKDA2ZDg2MDY5NjAzM2I2N2E4ZjRhYTk3YjA4MzAwOWFkM2Q4MmVmMjY;"Refs: 
+PR-URL: Reviewed-By: Paolo Insogna <paolo@cowtech.it>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>
+Reviewed-By: Chengzhong Wu <legendecas@gmail.com>
+Reviewed-By: Minwoo Jung <nodecorelab@gmail.com>";Antoine du Hamel;2022-06-03;0;0
+C_kwDOAZ7xs9oAKDFlOGIyOTZjNThiNzdkM2I3YjQ2ZDQ1YzdlZjNlNDQ5ODFjNWMzZTc;lib,test,tools: use consistent JSDoc types;Rich Trott;2021-11-29;0;0
+C_kwDOAZ7xs9oAKDFlOGIyOTZjNThiNzdkM2I3YjQ2ZDQ1YzdlZjNlNDQ5ODFjNWMzZTc;"This could be in preparation of implementing the jsdoc/check-types
+ESLint rule";Rich Trott;2021-11-29;0;1
+C_kwDOAZ7xs9oAKDFlOGIyOTZjNThiNzdkM2I3YjQ2ZDQ1YzdlZjNlNDQ5ODFjNWMzZTc;"PR-URL: Reviewed-By: Michaël Zasso <targos@protonmail.com>
+Reviewed-By: Luigi Pinca <luigipinca@gmail.com>
+Reviewed-By: Antoine du Hamel <duhamelantoine1995@gmail.com>
+Reviewed-By: Tobias Nießen <tniessen@tnie.de>
+Reviewed-By: Mohammed Keyvanzadeh <mohammadkeyvanzade94@gmail.com>
+Reviewed-By: Ruben Bridgewater <ruben@bridgewater.de>";Rich Trott;2021-11-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDMxNjJkYThkZGM0N2I3ZTJhYzA4ZDdlMjAwNmVhNTJhMjI0NmYxOQ==;typings: add JSDoc typings for ;Voltrex;2021-04-10;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDMxNjJkYThkZGM0N2I3ZTJhYzA4ZDdlMjAwNmVhNTJhMjI0NmYxOQ==;"PR-URL: Reviewed-By: Bradley Farias <bradley.meck@gmail.com>
+Reviewed-By: Michaël Zasso <targos@protonmail.com>";Voltrex;2021-04-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGNmNWFlMDdlOWU4MDc0N2MxOWUwZmMwNGZhZDQ4NDIzNzA3ZjYyYw==;refactor to use more primordials;Antoine du Hamel;2020-11-17;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGNmNWFlMDdlOWU4MDc0N2MxOWUwZmMwNGZhZDQ4NDIzNzA3ZjYyYw==;"PR-URL: Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Rich Trott <rtrott@gmail.com>";Antoine du Hamel;2020-11-17;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTMwYTY1MTkzNzkyZDc2ZTIwNGU0NTU4YTQwNGI3ZTlkNWExMmY0MQ==;tidy up exposure of header validation;Osher;2020-05-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTMwYTY1MTkzNzkyZDc2ZTIwNGU0NTU4YTQwNGI3ZTlkNWExMmY0MQ==;"PR-URL: Reviewed-By: Anna Henningsen <anna@addaleax.net>
+Reviewed-By: Benjamin Gruenbaum <benjamingr@gmail.com>
+Reviewed-By: Luigi Pinca <luigipinca@gmail.com>
+Reviewed-By: Ruben Bridgewater <ruben@bridgewater.de>";Osher;2020-05-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTZmYWVhMTM3ZTdkNTkxY2FiNWZhMTVmNGM1ZmQ3Y2IyOGRhMzVlZQ==;expose ;osher;2020-04-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTZmYWVhMTM3ZTdkNTkxY2FiNWZhMTVmNGM1ZmQ3Y2IyOGRhMzVlZQ==;"The use-case is for any framework that provides user mw a response
+replacement, that collects the desired response state, and applies them
+only on conclusion";osher;2020-04-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTZmYWVhMTM3ZTdkNTkxY2FiNWZhMTVmNGM1ZmQ3Y2IyOGRhMzVlZQ==;"As such a framework, I'd want to validate the
+header names and values as soon as the user-code provides them";osher;2020-04-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTZmYWVhMTM3ZTdkNTkxY2FiNWZhMTVmNGM1ZmQ3Y2IyOGRhMzVlZQ==;"This - to eliminate errors on response-send time, and provide developer
+stack trace that contains the line that submits the offending values";osher;2020-04-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTZmYWVhMTM3ZTdkNTkxY2FiNWZhMTVmNGM1ZmQ3Y2IyOGRhMzVlZQ==;PR-URL: Reviewed-By: Anna Henningsen <anna@addaleax.net>;osher;2020-04-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY0NmVkYTRmYzBhZmZiOThlMTNjMzBhY2I1MjJlNjNiN2ZkNmRkZQ==;lib: flatten access to primordials;Michaël Zasso;2019-11-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY0NmVkYTRmYzBhZmZiOThlMTNjMzBhY2I1MjJlNjNiN2ZkNmRkZQ==;Store all primordials as properties of the primordials object;Michaël Zasso;2019-11-22;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY0NmVkYTRmYzBhZmZiOThlMTNjMzBhY2I1MjJlNjNiN2ZkNmRkZQ==;"Static functions are prefixed by the constructor's name and prototype
+methods are prefixed by the constructor's name followed by ""Prototype""";Michaël Zasso;2019-11-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY0NmVkYTRmYzBhZmZiOThlMTNjMzBhY2I1MjJlNjNiN2ZkNmRkZQ==;For example: primordials.Object.keys becomes primordials.ObjectKeys;Michaël Zasso;2019-11-22;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY0NmVkYTRmYzBhZmZiOThlMTNjMzBhY2I1MjJlNjNiN2ZkNmRkZQ==;"PR-URL: Refs: Reviewed-By: Anna Henningsen <anna@addaleax.net>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>
+Reviewed-By: Colin Ihrig <cjihrig@gmail.com>
+Reviewed-By: Trivikram Kamat <trivikr.dev@gmail.com>";Michaël Zasso;2019-11-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTA4MjkyY2YxZjU1MWM2MTRhNzMzZDg1ODUyOGZmYjEzZmIzYTUyNA==;lib: enforce the use of Object from primordials;Michaël Zasso;2019-04-09;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTA4MjkyY2YxZjU1MWM2MTRhNzMzZDg1ODUyOGZmYjEzZmIzYTUyNA==;"PR-URL: Reviewed-By: Colin Ihrig <cjihrig@gmail.com>
+Reviewed-By: Ruben Bridgewater <ruben@bridgewater.de>
+Reviewed-By: Joyee Cheung <joyeec9h3@gmail.com>
+Reviewed-By: Ben Noordhuis <info@bnoordhuis.nl>
+Reviewed-By: Anna Henningsen <anna@addaleax.net>
+Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Gus Caplan <me@gus.host>";Michaël Zasso;2019-04-09;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Zjg2ZjU3MzZkYTcyYWQ0ZjNmYjUwNjkyNDYxMjIyNTkwZTJmMDI1OA==;benchmark,lib: change var to const;Ruben Bridgewater;2019-03-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Zjg2ZjU3MzZkYTcyYWQ0ZjNmYjUwNjkyNDYxMjIyNTkwZTJmMDI1OA==;"Refs: 
+PR-URL: Reviewed-By: Michaël Zasso <targos@protonmail.com>
+Reviewed-By: Tobias Nießen <tniessen@tnie.de>
+Reviewed-By: Refael Ackermann <refack@gmail.com>";Ruben Bridgewater;2019-03-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;lib: support overriding ;Roy Sommer;2018-12-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;"Overriding `require('is now respected by
+consequent requests";Roy Sommer;2018-12-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;In order to achieve that, the following changes were made;Roy Sommer;2018-12-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;1;Roy Sommer;2018-12-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;"Implmentation in ``module.exports.globalAgent` is now defined
+through `Object.defineProperty`";Roy Sommer;2018-12-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;"Its getter and setter return \ set
+`require('_
+2";Roy Sommer;2018-12-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;"Implementation in `the `globalAgent` is not the same
+as `_and is defined in `module itself";Roy Sommer;2018-12-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;"Therefore,
+the fix here was to simply use `module.exports.globalAgent` to support
+mutation";Roy Sommer;2018-12-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;3;Roy Sommer;2018-12-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;"According tests were added for both `and `where in
+both we create a server, set the default agent to a newly created
+instance and make a request to that server";Roy Sommer;2018-12-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;"We then assert that the
+given instance was actually used by inspecting its sockets property";Roy Sommer;2018-12-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc3NDY4OGUyNjE0Y2NiODk3NDllYTJmNTIzMDE0YzY0Nzk2MTZhYQ==;"Fixes: 
+PR-URL: Reviewed-By: James M Snell <jasnell@gmail.com>";Roy Sommer;2018-12-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFjMTA4ZDgzNDUzOTEyMjYyNWM4NWJiMGE4OGY1MWE2MmIyMmQzNg==;add maxHeaderSize property;cjihrig;2018-12-06;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFjMTA4ZDgzNDUzOTEyMjYyNWM4NWJiMGE4OGY1MWE2MmIyMmQzNg==;This commit exposes the value of --max-as a property of the module;cjihrig;2018-12-06;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFjMTA4ZDgzNDUzOTEyMjYyNWM4NWJiMGE4OGY1MWE2MmIyMmQzNg==;"PR-URL: Reviewed-By: Richard Lau <riclau@uk.ibm.com>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>
+Reviewed-By: Michael Dawson <michael_dawson@ca.ibm.com>
+Reviewed-By: Shelley Vohr <codebytere@gmail.com>
+Reviewed-By: James M Snell <jasnell@gmail.com>";cjihrig;2018-12-06;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjliNzM5ZWJiY2I3N2JjNWEwZmM4ZTNkMjBhZDJlYWUzMjg1YjAzOQ==;allow url and options to be passed to and ;Sam Ruby;2018-07-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjliNzM5ZWJiY2I3N2JjNWEwZmM4ZTNkMjBhZDJlYWUzMjg1YjAzOQ==;"Fixes: PR-URL: Reviewed-By: Tiancheng ""Timothy"" Gu <timothygu99@gmail.com>
+Reviewed-By: Ron Korving <ron@ronkorving.nl>
+Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>";Sam Ruby;2018-07-01;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDJkOGVhMDIyMDFmOTc0NTBjNzEyOGYxMDJiYWFkNjdjNmU1NGQ5ZQ==;support server options on createServer;Wes Todd;2018-03-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDJkOGVhMDIyMDFmOTc0NTBjNzEyOGYxMDJiYWFkNjdjNmU1NGQ5ZQ==;"PR-URL: Reviewed-By: Anna Henningsen <anna@addaleax.net>
+Reviewed-By: Evan Lucas <evanlucas@me.com>
+Reviewed-By: Luigi Pinca <luigipinca@gmail.com>
+Reviewed-By: James M Snell <jasnell@gmail.com>";Wes Todd;2018-03-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTcxNGRhNmYwYWJkZjBiN2MxZDc4YmUzNjRjYTczNDIyNDZkYTc0Zg==;use more destructuring;Tobias Nießen;2018-03-20;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTcxNGRhNmYwYWJkZjBiN2MxZDc4YmUzNjRjYTczNDIyNDZkYTc0Zg==;"PR-URL: Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Colin Ihrig <cjihrig@gmail.com>
+Reviewed-By: Jackson Tian <shyvo1987@gmail.com>
+Reviewed-By: Luigi Pinca <luigipinca@gmail.com>";Tobias Nießen;2018-03-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjEyZGUzYzVlYzQyOWE1ODBkMmU3OWNlM2MyNTE2YjkzYjUyYjhmNQ==;lib: use destructuring for some constants;Weijia Wang;2017-10-07;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjEyZGUzYzVlYzQyOWE1ODBkMmU3OWNlM2MyNTE2YjkzYjUyYjhmNQ==;"This change is to unify the declaration for constants into using
+destructuring on the top-level-module scope, reducing some redundant
+code";Weijia Wang;2017-10-07;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjEyZGUzYzVlYzQyOWE1ODBkMmU3OWNlM2MyNTE2YjkzYjUyYjhmNQ==;"PR-URL: Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Anna Henningsen <anna@addaleax.net>
+Reviewed-By: Tobias Nießen <tniessen@tnie.de>
+Reviewed-By: Ruben Bridgewater <ruben@bridgewater.de>
+Reviewed-By: Gibson Fahnestock <gibfahn@gmail.com>";Weijia Wang;2017-10-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTQyNWUwZGNiZWUxZWQ4ZjY2ODcyMDNlYWZiN2MzY2YyMTRmMzM5Mw==;use more efficient module.exports pattern;James M Snell;2017-02-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTQyNWUwZGNiZWUxZWQ4ZjY2ODcyMDNlYWZiN2MzY2YyMTRmMzM5Mw==;"PR-URL: Reviewed-By: Colin Ihrig <cjihrig@gmail.com>
+Reviewed-By: Sakthipriyan Vairamani <thechargingvolcano@gmail.com>
+Reviewed-By: Matteo Collina <matteo.collina@gmail.com>";James M Snell;2017-02-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OThlNTRiMGJkNDg1NGJkYjNlMjk0OWQxYjZiMjBkNjc3N2ZiN2NkZQ==;meta: restore original copyright header;James M Snell;2017-01-03;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OThlNTRiMGJkNDg1NGJkYjNlMjk0OWQxYjZiMjBkNjc3N2ZiN2NkZQ==;"A prior io.js era commit inappropriately removed the
+original copyright statements from the source";James M Snell;2017-01-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OThlNTRiMGJkNDg1NGJkYjNlMjk0OWQxYjZiMjBkNjc3N2ZiN2NkZQ==;"This
+restores those in any files still remaining from that
+edit";James M Snell;2017-01-03;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OThlNTRiMGJkNDg1NGJkYjNlMjk0OWQxYjZiMjBkNjc3N2ZiN2NkZQ==;"Ref: Ref: PR-URL: 
+Note: This PR was required, reviewed-by and approved
+by the Node.js Foundation Legal Committee and the TSC";James M Snell;2017-01-03;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OThlNTRiMGJkNDg1NGJkYjNlMjk0OWQxYjZiMjBkNjc3N2ZiN2NkZQ==;There is no `Approved-By:` meta data.;James M Snell;2017-01-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWNjZjQxMGViMDk5MjYyOGI0YWFiM2MxMzkyNDJhNDA5ODc0YTRmYg==;name anonymous functions in ;maasencioh;2016-10-13;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWNjZjQxMGViMDk5MjYyOGI0YWFiM2MxMzkyNDJhNDA5ODc0YTRmYg==;"Refs: PR-URL: Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Luigi Pinca <luigipinca@gmail.com>
+Reviewed-By: Franziska Hinkelmann <franziska.hinkelmann@gmail.com>
+Reviewed-By: Michaël Zasso <targos@protonmail.com>";maasencioh;2016-10-13;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmNjN2ZhNWU3ZGFiZGYxMGJmMjZlZmM0YWI4ZGJmZmQzNmRiYTIzZQ==;remove deprecated Client interface;Brian White;2016-08-14;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmNjN2ZhNWU3ZGFiZGYxMGJmMjZlZmM0YWI4ZGJmZmQzNmRiYTIzZQ==;"PR-URL: Reviewed-By: James M Snell <jasnell@gmail.com>
+Reviewed-By: Ben Noordhuis <info@bnoordhuis.nl>
+Reviewed-By: Colin Ihrig <cjihrig@gmail.com>";Brian White;2016-08-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjMyYTYwNmUzNzNhZDU3ZjY4NGIwZTUxMWQ2ZDZlNGNiZDQ4YTgxMg==;lib,src: remove usage of events.EventEmitter;Sakthipriyan Vairamani;2015-09-16;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjMyYTYwNmUzNzNhZDU3ZjY4NGIwZTUxMWQ2ZDZlNGNiZDQ4YTgxMg==;"The `events` module already exports `EventEmitter` constructor function
+So, we don't have to use `events.EventEmitter` to access it";Sakthipriyan Vairamani;2015-09-16;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjMyYTYwNmUzNzNhZDU3ZjY4NGIwZTUxMWQ2ZDZlNGNiZDQ4YTgxMg==;"Refer: 
+PR-URL: Reviewed-By: Roman Reiss <me@silverwind.io>
+Reviewed-By: Michaël Zasso <mic.besace@gmail.com>";Sakthipriyan Vairamani;2015-09-16;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;util: prepend '(node) ' to deprecation messages;Sakthipriyan Vairamani;2015-06-13;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;"Changes included in this commit are
+   1";Sakthipriyan Vairamani;2015-06-13;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;Making the deprecation messages consistent;Sakthipriyan Vairamani;2015-06-13;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;"The messages will be in
+      the following format
+           x is deprecated";Sakthipriyan Vairamani;2015-06-13;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;Use y instead;Sakthipriyan Vairamani;2015-06-13;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;"      If there is no alternative for `x`, then the ` Use y instead.` part
+      will not be there in the message";Sakthipriyan Vairamani;2015-06-13;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;   2;Sakthipriyan Vairamani;2015-06-13;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;"All the internal deprecation messages are printed with the prefix
+      `(node) `, except when the `--trace-deprecation` flag is set";Sakthipriyan Vairamani;2015-06-13;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNDRiYjJiNjgzNDQ2NTMxMzA2YmJjZmY4NzM5ZmMzNTI2ZDAyYw==;Fixes: PR-URL: Reviewed-By: Roman Reiss <me@silverwind.io>;Sakthipriyan Vairamani;2015-06-13;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2U2N2Q3ZTQ2YjgwYzkwZmFhMzYwZDFkMGU0NGRhY2M0NDRlOGU0Zg==;replace util._extend() with [].slice();Jonathan Ong;2015-01-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2U2N2Q3ZTQ2YjgwYzkwZmFhMzYwZDFkMGU0NGRhY2M0NDRlOGU0Zg==;"PR-URL: Reviewed-BY: Nicu Micleușanu <micnic90@gmail.com>
+Reviewed-By: Ben Noordhuis <info@bnoordhuis.nl>
+Reviewed-By: Stephen Belanger <admin@stephenbelanger.com>";Jonathan Ong;2015-01-28;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODA0ZTdhYTlhYjBiMzRmYTg4NzA5ZWYwOTgwYjk2MGFiY2E1ZTA1OQ==;lib: use const to define constants;cjihrig;2015-01-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODA0ZTdhYTlhYjBiMzRmYTg4NzA5ZWYwOTgwYjk2MGFiY2E1ZTA1OQ==;"This commit replaces a number of var statements throughout
+the lib code with const statements";cjihrig;2015-01-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODA0ZTdhYTlhYjBiMzRmYTg4NzA5ZWYwOTgwYjk2MGFiY2E1ZTA1OQ==;PR-URL: Reviewed-By: Ben Noordhuis <info@bnoordhuis.nl>;cjihrig;2015-01-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2UxYjFkZDRhOWFjMDQ4MTA1YTRkYzRjZDgxNTc4ZTI2ZDM5YTFmYw==;Remove excessive copyright/license boilerplate;isaacs;2015-01-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2UxYjFkZDRhOWFjMDQ4MTA1YTRkYzRjZDgxNTc4ZTI2ZDM5YTFmYw==;The copyright and license notice is already in the LICENSE file;isaacs;2015-01-12;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2UxYjFkZDRhOWFjMDQ4MTA1YTRkYzRjZDgxNTc4ZTI2ZDM5YTFmYw==;" There
+is no justifiable reason to also require that it be included in every
+file, since the individual files are not individually distributed except
+as part of the entire package.";isaacs;2015-01-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjExMzBjN2Q2ZmNhZWU2NjZmMzM3MzU3NjhjMDYwYmUyZTA2NjE0YQ==;lib: turn on strict mode;Ben Noordhuis;2014-11-22;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjExMzBjN2Q2ZmNhZWU2NjZmMzM3MzU3NjhjMDYwYmUyZTA2NjE0YQ==;Turn on strict mode for the files in the lib/ directory;Ben Noordhuis;2014-11-22;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjExMzBjN2Q2ZmNhZWU2NjZmMzM3MzU3NjhjMDYwYmUyZTA2NjE0YQ==;" It helps
+catch bugs and can have a positive effect on performance";Ben Noordhuis;2014-11-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjExMzBjN2Q2ZmNhZWU2NjZmMzM3MzU3NjhjMDYwYmUyZTA2NjE0YQ==;"PR-URL: Reviewed-By: Colin Ihrig <cjihrig@gmail.com>
+Reviewed-By: Fedor Indutny <fedor@indutny.com>";Ben Noordhuis;2014-11-22;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk5Y2Y4NDQ5MGEyZjI4ZmZkYzRjODJlNGZiNzA3OGFjNTkxYjZkMw==;lib: unexport ;Ben Noordhuis;2014-08-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk5Y2Y4NDQ5MGEyZjI4ZmZkYzRjODJlNGZiNzA3OGFjNTkxYjZkMw==;Unexport the freelist;Ben Noordhuis;2014-08-22;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk5Y2Y4NDQ5MGEyZjI4ZmZkYzRjODJlNGZiNzA3OGFjNTkxYjZkMw==;" It was originally exported by Ryan
+in commit 0003c701 but the commit log doesn't mention why and it's never
+been documented";Ben Noordhuis;2014-08-22;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk5Y2Y4NDQ5MGEyZjI4ZmZkYzRjODJlNGZiNzA3OGFjNTkxYjZkMw==; It's unclear if there are any users;Ben Noordhuis;2014-08-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk5Y2Y4NDQ5MGEyZjI4ZmZkYzRjODJlNGZiNzA3OGFjNTkxYjZkMw==;"The lifecycle of parser objects changed recently and it seems better to
+not let people shoot themselves in the foot so easily";Ben Noordhuis;2014-08-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk5Y2Y4NDQ5MGEyZjI4ZmZkYzRjODJlNGZiNzA3OGFjNTkxYjZkMw==;"If it turns out there are actually users, we can always re-export it
+again - probably under a slightly different name, to force people to
+update their code to the new way of things.";Ben Noordhuis;2014-08-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDNlOWY4NDkzM2ZlNjEwYjA0YjEwN2NmMWY4M2QxNzQ4NWU4OTA2ZQ==;lib: remove unused variables;Brian White;2014-06-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDNlOWY4NDkzM2ZlNjEwYjA0YjEwN2NmMWY4M2QxNzQ4NWU4OTA2ZQ==;;Brian White;2014-06-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDZiYmIxOWYxZDFkNjM5N2Q4NjJkMDkzMDRiYzYzYzQ3NmY2NzVjMQ==;don't depend on `globalAgent`;Nathan Rajlich;2014-02-25;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDZiYmIxOWYxZDFkNjM5N2Q4NjJkMDkzMDRiYzYzYzQ3NmY2NzVjMQ==;For the `request()` and `get()` functions;Nathan Rajlich;2014-02-25;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDZiYmIxOWYxZDFkNjM5N2Q4NjJkMDkzMDRiYzYzYzQ3NmY2NzVjMQ==;"I could never
+really understand why these two functions go through agent
+first..";Nathan Rajlich;2014-02-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDZiYmIxOWYxZDFkNjM5N2Q4NjJkMDkzMDRiYzYzYzQ3NmY2NzVjMQ==;"Especially since the user could be passing `agent: false`
+or a different Agent instance completely, in which `globalAgent`
+will be completely bypassed";Nathan Rajlich;2014-02-25;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDZiYmIxOWYxZDFkNjM5N2Q4NjJkMDkzMDRiYzYzYzQ3NmY2NzVjMQ==;"Moved the relevant logic from `Agent#request()` into the
+`ClientRequest` constructor";Nathan Rajlich;2014-02-25;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDZiYmIxOWYxZDFkNjM5N2Q4NjJkMDkzMDRiYzYzYzQ3NmY2NzVjMQ==;"Incidentally, this commit fixes #7012 (which was the original
+intent of this commit).";Nathan Rajlich;2014-02-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjEwMDIyODUxYWFlZmY3YTk2NTE4YThlZTA0ODI2NTQ3ZGMzMzk2OQ==;expose supported methods;Ben Noordhuis;2013-10-28;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjEwMDIyODUxYWFlZmY3YTk2NTE4YThlZTA0ODI2NTQ3ZGMzMzk2OQ==;Expose the list of supported HTTP methods as a property on the 'module object;Ben Noordhuis;2013-10-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjEwMDIyODUxYWFlZmY3YTk2NTE4YThlZTA0ODI2NTQ3ZGMzMzk2OQ==;Fixes #6422.;Ben Noordhuis;2013-10-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmQ4NDI4OTdjNTk2NmNlZTE5MjRiNTA3M2UyNzM1Njg5MjNjODY5Mw==;lib: remove unused variables and functions;Brian White;2013-08-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmQ4NDI4OTdjNTk2NmNlZTE5MjRiNTA3M2UyNzM1Njg5MjNjODY5Mw==;;Brian White;2013-08-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzJmZGFlMmNhM2JkNGRmMDU3YWUwMWI3Y2Q3ODk2MTk2OGZhMGZkMA==;Fix overlooked agent.globalAgent export;isaacs;2013-08-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzJmZGFlMmNhM2JkNGRmMDU3YWUwMWI3Y2Q3ODk2MTk2OGZhMGZkMA==;Noticed by @bnoordhuis in https://github.com/joyent/node/pull/5991#discussion_r5575946;isaacs;2013-08-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDBlOTI2NTBiYjk3YjczNmI4ZTI5YzVkZTM1YzFjMjllYmQ2MjVlZg==;Add agent.get/request methods;isaacs;2013-05-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDBlOTI2NTBiYjk3YjczNmI4ZTI5YzVkZTM1YzFjMjllYmQ2MjVlZg==;;isaacs;2013-05-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzEyNDM4N2IzNDE0YzQxNTMzMDc4ZjE0YTg0NDQ2ZTJlMGE2ZmY5NQ==;don't escape request path, reject bad chars;Ben Noordhuis;2013-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzEyNDM4N2IzNDE0YzQxNTMzMDc4ZjE0YTg0NDQ2ZTJlMGE2ZmY5NQ==;"Commit 38149bb changes and to escape unsafe
+characters";Ben Noordhuis;2013-05-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzEyNDM4N2IzNDE0YzQxNTMzMDc4ZjE0YTg0NDQ2ZTJlMGE2ZmY5NQ==;"However, that creates an incompatibility with v0.10 that
+is difficult to work around: if you escape the path manually, then in
+v0.11 it gets escaped twice";Ben Noordhuis;2013-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzEyNDM4N2IzNDE0YzQxNTMzMDc4ZjE0YTg0NDQ2ZTJlMGE2ZmY5NQ==;"Change lib/so it no longer tries
+to fix up bad request paths, simply reject them with an exception";Ben Noordhuis;2013-05-15;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzEyNDM4N2IzNDE0YzQxNTMzMDc4ZjE0YTg0NDQ2ZTJlMGE2ZmY5NQ==;The actual check is rather basic right now;Ben Noordhuis;2013-05-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzEyNDM4N2IzNDE0YzQxNTMzMDc4ZjE0YTg0NDQ2ZTJlMGE2ZmY5NQ==;"The full check for illegal
+characters is difficult to implement efficiently because it requires a
+few characters of lookahead";Ben Noordhuis;2013-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzEyNDM4N2IzNDE0YzQxNTMzMDc4ZjE0YTg0NDQ2ZTJlMGE2ZmY5NQ==;"That's why it currently only checks for
+spaces because those are guaranteed to create an invalid request";Ben Noordhuis;2013-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzEyNDM4N2IzNDE0YzQxNTMzMDc4ZjE0YTg0NDQ2ZTJlMGE2ZmY5NQ==;Fixes #5474.;Ben Noordhuis;2013-05-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTUxZTBiNjlmYTNjOGIxYTVkNzA4ZTI5ZGU5ZDZmN2QxZGI3OTgyNw==;split Client into _http_client.js;Timothy J Fontaine;2013-04-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTUxZTBiNjlmYTNjOGIxYTVkNzA4ZTI5ZGU5ZDZmN2QxZGI3OTgyNw==;;Timothy J Fontaine;2013-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjcxN2ZkY2NiNGEzZWJmNTVkODdhZTVkZjFlMjRlYmViZDQwODFmMQ==;move Server and ServerResponse out;Timothy J Fontaine;2013-04-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjcxN2ZkY2NiNGEzZWJmNTVkODdhZTVkZjFlMjRlYmViZDQwODFmMQ==;;Timothy J Fontaine;2013-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGM5Zjk3YjdiOTlmMjdlYWYyMWZhZjI5YzdkZjhjOWQ4MjNlZjg2Mw==;move OutgoingMessage into it's own file;Timothy J Fontaine;2013-04-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGM5Zjk3YjdiOTlmMjdlYWYyMWZhZjI5YzdkZjhjOWQ4MjNlZjg2Mw==;;Timothy J Fontaine;2013-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmI1NjQ4OWYyMWRhOWQ2NjhjMjc5ZWRiNDVkNmE5MGQwMzUxN2EzMA==;move parsers into _http_common.js;Timothy J Fontaine;2013-04-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmI1NjQ4OWYyMWRhOWQ2NjhjMjc5ZWRiNDVkNmE5MGQwMzUxN2EzMA==;;Timothy J Fontaine;2013-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTkwOWE5YzliZGRkZGFhYjkxNjkzZDE4YTg4NDBkOGIzMDBiYmMyOA==;move IncomingMessage into its own file;Timothy J Fontaine;2013-04-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTkwOWE5YzliZGRkZGFhYjkxNjkzZDE4YTg4NDBkOGIzMDBiYmMyOA==;;Timothy J Fontaine;2013-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjJlNGY4OTc2NTVhZWRmMjJiNTYyYTgwYzllNTcyYzc1OTJmZTBhYw==;split Agent into its own file;Timothy J Fontaine;2013-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjJlNGY4OTc2NTVhZWRmMjJiNTYyYTgwYzllNTcyYzc1OTJmZTBhYw==;;Timothy J Fontaine;2013-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzgxNDliYjA0OGQ5ODMzY2MzY2Y5YTEzY2JmZjUzMDBmYmVkMzZlZg==;escape unsafe characters in request path;Ben Noordhuis;2013-04-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzgxNDliYjA0OGQ5ODMzY2MzY2Y5YTEzY2JmZjUzMDBmYmVkMzZlZg==;"Make and friends escape unsafe characters in the request
+path";Ben Noordhuis;2013-04-12;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzgxNDliYjA0OGQ5ODMzY2MzY2Y5YTEzY2JmZjUzMDBmYmVkMzZlZg==;That is, a request for '/foo bar' is now escaped as '/foo%20bar';Ben Noordhuis;2013-04-12;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzgxNDliYjA0OGQ5ODMzY2MzY2Y5YTEzY2JmZjUzMDBmYmVkMzZlZg==;"Before this commit, the path was used as-is in the request status line,
+creating an invalid HTTP request (""GET /foo bar HTTP/1.1"")";Ben Noordhuis;2013-04-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzgxNDliYjA0OGQ5ODMzY2MzY2Y5YTEzY2JmZjUzMDBmYmVkMzZlZg==;Fixes #4381.;Ben Noordhuis;2013-04-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTRiNzE2ZWZhYTAwZjM0ZmU0ZDlmMWMxNDFjOTNlMmFhOTk0MzI4Yw==;Support write(data, 'hex');isaacs;2013-04-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTRiNzE2ZWZhYTAwZjM0ZmU0ZDlmMWMxNDFjOTNlMmFhOTk0MzI4Yw==;"We were assuming that any string can be concatenated safely to
+CRLF";isaacs;2013-04-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTRiNzE2ZWZhYTAwZjM0ZmU0ZDlmMWMxNDFjOTNlMmFhOTk0MzI4Yw==;" However, for hex, base64, or binary encoded writes, this
+is not the case, and results in sending the incorrect response";isaacs;2013-04-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTRiNzE2ZWZhYTAwZjM0ZmU0ZDlmMWMxNDFjOTNlMmFhOTk0MzI4Yw==;An unusual edge case, but certainly a bug.;isaacs;2013-04-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODg2ODZhYTQxMDY0OTlhNjAzMzY1Yjg4N2UyMzgxYjU1YzYxYzAyNw==;Remove legacy ECONNRESET workaround code;isaacs;2013-04-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODg2ODZhYTQxMDY0OTlhNjAzMzY1Yjg4N2UyMzgxYjU1YzYxYzAyNw==;Fix #5179;isaacs;2013-04-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjM0ZmIxMjJiYmRmODdiYjMzZDhmYmE0MTE2NWVjZmE5MjAzMWI3MQ==;client: Ensure socket cleanup on response end;isaacs;2013-04-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjM0ZmIxMjJiYmRmODdiYjMzZDhmYmE0MTE2NWVjZmE5MjAzMWI3MQ==;"If an response has an 'end' handler that throws, then the socket
+will never be released back into the pool";isaacs;2013-04-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjM0ZmIxMjJiYmRmODdiYjMzZDhmYmE0MTE2NWVjZmE5MjAzMWI3MQ==;"Granted, we do NOT guarantee that throwing will never have adverse
+effects on Node internal state";isaacs;2013-04-02;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjM0ZmIxMjJiYmRmODdiYjMzZDhmYmE0MTE2NWVjZmE5MjAzMWI3MQ==;" Such a guarantee cannot be reasonably
+made in a shared-global mutable-state side-effecty language like
+JavaScript";isaacs;2013-04-02;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjM0ZmIxMjJiYmRmODdiYjMzZDhmYmE0MTE2NWVjZmE5MjAzMWI3MQ==;" However, in this case, it's a rather trivial patch to
+increase our resilience a little bit, so it seems like a win";isaacs;2013-04-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjM0ZmIxMjJiYmRmODdiYjMzZDhmYmE0MTE2NWVjZmE5MjAzMWI3MQ==;"There is no semantic change in this case, except that some event
+listeners are removed, and the `'free'` event is emitted on nextTick, so
+that you can schedule another request which will re-use the same socket";isaacs;2013-04-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjM0ZmIxMjJiYmRmODdiYjMzZDhmYmE0MTE2NWVjZmE5MjAzMWI3MQ==;From the user's point of view, there should be no detectable difference;isaacs;2013-04-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjM0ZmIxMjJiYmRmODdiYjMzZDhmYmE0MTE2NWVjZmE5MjAzMWI3MQ==;Closes #5107;isaacs;2013-04-02;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYyY2Y1OWRjMTUyZjhkZjY5NTRlZTdmZmU5MzgxZmM5YjUyNGUzMg==;Don't hot-path end() for large buffers;isaacs;2013-03-14;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYyY2Y1OWRjMTUyZjhkZjY5NTRlZTdmZmU5MzgxZmM5YjUyNGUzMg==;"The benefits of the hot-path optimization below start to fall off when
+the buffer size gets up near 128KB, because the cost of the copy is more
+than the cost of the extra write() call";isaacs;2013-03-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYyY2Y1OWRjMTUyZjhkZjY5NTRlZTdmZmU5MzgxZmM5YjUyNGUzMg==;" Switch to the write/end method
+at that point";isaacs;2013-03-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYyY2Y1OWRjMTUyZjhkZjY5NTRlZTdmZmU5MzgxZmM5YjUyNGUzMg==;"Heuristics and magic numbers are awful, but slow responses are
+worse";isaacs;2013-03-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYyY2Y1OWRjMTUyZjhkZjY5NTRlZTdmZmU5MzgxZmM5YjUyNGUzMg==;Fix #4975;isaacs;2013-03-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;stream: Don't emit 'end' unless read() called;isaacs;2013-03-10;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;"This solves the problem of calling `readable.pipe(writable)` after the
+readable stream has already emitted 'end', as often is the case when
+writing simple HTTP proxies";isaacs;2013-03-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;"The spirit of streams2 is that things will work properly, even if you
+don't set them up right away on the first tick";isaacs;2013-03-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;"This approach breaks down, however, because pipe()ing from an ended
+readable will just do nothing";isaacs;2013-03-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;" No more data will ever arrive, and the
+writable will hang open forever never being ended";isaacs;2013-03-10;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;"However, that does not solve the case of adding a `on('end')` listener
+after the stream has received the EOF chunk, if it was the first chunk
+received (and thus, length was 0, and 'end' got emitted)";isaacs;2013-03-10;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;" So, with
+this, we defer the 'end' event emission until the read() function is
+called";isaacs;2013-03-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;"Also, in pipe(), if the source has emitted 'end' already, we call the
+cleanup/onend function on nextTick";isaacs;2013-03-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;" Piping from an already-ended stream
+is thus the same as piping from a stream that is in the process of
+ending";isaacs;2013-03-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;"Updates many tests that were relying on 'end' coming immediately, even
+though they never read() from the req";isaacs;2013-03-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzI3YjZlM2UxZGU4OGJhMWRiODMxNDJkNTNiM2E1N2YwZDA2ZDUxOQ==;Fix #4942;isaacs;2013-03-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlhNGVjOWM2MzkyZmVmYTdjZTZjNjYxNjhmNGM1MzVlYTA3MDJlMQ==;ServerRequest does not timeout after 'end';koichik;2013-03-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlhNGVjOWM2MzkyZmVmYTdjZTZjNjYxNjhmNGM1MzVlYTA3MDJlMQ==;Fixes #4967;koichik;2013-03-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTI0MDBmODhkODVmNjdmYjI0MWEzMGY4ZjUyN2Y2MGY0NjRiYzA0Yw==;Do not setTimeout a not-yet-existent socket;isaacs;2013-03-10;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTI0MDBmODhkODVmNjdmYjI0MWEzMGY4ZjUyN2Y2MGY0NjRiYzA0Yw==;Fixes #4967;isaacs;2013-03-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc1N2NlNDhiNDFlYWEwYmZmZjg5YjNiOWJjNmY4ZjRlYmJmZWI1Mw==;check if incoming parser has already been freed;hc;2013-03-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc1N2NlNDhiNDFlYWEwYmZmZjg5YjNiOWJjNmY4ZjRlYmJmZWI1Mw==;"Fix #4948
+This adds a check before setting the incoming parser
+to null";hc;2013-03-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc1N2NlNDhiNDFlYWEwYmZmZjg5YjNiOWJjNmY4ZjRlYmJmZWI1Mw==;"Under certain circumstances it'll already be set to
+null by freeParser()";hc;2013-03-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTc1N2NlNDhiNDFlYWEwYmZmZjg5YjNiOWJjNmY4ZjRlYmJmZWI1Mw==;"Otherwise this will cause node to crash as it tries to set
+null on something that is already null.";hc;2013-03-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjMyYjdkODc1MGE5M2ZiZmVhMmM4MTBhZTEyM2JlNDE4MzFkZDYwMg==;"Revert ""check if incoming parser has already been freed""";isaacs;2013-03-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjMyYjdkODc1MGE5M2ZiZmVhMmM4MTBhZTEyM2JlNDE4MzFkZDYwMg==;This reverts commit 9f4c3b0d45f858d3d3021ef4b8edebf6005008ff.;isaacs;2013-03-08;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWY0YzNiMGQ0NWY4NThkM2QzMDIxZWY0YjhlZGViZjYwMDUwMDhmZg==;check if incoming parser has already been freed;hheennrryy@gmail.com;2013-03-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWY0YzNiMGQ0NWY4NThkM2QzMDIxZWY0YjhlZGViZjYwMDUwMDhmZg==;"Fix #4948
+This adds a check before setting the incoming parser
+to null";hheennrryy@gmail.com;2013-03-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWY0YzNiMGQ0NWY4NThkM2QzMDIxZWY0YjhlZGViZjYwMDUwMDhmZg==;"Under certain circumstances it'll already be set to
+null by freeParser()";hheennrryy@gmail.com;2013-03-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWY0YzNiMGQ0NWY4NThkM2QzMDIxZWY0YjhlZGViZjYwMDUwMDhmZg==;"Otherwise this will cause node to crash as it tries to set
+null on something that is already null.";hheennrryy@gmail.com;2013-03-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;More useful setTimeout API on server;isaacs;2013-03-04;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;This adds the following to HTTP;isaacs;2013-03-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;"  Sets all new connections to time out after the specified time, at
+  which point it emits 'timeout' on the server, passing the socket as an
+  argument";isaacs;2013-03-04;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;  In this way, timeouts can be handled in one place consistently;isaacs;2013-03-04;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;"  Essentially an alias to req/res.socket.setTimeout(), but without
+  having to delve into a ""buried"" object";isaacs;2013-03-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;" Adds a listener on the
+  req/res object, but not on the socket";isaacs;2013-03-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;  Number of milliseconds before incoming connections time out;isaacs;2013-03-04;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;"  (Default=1000*60*2, as before.)
+Furthermore, if the user sets up their own timeout listener on either
+the server, the request, or the response, then the default behavior
+(destroying the socket) is suppressed";isaacs;2013-03-04;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDI1OGZiMDIxMjUzMDMyOWI5OTQxYmUxOGJjNmU5MGQ3YWZlYzViNQ==;Fix #3460;isaacs;2013-03-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjViYTk3MWY0MWQ0ZGRhZjdlMjQxNjQ1Y2ZjMjkxN2JkM2FmYTFmNw==;fix multiple timeout events;Eugene Girshov;2013-03-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjViYTk3MWY0MWQ0ZGRhZjdlMjQxNjQ1Y2ZjMjkxN2JkM2FmYTFmNw==;"Fixed up slightly by @isaacs so as not to miss 'timeout' events in some
+cases.";Eugene Girshov;2013-03-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmQ1MTAzNmZiOTY1NWQ1Yjc3NWU3ZjllNWFiMzYyY2Q5MTQ2MGNhMw==;Merge remote-tracking branch 'origin/v0.8';Ben Noordhuis;2013-03-02;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmQ1MTAzNmZiOTY1NWQ1Yjc3NWU3ZjllNWFiMzYyY2Q5MTQ2MGNhMw==;Conflicts;Ben Noordhuis;2013-03-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmQ1MTAzNmZiOTY1NWQ1Yjc3NWU3ZjllNWFiMzYyY2Q5MTQ2MGNhMw==;	doc/api/	test/simple/test-crypto.js;Ben Noordhuis;2013-03-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzUzMDVmM2JhYmQ5ZTkyN2U5MmIwZDliNzBkOGJiMDI2NDkyZWJkMA==;events: add check for listeners length;Trevor Norris;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzUzMDVmM2JhYmQ5ZTkyN2U5MmIwZDliNzBkOGJiMDI2NDkyZWJkMA==;"Ability to return just the length of listeners for a given type, using
+EventEmitter.listenerCount(emitter, event)";Trevor Norris;2013-02-14;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzUzMDVmM2JhYmQ5ZTkyN2U5MmIwZDliNzBkOGJiMDI2NDkyZWJkMA==;"This will be a lot cheaper
+than creating a copy of the listeners array just to check its length.";Trevor Norris;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjI2MzYyZTkzODFkODhkNGM5MDZlMzYyNGY5MGZjNzZlOTA4N2MyMA==;use socket.once, not socket.on;Ben Noordhuis;2013-03-01;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjI2MzYyZTkzODFkODhkNGM5MDZlMzYyNGY5MGZjNzZlOTA4N2MyMA==;Register the 'close' event listener with .once(), not .on();Ben Noordhuis;2013-03-01;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjI2MzYyZTkzODFkODhkNGM5MDZlMzYyNGY5MGZjNzZlOTA4N2MyMA==;"It doesn't matter in the grand scheme of things because the listener
+doesn't keep references to any heavy-weight objects but using .once()
+for a oneshot listener is something of a best practice.";Ben Noordhuis;2013-03-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODg2NDRlYWEyZGIzZTliNjAzZWZjYTAwZTY0MGZmMDhkOTMyMGMxYg==;stream: There is no _read cb, there is only push;isaacs;2013-02-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODg2NDRlYWEyZGIzZTliNjAzZWZjYTAwZTY0MGZmMDhkOTMyMGMxYg==;"This makes it so that `stream.push(chunk)` is the only way to signal the
+end of reading, removing the confusing disparity between the
+callback-style _read method, and the fact that most real-world streams
+do not have a 1:1 corollation between the ""please give me data"" event,
+and the actual arrival of a chunk of data";isaacs;2013-02-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODg2NDRlYWEyZGIzZTliNjAzZWZjYTAwZTY0MGZmMDhkOTMyMGMxYg==;"It is still possible, of course, to implement a `CallbackReadable` on
+top of this";isaacs;2013-02-28;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODg2NDRlYWEyZGIzZTliNjAzZWZjYTAwZTY0MGZmMDhkOTMyMGMxYg==; Simply provide a method like this as the callback;isaacs;2013-02-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODg2NDRlYWEyZGIzZTliNjAzZWZjYTAwZTY0MGZmMDhkOTMyMGMxYg==;"      else
+However, *only* fs streams actually would behave in this way, so it
+makes not a lot of sense to make TCP, TLS, HTTP, and all the rest have
+to bend into this uncomfortable paradigm.";isaacs;2013-02-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2I4NzkyMGJhOWMyODcxNjMwZmYzN2FmNmYwMTMxZmIxOTY4ZGM5NQ==;Merge remote-tracking branch 'origin/v0.8';Ben Noordhuis;2013-02-28;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2I4NzkyMGJhOWMyODcxNjMwZmYzN2FmNmYwMTMxZmIxOTY4ZGM5NQ==;Conflicts;Ben Noordhuis;2013-02-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2I4NzkyMGJhOWMyODcxNjMwZmYzN2FmNmYwMTMxZmIxOTY4ZGM5NQ==;"	AUTHORS
+	ChangeLog
+	deps/uv/src/unix/pipe.c
+	lib/	src/node_version.h";Ben Noordhuis;2013-02-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDRhMjk3Y2NiMDU0MDE5YWE1ODJiYWIyYTA3NDZmNzYyYzkzMDE1OQ==;fix case in 505 response status line;Ben Noordhuis;2013-02-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDRhMjk3Y2NiMDU0MDE5YWE1ODJiYWIyYTA3NDZmNzYyYzkzMDE1OQ==;Fixes #4850.;Ben Noordhuis;2013-02-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjBlN2RiZjJjMGJhYjM3MDE4ZTY0ZDE0ZDE3NmQwMjM2YzExY2Q4Nw==;Do not free the wrong parser on socket close;isaacs;2013-02-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjBlN2RiZjJjMGJhYjM3MDE4ZTY0ZDE0ZDE3NmQwMjM2YzExY2Q4Nw==;This appears to fix #4673;isaacs;2013-02-25;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjBlN2RiZjJjMGJhYjM3MDE4ZTY0ZDE0ZDE3NmQwMjM2YzExY2Q4Nw==;" That bug is very hard to reproduce, so it's
+hard to tell for certain, but this approach is more correct anyway";isaacs;2013-02-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjBlN2RiZjJjMGJhYjM3MDE4ZTY0ZDE0ZDE3NmQwMjM2YzExY2Q4Nw==;Hat-tip: @dougwilson;isaacs;2013-02-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjlhMDE0MGVmMTQwZDg5ZmVkMWExOTRjNDEwY2Q2OWVkOTk5MDMwNQ==;Handle hangup writes more gently;isaacs;2013-02-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjlhMDE0MGVmMTQwZDg5ZmVkMWExOTRjNDEwY2Q2OWVkOTk5MDMwNQ==;;isaacs;2013-02-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDliMTIxMjI1NDQ0NWQxODQ4ZTM2OTQ2MmQzZjkxZmIxYzNmM2NmNA==;Add fixme comment about ECONNRESET handling;isaacs;2013-02-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDliMTIxMjI1NDQ0NWQxODQ4ZTM2OTQ2MmQzZjkxZmIxYzNmM2NmNA==;;isaacs;2013-02-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDc1ZTM5Nzk0YmI5ZTU2NjNlOTMwMTA4N2MwNjE1MWY0MjA3MWRmZQ==;Merge remote-tracking branch 'ry/v0.8' into master;isaacs;2013-02-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDc1ZTM5Nzk0YmI5ZTU2NjNlOTMwMTA4N2MwNjE1MWY0MjA3MWRmZQ==;Conflicts;isaacs;2013-02-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDc1ZTM5Nzk0YmI5ZTU2NjNlOTMwMTA4N2MwNjE1MWY0MjA3MWRmZQ==;"	AUTHORS
+	ChangeLog
+	lib/	src/node_version.h
+	test/simple/test-http-header-response-splitting.js";isaacs;2013-02-18;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTg3MzM4ZmUzMWIzOWI3ZjU3YThmNTY0NTU5MzQyNTcyMmJhNDBhZg==;Do not let Agent hand out destroyed sockets;isaacs;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTg3MzM4ZmUzMWIzOWI3ZjU3YThmNTY0NTU5MzQyNTcyMmJhNDBhZg==;Fix #4373;isaacs;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;Raise hangup error on destroyed socket write;isaacs;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;Prior to v0.10, Node ignored ECONNRESET errors in many situations;isaacs;2013-02-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;"There *are* valid cases in which ECONNRESET should be ignored as a
+normal part of the TCP dance, but in many others, it's a very relevant
+signal that must be heeded with care";isaacs;2013-02-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;"Exacerbating this problem, if the OutgoingMessage does not have a
+req.connection._handle, it assumes that it is in the process of
+connecting, and thus buffers writes up in an array";isaacs;2013-02-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;"The problem happens when you reuse a socket between two requests, and it
+is destroyed abruptly in between them";isaacs;2013-02-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;" The writes will be buffered,
+because the socket has no handle, but it's not ever going to GET a
+handle, because it's not connecting, it's destroyed";isaacs;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;The proper fix is to treat ECONNRESET correctly;isaacs;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;" However, this is a
+behavior/semantics change, and cannot land in a stable branch";isaacs;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlkY2Y1NzE4Y2Y0NzMyMmIwMGYyOTk0Nzk3YWViYjY4ZDdlZDBmYg==;Fix #4775;isaacs;2013-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjU1YmM5NDVjMmJhZDM1YzAxYjY1ZTMzNTEzMzdlMzAzNzI5MDdiNA==;protect against response splitting attacks;Bert Belder;2013-02-07;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjU1YmM5NDVjMmJhZDM1YzAxYjY1ZTMzNTEzMzdlMzAzNzI5MDdiNA==;This patch is a back-port of 3c293ba;Bert Belder;2013-02-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjU1YmM5NDVjMmJhZDM1YzAxYjY1ZTMzNTEzMzdlMzAzNzI5MDdiNA==;Closes #4696;Bert Belder;2013-02-07;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZmFmNzg2MDRjYTk4MGRiYjNhZDU3ZGY4NzY0MDQxNWM2YTkwMWZhYw==;Don't dump twice;isaacs;2013-01-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZmFmNzg2MDRjYTk4MGRiYjNhZDU3ZGY4NzY0MDQxNWM2YTkwMWZhYw==;;isaacs;2013-01-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGE3YTk4ZmQwYWIzZDM5Njg1ODg4ZjE1YmIzYTg0NGU4NjNiZTI1NQ==;close connection on 204 and chunked encoding;Ben Noordhuis;2013-01-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NGE3YTk4ZmQwYWIzZDM5Njg1ODg4ZjE1YmIzYTg0NGU4NjNiZTI1NQ==;"This is similar to commit 2cbf458 but this time for 204 No Content
+instead of 304 Not Modified responses";Ben Noordhuis;2013-01-23;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NGE3YTk4ZmQwYWIzZDM5Njg1ODg4ZjE1YmIzYTg0NGU4NjNiZTI1NQ==;"When the user sends a 204 response with a Transfer-Encoding: chunked
+header, suppress sending the zero chunk and force the connection to
+close.";Ben Noordhuis;2013-01-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmNiZjQ1ODZkZjgzN2U2YjJjYzdlMDRmN2I5YWU3NzY2OTA0ZGY2MQ==;close connection on 304 and chunked encoding;Ben Noordhuis;2013-01-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmNiZjQ1ODZkZjgzN2U2YjJjYzdlMDRmN2I5YWU3NzY2OTA0ZGY2MQ==;"Force the connection to close when the response is a 304 Not Modified
+and the user has set a ""Transfer-Encoding: chunked"" header";Ben Noordhuis;2013-01-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmNiZjQ1ODZkZjgzN2U2YjJjYzdlMDRmN2I5YWU3NzY2OTA0ZGY2MQ==;"RFC 2616 mandates that 304 responses MUST NOT have a body but node.js
+used to send out a zero chunk anyway to accommodate clients that don't
+have special handling for 304 responses";Ben Noordhuis;2013-01-23;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmNiZjQ1ODZkZjgzN2U2YjJjYzdlMDRmN2I5YWU3NzY2OTA0ZGY2MQ==;"It was pointed out that this might confuse reverse proxies to the point
+of creating security liabilities, so suppress the zero chunk and force
+the connection to close.";Ben Noordhuis;2013-01-23;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2Q3ODE4ZmM0MmM1ZjlhZjJhZWNjZjlkNzVhZDZhMjM3MjE3OWYyOA==;Merge remote-tracking branch 'ry/v0.8' into master;isaacs;2013-01-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2Q3ODE4ZmM0MmM1ZjlhZjJhZWNjZjlkNzVhZDZhMjM3MjE3OWYyOA==;Conflicts;isaacs;2013-01-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2Q3ODE4ZmM0MmM1ZjlhZjJhZWNjZjlkNzVhZDZhMjM3MjE3OWYyOA==;"	AUTHORS
+	ChangeLog
+	src/node_version.h
+	test/simple/test-buffer.js";isaacs;2013-01-18;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWVmMGNjYmNhZmI4MmIxYTQ3Y2U5NGZlMjU3Yzk5MTQyM2E1YmNkZg==;fix duplicate var initialization;Alexandr Emelin;2013-01-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWVmMGNjYmNhZmI4MmIxYTQ3Y2U5NGZlMjU3Yzk5MTQyM2E1YmNkZg==;"IncomingMessage function contained duplicate initialization
+of this._pendings";Alexandr Emelin;2013-01-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWVmMGNjYmNhZmI4MmIxYTQ3Y2U5NGZlMjU3Yzk5MTQyM2E1YmNkZg==;"Line with one of those expressions has been
+removed.";Alexandr Emelin;2013-01-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjNlNzhiZDNjMjEwMjhkZmQ5NmVmZWQ3YWUyNjU0Y2VmZjFlNzg3OA==;"fix ""Cannot call method 'emit' of null""";Ben Noordhuis;2013-01-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjNlNzhiZDNjMjEwMjhkZmQ5NmVmZWQ3YWUyNjU0Y2VmZjFlNzg3OA==;Fix the following exception;Ben Noordhuis;2013-01-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjNlNzhiZDNjMjEwMjhkZmQ5NmVmZWQ3YWUyNjU0Y2VmZjFlNzg3OA==;"      this._                      ^
+  TypeError: Cannot call method 'emit' of null
+      at Socket.onServerResponseClose (      at Socket.EventEmitter.emit (events.js:124:20)
+      at net.js:421:10
+      at process._tickCallback (node.js:386:13)
+      at process._makeCallback (node.js:304:15)
+Fixes #4586.";Ben Noordhuis;2013-01-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGMwYzUyNGNlNjgxZjUzZTJiZDhmMDk3NGVkNmFhM2ZkOTEwMDU0ZA==;Set _dumped=false initially;isaacs;2013-01-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGMwYzUyNGNlNjgxZjUzZTJiZDhmMDk3NGVkNmFhM2ZkOTEwMDU0ZA==;"The better to keep the IncomingMessage class isomorphic and avoid
+creating additional hidden classes.";isaacs;2013-01-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWVjZTYzYjFkNzRlYzEzNTlkZjdiM2VmNGQ2ZWQ1MzRhYzQ5YzBjZg==;Don't switch the socket into old-mode;isaacs;2013-01-08;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWVjZTYzYjFkNzRlYzEzNTlkZjdiM2VmNGQ2ZWQ1MzRhYzQ5YzBjZg==;;isaacs;2013-01-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmM4ZmViMTUxYzczMWY1ODYyYTAyZmNjYjU4NjM4MTA1YjQ0ZDQ1Yg==;Use stream.push() instead of touching _readableState;isaacs;2013-01-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmM4ZmViMTUxYzczMWY1ODYyYTAyZmNjYjU4NjM4MTA1YjQ0ZDQ1Yg==;;isaacs;2013-01-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjQyMzI4NzQ1M2U5MTRjMjY2ODAwMmZjNGU2NDgyODIxNjI1YTdhYw==;Separate out the storeHeader closure;isaacs;2012-12-27;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjQyMzI4NzQ1M2U5MTRjMjY2ODAwMmZjNGU2NDgyODIxNjI1YTdhYw==;;isaacs;2012-12-27;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTc4NWFiNjA1NzQ2NTkzNjAxNzUyYTI3OGM5M2ZkYzc4NDQ2MjExNQ==;"Replace ""in"" usage with ""=== undefined""";isaacs;2012-12-27;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTc4NWFiNjA1NzQ2NTkzNjAxNzUyYTI3OGM5M2ZkYzc4NDQ2MjExNQ==;Speeds up benchmarks.;isaacs;2012-12-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODkzNjg2OGU5YmY2YjRhM2Y1NjY4NGM0ODk1ZTJhN2MzMzM5NTQ3OQ==;remove unused variable;Ryunosuke SATO;2012-12-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODkzNjg2OGU5YmY2YjRhM2Y1NjY4NGM0ODk1ZTJhN2MzMzM5NTQ3OQ==;The module variable `END_OF_FILE` was no longer needed from 1d369317.;Ryunosuke SATO;2012-12-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDc2ZWFjZDRlNjE4ZDYwNzE0ZjJkZDU2OGQ0NWJkNmNkOTYwMTliNg==;Handle end only when stream is not dumped;isaacs;2012-12-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDc2ZWFjZDRlNjE4ZDYwNzE0ZjJkZDU2OGQ0NWJkNmNkOTYwMTliNg==;This fixes regression introduced in some cases by 8bf0c15;isaacs;2012-12-26;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTQ3NDBjOGIyNDdjOWNlNTBhNDQwMDE0MjAwNGZkMDVlYzA5OGUyMQ==;lint;isaacs;2012-12-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTQ3NDBjOGIyNDdjOWNlNTBhNDQwMDE0MjAwNGZkMDVlYzA5OGUyMQ==;;isaacs;2012-12-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OGJmMGMxNWE1YjIxNzU1YzRjNjZiNTRmNWFhZDE2ZTgxYTQxNmMxMw==;stream2: fix to emit end event on http.ClientResponse;Shigeki Ohtsu;2012-12-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGJmMGMxNWE1YjIxNzU1YzRjNjZiNTRmNWFhZDE2ZTgxYTQxNmMxMw==;;Shigeki Ohtsu;2012-12-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZmI5MTVlZDk1NzNkMjFjNWI2MmMxM2I4ZWFhOTY0MmE2ZGJiNGIwMg==;lint;isaacs;2012-12-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZmI5MTVlZDk1NzNkMjFjNWI2MmMxM2I4ZWFhOTY0MmE2ZGJiNGIwMg==;;isaacs;2012-12-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzA0OGM4MTRjNzlhODcwNmYxNzc1NzNjNzZiZmNiYTNjZGEwYjYzMw==;Trivial fix for comments and 'this.read';isaacs;2012-12-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzA0OGM4MTRjNzlhODcwNmYxNzc1NzNjNzZiZmNiYTNjZGEwYjYzMw==;;isaacs;2012-12-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODYyNGFkZjVkOGI3ZTA0MjlmN2MxMjdhMmVkZTg1NTY4MGZlNWMxOA==;use IncomingMessage._dump() instead of resume();isaacs;2012-12-19;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODYyNGFkZjVkOGI3ZTA0MjlmN2MxMjdhMmVkZTg1NTY4MGZlNWMxOA==;;isaacs;2012-12-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzlhZThiN2FlMmZiNjdmMzkzNzVmNDZlMGFkNzU1MmFhOWZiODJlYQ==;Merge remote-tracking branch 'origin/v0.8';Ben Noordhuis;2012-12-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzlhZThiN2FlMmZiNjdmMzkzNzVmNDZlMGFkNzU1MmFhOWZiODJlYQ==;;Ben Noordhuis;2012-12-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;pack response body buffer in first tcp packet;Ben Noordhuis;2012-12-19;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;Apply the same optimization to res.end(buf) that is applied to res.end(str);Ben Noordhuis;2012-12-19;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;"Speeds up `node benchmark/-k -c 1 -n 25000 buffer/1`
+(non-chunked response body) by about 750x";Ben Noordhuis;2012-12-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;That's not a typo;Ben Noordhuis;2012-12-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;Chunked responses;Ben Noordhuis;2012-12-19;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;"  for (var i = 0; i < 25000; ++i) 
+Before";Ben Noordhuis;2012-12-19;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;"  $ time out/Release/node tmp/  real    16m40.411s
+  user    0m9.184s
+  sys     0m0.604s
+After";Ben Noordhuis;2012-12-19;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;"  $ time out/Release/node tmp/  real    0m5.386s
+  user    0m2.768s
+  sys     0m0.728s
+That's still a 185x speed-up";Ben Noordhuis;2012-12-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWExOWMwN2MwODdjNTc0OWUzMTczN2NiNGZiNWExMTM2NDNmMzVkNg==;Fixes #4415.;Ben Noordhuis;2012-12-19;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODI3YjJhOWIwYjJiOTM4ZjQ1OGE3NTY5YmY2YzczYjZiZTI1ZGRjNw==;bubble up parser errors to ClientRequest;Brian White;2012-08-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODI3YjJhOWIwYjJiOTM4ZjQ1OGE3NTY5YmY2YzczYjZiZTI1ZGRjNw==;"Make parser errors bubble up to the ClientRequest instead of the underlying
+net.Socket object";Brian White;2012-08-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODI3YjJhOWIwYjJiOTM4ZjQ1OGE3NTY5YmY2YzczYjZiZTI1ZGRjNw==;This is a back-port of commit c78678b from the master branch;Brian White;2012-08-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODI3YjJhOWIwYjJiOTM4ZjQ1OGE3NTY5YmY2YzczYjZiZTI1ZGRjNw==;Fixes #3776.;Brian White;2012-08-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWQzNjkzMTdlYTQ0OTQyNGI5OGFlYzY0NWYxMmIwZDllNDM4NzZkNg==;Refactor for streams2;isaacs;2012-12-13;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWQzNjkzMTdlYTQ0OTQyNGI5OGFlYzY0NWYxMmIwZDllNDM4NzZkNg==;"Because of some of the peculiarities of this has a bit of special
+magic to handle cases where the IncomingMessage would wait forever in a
+paused state";isaacs;2012-12-13;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWQzNjkzMTdlYTQ0OTQyNGI5OGFlYzY0NWYxMmIwZDllNDM4NzZkNg==;"In the server, if you do not begin consuming the request body by the
+time the response emits 'finish', then it will be flushed out";isaacs;2012-12-13;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWQzNjkzMTdlYTQ0OTQyNGI5OGFlYzY0NWYxMmIwZDllNDM4NzZkNg==;"In the client, if you do not add a 'response' handler onto the request,
+then the response stream will be flushed out.";isaacs;2012-12-13;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2MyOTNiYTI3MjUwZjE4ODVlZmE4ZDhkYjhlNzVkM2VhMDMzYzIwNg==;protect against response splitting attacks;Bert Belder;2012-11-19;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2MyOTNiYTI3MjUwZjE4ODVlZmE4ZDhkYjhlNzVkM2VhMDMzYzIwNg==;;Bert Belder;2012-11-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjY1N2NlNjg1ZGRkYzFiZjJkNWI0MmY1NmQ3MjhkZjkxNzZjY2ViOQ==;windows: add tracing with performance counters;Scott Blomquist;2012-11-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjY1N2NlNjg1ZGRkYzFiZjJkNWI0MmY1NmQ3MjhkZjkxNzZjY2ViOQ==;Patch by Henry Rawas and Scott Blomquist.;Scott Blomquist;2012-11-20;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODUwOTA3MzQ1OGYyMjc5MDFkYzg0ZTg3MmRjMDE2NTFjM2I5MTJkMw==;lint;isaacs;2012-10-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODUwOTA3MzQ1OGYyMjc5MDFkYzg0ZTg3MmRjMDE2NTFjM2I5MTJkMw==;;isaacs;2012-10-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDYxZjIwNzVjZjgxMDE3Y2RiNDBkZTgwNTMzYmExODc0Njc0M2M5NA==;string_decoder: Add 'end' method, do base64 properly;isaacs;2012-10-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDYxZjIwNzVjZjgxMDE3Y2RiNDBkZTgwNTMzYmExODc0Njc0M2M5NA==;;isaacs;2012-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MGFkMDA1ODUyYzdiZDdlODk2YzljOTRhZTUyODQ0OTNhYTM1Y2I4Mw==;fix renegotation attack protection;Ben Noordhuis;2012-10-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MGFkMDA1ODUyYzdiZDdlODk2YzljOTRhZTUyODQ0OTNhYTM1Y2I4Mw==;"Listen for the 'clientError' event that is emitted when a renegotation attack
+is detected and close the connection";Ben Noordhuis;2012-10-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MGFkMDA1ODUyYzdiZDdlODk2YzljOTRhZTUyODQ0OTNhYTM1Y2I4Mw==;Fixes test/pummel/test-https-ci-reneg-attack.js;Ben Noordhuis;2012-10-07;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODM2YTA2ZmM0ZjQ5MjBkNWU5Njc1NzYzMjkwYzk3YWE0ZTcyODhmZQ==;"Revert ""make emit 'end'""";isaacs;2012-10-04;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODM2YTA2ZmM0ZjQ5MjBkNWU5Njc1NzYzMjkwYzk3YWE0ZTcyODhmZQ==;This reverts commit 790d651f0dfae13f1e2b799820ab18ac09f251b7;isaacs;2012-10-04;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODM2YTA2ZmM0ZjQ5MjBkNWU5Njc1NzYzMjkwYzk3YWE0ZTcyODhmZQ==;"This makes Duplex streams unworkable, and would only ever be a special
+case for HTTP responses, which is not ideal";isaacs;2012-10-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODM2YTA2ZmM0ZjQ5MjBkNWU5Njc1NzYzMjkwYzk3YWE0ZTcyODhmZQ==;"Intead, we're going to just bless the 'finish' event for all Writable
+streams in 0.10";isaacs;2012-10-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWU0MGYxYzQzODA1MGJmNDYwNzE0Mzg2MjI1OWFlMTA5MzFlM2EzYw==;Merge remote-tracking branch 'ry/v0.8' into v0.8-merge;isaacs;2012-09-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWU0MGYxYzQzODA1MGJmNDYwNzE0Mzg2MjI1OWFlMTA5MzFlM2EzYw==;Conflicts;isaacs;2012-09-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWU0MGYxYzQzODA1MGJmNDYwNzE0Mzg2MjI1OWFlMTA5MzFlM2EzYw==;"	AUTHORS
+	ChangeLog
+	deps/openssl/openssl.gyp
+	deps/uv/src/unix/linux/linux-core.c
+	deps/uv/src/unix/process.c
+	deps/uv/src/unix/stream.c
+	deps/v8/src/arm/builtins-arm.cc
+	deps/v8/src/arm/code-stubs-arm.cc
+	deps/v8/src/arm/full-codegen-arm.cc
+	lib/tls.js
+	src/node_version.h
+	test/simple/test-http-client-timeout-agent.js";isaacs;2012-09-28;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjM4Mjc3YmUyNjZjZmQ2YjZjM2NjOWUwMDczMDg5OGY2MmExMWY2ZQ==;add response.headersSent property;Pavel Lang;2012-09-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjM4Mjc3YmUyNjZjZmQ2YjZjM2NjOWUwMDczMDg5OGY2MmExMWY2ZQ==;Boolean property getter;Pavel Lang;2012-09-18;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjM4Mjc3YmUyNjZjZmQ2YjZjM2NjOWUwMDczMDg5OGY2MmExMWY2ZQ==;True if headers was sent, false otherwise.;Pavel Lang;2012-09-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzNhNWM4YTgxNDQ4M2ZmNDhiYTNhY2Q5NGUwOTEzMzViMzUzNjg3MA==;handle multiple Proxy-Authenticate values;thewilli;2012-09-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzNhNWM4YTgxNDQ4M2ZmNDhiYTNhY2Q5NGUwOTEzMzViMzUzNjg3MA==;"Just as the 'WWW-Authenticate' HTTP header the 'Proxy-Authenticate' header might
+be received several times as well";thewilli;2012-09-24;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzNhNWM4YTgxNDQ4M2ZmNDhiYTNhY2Q5NGUwOTEzMzViMzUzNjg3MA==;Currently only one value is preserved;thewilli;2012-09-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzNhNWM4YTgxNDQ4M2ZmNDhiYTNhY2Q5NGUwOTEzMzViMzUzNjg3MA==;"This
+change allows to receive multiple values concatenated by space and comma.";thewilli;2012-09-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWMxN2RjMTc2NDcwMGY3NDEzYzI0MDk4MmM0MzcxN2M0MTU1M2FiMA==;handle multiple Proxy-Authenticate values;thewilli;2012-09-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWMxN2RjMTc2NDcwMGY3NDEzYzI0MDk4MmM0MzcxN2M0MTU1M2FiMA==;"Just as the 'WWW-Authenticate' HTTP header the 'Proxy-Authenticate' header might
+be received several times as well";thewilli;2012-09-24;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWMxN2RjMTc2NDcwMGY3NDEzYzI0MDk4MmM0MzcxN2M0MTU1M2FiMA==;Currently only one value is preserved;thewilli;2012-09-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWMxN2RjMTc2NDcwMGY3NDEzYzI0MDk4MmM0MzcxN2M0MTU1M2FiMA==;"This
+change allows to receive multiple values concatenated by space and comma.";thewilli;2012-09-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MGYyZWQyYmMyYzExNjRhMzNjMzlkMTcyOTYwYjRhY2ExYmUwOGJhYQ==;"make the client ""res"" object gets the same domain as ""req""";Nathan Rajlich;2012-09-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MGYyZWQyYmMyYzExNjRhMzNjMzlkMTcyOTYwYjRhY2ExYmUwOGJhYQ==;Fixes #4046.;Nathan Rajlich;2012-09-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmIyMDdjMjgyN2NkNzU4ZGQyNzNhZGIyOGJhZGViOWVjMjU4NjkzOQ==;Merge remote-tracking branch 'ry/v0.8' into master;isaacs;2012-09-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmIyMDdjMjgyN2NkNzU4ZGQyNzNhZGIyOGJhZGViOWVjMjU4NjkzOQ==;Conflicts;isaacs;2012-09-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmIyMDdjMjgyN2NkNzU4ZGQyNzNhZGIyOGJhZGViOWVjMjU4NjkzOQ==;"	ChangeLog
+	src/node_version.h
+	test/simple/test-util-inspect.js";isaacs;2012-09-12;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDUxZmYxNTQwYWI1MzYyMzdlOGQ3NTFkMjQxZDdmYzMzOTFhNDA4Nw==;Remove timeout handler when data arrives;Frédéric Germain;2012-09-09;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDUxZmYxNTQwYWI1MzYyMzdlOGQ3NTFkMjQxZDdmYzMzOTFhNDA4Nw==;;Frédéric Germain;2012-09-09;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWEzNTIxY2IyNWU1ZjAwMzVjZjM4ZWQ3YjE2NzI5YzhkMGRjM2M2NQ==;respect HTTP/1.0 TE header;Ben Noordhuis;2012-09-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWEzNTIxY2IyNWU1ZjAwMzVjZjM4ZWQ3YjE2NzI5YzhkMGRjM2M2NQ==;"A HTTP/1.0 client does not support 'Transfer-Encoding: chunked' unless it
+explicitly requests it by sending a 'TE: chunked' header";Ben Noordhuis;2012-09-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWEzNTIxY2IyNWU1ZjAwMzVjZjM4ZWQ3YjE2NzI5YzhkMGRjM2M2NQ==;"Before this commit, node.js always disabled chunked encoding for HTTP/1.0
+clients";Ben Noordhuis;2012-09-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWEzNTIxY2IyNWU1ZjAwMzVjZjM4ZWQ3YjE2NzI5YzhkMGRjM2M2NQ==;"Now it will scan for the TE header and turn on chunked encoding if
+requested and applicable";Ben Noordhuis;2012-09-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWEzNTIxY2IyNWU1ZjAwMzVjZjM4ZWQ3YjE2NzI5YzhkMGRjM2M2NQ==;Fixes #940.;Ben Noordhuis;2012-09-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzkwZDY1MWYwZGZhZTEzZjFlMmI3OTk4MjBhYjE4YWMwOWYyNTFiNw==;make emit 'end';Ben Noordhuis;2012-09-04;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzkwZDY1MWYwZGZhZTEzZjFlMmI3OTk4MjBhYjE4YWMwOWYyNTFiNw==;This used to be the internal 'finish' event;Ben Noordhuis;2012-09-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzkwZDY1MWYwZGZhZTEzZjFlMmI3OTk4MjBhYjE4YWMwOWYyNTFiNw==;"Make it public so API users will
+know when the response has been sent completely";Ben Noordhuis;2012-09-04;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzkwZDY1MWYwZGZhZTEzZjFlMmI3OTk4MjBhYjE4YWMwOWYyNTFiNw==;Fixes #3855.;Ben Noordhuis;2012-09-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Yzc4Njc4YjA4MWQ4YzM3YjhiYmM2MTZlNGNiNzgyY2YzMjY0NTYxOQ==;bubble up parser errors to ClientRequest;Brian White;2012-08-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Yzc4Njc4YjA4MWQ4YzM3YjhiYmM2MTZlNGNiNzgyY2YzMjY0NTYxOQ==;"Make parser errors bubble up to the ClientRequest instead of the underlying
+net.Socket object";Brian White;2012-08-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Yzc4Njc4YjA4MWQ4YzM3YjhiYmM2MTZlNGNiNzgyY2YzMjY0NTYxOQ==;Fixes #3776.;Brian White;2012-08-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjBjMDExMWIwNDIwMWJmOTlmZGUwZmUwNjE2YjlmZGYxZjMzNjU1ZA==;Use host header as effective servername;isaacs;2012-07-25;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjBjMDExMWIwNDIwMWJmOTlmZGUwZmUwNjE2YjlmZGYxZjMzNjU1ZA==;;isaacs;2012-07-25;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTA2YjVkN2FmNzYxOWU5MjM0YmI3ZWI4YTlkNjZiM2M3ZDI0NWFkOQ==;remove duplicate assignments;Brian White;2012-07-23;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTA2YjVkN2FmNzYxOWU5MjM0YmI3ZWI4YTlkNjZiM2M3ZDI0NWFkOQ==;Closes GH-3754;Brian White;2012-07-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTQzZmU1YzgzM2M5NDFhYmEyNWJmZGI2MTkzZWY0MWZjNTBhZTQwNQ==;"Revert ""pass request to .createConnection()""";Fedor Indutny;2012-07-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTQzZmU1YzgzM2M5NDFhYmEyNWJmZGI2MTkzZWY0MWZjNTBhZTQwNQ==;This reverts commit 53716eb0b5338999761d115fad9d392077836e63.;Fedor Indutny;2012-07-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWIyY2ExMDQ2MjhlNDE1ZmM3M2MzMzBjZGQ3NmZjYTc3YmY1YmE5Nw==;tls: veryify server's identity;Fedor Indutny;2012-07-11;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWIyY2ExMDQ2MjhlNDE1ZmM3M2MzMzBjZGQ3NmZjYTc3YmY1YmE5Nw==;;Fedor Indutny;2012-07-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTM3MTZlYjBiNTMzODk5OTc2MWQxMTVmYWQ5ZDM5MjA3NzgzNmU2Mw==;pass request to .createConnection();Fedor Indutny;2012-07-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTM3MTZlYjBiNTMzODk5OTc2MWQxMTVmYWQ5ZDM5MjA3NzgzNmU2Mw==;"It's useful for passing some additional options of request object to the
+underlying API";Fedor Indutny;2012-07-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWIzOTkyOWQ0N2Y5NjJmY2NhZmI0MTE2ZjNjMTc3ZGRjNGZkMzI2OQ==;Add --no-deprecation and --trace-deprecation flags;isaacs;2012-06-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWIzOTkyOWQ0N2Y5NjJmY2NhZmI0MTE2ZjNjMTc3ZGRjNGZkMzI2OQ==;;isaacs;2012-06-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjYwNjk1YWZkMDcwNjcyNTRhNzA0YzA1MDI0M2QyZTYxOWJhZThiNw==;Hush 'MUST NOT have a body' warnings to debug();isaacs;2012-06-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjYwNjk1YWZkMDcwNjcyNTRhNzA0YzA1MDI0M2QyZTYxOWJhZThiNw==;;isaacs;2012-06-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWUwY2U1ZDFiZGYzNjRiZjZlY2E4MjE2MzVlM2FlOGU2NTgwNzY2Nw==;domain: the EventEmitter constructor is now always called in nodecore;Andreas Madsen;2012-06-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWUwY2U1ZDFiZGYzNjRiZjZlY2E4MjE2MzVlM2FlOGU2NTgwNzY2Nw==;;Andreas Madsen;2012-06-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWE5OThkNWUyNDRkYzU4YTFmNzY1MGU1NzQzNzFlMGQ0Yzc1ZmNjMQ==;don't lowercase req header until later;Simon Sturmer;2012-06-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWE5OThkNWUyNDRkYzU4YTFmNzY1MGU1NzQzNzFlMGQ0Yzc1ZmNjMQ==;"Don't lowercase the request header until we're in the _addHeaderLine method,
+makes it easier to intercept the raw request headers.";Simon Sturmer;2012-06-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjcyMWQwMmM4YTM1NmMxYTlhNDBkOGJmNzA5OTE4Njc0OWYwMTk3OA==;fix duplicated variable declaration;Shigeki Ohtsu;2012-05-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjcyMWQwMmM4YTM1NmMxYTlhNDBkOGJmNzA5OTE4Njc0OWYwMTk3OA==;;Shigeki Ohtsu;2012-05-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDA5OWQxZWViYWU0ZTc4ODY0YTY4NzljMGI5ZTA4ZjMxZDQ4ZDhjYg==;make accept a URL;Adam Malcontenti-Wilson;2012-05-16;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDA5OWQxZWViYWU0ZTc4ODY0YTY4NzljMGI5ZTA4ZjMxZDQ4ZDhjYg==;now accepts either a URL (as a string) or an options object.;Adam Malcontenti-Wilson;2012-05-16;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZmFhNGQ5ZmY1ZjdmZjY3NmRiMDYyNDBlMDkxNDBmOTc4MGUyNjM4Yw==;Re-apply fixes from v0.6 branch properly;isaacs;2012-05-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZmFhNGQ5ZmY1ZjdmZjY3NmRiMDYyNDBlMDkxNDBmOTc4MGUyNjM4Yw==;;isaacs;2012-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFlNmQ4ZmVlMzQ1YmRiYzZmOTRlMzhlZWU1N2I2MGQyMzEyODhlYg==;fix client request.end() EPIPE race;Ben Noordhuis;2012-05-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFlNmQ4ZmVlMzQ1YmRiYzZmOTRlMzhlZWU1N2I2MGQyMzEyODhlYg==;request.end() would sometimes try to write a zero-length buffer to the socket;Ben Noordhuis;2012-05-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFlNmQ4ZmVlMzQ1YmRiYzZmOTRlMzhlZWU1N2I2MGQyMzEyODhlYg==;"Don't do that, it triggers an unnecessary EPIPE when the other end has closed
+the connection";Ben Noordhuis;2012-05-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFlNmQ4ZmVlMzQ1YmRiYzZmOTRlMzhlZWU1N2I2MGQyMzEyODhlYg==;Fixes #3257.;Ben Noordhuis;2012-05-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTE2NGFlMzgzODBkYWRjZTc0ZThmNjRkN2JkM2VhYTE5MzVkZDEwMQ==;Merge remote-tracking branch 'ry/v0.6' into v0.6-merge;isaacs;2012-05-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTE2NGFlMzgzODBkYWRjZTc0ZThmNjRkN2JkM2VhYTE5MzVkZDEwMQ==;Conflicts;isaacs;2012-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTE2NGFlMzgzODBkYWRjZTc0ZThmNjRkN2JkM2VhYTE5MzVkZDEwMQ==;"	ChangeLog
+	deps/uv/include/uv-private/uv-unix.h
+	deps/uv/src/unix/core.c
+	deps/uv/src/unix/sunos.c
+	deps/v8/src/runtime.cc
+	doc/api/crypto.markdown
+	lib/	src/node_version.h
+	test/gc/test-	wscript";isaacs;2012-05-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDExMDNkMDc3YmNlNjI2YTMzMmJlOTk4ODEzMzgyZDE1YmVkMzUwMQ==;Guard against emitting 'end' twice on responses;isaacs;2012-05-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDExMDNkMDc3YmNlNjI2YTMzMmJlOTk4ODEzMzgyZDE1YmVkMzUwMQ==;Conflicts;isaacs;2012-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDExMDNkMDc3YmNlNjI2YTMzMmJlOTk4ODEzMzgyZDE1YmVkMzUwMQ==;	lib/http.js;isaacs;2012-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YTk4ZTg0NTUxNjIwNGY1OWI2ODIyMjhhOTYyODljZDg4NDc2OTI0Mg==;Break up huge function in ClientRequest.onSocket;isaacs;2012-05-11;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTk4ZTg0NTUxNjIwNGY1OWI2ODIyMjhhOTYyODljZDg4NDc2OTI0Mg==;Conflicts;isaacs;2012-05-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YTk4ZTg0NTUxNjIwNGY1OWI2ODIyMjhhOTYyODljZDg4NDc2OTI0Mg==;	lib/http.js;isaacs;2012-05-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTRhNWI0NWMwNmMzMjdjODM4ZDkzMTMwY2RmZWVjMDNlOGZhZDFmYg==;Guard against emitting 'end' twice on responses;isaacs;2012-05-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MTRhNWI0NWMwNmMzMjdjODM4ZDkzMTMwY2RmZWVjMDNlOGZhZDFmYg==;;isaacs;2012-05-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDdkOGE0NjUwZTllNDk5ZDQ3OTcxNWI2MDMxY2RiYTcwOTZiNzM4NQ==;Break up huge function in ClientRequest.onSocket;isaacs;2012-05-11;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDdkOGE0NjUwZTllNDk5ZDQ3OTcxNWI2MDMxY2RiYTcwOTZiNzM4NQ==;;isaacs;2012-05-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDdiZTlmYzNhNjc0ZDhhMmUxNDgwNDFmMzY3NGMxYWJhZWUwOTA3Zg==;Merge remote-tracking branch 'ry/v0.6' into v0.6-merge;isaacs;2012-05-09;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDdiZTlmYzNhNjc0ZDhhMmUxNDgwNDFmMzY3NGMxYWJhZWUwOTA3Zg==;Conflicts;isaacs;2012-05-09;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDdiZTlmYzNhNjc0ZDhhMmUxNDgwNDFmMzY3NGMxYWJhZWUwOTA3Zg==;"	Makefile
+	lib/zlib.js
+	src/node.cc
+	src/node.js";isaacs;2012-05-09;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OGM3NThlMTI3YzlkODE3OTFjYjU1MDQzYWJiNDE4Y2U2MjRkZmNhZg==;Don't destroy on timeout;isaacs;2012-05-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGM3NThlMTI3YzlkODE3OTFjYjU1MDQzYWJiNDE4Y2U2MjRkZmNhZg==;;isaacs;2012-05-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjRmYmY2ZDI3NTkwZTBmYWU0MmNjMzlhZGNhOTY5NDc5M2VmZGNlMQ==;Fix #3231. Don't try to emit error on a null'ed req object;isaacs;2012-05-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjRmYmY2ZDI3NTkwZTBmYWU0MmNjMzlhZGNhOTY5NDc5M2VmZGNlMQ==;;isaacs;2012-05-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTg3MWM4MTE4MWJjMzM5ZTIyNjVlNTZlMWJhNThiZjNiZTczNzA4ZA==;Add HTTP Status codes from RFC 6585;Mark Cavage;2011-12-19;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTg3MWM4MTE4MWJjMzM5ZTIyNjVlNTZlMWJhNThiZjNiZTczNzA4ZA==;See: http://tools.ietf.org/html/rfc6585;Mark Cavage;2011-12-19;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2Q4ZjgyYzAwN2JmMzE2ZmNkODU3ZGExZTAwYmZlMzU4ZGY3YWY0NA==;Fix incorrect merge choices;isaacs;2012-05-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2Q4ZjgyYzAwN2JmMzE2ZmNkODU3ZGExZTAwYmZlMzU4ZGY3YWY0NA==;;isaacs;2012-05-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWRlNDMxNDliYmI4YzQyYjgwY2VmNGMyNTUwOTM5MGYzYjQwMDBjYw==;Clean up parser usage;isaacs;2012-05-04;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWRlNDMxNDliYmI4YzQyYjgwY2VmNGMyNTUwOTM5MGYzYjQwMDBjYw==;"Move parsers.free(parser) to a single function, which also
+nulls all of the various references we hang on them";isaacs;2012-05-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWRlNDMxNDliYmI4YzQyYjgwY2VmNGMyNTUwOTM5MGYzYjQwMDBjYw==;"Also, move the parser.on* methods out of the closure, so that
+there's one shared definition of each, instead of re-defining
+for each parser in a spot where they can close over references
+to other request-specific objects";isaacs;2012-05-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWRlNDMxNDliYmI4YzQyYjgwY2VmNGMyNTUwOTM5MGYzYjQwMDBjYw==;Conflicts;isaacs;2012-05-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWRlNDMxNDliYmI4YzQyYjgwY2VmNGMyNTUwOTM5MGYzYjQwMDBjYw==;	lib/http.js;isaacs;2012-05-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MGFiZTQyYTBmNGJlODBiZDY1OTQxMTY1NjUwM2U3YWMyYzI0MzgxMw==;.once() usage in setTimeout;isaacs;2012-05-03;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MGFiZTQyYTBmNGJlODBiZDY1OTQxMTY1NjUwM2U3YWMyYzI0MzgxMw==;;isaacs;2012-05-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTRkZDhkYzI4ZWZjOGJiZjhlMmFkYjNkOWNlMTcyMjlkYjQ2MjE5Yg==;leak: Null links from parser to req/res;isaacs;2012-05-03;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTRkZDhkYzI4ZWZjOGJiZjhlMmFkYjNkOWNlMTcyMjlkYjQ2MjE5Yg==;;isaacs;2012-05-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWVhYzhkNjczOWNkYTlhMDdkNzU1MjhhMTdiMTE1YjIyNWIxOTZlOA==;Fix #3179 HTTP memory leak using ClientRequest.;vvo;2012-04-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWVhYzhkNjczOWNkYTlhMDdkNzU1MjhhMTdiMTE1YjIyNWIxOTZlOA==;;vvo;2012-04-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmY5M2ViNjEwMmZjN2YyMjZlMmJjYTY0MWQ2ZTFiY2VlMTQwMzdlNA==;client: Destroy on timeout;isaacs;2012-05-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmY5M2ViNjEwMmZjN2YyMjZlMmJjYTY0MWQ2ZTFiY2VlMTQwMzdlNA==;;isaacs;2012-05-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MGE0MTRmNGNhYWQzNDMwYjRkNzNhNjlmNTQzNDUyNDVlMWZhZDAxNg==;Remove socket ondata/onend in parser cleanup;isaacs;2012-05-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MGE0MTRmNGNhYWQzNDMwYjRkNzNhNjlmNTQzNDUyNDVlMWZhZDAxNg==;;isaacs;2012-05-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTE2NGZhNmFhYWE2ZTQ4M2M1NzBkMzQxMDliY2IwNjczNmVmNTc1MA==;Null references to request object on socket errors.;isaacs;2012-05-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTE2NGZhNmFhYWE2ZTQ4M2M1NzBkMzQxMDliY2IwNjczNmVmNTc1MA==;Regarding #3199 and #3179 and issues seen in production;isaacs;2012-05-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTE2NGZhNmFhYWE2ZTQ4M2M1NzBkMzQxMDliY2IwNjczNmVmNTc1MA==;Hopefully this fixes them.;isaacs;2012-05-01;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmZjNTI4Y2UwMDlhNDU1YTY5ZjU5ODRlNjJjODgxYTA1Y2Q0Y2EzNw==;Clean up parser usage;isaacs;2012-05-04;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmZjNTI4Y2UwMDlhNDU1YTY5ZjU5ODRlNjJjODgxYTA1Y2Q0Y2EzNw==;"Move parsers.free(parser) to a single function, which also
+nulls all of the various references we hang on them";isaacs;2012-05-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmZjNTI4Y2UwMDlhNDU1YTY5ZjU5ODRlNjJjODgxYTA1Y2Q0Y2EzNw==;"Also, move the parser.on* methods out of the closure, so that
+there's one shared definition of each, instead of re-defining
+for each parser in a spot where they can close over references
+to other request-specific objects.";isaacs;2012-05-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTNjZWVlMmRjZTYzNDI1ZjVjMTA1ZDIzYTIwMmRkNDI5ODUwNzQ0OQ==;.once() usage in setTimeout;isaacs;2012-05-03;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTNjZWVlMmRjZTYzNDI1ZjVjMTA1ZDIzYTIwMmRkNDI5ODUwNzQ0OQ==;;isaacs;2012-05-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjdlOGUzNWMwZWQyZDFmYWVhYzEzNTRmY2M2YjM0YzU1OTAwNzVmYQ==;leak: Null links from parser to req/res;isaacs;2012-05-03;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjdlOGUzNWMwZWQyZDFmYWVhYzEzNTRmY2M2YjM0YzU1OTAwNzVmYQ==;;isaacs;2012-05-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzVmMjM2NTU1ODFkNmYwYWMyOGJmYWE4NjRjMWE1NzhiOTRmZmNkNw==;Fix #3179 HTTP memory leak using ClientRequest.;vvo;2012-04-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzVmMjM2NTU1ODFkNmYwYWMyOGJmYWE4NjRjMWE1NzhiOTRmZmNkNw==;;vvo;2012-04-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzliZTFkNWZmZGIzMjQ5MzMyMzk0ZTk4YTlmMDA5Mzc5YWM0MTg3Mw==;client: Destroy on timeout;isaacs;2012-05-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzliZTFkNWZmZGIzMjQ5MzMyMzk0ZTk4YTlmMDA5Mzc5YWM0MTg3Mw==;;isaacs;2012-05-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmNlNjgxMzRiNjQ3ZTZmMTAyYWNmOGU4ZjhhYjNiMTUzODU4ZDMyYw==;Remove socket ondata/onend in parser cleanup;isaacs;2012-05-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmNlNjgxMzRiNjQ3ZTZmMTAyYWNmOGU4ZjhhYjNiMTUzODU4ZDMyYw==;;isaacs;2012-05-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZlOWNkYjdmMmY5YjkwYzk1YTIyMWRjZGNlMjkyNjNmMGRhNWM3NQ==;Null references to request object on socket errors.;isaacs;2012-05-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZlOWNkYjdmMmY5YjkwYzk1YTIyMWRjZGNlMjkyNjNmMGRhNWM3NQ==;Regarding #3199 and #3179 and issues seen in production;isaacs;2012-05-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZlOWNkYjdmMmY5YjkwYzk1YTIyMWRjZGNlMjkyNjNmMGRhNWM3NQ==;Hopefully this fixes them.;isaacs;2012-05-01;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzAwMDViZTRmZmRjZmVkMGFjMzcxODczZmE3OWEzMDhhZTRjYzU0Ng==;Fixing ClientRequest setTimeout EventEmitter Leak;ssuda;2012-04-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzAwMDViZTRmZmRjZmVkMGFjMzcxODczZmE3OWEzMDhhZTRjYzU0Ng==;This will fix #3068;ssuda;2012-04-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDhkNTJkODVjM2UyNmU5MWU2ZThmMDg0Zjg5YWYwYTdjM2YzZWM2NQ==;fix .setTimeout();ssuda;2012-04-13;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDhkNTJkODVjM2UyNmU5MWU2ZThmMDg0Zjg5YWYwYTdjM2YzZWM2NQ==;Fixes #3107.;ssuda;2012-04-13;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWFkMDE0MGY0ODdjYWUzMTg1OWNjNWZlODI0NzI0MjA3NDNlZDI5YQ==;Emit end event only once;Igor Zinkovsky;2012-03-07;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NWFkMDE0MGY0ODdjYWUzMTg1OWNjNWZlODI0NzI0MjA3NDNlZDI5YQ==;"fixes #2888
+Previously a pair of end events would be emitted if a response was
+paused/resumed, and the underlying socket was closed while the
+response was paused";Igor Zinkovsky;2012-03-07;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjgyZWYwZjdjM2EwMjQ0NzQ4NDdmMTBmMThjZjM5ZGY1Zjc0M2IzOA==;remove ClientRequest.prototype.pause();Yoshihiro Kikuchi;2012-03-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjgyZWYwZjdjM2EwMjQ0NzQ4NDdmMTBmMThjZjM5ZGY1Zjc0M2IzOA==;ClientRequest.prototype.pause() is not needed;Yoshihiro Kikuchi;2012-03-07;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjgyZWYwZjdjM2EwMjQ0NzQ4NDdmMTBmMThjZjM5ZGY1Zjc0M2IzOA==;"ClientRequest is a writable
+stream and deferring to OutgoingMessage.prototype.pause() is broken, the method
+does not exist.";Yoshihiro Kikuchi;2012-03-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWU5YmNmMjZjZTllOTNjYWVkYTMyODBiODE4NjE2OGI0OWFlNjIxZA==;net, add localAddress option;Dmitry Nizovtsev;2012-02-23;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWU5YmNmMjZjZTllOTNjYWVkYTMyODBiODE4NjE2OGI0OWFlNjIxZA==;Binds to a local address before making the outgoing connection.;Dmitry Nizovtsev;2012-02-23;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGE5MDgzNjRhOGVjZTcxODZmNDA4ZWIxMzA3ZWNmNTRhYzJhNzZhNw==;tls don't pollute user's `options` object;Maciej Małecki;2012-02-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGE5MDgzNjRhOGVjZTcxODZmNDA4ZWIxMzA3ZWNmNTRhYzJhNzZhNw==;;Maciej Małecki;2012-02-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MGNkZjg1ZTI4ZDU3NDI4YTkwMDI2YzZhNDAyZTYyNGMxZGNhYWJjZQ==;Lint all the JavaScripts.;isaacs;2012-02-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MGNkZjg1ZTI4ZDU3NDI4YTkwMDI2YzZhNDAyZTYyNGMxZGNhYWJjZQ==;;isaacs;2012-02-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzE3MjFkYTRiMTIwY2EyYjFjMGI2YjllOTNjZThiZWI1ZTgxMGRhMw==;Merge remote-tracking branch 'ry/v0.6' into v0.6-merge;isaacs;2012-02-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzE3MjFkYTRiMTIwY2EyYjFjMGI2YjllOTNjZThiZWI1ZTgxMGRhMw==;Conflicts;isaacs;2012-02-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzE3MjFkYTRiMTIwY2EyYjFjMGI2YjllOTNjZThiZWI1ZTgxMGRhMw==;"	AUTHORS
+	ChangeLog
+	Makefile
+	doc/about/index.html
+	doc/api/tls.markdown
+	doc/community/index.html
+	doc/index.html
+	doc/logos/index.html
+	doc/template.html
+	lib/	lib/tls.js
+	src/node_version.h
+	src/platform_win32.cc
+	test/simple/test-tls-connect-given-socket.js";isaacs;2012-02-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODNmZDFjMWRlNTFlNmIwMTcxMTAxYTcyNWM4ZDkyMDgxYzJmYWRiZA==;Add WebSocket RFC6455 multiheader fields to the parser.;einaros;2012-02-16;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODNmZDFjMWRlNTFlNmIwMTcxMTAxYTcyNWM4ZDkyMDgxYzJmYWRiZA==;;einaros;2012-02-16;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmMwNzcxMjg2MDM5OGY4NjM2NzBjNWI5MGZiNGY0NTU5ZDI5OWUxOQ==;allow multiple WWW-Authenticate headers;Ben Noordhuis;2012-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmMwNzcxMjg2MDM5OGY4NjM2NzBjNWI5MGZiNGY0NTU5ZDI5OWUxOQ==;;Ben Noordhuis;2012-02-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWU0MjVlM2ZhNzc0ZmVmZDM1NTNlY2FhNmYwYWMzNWY5YjBhMTM1NQ==;Generate Date headers on responses when not already present.;Mark Nottingham;2012-02-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWU0MjVlM2ZhNzc0ZmVmZDM1NTNlY2FhNmYwYWMzNWY5YjBhMTM1NQ==;;Mark Nottingham;2012-02-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjE0MTM4NmY3ZWFlZGM2NmFhZmQzOWE1YTg0Mjc3MmU5MWI0MTRhZg==;allow multiple WWW-Authenticate headers;Ben Noordhuis;2012-02-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjE0MTM4NmY3ZWFlZGM2NmFhZmQzOWE1YTg0Mjc3MmU5MWI0MTRhZg==;;Ben Noordhuis;2012-02-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzJkYzY3M2ViNWE3YTZhNzA2YjAyNGE1ZTUwMWNkMzkzOWFkMzk5Yg==;fix is freed twice;koichik;2012-02-06;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzJkYzY3M2ViNWE3YTZhNzA2YjAyNGE1ZTUwMWNkMzkzOWFkMzk5Yg==;after response to CONNECT/Upgrade request;koichik;2012-02-06;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzJkYzY3M2ViNWE3YTZhNzA2YjAyNGE1ZTUwMWNkMzkzOWFkMzk5Yg==;Fixes #2704.;koichik;2012-02-06;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MThkMTc5YzJkOGY5MTZjMDdhNzYzZWE4ZTk5ZWQ2ZGM3Nzc1MWJmYQ==;Merge remote-tracking branch 'ry/v0.6' into master;isaacs;2012-02-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MThkMTc5YzJkOGY5MTZjMDdhNzYzZWE4ZTk5ZWQ2ZGM3Nzc1MWJmYQ==;Conflicts;isaacs;2012-02-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MThkMTc5YzJkOGY5MTZjMDdhNzYzZWE4ZTk5ZWQ2ZGM3Nzc1MWJmYQ==;"	ChangeLog
+	deps/uv/src/unix/udp.c
+	deps/uv/src/win/fs.c
+	deps/uv/src/win/udp.c
+	deps/uv/test/test-fs.c
+	doc/index.html
+	doc/logos/index.html
+	doc/template.html
+	src/node_version.h";isaacs;2012-02-01;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2ZkMTNjNjQyNmIzMzgxOTZkMTM4YjBkYzU2NDAyMGRhZWQ3OGJjZA==;fix free too early;koichik;2012-01-30;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2ZkMTNjNjQyNmIzMzgxOTZkMTM4YjBkYzU2NDAyMGRhZWQ3OGJjZA==;when the status code is 100 (Continue);koichik;2012-01-30;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2ZkMTNjNjQyNmIzMzgxOTZkMTM4YjBkYzU2NDAyMGRhZWQ3OGJjZA==;Fixes #2636.;koichik;2012-01-30;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTQwM2E4Y2U0Y2NlODNhMTM1NjliMDllZTViMmJhM2QxYWQ4YzE3Ng==;core: add `NativeModule.prototype.deprecate`;Brandon Benvie;2012-01-29;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTQwM2E4Y2U0Y2NlODNhMTM1NjliMDllZTViMmJhM2QxYWQ4YzE3Ng==;Formalize and cleanup handling of deprecated core methods.;Brandon Benvie;2012-01-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTgwNmFkMzlkMGNmMTM4MDBlMjFlZGQ3ZmZkNTZmNzA3ZTkyYjA4ZA==;net, tls, remove socket.ondrain;Ben Noordhuis;2012-01-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTgwNmFkMzlkMGNmMTM4MDBlMjFlZGQ3ZmZkNTZmNzA3ZTkyYjA4ZA==;Replace the ondrain hack with a regular 'drain' listener;Ben Noordhuis;2012-01-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTgwNmFkMzlkMGNmMTM4MDBlMjFlZGQ3ZmZkNTZmNzA3ZTkyYjA4ZA==;"Speeds up the
+bytes/1024 benchmark by about 1.2%.";Ben Noordhuis;2012-01-24;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YTZmMzQ1MWUyNTQ5ZDBiODJmZjE4OTkwZThiZmUyOGVhNDM4NmFiYQ==;fix test-is fail;koichik;2012-01-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTZmMzQ1MWUyNTQ5ZDBiODJmZjE4OTkwZThiZmUyOGVhNDM4NmFiYQ==;3df7c90 was removed when conflict was resolved.;koichik;2012-01-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2RmN2M5MGMzMDU5ZjQ5YzgxZjliOGY1OWZjM2FiZjE4ZDVkMzkyYg==;keep-alive should default with HTTP/1.1 server;koichik;2012-01-22;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2RmN2M5MGMzMDU5ZjQ5YzgxZjliOGY1OWZjM2FiZjE4ZDVkMzkyYg==;"As RFC 2616 says we should, assume that servers will provide a persistent
+connection by default";koichik;2012-01-22;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2RmN2M5MGMzMDU5ZjQ5YzgxZjliOGY1OWZjM2FiZjE4ZDVkMzkyYg==;"> A significant difference between HTTP/1.1 and earlier versions of
+> HTTP is that persistent connections are the default behavior of any
+> HTTP connection";koichik;2012-01-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2RmN2M5MGMzMDU5ZjQ5YzgxZjliOGY1OWZjM2FiZjE4ZDVkMzkyYg==;"That is, unless otherwise indicated, the client
+> SHOULD assume that the server will maintain a persistent connection,
+> even after error responses from the server";koichik;2012-01-22;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2RmN2M5MGMzMDU5ZjQ5YzgxZjliOGY1OWZjM2FiZjE4ZDVkMzkyYg==;"> HTTP/1.1 applications that do not support persistent connections MUST
+> include the ""close"" connection option in every message";koichik;2012-01-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2RmN2M5MGMzMDU5ZjQ5YzgxZjliOGY1OWZjM2FiZjE4ZDVkMzkyYg==;Fixes #2436.;koichik;2012-01-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTZlMzRjMmY4MTQ5MDVhOGZjMzMyOTQ4NWM2NGE3MGQ1OWQ4ZWViYQ==;fix deprecation warning module ID;Ben Noordhuis;2012-01-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTZlMzRjMmY4MTQ5MDVhOGZjMzMyOTQ4NWM2NGE3MGQ1OWQ4ZWViYQ==;Mea culpa, I told @mmalecki wrong;Ben Noordhuis;2012-01-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzVmZTNlYjVjNzc0ZDFjMjFmZGFmYjAxMGM2MzNhYjZiYzQyZDJjNw==;reduce creating instances;koichik;2012-01-20;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzVmZTNlYjVjNzc0ZDFjMjFmZGFmYjAxMGM2MzNhYjZiYzQyZDJjNw==;Fixes #2577.;koichik;2012-01-20;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDUwNDdmNWZlNjY5YzA0MzRkYTk5ZTJhYWNkMTk3ZTIyOGQwNDBhNA==;use `util._deprecationWarning` for deprecation warning;Maciej Małecki;2012-01-16;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDUwNDdmNWZlNjY5YzA0MzRkYTk5ZTJhYWNkMTk3ZTIyOGQwNDBhNA==;;Maciej Małecki;2012-01-16;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjE2NzhiZmM2NWJjYjJjZGE0N2JjYjM4ZjQ2YjE3MjNmMGIyNjg3Nw==;do not accept headers if limit is exceeded;Fedor Indutny;2012-01-16;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjE2NzhiZmM2NWJjYjJjZGE0N2JjYjM4ZjQ2YjE3MjNmMGIyNjg3Nw==;;Fedor Indutny;2012-01-16;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OGE5OGMyZjFkODFjYWJiNjU5NGRjMzg4Nzg5ZDYwZDJmM2Y2N2MwOQ==;querystring: added limits to prevent DoS;Fedor Indutny;2012-01-15;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OGE5OGMyZjFkODFjYWJiNjU5NGRjMzg4Nzg5ZDYwZDJmM2Y2N2MwOQ==;;Fedor Indutny;2012-01-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6N2RmZmJhZjJjZWQxMjc1MWI3M2U0MzNiMTI3MjFlZmE4YjM4YWQ1ZA==;Upgrade/CONNECT request should detach its socket earlier;koichik;2012-01-12;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2RmZmJhZjJjZWQxMjc1MWI3M2U0MzNiMTI3MjFlZmE4YjM4YWQ1ZA==;"With Upgrade or CONNECT request, emits 'close' event
+after its socket is closed";koichik;2012-01-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6N2RmZmJhZjJjZWQxMjc1MWI3M2U0MzNiMTI3MjFlZmE4YjM4YWQ1ZA==;"However, after receiving a response, the socket
+is not under management by the request";koichik;2012-01-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6N2RmZmJhZjJjZWQxMjc1MWI3M2U0MzNiMTI3MjFlZmE4YjM4YWQ1ZA==;"should detach the socket before 'upgrade'/'connect'
+event is emitted to pass the socket to a user";koichik;2012-01-12;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6N2RmZmJhZjJjZWQxMjc1MWI3M2U0MzNiMTI3MjFlZmE4YjM4YWQ1ZA==;"After that, it should
+emit 'close' event immediately without waiting for closing of the socket";koichik;2012-01-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2RmZmJhZjJjZWQxMjc1MWI3M2U0MzNiMTI3MjFlZmE4YjM4YWQ1ZA==;Fixes #2510.;koichik;2012-01-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGIyOGQ1OTlhNzJlNzE3ZGMwMGQxMGYyY2M2OGU2NGFjNmZkNTMzMA==;Merge remote branch 'origin/v0.6';Ryan Dahl;2012-01-09;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGIyOGQ1OTlhNzJlNzE3ZGMwMGQxMGYyY2M2OGU2NGFjNmZkNTMzMA==;Conflicts;Ryan Dahl;2012-01-09;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OGIyOGQ1OTlhNzJlNzE3ZGMwMGQxMGYyY2M2OGU2NGFjNmZkNTMzMA==;"	Makefile
+	configure
+	src/node_version.h";Ryan Dahl;2012-01-09;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDhhOTFhY2Q3NmNkMTA3ZGMyZjM5MTRmOWVhN2UyNzdiYjg1MjA2ZQ==;better support for CONNECT method.;koichik;2012-01-09;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDhhOTFhY2Q3NmNkMTA3ZGMyZjM5MTRmOWVhN2UyNzdiYjg1MjA2ZQ==;"Introduces 'connect' event on both client (and
+server (
+Refs: #2259, #2474";koichik;2012-01-09;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDhhOTFhY2Q3NmNkMTA3ZGMyZjM5MTRmOWVhN2UyNzdiYjg1MjA2ZQ==;Fixes #1576.;koichik;2012-01-09;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGQ5NTkzY2NjNGRkMWRlMjFmYWExOTk2YzI1NzdjN2E2YWMzZDhhZQ==;fix ServerResponse does not emit 'close';koichik;2012-01-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGQ5NTkzY2NjNGRkMWRlMjFmYWExOTk2YzI1NzdjN2E2YWMzZDhhZQ==;Refs #2453.;koichik;2012-01-05;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmFlYmQzMGVlZWM4NGQ3MzYxNzE4M2JlNGI1YmU5MjU1NzUxOGQ2Yw==;use `self` insted of `this`;koichik;2012-01-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmFlYmQzMGVlZWM4NGQ3MzYxNzE4M2JlNGI1YmU5MjU1NzUxOGQ2Yw==;;koichik;2012-01-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YTMzN2FjNzU4NDNiYTQ1NDdhMThkNWI3YzA5OTMwZDVmNWQ5NTRmYQ==;fix XMLHttpRequest piped in a writable file stream hangs next request;koichik;2011-12-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTMzN2FjNzU4NDNiYTQ1NDdhMThkNWI3YzA5OTMwZDVmNWQ5NTRmYQ==;Fixes #2263.;koichik;2011-12-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTZiNjA3NTAyNGU5ZjEzMzA1NzViMTBkN2U2NTUyZTFlYTZkYWQ1Ng==;Avoid 'data'/'end' events after pause();koichik;2011-12-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTZiNjA3NTAyNGU5ZjEzMzA1NzViMTBkN2U2NTUyZTFlYTZkYWQ1Ng==;Fixes #1040.;koichik;2011-12-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2FhNTkyNGRjNmU4ZDgwOTgwYTliNzlmM2Q1ZmM2MzA1YmYxYWVhNw==;fix resource leak;koichik;2011-11-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2FhNTkyNGRjNmU4ZDgwOTgwYTliNzlmM2Q1ZmM2MzA1YmYxYWVhNw==;Fixes #2069;koichik;2011-11-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDhhOWEyZDM1NTdhMjYxMGYxZjE1OTdiMzY3ZGVmOTA3MzZmOWM5MA==;Add deprecation message for http.Client;Ryan Dahl;2011-12-24;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDhhOWEyZDM1NTdhMjYxMGYxZjE1OTdiMzY3ZGVmOTA3MzZmOWM5MA==;;Ryan Dahl;2011-12-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWFiOTU4YjcxMzAyODBlNDg2MmFiNzI0NThkMTIwZDE1OWYyNGZjMQ==;OutgoingMessage.prototype.write does not take Array;seebees;2011-11-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWFiOTU4YjcxMzAyODBlNDg2MmFiNzI0NThkMTIwZDE1OWYyNGZjMQ==;Changed the type checking for OutgoingMessage.prototype.write so it only accepts string and Buffer;seebees;2011-11-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWFiOTU4YjcxMzAyODBlNDg2MmFiNzI0NThkMTIwZDE1OWYyNGZjMQ==;And test;seebees;2011-11-28;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWFiOTU4YjcxMzAyODBlNDg2MmFiNzI0NThkMTIwZDE1OWYyNGZjMQ==;"Fixes #2162
+Fixes #2208";seebees;2011-11-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzU5YTY1YTZkYjFjODJlZDNhNGJiN2Y1YmUyNTQ5MTI3NzFmNTA2Mg==;emit Error object after .abort();Ben Noordhuis;2011-11-03;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzU5YTY1YTZkYjFjODJlZDNhNGJiN2Y1YmUyNTQ5MTI3NzFmNTA2Mg==;It was emitting the net.Socket object due to misuse of the arguments object;Ben Noordhuis;2011-11-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzU5YTY1YTZkYjFjODJlZDNhNGJiN2Y1YmUyNTQ5MTI3NzFmNTA2Mg==;Fixes #1399.;Ben Noordhuis;2011-11-03;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGE3MjkyNzBjMTQ0ZjkzYWFjYTcyZjU5NDFjOTkyMTdmZTZlMmQ2Nw==;fix for --harmony_block_scoping;koichik;2011-10-30;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGE3MjkyNzBjMTQ0ZjkzYWFjYTcyZjU5NDFjOTkyMTdmZTZlMmQ2Nw==;Fixes #1969.;koichik;2011-10-30;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjE2NTcwYjVlMWIxMjYzMDgzZjE0NTU2NjExMmQzZjM0M2EyMjY0Yg==;Lint;seebees;2011-10-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjE2NTcwYjVlMWIxMjYzMDgzZjE0NTU2NjExMmQzZjM0M2EyMjY0Yg==;;seebees;2011-10-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDA1ZDYwN2FlZGY1N2VhYzA0NjgzNDA2MGYzZjZlOGYyNDgxNzQwNw==;;seebees;2011-10-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDA1ZDYwN2FlZGY1N2VhYzA0NjgzNDA2MGYzZjZlOGYyNDgxNzQwNw==;protocols object to store defaults for and and use as a switch for supported protocols;seebees;2011-10-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDA1ZDYwN2FlZGY1N2VhYzA0NjgzNDA2MGYzZjZlOGYyNDgxNzQwNw==;"options.hostname > options.host > 'localhost'
+if I have an options.auth element and I do not have an Authorization header, I do basic auth";seebees;2011-10-15;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDA1ZDYwN2FlZGY1N2VhYzA0NjgzNDA2MGYzZjZlOGYyNDgxNzQwNw==;"collapses to new ClientRequest since the defaults are handled by the protocol object
+test-
+Fixes #1390
+Conflicts";seebees;2011-10-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDA1ZDYwN2FlZGY1N2VhYzA0NjgzNDA2MGYzZjZlOGYyNDgxNzQwNw==;	lib/http2.js;seebees;2011-10-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODRkMGIxYmNjNTE1NGY2N2Q5ZjIwMGYzYzg1MmJiOGM1YjY0YzZlZg==;improve parser bindings;Ben Noordhuis;2011-09-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODRkMGIxYmNjNTE1NGY2N2Q5ZjIwMGYzYzg1MmJiOGM1YjY0YzZlZg==;Speeds up HTTP benchmarks by 10% on average.;Ben Noordhuis;2011-09-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjkwYmE2MTQ3ODJjZjI1NGEyZDM0ODllYzUxM2E4MjQ5MzUxYzk0Zg==;tiny fix in ;Yoshihiro Kikuchi;2011-10-13;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjkwYmE2MTQ3ODJjZjI1NGEyZDM0ODllYzUxM2E4MjQ5MzUxYzk0Zg==;Fixes #1885.;Yoshihiro Kikuchi;2011-10-13;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2EzNDk3MjY3MjBiNjA5ZmIxOWYwNmUwYTg3MGY2ZjQwMGUxOWE2ZQ==;Fix test-on OSX;Ryan Dahl;2011-10-13;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2EzNDk3MjY3MjBiNjA5ZmIxOWYwNmUwYTg3MGY2ZjQwMGUxOWE2ZQ==;;Ryan Dahl;2011-10-13;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTUzNjI5Yzk5YThmMjZlZmNjZmM5Yjc1ZGQxZTg2NzQxYzk2OGYxNw==;Some small optimizations;Bert Belder;2011-10-07;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTUzNjI5Yzk5YThmMjZlZmNjZmM5Yjc1ZGQxZTg2NzQxYzk2OGYxNw==;;Bert Belder;2011-10-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmM3Y2ZkN2NkN2MyZTUxM2E5YWM5YTI4MjBmM2I2ZjczMzE3MzViNQ==;remove legacy library;Ben Noordhuis;2011-10-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmM3Y2ZkN2NkN2MyZTUxM2E5YWM5YTI4MjBmM2I2ZjczMzE3MzViNQ==;;Ben Noordhuis;2011-10-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YTRlZWUzZDI4ZmUyYjZjOTQ0YWU0ZjQwY2FlYWVjMGVmYTg1ZjJkYw==;remove 'headers sent?' check in OutgoingMessage.getHeader();Peter Lyons;2011-08-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTRlZWUzZDI4ZmUyYjZjOTQ0YWU0ZjQwY2FlYWVjMGVmYTg1ZjJkYw==;Fixes #752.;Peter Lyons;2011-08-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODMyMGFmN2VmMzcwZDg4MTFkNGE3MWJmMDk0ZjNmNDMyYTcyMDgzYw==;Merge remote branch 'origin/v0.4';Ryan Dahl;2011-08-17;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODMyMGFmN2VmMzcwZDg4MTFkNGE3MWJmMDk0ZjNmNDMyYTcyMDgzYw==;Conflicts;Ryan Dahl;2011-08-17;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODMyMGFmN2VmMzcwZDg4MTFkNGE3MWJmMDk0ZjNmNDMyYTcyMDgzYw==;	doc/api/tls.markdown;Ryan Dahl;2011-08-17;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNTEwODQ2ZWVhNWViZGQxMTZmYjQ1ZWY0ZDViZTY0YWNkYTAyMg==;Fixes #1546. Remove expensive debug call.;Ryan Dahl;2011-08-17;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNkNTEwODQ2ZWVhNWViZGQxMTZmYjQ1ZWY0ZDViZTY0YWNkYTAyMg==;;Ryan Dahl;2011-08-17;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjEyNjk4OWEzMmY3NGRlYTA0NzZjNzcwZjVkZGE4MjZmMTJiYzQ1Nw==;Fix test-and test-;Ryan Dahl;2011-08-09;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjEyNjk4OWEzMmY3NGRlYTA0NzZjNzcwZjVkZGE4MjZmMTJiYzQ1Nw==;"Problem was introduced in last upgrade which fixed a long
+standing bug with the upgrade event and removed several callbacks.";Ryan Dahl;2011-08-09;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjJhYWY1NmQxYmY0ODE5YmY3OGVjYjM1MjA5MmI2MjViOWE0YTBlYQ==;Fix crashes if end() was called twice;koichik;2011-07-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjJhYWY1NmQxYmY0ODE5YmY3OGVjYjM1MjA5MmI2MjViOWE0YTBlYQ==;Fixes #1417;koichik;2011-07-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjJhYWY1NmQxYmY0ODE5YmY3OGVjYjM1MjA5MmI2MjViOWE0YTBlYQ==;Fixes #1223.;koichik;2011-07-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGIzYmE0N2Y4OGU1ZjU5MjU2ODE4ZTMxNzNjNzVjNjZmZjVhODJkZg==;Fix crashes if end() was called twice;koichik;2011-07-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGIzYmE0N2Y4OGU1ZjU5MjU2ODE4ZTMxNzNjNzVjNjZmZjVhODJkZg==;Fixes #1417;koichik;2011-07-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGIzYmE0N2Y4OGU1ZjU5MjU2ODE4ZTMxNzNjNzVjNjZmZjVhODJkZg==;Fixes #1223.;koichik;2011-07-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmVkMjMzMTRjMzU2NDlmMTVkOTA1Y2IxZmNhNzVkMGI5ZDhiMGQwMQ==;make and co-exist;Ben Noordhuis;2011-07-25;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmVkMjMzMTRjMzU2NDlmMTVkOTA1Y2IxZmNhNzVkMGI5ZDhiMGQwMQ==;is currently disabled pending addition of a --use-switch;Ben Noordhuis;2011-07-25;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmI5MjljN2YxOTQ0YmM5YWMzM2ZiMjE5MjdmMmNjOTZjMTExMzcxYg==;implementation;Mikeal Rogers;2011-07-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmI5MjljN2YxOTQ0YmM5YWMzM2ZiMjE5MjdmMmNjOTZjMTExMzcxYg==;;Mikeal Rogers;2011-07-25;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmJmN2U4ZWQ1ZWU0ODg1MmEyYWRiOTdkZTMwNTZlZjA2NzM0MzUwMA==;fix setting ServerResponse.statusCode in writeHead;Trent Mick;2011-07-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmJmN2U4ZWQ1ZWU0ODg1MmEyYWRiOTdkZTMwNTZlZjA2NzM0MzUwMA==;Fixes #1374.;Trent Mick;2011-07-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YThmOTZkMzMxNGYyZWI3NTk5N2E4NGVhMDAyMTk4YWU3ZDZmNmY0Ng==;fix setting ServerResponse.statusCode in writeHead;Trent Mick;2011-07-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YThmOTZkMzMxNGYyZWI3NTk5N2E4NGVhMDAyMTk4YWU3ZDZmNmY0Ng==;Fixes #1374.;Trent Mick;2011-07-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTczMTUzZDFjY2RiYjA2ZjkwNjdmMzY5ODU3OGU4YTU2ODVhODdjNA==;Properly respond to HEAD during end(body) hot path;Reid Burke;2011-07-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTczMTUzZDFjY2RiYjA2ZjkwNjdmMzY5ODU3OGU4YTU2ODVhODdjNA==;"During write(), _hasBody is checked to make sure a body
+is allowed -- this is now also checked during end(body)
+when write() isn't used";Reid Burke;2011-07-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTczMTUzZDFjY2RiYjA2ZjkwNjdmMzY5ODU3OGU4YTU2ODVhODdjNA==;Concise final chunk for HEAD req's res.end(data);Reid Burke;2011-07-08;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTczMTUzZDFjY2RiYjA2ZjkwNjdmMzY5ODU3OGU4YTU2ODVhODdjNA==;"Instead of simply clearing data, check _hasBody
+earlier to avoid sending cruft when chunkedEncoding
+is used";Reid Burke;2011-07-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OTczMTUzZDFjY2RiYjA2ZjkwNjdmMzY5ODU3OGU4YTU2ODVhODdjNA==;Fixes #1291.;Reid Burke;2011-07-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWIwMmQ1NjRjMzFmZmZiMTNmMTc0OWE0NzM0ZTVkZDRkYzk2NTRjMA==;Fixes #1085. The agent end event may call detachSocket() after the socket is detached and destroyed by abort(). This patch avoids that behavior.;Stefan Rusu;2011-07-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWIwMmQ1NjRjMzFmZmZiMTNmMTc0OWE0NzM0ZTVkZDRkYzk2NTRjMA==;;Stefan Rusu;2011-07-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjYyZWNkYzViYmVlMmEzYmRmYThiNjJkNDNiYjk0MzI2YTliNWU0Yg==;Revert 3e2a2a7. Always send a HTTP/1.1 status line to the client.;Ben Noordhuis;2011-07-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjYyZWNkYzViYmVlMmEzYmRmYThiNjJkNDNiYjk0MzI2YTliNWU0Yg==;;Ben Noordhuis;2011-07-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2U4NjY3ZDgyOWIyMjQ1Njk0ODczN2M4Yjg3ODYyZjU5MDIzNjA2Yg==;Revert 8dc8773. Always send a HTTP/1.1 status line to the client.;Ben Noordhuis;2011-07-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2U4NjY3ZDgyOWIyMjQ1Njk0ODczN2M4Yjg3ODYyZjU5MDIzNjA2Yg==;;Ben Noordhuis;2011-07-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjRhMDZjNWZmZDkyZjY3OGQzMThlNjFmYjhkYThjNTFmMDI4NjI3Yw==;"Revert ""Error argument for 'close'""";Ryan Dahl;2011-07-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjRhMDZjNWZmZDkyZjY3OGQzMThlNjFmYjhkYThjNTFmMDI4NjI3Yw==;Too slow;Ryan Dahl;2011-07-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjRhMDZjNWZmZDkyZjY3OGQzMThlNjFmYjhkYThjNTFmMDI4NjI3Yw==;This reverts commit e7ac6d8fcd3841da072d8b4b6c328b33549d45c3.;Ryan Dahl;2011-07-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjkxOTg4OTc5ZjM0MDAwMGE0MTZkZmJkZDc0ODhiOWFlODRlZTQxOQ==;Don't send a HTTP/1.1 status line to HTTP/1.0 clients.;Ben Noordhuis;2011-06-29;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjkxOTg4OTc5ZjM0MDAwMGE0MTZkZmJkZDc0ODhiOWFlODRlZTQxOQ==;Fixes #1234.;Ben Noordhuis;2011-06-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGRjODc3MzFjNzZmOGE0YTg2ZDYyYjNmYjZkNTY0MWQwODRlNTI4Yw==;Don't send a HTTP/1.1 status line to HTTP/1.0 clients.;Ben Noordhuis;2011-06-29;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OGRjODc3MzFjNzZmOGE0YTg2ZDYyYjNmYjZkNTY0MWQwODRlNTI4Yw==;Fixes #1234.;Ben Noordhuis;2011-06-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmQ4YjQzYzM2NmZkZTlhZjRiNmQ1YzllMzdkMTVjYzg1NGFhMGE2OQ==;Fix agent id creation;Ryan Dahl;2011-07-03;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmQ4YjQzYzM2NmZkZTlhZjRiNmQ1YzllMzdkMTVjYzg1NGFhMGE2OQ==;Unbreaks test-regress-GH-877.js;Ryan Dahl;2011-07-03;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWZjYTU0NTZiOGRkM2U5NGIzYWYwMmNjYWY5NGQwMzJkZWQ2YTQ4Yw==;Fixes #877. Don't wait for socket pool to establish connections.;Ryan Dahl;2011-07-01;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWZjYTU0NTZiOGRkM2U5NGIzYWYwMmNjYWY5NGQwMzJkZWQ2YTQ4Yw==;Thanks to Yann Biancheri for putting together an initial test.;Ryan Dahl;2011-07-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYyNzA4M2VkNTA4YzBlZDJhMGM3MjUxYmNiNDQzOTM3NWQ5N2NjYQ==;Fixes #1187. Support multiple 'link' headers;Ryan Dahl;2011-06-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYyNzA4M2VkNTA4YzBlZDJhMGM3MjUxYmNiNDQzOTM3NWQ5N2NjYQ==;;Ryan Dahl;2011-06-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Nzk0Y2I2MGY5ZTg2ODllYzZlMTYzYWExMTE5ZmRiYjA3ZDMwMjRlYg==;typo;isaacs;2011-06-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Nzk0Y2I2MGY5ZTg2ODllYzZlMTYzYWExMTE5ZmRiYjA3ZDMwMjRlYg==;;isaacs;2011-06-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTgwYWI3YmEyYzFlMGM4OWYzNTE3NTliMzFmNjViZmVkNDUxYmE5ZA==;Avoid instanceof for native object types;isaacs;2011-06-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTgwYWI3YmEyYzFlMGM4OWYzNTE3NTliMzFmNjViZmVkNDUxYmE5ZA==;For classes defined in the module, this is fine;isaacs;2011-06-04;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTgwYWI3YmEyYzFlMGM4OWYzNTE3NTliMzFmNjViZmVkNDUxYmE5ZA==;" For 'Error'
+it's probably not very hazardous";isaacs;2011-06-04;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTgwYWI3YmEyYzFlMGM4OWYzNTE3NTliMzFmNjViZmVkNDUxYmE5ZA==;" However, testing 'Object'
+and 'String' is much more reliable using typeof, to work with
+the repl and NODE_MODULE_CONTEXT modes.";isaacs;2011-06-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzBkZDZkNGVhMzY5Y2NiZmQ2ZTU3M2Q5YTQyYjUxNDRkYzIzYjRiMw==;Fix TJ's assert error;Ryan Dahl;2011-05-20;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzBkZDZkNGVhMzY5Y2NiZmQ2ZTU3M2Q5YTQyYjUxNDRkYzIzYjRiMw==;"Unable to reproduce but connect's ""make test TESTS=test/static.test.js"" does
+it occasionally.";Ryan Dahl;2011-05-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTdhYzZkOGZjZDM4NDFkYTA3MmQ4YjRiNmMzMjhiMzM1NDlkNDVjMw==;Error argument for 'close';Felix Geisendörfer;2011-05-14;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTdhYzZkOGZjZDM4NDFkYTA3MmQ4YjRiNmMzMjhiMzM1NDlkNDVjMw==;"Problem: It was not possible to detect the reason for a premature
+connection termination in requests";Felix Geisendörfer;2011-05-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTdhYzZkOGZjZDM4NDFkYTA3MmQ4YjRiNmMzMjhiMzM1NDlkNDVjMw==;"This patch provides a new `err` argument to the 'close' event which
+can be inspected to differentiate between a timeout and a client
+actively terminating the connection";Felix Geisendörfer;2011-05-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTdhYzZkOGZjZDM4NDFkYTA3MmQ4YjRiNmMzMjhiMzM1NDlkNDVjMw==;Also contains tests for this new behavior for and https.;Felix Geisendörfer;2011-05-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MTEwZjA2NTc4ZGE5ZmE0ZjUzODkyNjllOWM4NmU1NjU1OGEyZDdkYw==;Agent socket errors bubble up to req only if req exists;Ryan Dahl;2011-05-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MTEwZjA2NTc4ZGE5ZmE0ZjUzODkyNjllOWM4NmU1NjU1OGEyZDdkYw==;Fixes #836.;Ryan Dahl;2011-05-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTIzMjhkYzczYzQyNWM0ZDZmNThjYjhkOTdlY2U5MmFkYWZjYjk2Yg==;Add support for Unix Domain Sockets to HTTP;Mark Cavage;2011-04-25;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTIzMjhkYzczYzQyNWM0ZDZmNThjYjhkOTdlY2U5MmFkYWZjYjk2Yg==;fixes #979.;Mark Cavage;2011-04-25;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODM3MjdhNGM4NmU3ZTdmZTFiNjk4YmIyMmI4YWIyYTdmMTE5ZDY3ZA==;Fix bug where response.readable was never set to false;Abe Fettig;2011-03-31;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODM3MjdhNGM4NmU3ZTdmZTFiNjk4YmIyMmI4YWIyYTdmMTE5ZDY3ZA==;Closes GH-867.;Abe Fettig;2011-03-31;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNjZjBlNTI3ZjA2NmNhNjllNjEwYmViMDRkOTUwN2VlNWJmMTg3Yw==;Don't error on ENOTCONN from shutdown();Ryan Dahl;2011-04-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWNjZjBlNTI3ZjA2NmNhNjllNjEwYmViMDRkOTUwN2VlNWJmMTg3Yw==;;Ryan Dahl;2011-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NmQ4NWRhMTg1Yzg1MGNmODcxZTFhZWVjMjViYWEzZGExOTcxNjEwZg==;Closes GH-721 Set default host header properly;isaacs;2011-02-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmQ4NWRhMTg1Yzg1MGNmODcxZTFhZWVjMjViYWEzZGExOTcxNjEwZg==;However, this test is failing for some quite unrelated issue;isaacs;2011-02-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmQ4NWRhMTg1Yzg1MGNmODcxZTFhZWVjMjViYWEzZGExOTcxNjEwZg==;"Getting some odd ""socket hangup"" crashes, and only the first request
+ever makes it to the server.";isaacs;2011-02-23;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjY1NzBjMTk2NDI5ZjAxNzg2Yzc5ZjE3N2M2NDNiMDdmNjc4YzMyYw==;Fix double free of parser on error in ;Ryan Dahl;2011-03-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjY1NzBjMTk2NDI5ZjAxNzg2Yzc5ZjE3N2M2NDNiMDdmNjc4YzMyYw==;"Thanks to Stéphan Kochen for the fix and Maurice Fonk for reproducing the
+bug";Ryan Dahl;2011-03-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjY1NzBjMTk2NDI5ZjAxNzg2Yzc5ZjE3N2M2NDNiMDdmNjc4YzMyYw==;Closes GH-784;Ryan Dahl;2011-03-18;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjY1NzBjMTk2NDI5ZjAxNzg2Yzc5ZjE3N2M2NDNiMDdmNjc4YzMyYw==;Closes GH-803.;Ryan Dahl;2011-03-18;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTUwNDhjZGY3OWYzYzYwN2FiOTg2YzM1ZDA0MjJlNTkxZTdmNjQ0OA==;Update copyright headers;Ryan Dahl;2011-03-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTUwNDhjZGY3OWYzYzYwN2FiOTg2YzM1ZDA0MjJlNTkxZTdmNjQ0OA==;;Ryan Dahl;2011-03-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzZlNzViNzM1MWM0ODNjZGM4YWUyODFlOWM0MzI3ODgzNmVhOTRmOA==;Fix HTTP agent disconnection problem;Ryan Dahl;2011-03-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzZlNzViNzM1MWM0ODNjZGM4YWUyODFlOWM0MzI3ODgzNmVhOTRmOA==;Closes GH-787.;Ryan Dahl;2011-03-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzI3NmZmOTgyMjE2YTNkZmJkYzhmOWZkM2I1MjVmMTIzNzJjZjE1Nw==;fix missing 'drain' events;Russell Haering;2011-02-20;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzI3NmZmOTgyMjE2YTNkZmJkYzhmOWZkM2I1MjVmMTIzNzJjZjE1Nw==;;Russell Haering;2011-02-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWE5ZjViMTEwYTJlNDFmZjdiZmYyZmE3M2E4ODQ3MjI5YTIxYTRiYQ==;Add 'close' and 'aborted' events to Agent responses;Ryan Dahl;2011-02-25;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWE5ZjViMTEwYTJlNDFmZjdiZmYyZmE3M2E4ODQ3MjI5YTIxYTRiYQ==;Closes GH-722.;Ryan Dahl;2011-02-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzYwODg1YTdlOWI5MGJmYWI4MzgwNTc5ZGYxOGFiM2Q4OTAzOWRjMg==;deprecate http.cat;Ryan Dahl;2011-02-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzYwODg1YTdlOWI5MGJmYWI4MzgwNTc5ZGYxOGFiM2Q4OTAzOWRjMg==;;Ryan Dahl;2011-02-25;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjQyM2VjOTBmYzZjZmE0N2JhZjQ4NDg1MjQwZGQzMzhkNjFlOTMwNw==;In addition to 'aborted' emit 'close' from incoming requests;Felix Geisendörfer;2011-02-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjQyM2VjOTBmYzZjZmE0N2JhZjQ4NDg1MjQwZGQzMzhkNjFlOTMwNw==;Closes GH-160.;Felix Geisendörfer;2011-02-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTI4NzcwM2NjZTU5ZTJlZTA5YzczYTg1MWJmZGNkMDE4YTY3OTI2Yw==;Pragma HTTP header comma separation;Ryan Dahl;2011-02-24;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTI4NzcwM2NjZTU5ZTJlZTA5YzczYTg1MWJmZGNkMDE4YTY3OTI2Yw==;Closes GH-715, GH-716.;Ryan Dahl;2011-02-24;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzJhNjI5NTFmNjRkNTU4NGQ3NmZlYTU4NjVlOWJkOTRhODk4ZWQ4Yg==;TLS sockets should not be writable after 'end';Ryan Dahl;2011-02-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzJhNjI5NTFmNjRkNTU4NGQ3NmZlYTU4NjVlOWJkOTRhODk4ZWQ4Yg==;Closes GH-694.;Ryan Dahl;2011-02-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWFjNWNiZTAyNTJmODI1NDIyNThkZWE3YjI2NTdkNjk0MGRmZTEzNA==;HTTP Agent sockets should not reconnect on error;Ryan Dahl;2011-02-18;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWFjNWNiZTAyNTJmODI1NDIyNThkZWE3YjI2NTdkNjk0MGRmZTEzNA==;Closes GH-684.;Ryan Dahl;2011-02-18;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWIwYzc2MThjNTQ3OTdjZWI5YmU3NGRjZGVmMGNiNjNlMDcxODVjNA==;HTTP Agent should not die on evil server;Ryan Dahl;2011-02-18;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWIwYzc2MThjNTQ3OTdjZWI5YmU3NGRjZGVmMGNiNjNlMDcxODVjNA==;Closes GH-680.;Ryan Dahl;2011-02-18;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzM2NWY1NjA2MTIxYzRhMWI4ZWRiZjI2MGEwZTMyMTk5ZTQ1M2ZlNw==;was missing 'end' event sometimes;Ryan Dahl;2011-02-16;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzM2NWY1NjA2MTIxYzRhMWI4ZWRiZjI2MGEwZTMyMTk5ZTQ1M2ZlNw==;Closes GH-671.;Ryan Dahl;2011-02-16;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzdhZTg3ZDM2NzNmMGYxNDk5NGMyNjkzNDVhYmMwNDk5MDc3ODkxMg==;default to port 80 for http.request;Ryan Dahl;2011-02-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzdhZTg3ZDM2NzNmMGYxNDk5NGMyNjkzNDVhYmMwNDk5MDc3ODkxMg==;;Ryan Dahl;2011-02-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjExZDc4YjM4NmQ3YWU1ZTQ2ZDYwNmRkMWQ3MzhhNWM2ZjViMzQwNg==;Fix for DNS fail in HTTP request;Richard Rodger;2011-02-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjExZDc4YjM4NmQ3YWU1ZTQ2ZDYwNmRkMWQ3MzhhNWM2ZjViMzQwNg==;Closes GH-653.;Richard Rodger;2011-02-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZmU4Mzg2MTFmNmQ3NjhhNmI0MDBlOWZmMTNmYWJkMDdmZmU0N2I2YQ==;Fixed field merging with progressive fields on writeHead();Tj Holowaychuk;2011-02-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZmU4Mzg2MTFmNmQ3NjhhNmI0MDBlOWZmMTNmYWJkMDdmZmU0N2I2YQ==;;Tj Holowaychuk;2011-02-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjA5YzU4ODliZWU4Mzg4YTY3MTBlY2Y3NWQ3NmNhMjQyZTA2ODRiZA==;Add support for mutable/implicit headers for ;Tim Caswell;2011-02-10;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjA5YzU4ODliZWU4Mzg4YTY3MTBlY2Y3NWQ3NmNhMjQyZTA2ODRiZA==;This works for both ServerResponse and ClientRequest;Tim Caswell;2011-02-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjA5YzU4ODliZWU4Mzg4YTY3MTBlY2Y3NWQ3NmNhMjQyZTA2ODRiZA==;Adds three new methods as a couple properties to to OutgoingMessage objects;Tim Caswell;2011-02-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjA5YzU4ODliZWU4Mzg4YTY3MTBlY2Y3NWQ3NmNhMjQyZTA2ODRiZA==;Tests by Charlie Robbins;Tim Caswell;2011-02-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjA5YzU4ODliZWU4Mzg4YTY3MTBlY2Y3NWQ3NmNhMjQyZTA2ODRiZA==;Change-Id: Ib6f3829798e8f11dd2b6136e61df254f1564807e;Tim Caswell;2011-02-10;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTkyNTdiODU5ZDZiYmViNjhiNDdhYmYwMzc0MWJjNTM3ODUzOGIwNQ==;New DTrace probes from CA team;Ryan Dahl;2011-02-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTkyNTdiODU5ZDZiYmViNjhiNDdhYmYwMzc0MWJjNTM3ODUzOGIwNQ==;;Ryan Dahl;2011-02-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTZlZGUzMTU1NGQyZjIzZDFlZmU1OTZiZDAyZTgzMDRmZjBkYzE3MQ==;fix buffer writes to outgoing messages;Russell Haering;2011-02-06;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTZlZGUzMTU1NGQyZjIzZDFlZmU1OTZiZDAyZTgzMDRmZjBkYzE3MQ==;;Russell Haering;2011-02-06;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmIwM2JhNTkxNzdmZWU4YWQyOGI1YmUwYmViZDE0OWIwNmYzYzJhMg==;agent takes options instead of host, port pair;Mikeal Rogers;2011-02-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmIwM2JhNTkxNzdmZWU4YWQyOGI1YmUwYmViZDE0OWIwNmYzYzJhMg==;;Mikeal Rogers;2011-02-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDczM2QwYjFmMDhhNjQ0ZWNhZmM3YTgwZTk1MGZhM2FjNTgxNDg1OQ==;handle aborts;Ryan Dahl;2011-02-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDczM2QwYjFmMDhhNjQ0ZWNhZmM3YTgwZTk1MGZhM2FjNTgxNDg1OQ==;;Ryan Dahl;2011-02-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZiNmE2N2Q2MDQyYWUwNmMyOGU3NzBhNzVlYWRjMzdiZGNhYTIzMA==;Another fix for process.assert;Ryan Dahl;2011-01-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZiNmE2N2Q2MDQyYWUwNmMyOGU3NzBhNzVlYWRjMzdiZGNhYTIzMA==;;Ryan Dahl;2011-01-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzZlZjU2NDNjM2EzZGMxYTQzZTgwZWRlNDQyZDRkMWNkMjliNmE2OA==;Fixing bug in request default encoding.;Ali Farhadi;2011-01-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzZlZjU2NDNjM2EzZGMxYTQzZTgwZWRlNDQyZDRkMWNkMjliNmE2OA==;;Ali Farhadi;2011-01-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzlmZjQwZTVhMjM5NjA4NjI3NzZmZDY4YTg0MGMzNmY5OGM5ZTlkOQ==;Use old ;Ryan Dahl;2011-01-25;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzlmZjQwZTVhMjM5NjA4NjI3NzZmZDY4YTg0MGMzNmY5OGM5ZTlkOQ==;This is meant as a path for upgrading to the new API;Ryan Dahl;2011-01-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzlmZjQwZTVhMjM5NjA4NjI3NzZmZDY4YTg0MGMzNmY5OGM5ZTlkOQ==;will be disappearing in the future.;Ryan Dahl;2011-01-25;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY4YjczMzU4M2E0ZjA3ODFhODQxOGRkZjQyZjc5MTJlM2RkNTNhNg==;Land Cantrill's DTrace patch;Ryan Dahl;2011-01-25;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY4YjczMzU4M2E0ZjA3ODFhODQxOGRkZjQyZjc5MTJlM2RkNTNhNg==;only works on solaris;Ryan Dahl;2011-01-25;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWU5NzZhYmFkOTg3OWI0NzMwNzVhOTllZTVjNjY4ODVhZTc0NTJlMw==;lint;Ryan Dahl;2011-01-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWU5NzZhYmFkOTg3OWI0NzMwNzVhOTllZTVjNjY4ODVhZTc0NTJlMw==;;Ryan Dahl;2011-01-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDgxYWZjYjNhNmQyZWUzOGQ3MzFkZmU5N2U0MmJmZjg5MTFmY2RkZg==;Fixing bug in request's end method.;Ali Farhadi;2011-01-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDgxYWZjYjNhNmQyZWUzOGQ3MzFkZmU5N2U0MmJmZjg5MTFmY2RkZg==;;Ali Farhadi;2011-01-23;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OGQzN2Y4MGY0YjU4MmE1NWQyMjk1MjFjY2U4MzY3MGI2MDMwMGVjMA==;Expose agent in and client.;Mikeal Rogers;2011-01-23;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGQzN2Y4MGY0YjU4MmE1NWQyMjk1MjFjY2U4MzY3MGI2MDMwMGVjMA==;;Mikeal Rogers;2011-01-23;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzZhZmVhOTBjZjVmNWQwN2Y1ZmRhY2M1ZTc1OWE4NzcwMGQyNDIyYw==;Fix test-;Ryan Dahl;2011-01-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzZhZmVhOTBjZjVmNWQwN2Y1ZmRhY2M1ZTc1OWE4NzcwMGQyNDIyYw==;"Agent: Each time an req is sent to a socket, _cycle to try to dispatch
+another";Ryan Dahl;2011-01-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzZhZmVhOTBjZjVmNWQwN2Y1ZmRhY2M1ZTc1OWE4NzcwMGQyNDIyYw==;"Problem became apparent in 4612b0 when we wait for connecting
+sockets.";Ryan Dahl;2011-01-22;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDYxMmIwNzYwNGJmNjU0YmM1MjFkZDA0NzNmODJiMTY2ZGViNzQxMg==;Fix test-;Ryan Dahl;2011-01-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDYxMmIwNzYwNGJmNjU0YmM1MjFkZDA0NzNmODJiMTY2ZGViNzQxMg==;Agent queue waits for connecting sockets.;Ryan Dahl;2011-01-22;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjhmMmFhMjcxNWRiZmRhNmE5ZWM0YzAwNzQ1OGVmNjY0MjFkZDZjMQ==;agent should cycle on close;Ryan Dahl;2011-01-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjhmMmFhMjcxNWRiZmRhNmE5ZWM0YzAwNzQ1OGVmNjY0MjFkZDZjMQ==;;Ryan Dahl;2011-01-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Yjk1NzRiOTk1ZmI0ODIxOWQ4ZjRlMTY0MWY4NzMwZTEwZjJjOWYzYw==;Expose http.getAgent;Ryan Dahl;2011-01-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Yjk1NzRiOTk1ZmI0ODIxOWQ4ZjRlMTY0MWY4NzMwZTEwZjJjOWYzYw==;;Ryan Dahl;2011-01-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTY1ZjZiNGNlMTI0NmZhMzJhMzBkNDA0MWY1NjhhY2I5M2M3Y2EyNA==;Initial pass at client;Ryan Dahl;2011-01-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTY1ZjZiNGNlMTI0NmZhMzJhMzBkNDA0MWY1NjhhY2I5M2M3Y2EyNA==;;Ryan Dahl;2011-01-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDg2NmVjYWYzZmNkYTQ2MDNkOGEwNzMyZTQ1N2Q3NDI0ODk1MGI2Yg==;...;Ryan Dahl;2011-01-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDg2NmVjYWYzZmNkYTQ2MDNkOGEwNzMyZTQ1N2Q3NDI0ODk1MGI2Yg==;;Ryan Dahl;2011-01-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjQ2NTk0OTUxNjc2ZGU3YWQ4ZjQ4MWU4NWVmYjhiZjQzZjg2MTRhNQ==;hacky work around socket hangups on requests;Ryan Dahl;2011-01-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjQ2NTk0OTUxNjc2ZGU3YWQ4ZjQ4MWU4NWVmYjhiZjQzZjg2MTRhNQ==;;Ryan Dahl;2011-01-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDg5NDU0ZTVkNDQzZWQzOTQyMmZiZjFjNDI4MGJhM2VhZDg0MmUxOA==;Backport client 'upgrade' events;Ryan Dahl;2011-01-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDg5NDU0ZTVkNDQzZWQzOTQyMmZiZjFjNDI4MGJhM2VhZDg0MmUxOA==;;Ryan Dahl;2011-01-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDEyNTgyMmJlZGZiODRiMDUyZWFkNjk5OTQ2Mjk2Y2UzY2ZhNjkxYw==;all errors go to req object;Ryan Dahl;2011-01-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDEyNTgyMmJlZGZiODRiMDUyZWFkNjk5OTQ2Mjk2Y2UzY2ZhNjkxYw==;;Ryan Dahl;2011-01-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTA1YzM1YjlmZDY2NzQ1ZDliOGFiYWU3N2I5MzUzODg3M2NmMTJiYQ==;shims;Ryan Dahl;2011-01-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTA1YzM1YjlmZDY2NzQ1ZDliOGFiYWU3N2I5MzUzODg3M2NmMTJiYQ==;;Ryan Dahl;2011-01-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTU3NmQ0ZWM3OWFkOTgzODUzZDk4OTgxOWM3ODMyOGFiYTBiYjZmOQ==;Add parser to agent;Ryan Dahl;2011-01-20;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTU3NmQ0ZWM3OWFkOTgzODUzZDk4OTgxOWM3ODMyOGFiYTBiYjZmOQ==;;Ryan Dahl;2011-01-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjBhZWE5NmY4NGM4NTA2MTViYWM3YTZlMDBlZjI4ZmFiNWFlMThhZQ==;first pass at refactor for TLS;Ryan Dahl;2011-01-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjBhZWE5NmY4NGM4NTA2MTViYWM3YTZlMDBlZjI4ZmFiNWFlMThhZQ==;;Ryan Dahl;2011-01-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk1NzM4Mjk5MWM2NTU5ZmEzOTdkMGY5YTc5MGVlODJmNTAyOWIzNw==;Implement new stream method, destroySoon;Ryan Dahl;2011-01-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk1NzM4Mjk5MWM2NTU5ZmEzOTdkMGY5YTc5MGVlODJmNTAyOWIzNw==;Still missing on fs.WriteStream;Ryan Dahl;2011-01-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzNmNGVjNTFmZGUzYmZiM2UxNmQ2ZDcwNmFhZTQyNjU2ZDA4M2MxYQ==;hack for ending connections;Ryan Dahl;2011-01-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzNmNGVjNTFmZGUzYmZiM2UxNmQ2ZDcwNmFhZTQyNjU2ZDA4M2MxYQ==;;Ryan Dahl;2011-01-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTRmODM2OGNmOWU1MDc3MDUwNTI1ZTMyYTI0MTg4NDAyZjA3NzA3NA==;First pass at new server;Ryan Dahl;2011-01-02;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTRmODM2OGNmOWU1MDc3MDUwNTI1ZTMyYTI0MTg4NDAyZjA3NzA3NA==;;Ryan Dahl;2011-01-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTRkZDVjZDZmZDdiNDRmNGZjMjFhNWNmZDM5NjE1YTdhNTgzMzk1Nw==;NODE_DEBUG uses strings instead of bitflags;Ryan Dahl;2011-01-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTRkZDVjZDZmZDdiNDRmNGZjMjFhNWNmZDM5NjE1YTdhNTgzMzk1Nw==;;Ryan Dahl;2011-01-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YTAxNTliNGIyOTVmNjllNTY1M2VmOTZkODhkZTU3OTc0NmRjZmRjOA==;Fix global leaks;Ryan Dahl;2010-12-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTAxNTliNGIyOTVmNjllNTY1M2VmOTZkODhkZTU3OTc0NmRjZmRjOA==;;Ryan Dahl;2010-12-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTIzMmY2ZTczNTY1MzFiYjZhYjUwY2RmOWM4MjM4NjUzOGFlMmM3OQ==;more lint;Ryan Dahl;2010-12-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTIzMmY2ZTczNTY1MzFiYjZhYjUwY2RmOWM4MjM4NjUzOGFlMmM3OQ==;;Ryan Dahl;2010-12-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzM1YjlkNTBhM2NiMDljOWE4NzA0NWZjZTE0OTMwMzZmYzc0MjI5NQ==;Simplify state transitions in ;Ryan Dahl;2010-11-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzM1YjlkNTBhM2NiMDljOWE4NzA0NWZjZTE0OTMwMzZmYzc0MjI5NQ==;"Fixes new bug shown in test-pointed out by
+Tom Carden <tom.carden@gmail.com>.";Ryan Dahl;2010-11-29;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjA1Nzc0N2U5ZWRhMDJkNWI0MTM4NWQ2NTU1ZjY3NzMxNGY1NzgwZA==;Improve HTTP debug messages;Ryan Dahl;2010-11-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjA1Nzc0N2U5ZWRhMDJkNWI0MTM4NWQ2NTU1ZjY3NzMxNGY1NzgwZA==;;Ryan Dahl;2010-11-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWRiNTlhZmI3NThmYTNhZDQ5NzMzNGNlM2Y5NDIyMjY5ZjAxOWQ5Ng==;style;Ryan Dahl;2010-11-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWRiNTlhZmI3NThmYTNhZDQ5NzMzNGNlM2Y5NDIyMjY5ZjAxOWQ5Ng==;;Ryan Dahl;2010-11-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjMyMDQ5Nzk5MjZhM2Y2OTE0NGJlMTgyNzg2YzVkMmRjZjU4YzBjMg==;"Revert ""Merge branch 'writev'""";Ryan Dahl;2010-11-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjMyMDQ5Nzk5MjZhM2Y2OTE0NGJlMTgyNzg2YzVkMmRjZjU4YzBjMg==;"This reverts commit cd9515efd99dfa6510e72342a2621bb4b291a89c, reversing
+changes made to df46c8e698b9400abaabd77ec836c7cdadf9735c";Ryan Dahl;2010-11-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjMyMDQ5Nzk5MjZhM2Y2OTE0NGJlMTgyNzg2YzVkMmRjZjU4YzBjMg==;Too slow;Ryan Dahl;2010-11-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjMyMDQ5Nzk5MjZhM2Y2OTE0NGJlMTgyNzg2YzVkMmRjZjU4YzBjMg==;Needs more work.;Ryan Dahl;2010-11-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTEyNTBhMzMzM2QyMmYwMDNiMzdmNjY5NzhhODU2ZTFmN2VjOTZkYg==;Reset _eof on socket reuse;Ryan Dahl;2010-11-12;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTEyNTBhMzMzM2QyMmYwMDNiMzdmNjY5NzhhODU2ZTFmN2VjOTZkYg==;;Ryan Dahl;2010-11-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGNjNTQ3ZDc5OGMxMWVkODFmNDYxNzcyNGEwMTIwZGFkNDg0ZDBjZQ==;Dumper net.js integration;Ryan Dahl;2010-11-05;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGNjNTQ3ZDc5OGMxMWVkODFmNDYxNzcyNGEwMTIwZGFkNDg0ZDBjZQ==;;Ryan Dahl;2010-11-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGY0NmM4ZTY5OGI5NDAwYWJhYWJkNzdlYzgzNmM3Y2RhZGY5NzM1Yw==;Rip out the old TLS implementation;Ryan Dahl;2010-10-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGY0NmM4ZTY5OGI5NDAwYWJhYWJkNzdlYzgzNmM3Y2RhZGY5NzM1Yw==;;Ryan Dahl;2010-10-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzJhZWU4MjE2Y2ZlN2E4MGMxOGVhMTcxZWU4NjBhMWM5M2JhNjBkZA==;Fix permissions on http.js;Ryan Dahl;2010-10-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzJhZWU4MjE2Y2ZlN2E4MGMxOGVhMTcxZWU4NjBhMWM5M2JhNjBkZA==;;Ryan Dahl;2010-10-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjQ3MGQyZWU5MmIxNjJlYmNjNGVkYTY4OTU4NzY5NzE1YzNkMTdmYg==;allowHalfOpen disabled by default;Ryan Dahl;2010-10-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjQ3MGQyZWU5MmIxNjJlYmNjNGVkYTY4OTU4NzY5NzE1YzNkMTdmYg==;"Users too often would forget to add
+Which is a mistake";Ryan Dahl;2010-10-26;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjQ3MGQyZWU5MmIxNjJlYmNjNGVkYTY4OTU4NzY5NzE1YzNkMTdmYg==;"Therefore we default to this behavior and
+only optionally let people handle the 'end' case themselves.";Ryan Dahl;2010-10-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjE0ZWViM2MxZWMxNWQ5NGQyMGRhNGRlZWE4NTM1ODI0ODJhNDdiMA==;Fix expect/continue keepalive;Mark Nottingham;2010-10-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjE0ZWViM2MxZWMxNWQ5NGQyMGRhNGRlZWE4NTM1ODI0ODJhNDdiMA==;;Mark Nottingham;2010-10-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODEzOWJiMjRjMWY3MmNkZWE0MTQ5MmJmM2JmMzk1YTY2ZTA0MTA0Zg==;Add destroy methods to HTTP messages;Ryan Dahl;2010-10-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODEzOWJiMjRjMWY3MmNkZWE0MTQ5MmJmM2JmMzk1YTY2ZTA0MTA0Zg==;needs tests (particularly for pipeline situations);Ryan Dahl;2010-10-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MGUxYTU4MTkxNjAxYTE3NzA4Mzg2Mjc3NmI0NmZjNGY0MzU2OWMyMw==;Removed deprecated methods from lib/http.js;Micheil Smith;2010-10-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MGUxYTU4MTkxNjAxYTE3NzA4Mzg2Mjc3NmI0NmZjNGY0MzU2OWMyMw==;;Micheil Smith;2010-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6N2UyNGEwNWNiYTIzNzNjMGFiMWYwNjI5MzY2YjY2NGE1OTNmMzU3Zg==;Fix test-http-buffer-sanity;Ryan Dahl;2010-10-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2UyNGEwNWNiYTIzNzNjMGFiMWYwNjI5MzY2YjY2NGE1OTNmMzU3Zg==;;Ryan Dahl;2010-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTM4ZWIwYzVhNGQ0ZTg0OTdmNTgxNWJlODE5OTRkZGIwMWZiY2ViNw==;Soft migration of sys -> util, Removal of deprecated utils module.;Micheil Smith;2010-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTM4ZWIwYzVhNGQ0ZTg0OTdmNTgxNWJlODE5OTRkZGIwMWZiY2ViNw==;;Micheil Smith;2010-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk0NGUwM2EwMzAwMjJlMTQyMDYzNGI4N2UzYTQ0ZTc3NTE4NDQyNQ==;Closer to a working pipe;Ryan Dahl;2010-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk0NGUwM2EwMzAwMjJlMTQyMDYzNGI4N2UzYTQ0ZTc3NTE4NDQyNQ==;;Ryan Dahl;2010-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWFmNTJkMjhjYTNjYzg0YTVkZjhkZWU3MjM2NDgxYmUwNzAwZWYwNQ==;Changing to use the same stream.Stream creation as net.js;Micheil Smith;2010-10-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWFmNTJkMjhjYTNjYzg0YTVkZjhkZWU3MjM2NDgxYmUwNzAwZWYwNQ==;;Micheil Smith;2010-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmM2OTU0NzViOTA4Y2NmMzBlNTAxNjY4OTMyOGRmMzdiNjc4Yjg3MA==;Add Stream base class with stream.pipe;Ryan Dahl;2010-10-11;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmM2OTU0NzViOTA4Y2NmMzBlNTAxNjY4OTMyOGRmMzdiNjc4Yjg3MA==;;Ryan Dahl;2010-10-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDAwM2M3MDFiY2IxZDkxNjA3M2Y4ODkzZWU0Y2JlNjk4NTE1MTU4ZA==;expose parsers freelist;Ryan Dahl;2010-10-07;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDAwM2M3MDFiY2IxZDkxNjA3M2Y4ODkzZWU0Y2JlNjk4NTE1MTU4ZA==;;Ryan Dahl;2010-10-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2Q0ZTRkODkwOTlmMWMwOGU1ODYwNjA5NjFlZDg4NGU1ZjUyMzAxYQ==;syntax fixes to pass jslint;Joshaven Potter;2010-10-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2Q0ZTRkODkwOTlmMWMwOGU1ODYwNjA5NjFlZDg4NGU1ZjUyMzAxYQ==;;Joshaven Potter;2010-10-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzhmODY2NWYzYThjMDE5Y2VlZTk0MzdjYTE0MjYzNWJiNWJhMTNhMw==;lib/- nested loop stepping on variables of outer loop;Ryan Dahl;2010-10-04;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzhmODY2NWYzYThjMDE5Y2VlZTk0MzdjYTE0MjYzNWJiNWJhMTNhMw==;Fixes #318.;Ryan Dahl;2010-10-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDU5NTEyZjZmNDA2Y2VhZTQ5NDBmZDljODNlODI1NWYwYzAzMTczYg==;Add support for handling Expect: 100-continue;Mark Nottingham;2010-09-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDU5NTEyZjZmNDA2Y2VhZTQ5NDBmZDljODNlODI1NWYwYzAzMTczYg==;HTTP/1.1 requests, either with an event (check_continue) or automatically, if no event handler is present;Mark Nottingham;2010-09-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDU5NTEyZjZmNDA2Y2VhZTQ5NDBmZDljODNlODI1NWYwYzAzMTczYg==;Add client-side expect/continue support, tests;Mark Nottingham;2010-09-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDU5NTEyZjZmNDA2Y2VhZTQ5NDBmZDljODNlODI1NWYwYzAzMTczYg==;Expound upon client requirements for expect/continue.;Mark Nottingham;2010-09-10;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjY1Y2RhOTdkN2U4NjI5MmE3YWQ1OGNhMDliOTdjOTUyN2Q3ODU0Mg==;Fix zero length buffer bug for res.end();Ryan Dahl;2010-10-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjY1Y2RhOTdkN2U4NjI5MmE3YWQ1OGNhMDliOTdjOTUyN2Q3ODU0Mg==;Reported by Kadir Pekel <kadirpekel@gmail.com>;Ryan Dahl;2010-10-01;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWIyNGZjNjY3ODAyMjMzYjhlMWMzNGM0MTg5YWI4MmJhNWRkMzU3YQ==;Consume HTTP trailing headers;Mark Nottingham;2010-09-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWIyNGZjNjY3ODAyMjMzYjhlMWMzNGM0MTg5YWI4MmJhNWRkMzU3YQ==;;Mark Nottingham;2010-09-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzNiYzQ4ZDQ1MWM3N2ZmNjdhNjUzMzhmZWZiYTRhNmJjOTQ3OGQ3ZA==;Move the client's initParser() into prototype;Ryan Dahl;2010-09-30;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzNiYzQ4ZDQ1MWM3N2ZmNjdhNjUzMzhmZWZiYTRhNmJjOTQ3OGQ3ZA==;;Ryan Dahl;2010-09-30;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY5ZDk3M2Q3NGVmZGY4NDkyNTEyYzU4YTcxZmQ4ZjEzZThjNjY5Ng==;Remove require('buffer') in built-in libraries.;Ryan Dahl;2010-09-28;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDY5ZDk3M2Q3NGVmZGY4NDkyNTEyYzU4YTcxZmQ4ZjEzZThjNjY5Ng==;;Ryan Dahl;2010-09-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTUzNWFhM2Q1MWM2YWYyMzgwNTQwYmI1ZjA5MDgzNTdiNzZlYmQxMw==;Fixed 'upgrade' event for ;Fedor Indutny;2010-09-22;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTUzNWFhM2Q1MWM2YWYyMzgwNTQwYmI1ZjA5MDgzNTdiNzZlYmQxMw==;onend and ondata was cleaning on parser end;Fedor Indutny;2010-09-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2MxZDYxY2JiM2E5YjJiNzVlZGFjNjYyOTVmMmJjNTMxNGJlNTA0Mg==;HTTP: close connection on connection:close header.;Mikeal Rogers;2010-09-22;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2MxZDYxY2JiM2E5YjJiNzVlZGFjNjYyOTVmMmJjNTMxNGJlNTA0Mg==;rnewson found a good bug in keep-alive;Mikeal Rogers;2010-09-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2MxZDYxY2JiM2E5YjJiNzVlZGFjNjYyOTVmMmJjNTMxNGJlNTA0Mg==;"we were only using the request
+headers we send to enable/disable keep-alive but when the server sends
+Connection: close we need to close down the connection regardless";Mikeal Rogers;2010-09-22;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2MxZDYxY2JiM2E5YjJiNzVlZGFjNjYyOTVmMmJjNTMxNGJlNTA0Mg==;"I wrote up a patch the Robert verified makes all his test client code work
+now and I also added a new unittest for it.";Mikeal Rogers;2010-09-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGI3M2M3MTI4MDk2NmIwNTg3YThkMTY2NzdiODliZTdmY2ZkMWMyZA==;Pass correct message in HTTP client upgrade;Ryan Dahl;2010-09-19;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGI3M2M3MTI4MDk2NmIwNTg3YThkMTY2NzdiODliZTdmY2ZkMWMyZA==;Simplify and correct test;Ryan Dahl;2010-09-19;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZGI3M2M3MTI4MDk2NmIwNTg3YThkMTY2NzdiODliZTdmY2ZkMWMyZA==;Fix by Fedor Indutny.;Ryan Dahl;2010-09-19;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTYzZmQwZmU1NjAwNTU0MjhiYzJlZGI4ZWU3YWYyZmZlNjFjZDdiZA==;Remove deprecation warnings in module;Ryan Dahl;2010-09-16;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTYzZmQwZmU1NjAwNTU0MjhiYzJlZGI4ZWU3YWYyZmZlNjFjZDdiZA==;;Ryan Dahl;2010-09-16;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjU2MGFiOTA3M2Y1YjIzYzQ2N2RkMDY2MmM0Y2QyMzY2ODU1NjRlZA==;Send multiple header lines in ServerResponse#writeHead when header values are arrays;Sam Stephenson;2010-09-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjU2MGFiOTA3M2Y1YjIzYzQ2N2RkMDY2MmM0Y2QyMzY2ODU1NjRlZA==;;Sam Stephenson;2010-09-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGZlMzAwN2ExYWU0YzM1ZTE4ZDI5N2FmMzE1MWViNTFkMDQ1ODg1OQ==;Support for outgoing HTTP trailing headers;Mark Nottingham;2010-09-09;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGZlMzAwN2ExYWU0YzM1ZTE4ZDI5N2FmMzE1MWViNTFkMDQ1ODg1OQ==;;Mark Nottingham;2010-09-09;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDRhMjg3OTg3ZTVlYjc5MWRjMTA5MjAwMmEzNWY3MTJkMzQ1MWI5NQ==;Safe constructors: and http.Client;Ryan Dahl;2010-08-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDRhMjg3OTg3ZTVlYjc5MWRjMTA5MjAwMmEzNWY3MTJkMzQ1MWI5NQ==;;Ryan Dahl;2010-08-27;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk4MmU3NWEwYjk4YTBjNjcwN2RiMmYwZjZlN2VkNzQwYjc4YTZiZQ==;set-cookies header is an array of values. always;Ryan Dahl;2010-08-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Mjk4MmU3NWEwYjk4YTBjNjcwN2RiMmYwZjZlN2VkNzQwYjc4YTZiZQ==;;Ryan Dahl;2010-08-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFjZDc2ZWQ2ZTAyMGZhNTQwZjY0ZWFiZjRiZGIzMzUxMzc5NTkyNA==;Don't throw on HEAD requests;Ryan Dahl;2010-08-12;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWFjZDc2ZWQ2ZTAyMGZhNTQwZjY0ZWFiZjRiZGIzMzUxMzc5NTkyNA==;;Ryan Dahl;2010-08-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWM1ZDVlMGI3MmFlZmU2Y2E2YjM4MGQxYjBhOGM5MjdlMmUzNjJlOA==;uppercase request methods;Ryan Dahl;2010-08-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWM1ZDVlMGI3MmFlZmU2Y2E2YjM4MGQxYjBhOGM5MjdlMmUzNjJlOA==;;Ryan Dahl;2010-08-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGIxOWJkMjg5NjcxMDFiN2FmZWQzODE5Y2Y1OTVkNGYwNGExYjExZQ==;Client.onend: Anticipate that the HTTP parser object is uninitialized when the client setup failed.;Ben Noordhuis;2010-08-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGIxOWJkMjg5NjcxMDFiN2FmZWQzODE5Y2Y1OTVkNGYwNGExYjExZQ==;;Ben Noordhuis;2010-08-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzIxNDExNmJlNmJkMDg4YTAyZDA0NDdmNTdiMGJhMTUwMzhhZGNlMA==;Implement keep-alive for ;Mikeal Rogers;2010-08-02;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzIxNDExNmJlNmJkMDg4YTAyZDA0NDdmNTdiMGJhMTUwMzhhZGNlMA==;Send the 'Connection: keep-alive' header in your request to enable.;Mikeal Rogers;2010-08-02;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDI3MjlkNGFmN2IxN2VhNGM3MjcyYTBkMGQ5OWY2Zjc0MThlMzIzNw==;instanceof Buffer to Buffer.isBuffer();Ryan Dahl;2010-07-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDI3MjlkNGFmN2IxN2VhNGM3MjcyYTBkMGQ5OWY2Zjc0MThlMzIzNw==;;Ryan Dahl;2010-07-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NmE1N2E0MjEwOTUwM2I1MzI3YzRmZmNhMjBmZTQwNDgxMDNjM2I4MA==;Use Array.isArray instead of instanceof;Ryan Dahl;2010-07-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmE1N2E0MjEwOTUwM2I1MzI3YzRmZmNhMjBmZTQwNDgxMDNjM2I4MA==;;Ryan Dahl;2010-07-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzBhOGZiMzc2M2M5MjMzN2JiYzZhNjEzOGRkMGMzMjAxMzRiODQ3Yw==;Fix headers with empty value.;Dmitriy Shalashov;2010-07-07;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzBhOGZiMzc2M2M5MjMzN2JiYzZhNjEzOGRkMGMzMjAxMzRiODQ3Yw==;;Dmitriy Shalashov;2010-07-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTFiZDFiNDQ4M2Y2MGQ4NWVlMTkyNzRhYWI5ODUwNWEwYjVjOTEwNQ==;Only concatenate some incoming HTTP headers.;Peter Griess;2010-06-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTFiZDFiNDQ4M2Y2MGQ4NWVlMTkyNzRhYWI5ODUwNWEwYjVjOTEwNQ==;"- Concatenate 'accept', 'accept-charset', 'accept-encoding',
+  'accept-language', 'connection', 'cookie', and 'x-*' headers";Peter Griess;2010-06-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTFiZDFiNDQ4M2Y2MGQ4NWVlMTkyNzRhYWI5ODUwNWEwYjVjOTEwNQ==;- For all others, drop duplicates.;Peter Griess;2010-06-21;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTg3ZjE5MTU1OGVmNDU1NjI4NjVlMDcxZmRjZDExZTFkYmVjNzlkZg==;Support 'upgrade' event in HTTP client.;Peter Griess;2010-06-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTg3ZjE5MTU1OGVmNDU1NjI4NjVlMDcxZmRjZDExZTFkYmVjNzlkZg==;- Add a unit test for client HTTP upgrade;Peter Griess;2010-06-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MTg3ZjE5MTU1OGVmNDU1NjI4NjVlMDcxZmRjZDExZTFkYmVjNzlkZg==;- Move around unit tests for server HTTP upgrade.;Peter Griess;2010-06-15;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NmJlZDE1ZTA3NDg1OTBlMjU4OWU2NGIxNTFjM2Y0YjhhYWI3YWU3OA==;Refactor: Utf8Decoder -> StringDecoder;Ryan Dahl;2010-06-16;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmJlZDE1ZTA3NDg1OTBlMjU4OWU2NGIxNTFjM2Y0YjhhYWI3YWU3OA==;"Instead of just decoding Utf8, this will proxy requests to buffer.toString()
+for other encodings";Ryan Dahl;2010-06-16;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmJlZDE1ZTA3NDg1OTBlMjU4OWU2NGIxNTFjM2Y0YjhhYWI3YWU3OA==;This makes for a simpler interface.;Ryan Dahl;2010-06-16;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTVhNmYwMTczMjk0YjJlODlhN2YxNzk3NzA0NjY5ZjhiYTAzNDlkOA==;Server responses should have a body if HEAD request;Ryan Dahl;2010-06-02;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTVhNmYwMTczMjk0YjJlODlhN2YxNzk3NzA0NjY5ZjhiYTAzNDlkOA==;;Ryan Dahl;2010-06-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODBhOGU3MWZlMDgyNTExYjE1ZTUzMzdiMTY4N2ZjMDk1NTgwOWI2ZQ==;Insert some hot paths into HTTP;Ryan Dahl;2010-05-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODBhOGU3MWZlMDgyNTExYjE1ZTUzMzdiMTY4N2ZjMDk1NTgwOWI2ZQ==;;Ryan Dahl;2010-05-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzRiN2ZhMjlhMTFiYzAxMGNlZmQ3YzZhNTcxYTEyZDc5MGFiN2ZhOA==;Refactor HTTP;Ryan Dahl;2010-05-27;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzRiN2ZhMjlhMTFiYzAxMGNlZmQ3YzZhNTcxYTEyZDc5MGFiN2ZhOA==;Allow throttling from outgoing messages.;Ryan Dahl;2010-05-27;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjllODY3YWFhMDYyZTZkMDVlMzQ2OWFhMTZhNWY0MDg5YzI5NDAzMw==;Simplify a few internal HTTP events.;Ryan Dahl;2010-05-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjllODY3YWFhMDYyZTZkMDVlMzQ2OWFhMTZhNWY0MDg5YzI5NDAzMw==;;Ryan Dahl;2010-05-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODk1Zjg5ZDYyYTYzZTAyYmQ5MzZkZWViYWZiNDk0NjY0YmY0ZTI0OA==;Avoided sending empty chunkedEncoding chunks in the middle of responses;Sam Hughes;2010-04-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODk1Zjg5ZDYyYTYzZTAyYmQ5MzZkZWViYWZiNDk0NjY0YmY0ZTI0OA==;;Sam Hughes;2010-04-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTVlYzk5ZWM1OTQ1YzA3NjE2Y2Q5Mjk5ZTEyNmU5OTE5YmM5YzhjYw==;Fix issue 89, parsing responses to HEAD requests;Ryan Dahl;2010-05-26;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MTVlYzk5ZWM1OTQ1YzA3NjE2Y2Q5Mjk5ZTEyNmU5OTE5YmM5YzhjYw==;Test from Mark Hansen (mark at markhansen.co.nz);Ryan Dahl;2010-05-26;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzVjMTRmNjM3ZTc5NjNiZDZjYzY2Nzc2NDYzMzM5ZTAwNmU2MGMwMQ==;In HTTP parser, proxy return value of onHeadersComplete;Ryan Dahl;2010-05-26;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzVjMTRmNjM3ZTc5NjNiZDZjYzY2Nzc2NDYzMzM5ZTAwNmU2MGMwMQ==;;Ryan Dahl;2010-05-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjU4ZGIzY2Q3MzdmZmZiOWFiMzI2YjhkYzUxOTFmZGU1NmE3YTBkMw==;Added reason phrases for a bunch of HTTP status codes.;Ben Noordhuis;2010-05-23;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjU4ZGIzY2Q3MzdmZmZiOWFiMzI2YjhkYzUxOTFmZGU1NmE3YTBkMw==;;Ben Noordhuis;2010-05-23;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2JkMmMzOTQ1YjFkZjViNTM4ZDllMjU3NjQ2ZjYwNGQ5MTg5NjAxYw==;Throwing in a callback should kill the process;Ryan Dahl;2010-05-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2JkMmMzOTQ1YjFkZjViNTM4ZDllMjU3NjQ2ZjYwNGQ5MTg5NjAxYw==;"There is a difference between errors which happen to a socket - like
+receiving EPIPE - an exceptional situation but ultimately okay and the
+situation where code throws in a callback - which is not okay";Ryan Dahl;2010-05-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2JkMmMzOTQ1YjFkZjViNTM4ZDllMjU3NjQ2ZjYwNGQ5MTg5NjAxYw==;"Fixes test/simple/test-
+TODO: explain this in docs.";Ryan Dahl;2010-05-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjY2M2M2OWY4ZDhlYTRkZjlmYmM0MGIwMzE4NjI1OTE4NjAxMWU5Nw==;Fix utf8stream references;Ryan Dahl;2010-05-18;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MjY2M2M2OWY4ZDhlYTRkZjlmYmM0MGIwMzE4NjI1OTE4NjAxMWU5Nw==;;Ryan Dahl;2010-05-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Zjk4N2VjZjQ1YmU2ZjVjN2MxOGQ1Y2ViZDM4YmUwYjQxMTY0ODE0MA==;Use Utf8Stream for Streams with utf8 encoding;Felix Geisendörfer;2010-05-18;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Zjk4N2VjZjQ1YmU2ZjVjN2MxOGQ1Y2ViZDM4YmUwYjQxMTY0ODE0MA==;;Felix Geisendörfer;2010-05-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDAxMjg3ODdlNzRjMzZkNTg5ZjAwYWM4OWFiMTc5MDJkZDhlMGRlMA==;Deprecate sendHeader() and writeHeader(), ppl should use writeHead();Ryan Dahl;2010-05-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDAxMjg3ODdlNzRjMzZkNTg5ZjAwYWM4OWFiMTc5MDJkZDhlMGRlMA==;;Ryan Dahl;2010-05-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6N2EyZTZkNjc0YTk0ZTAxYTE3ZTg1NmI0ZDUxZWMyMjlmYWQ5YWY1MQ==;Default to 2 second timeout for servers;Ryan Dahl;2010-05-12;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2EyZTZkNjc0YTk0ZTAxYTE3ZTg1NmI0ZDUxZWMyMjlmYWQ5YWY1MQ==;"Taking a performance hit on 'hello world' benchmark by enabling this by
+default, but I think it's worth it";Ryan Dahl;2010-05-12;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2EyZTZkNjc0YTk0ZTAxYTE3ZTg1NmI0ZDUxZWMyMjlmYWQ5YWY1MQ==;"Hopefully we can improve performance by
+resetting the timeout less often - ideally a 'hello world' benchmark would
+only touch the one timer once - if it runs in less than 2 seconds";Ryan Dahl;2010-05-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2EyZTZkNjc0YTk0ZTAxYTE3ZTg1NmI0ZDUxZWMyMjlmYWQ5YWY1MQ==;"The rest
+should be just link list manipulations.";Ryan Dahl;2010-05-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGFiMjM4ZTdkZTg0Mjk5NjFjZTRkNmZkOTExNDU1NWU1ZGY5MGExMw==;"Revert ""destroy instead of end connection at end of pipeline""";Ryan Dahl;2010-05-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGFiMjM4ZTdkZTg0Mjk5NjFjZTRkNmZkOTExNDU1NWU1ZGY5MGExMw==;This reverts commit 4ce1e1fca59bc6ad6e2d19643db2ed3159ccb7dc;Ryan Dahl;2010-05-10;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OGFiMjM4ZTdkZTg0Mjk5NjFjZTRkNmZkOTExNDU1NWU1ZGY5MGExMw==;To fix test-Clearly this is not the correct solution;Ryan Dahl;2010-05-10;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGFiMjM4ZTdkZTg0Mjk5NjFjZTRkNmZkOTExNDU1NWU1ZGY5MGExMw==;Probably need idle timeouts.;Ryan Dahl;2010-05-10;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNlMWUxZmNhNTliYzZhZDZlMmQxOTY0M2RiMmVkMzE1OWNjYjdkYw==;destroy instead of end connection at end of pipeline;Ryan Dahl;2010-05-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNlMWUxZmNhNTliYzZhZDZlMmQxOTY0M2RiMmVkMzE1OWNjYjdkYw==;;Ryan Dahl;2010-05-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzY3NDU2M2RkNWVjMmM5YmEzMDFkZmVlNmIwNDZmM2UzOTY2YzNkZA==;Fix a bug in where parsers may be prematurely released back to the free pool.;Thomas Lee;2010-05-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzY3NDU2M2RkNWVjMmM5YmEzMDFkZmVlNmIwNDZmM2UzOTY2YzNkZA==;;Thomas Lee;2010-05-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDUzYzllNjQxMTUyNzAxOGM2MTI0NWZiMjE1MTk0NmI3OTM2NWJhYw==;Fix whitespace;Ryan Dahl;2010-05-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDUzYzllNjQxMTUyNzAxOGM2MTI0NWZiMjE1MTk0NmI3OTM2NWJhYw==;;Ryan Dahl;2010-05-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Mzg5MjYyODY1N2NhM2U1NmQxNjQ3M2U2NWRhMzVjNzdhNzQzODJjNw==;Emit a better error message when something strange is sent to OutgoingMessage#write;isaacs;2010-05-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Mzg5MjYyODY1N2NhM2U1NmQxNjQ3M2U2NWRhMzVjNzdhNzQzODJjNw==;;isaacs;2010-05-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjViZGY5NDM0YmZhNzdjMjg0Njc4ZWY2YWUwNDNhOGUyMDVlOGQ2NQ==;Add another upgrade test;Ryan Dahl;2010-05-03;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjViZGY5NDM0YmZhNzdjMjg0Njc4ZWY2YWUwNDNhOGUyMDVlOGQ2NQ==;;Ryan Dahl;2010-05-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjBmZWM3MzUyYWMyNTY1MGFiZTNiNzJiNTllNzhhZWJkMGE5NGViYw==;Don't emit error twice from http.Client;Ryan Dahl;2010-05-03;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjBmZWM3MzUyYWMyNTY1MGFiZTNiNzJiNTllNzhhZWJkMGE5NGViYw==;;Ryan Dahl;2010-05-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWVlMjI2YjI0MzRiZmM5NDc1NzEzYTgwNWUzMDNlODdmMDcyMDc5MA==;Fixing the 1 byte off error in upgradeHead;Micheil Smith;2010-05-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWVlMjI2YjI0MzRiZmM5NDc1NzEzYTgwNWUzMDNlODdmMDcyMDc5MA==;(And fix up some style issues);Micheil Smith;2010-05-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjdmYjBlY2U2YjMzMTI4NGJkZWExZjc1ZjU5NTdmNDdiZWRjYTU3Mg==;Fix deprecation message;Ryan Dahl;2010-05-01;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjdmYjBlY2U2YjMzMTI4NGJkZWExZjc1ZjU5NTdmNDdiZWRjYTU3Mg==;;Ryan Dahl;2010-05-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYxMTBmYmQxMTVlNmU2YTk3OGI4MDdlOTdmMDA3OTFmNGQyZTgwZg==;Making requestListener for the construction of a optional, as it is for net.Server;Micheil Smith;2010-04-30;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDYxMTBmYmQxMTVlNmU2YTk3OGI4MDdlOTdmMDA3OTFmNGQyZTgwZg==;;Micheil Smith;2010-04-30;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Zjk5MGYyNGFkMzZkZGFmZjNjMzc4NTMxZDE1ZWE1YzA1MjQ2N2Q0MQ==;Implementing the event emit for Upgrade requests, with tests.;Micheil Smith;2010-04-30;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Zjk5MGYyNGFkMzZkZGFmZjNjMzc4NTMxZDE1ZWE1YzA1MjQ2N2Q0MQ==;;Micheil Smith;2010-04-30;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2IzMjMwMjdiZTg2YWExM2JkZDQ5N2FhYzdiMTJhOGM2MGIyYjY1Yw==;server emits 'clientError';Ryan Dahl;2010-04-30;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2IzMjMwMjdiZTg2YWExM2JkZDQ5N2FhYzdiMTJhOGM2MGIyYjY1Yw==;;Ryan Dahl;2010-04-30;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NmFiZGYwNTFkM2Q5MWQwNWYyNjJkMmRmZTk4ZTFjNzY4ZmYwYjU0Mw==;Unhandled 'error' events kill program;Ryan Dahl;2010-04-23;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmFiZGYwNTFkM2Q5MWQwNWYyNjJkMmRmZTk4ZTFjNzY4ZmYwYjU0Mw==;By default 'error' throws;Ryan Dahl;2010-04-23;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NmFiZGYwNTFkM2Q5MWQwNWYyNjJkMmRmZTk4ZTFjNzY4ZmYwYjU0Mw==;addListener to prevent this.;Ryan Dahl;2010-04-23;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzkzNGNiNTQ4NTNjYTIzY2VlN2VmM2M2MjA2YTViMTI2NGY4YmE2ZA==;Force no body on 204 and 304;Ryan Dahl;2010-04-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzkzNGNiNTQ4NTNjYTIzY2VlN2VmM2M2MjA2YTViMTI2NGY4YmE2ZA==;Thanks to tjholowayhuk@gmail.com for the test case.;Ryan Dahl;2010-04-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmFkMThhMjdhMGJmOWE4ZjBjNmQ2MThjMDAxMWYyMjY0MjM5YWYwNA==;Fix upgradeHead bounds.;Micheil Smith;2010-04-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmFkMThhMjdhMGJmOWE4ZjBjNmQ2MThjMDAxMWYyMjY0MjM5YWYwNA==;;Micheil Smith;2010-04-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzYwYmJhNTUxODZlYmEwMzljYTAwZTUzMmY3ODEzZDJhZWE0NTBhMg==;Support Upgrade in HTTP messages;Ryan Dahl;2010-04-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzYwYmJhNTUxODZlYmEwMzljYTAwZTUzMmY3ODEzZDJhZWE0NTBhMg==;"This allows for web servers to be ""hijacked"" and used as Web Socket servers
+(or other)";Ryan Dahl;2010-04-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzYwYmJhNTUxODZlYmEwMzljYTAwZTUzMmY3ODEzZDJhZWE0NTBhMg==;"You simply listen for requests as normal, but check if
+  req.upgrade === true
+If so, this will be the last request of the connection";Ryan Dahl;2010-04-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzYwYmJhNTUxODZlYmEwMzljYTAwZTUzMmY3ODEzZDJhZWE0NTBhMg==;"It's your job now to
+hijack req.connection and start reading from it";Ryan Dahl;2010-04-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzYwYmJhNTUxODZlYmEwMzljYTAwZTUzMmY3ODEzZDJhZWE0NTBhMg==;"req.upgradeHead is a buffer
+containing the first part of the new protocol communication (in the case it
+arrived on the same packet)";Ryan Dahl;2010-04-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzYwYmJhNTUxODZlYmEwMzljYTAwZTUzMmY3ODEzZDJhZWE0NTBhMg==;This needs tests and documentation;Ryan Dahl;2010-04-14;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzYwYmJhNTUxODZlYmEwMzljYTAwZTUzMmY3ODEzZDJhZWE0NTBhMg==;API subject to change.;Ryan Dahl;2010-04-14;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTdlYTA3YWM5MTJkODhmYjk0N2E5NWZmZDUwMmMyM2YyZDYwZjhiOQ==;Moving the net.js FreeList to being standalone.;Micheil Smith;2010-04-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTdlYTA3YWM5MTJkODhmYjk0N2E5NWZmZDUwMmMyM2YyZDYwZjhiOQ==;;Micheil Smith;2010-04-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Yjc5NDdlNDVjMDkyZGY4YjAzMmYzYjY4OWEwMjBlZDk3MmVmNDg1YQ==;Recycle client parsers;Ryan Dahl;2010-04-12;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Yjc5NDdlNDVjMDkyZGY4YjAzMmYzYjY4OWEwMjBlZDk3MmVmNDg1YQ==;;Ryan Dahl;2010-04-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODAxNzQzOTJiYmNlYzBjZWMxYzc5NjI4ZmIwOWFmMzUxYTY0ODhhYQ==;Moved Credentials into crypto module. Added node_crypto into crypto module;Rhys Jones;2010-04-12;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODAxNzQzOTJiYmNlYzBjZWMxYzc5NjI4ZmIwOWFmMzUxYTY0ODhhYQ==;;Rhys Jones;2010-04-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDViOGQyNGVhNjBiNDJmM2MyMDkzMmE5NmI1N2YxNDhkN2JmNThmNA==;Added server support;Rhys Jones;2010-04-12;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDViOGQyNGVhNjBiNDJmM2MyMDkzMmE5NmI1N2YxNDhkN2JmNThmNA==;;Rhys Jones;2010-04-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlmNzFhODA3YzEwNmZkNTM5MGUzNTA1NDQ0NWEzZjNiODExMTkzMQ==;Added support;Rhys Jones;2010-04-12;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzlmNzFhODA3YzEwNmZkNTM5MGUzNTA1NDQ0NWEzZjNiODExMTkzMQ==;;Rhys Jones;2010-04-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjJkOTg1MmMzZDZlZDMyODI1YWJmZDc5NjQ1YzcyYTY2ZmIwMGU2Zg==;Replace slow and broken for..in loops with faster for loops over the keys.;Tim Caswell;2010-04-12;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjJkOTg1MmMzZDZlZDMyODI1YWJmZDc5NjQ1YzcyYTY2ZmIwMGU2Zg==;;Tim Caswell;2010-04-12;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ODU1M2U4YTE1ZDBmZjM3MTVmYjNhOGEwMjA2MmRlOWRjYjkzMzliNg==;Add incoming.httpVersion;Ryan Dahl;2010-04-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ODU1M2U4YTE1ZDBmZjM3MTVmYjNhOGEwMjA2MmRlOWRjYjkzMzliNg==;;Ryan Dahl;2010-04-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MDhhMDliYjUwYWJjYzM1NTk0MWY2MmRlZWNlY2U1Y2I2ZjNhMjM4Mg==;Use some more Binary/F methods for Buffer;Ryan Dahl;2010-04-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDhhMDliYjUwYWJjYzM1NTk0MWY2MmRlZWNlY2U1Y2I2ZjNhMjM4Mg==;;Ryan Dahl;2010-04-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTBjNzBhYzcxNDk5MDdmMDBjZWEwMWRmYjM5NzAzNTkwYzU0ZGU0Mg==;Update stream API: forceClose() -> destroy(),  close() -> end();Ryan Dahl;2010-04-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTBjNzBhYzcxNDk5MDdmMDBjZWEwMWRmYjM5NzAzNTkwYzU0ZGU0Mg==;;Ryan Dahl;2010-04-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWI3NThlZjI2OGMxYjgzYzhjODM4YjJjYWMxMGYxNzRhNzhjMzA2NA==;Allow stream to write on close;Ryan Dahl;2010-04-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWI3NThlZjI2OGMxYjgzYzhjODM4YjJjYWMxMGYxNzRhNzhjMzA2NA==;;Ryan Dahl;2010-04-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTM1MzBlOTgxYTgxZTI1ZTUyN2U2ZTZlZTNhZWFlOGIxYmVhYWM1OQ==;Fix test-Need to check for \0 at end of utf8 strings;Ryan Dahl;2010-04-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTM1MzBlOTgxYTgxZTI1ZTUyN2U2ZTZlZTNhZWFlOGIxYmVhYWM1OQ==;;Ryan Dahl;2010-04-02;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MzU0NjEwNmM0M2MwOGFlZDBmM2U0NWY4MWY4MjQ5NmM5YzUxZjZiOQ==;Add req.connection and res.connection;Ryan Dahl;2010-03-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MzU0NjEwNmM0M2MwOGFlZDBmM2U0NWY4MWY4MjQ5NmM5YzUxZjZiOQ==;;Ryan Dahl;2010-03-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NmYyMWFjMTI4MjdhYWI0ZTljNzQ1NDQyZWExOTJmZjg3MDAxNjFhNA==;Don't free parser for the client!;Ryan Dahl;2010-03-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NmYyMWFjMTI4MjdhYWI0ZTljNzQ1NDQyZWExOTJmZjg3MDAxNjFhNA==;Fixes test-test-http.js;Ryan Dahl;2010-03-24;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWM2ZjA2M2VmMjVlNzIyM2UxOTUwZDlkZTZmNGYwYWE3MjAxY2VkMg==;snake to camel in HTTP;Ryan Dahl;2010-03-24;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWM2ZjA2M2VmMjVlNzIyM2UxOTUwZDlkZTZmNGYwYWE3MjAxY2VkMg==;;Ryan Dahl;2010-03-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzBmZmRmNWRiOWQ2ODdiNGE2OGQ4ZmViNTNjNWU3ZGUzMzhjZGQ4NQ==;Fix HTTP keep-alive;Ryan Dahl;2010-03-24;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzBmZmRmNWRiOWQ2ODdiNGE2OGQ4ZmViNTNjNWU3ZGUzMzhjZGQ4NQ==;;Ryan Dahl;2010-03-24;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NmU2MDNjY2JlMmRlYzMzOTRlYTBhZjg2ZTIyNmJmYzllZWE3YmNkNQ==;Fix debug statement that was using puts instead of debug();isaacs;2010-03-23;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NmU2MDNjY2JlMmRlYzMzOTRlYTBhZjg2ZTIyNmJmYzllZWE3YmNkNQ==;;isaacs;2010-03-23;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWJlMjcyMWNiZmRiMmE5YjdlZDE3N2Q0NWIzYzdlZWQ5MmYxODgzNw==;Don't use sys.debug, it gets preprocessed out;Ryan Dahl;2010-03-20;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZWJlMjcyMWNiZmRiMmE5YjdlZDE3N2Q0NWIzYzdlZWQ5MmYxODgzNw==;Problem introduced in b29f78772ec183b4e4aee0f67f95c599a7d8060b;Ryan Dahl;2010-03-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWM2ODRmMzU4MzkxNDAwYTQ1MzNmYzgxZmE3YzUyMjA5MGFlYzg4NA==;Add legacy 'binary' encoding/decoding methods to Buffer;Ryan Dahl;2010-03-20;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YWM2ODRmMzU4MzkxNDAwYTQ1MzNmYzgxZmE3YzUyMjA5MGFlYzg4NA==;;Ryan Dahl;2010-03-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjgwZjZlOWVkMTZmMzI5MjBlODFmOWFjZjc0OWQ3YmY5ZmFmMTMyMA==;now default;Ryan Dahl;2010-03-20;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YjgwZjZlOWVkMTZmMzI5MjBlODFmOWFjZjc0OWQ3YmY5ZmFmMTMyMA==;;Ryan Dahl;2010-03-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjI3ZmI1YWRiYmMzMjRmYWU2NTdkMmM4ODUyMzIzNGU2ZDgzY2MxYw==;Load c++ modules on demand;Ryan Dahl;2010-03-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjI3ZmI1YWRiYmMzMjRmYWU2NTdkMmM4ODUyMzIzNGU2ZDgzY2MxYw==;;Ryan Dahl;2010-03-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;Include lib/ directory in node executable. Compile on demand.;Ryan Dahl;2010-03-15;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;"Instead of installing the files in /usr/lib/node/libraries and loading them
+from the file system, the files are built-in to the node executable";Ryan Dahl;2010-03-15;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;However, they are only compiled on demand;Ryan Dahl;2010-03-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;The reasoning is;Ryan Dahl;2010-03-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;  1;Ryan Dahl;2010-03-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;Allow for more complex internal javascript;Ryan Dahl;2010-03-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;"In particular,
+  process.stdout and process.stdin can be js implemented streams";Ryan Dahl;2010-03-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;  2;Ryan Dahl;2010-03-15;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;Ease system installs;Ryan Dahl;2010-03-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;"Loading from disk each time is unnecessary
+  overhead";Ryan Dahl;2010-03-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;"Note that there is no ""system"" path for modules anymore";Ryan Dahl;2010-03-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NGNjZGM1MDFkNDhhMGYxOThhMDQwZWU0NmY0ZGFiMjdhNjExYTQ4OQ==;"Only
+  $HOME/.node_libraries.";Ryan Dahl;2010-03-15;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDA0ZmFmMzg0NjkwYWE2N2NmZDM3N2U2ZWJjZmQxNjY3ZDVmMjQ4OQ==;Added check to make sure writeHead() is called before write(), to prevent silent failure.;Jed Schmidt;2010-03-14;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MDA0ZmFmMzg0NjkwYWE2N2NmZDM3N2U2ZWJjZmQxNjY3ZDVmMjQ4OQ==;;Jed Schmidt;2010-03-14;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDE1MDBjZWU2ZTI3NTBiYjU3ZjczZjhlOGJmZDhjYTAzNGY5NjExMA==;Store connection in OutgoingMessage;Ryan Dahl;2010-03-03;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDE1MDBjZWU2ZTI3NTBiYjU3ZjczZjhlOGJmZDhjYTAzNGY5NjExMA==;;Ryan Dahl;2010-03-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWQ0ZDIzMmVhYWExYWUwNDAzZWI0NzI3ZWUwM2U4NzQ5ZmExYzJjMw==;Factor out a function;Ryan Dahl;2010-03-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWQ0ZDIzMmVhYWExYWUwNDAzZWI0NzI3ZWUwM2U4NzQ5ZmExYzJjMw==;;Ryan Dahl;2010-03-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjRkMGUzMjhlOGEwMzI1MTIyM2RjYmJhOGM0Y2M5MjMxOTAzNmQxNg==;Remove unused EventEmitter object;Ryan Dahl;2010-03-03;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjRkMGUzMjhlOGEwMzI1MTIyM2RjYmJhOGM0Y2M5MjMxOTAzNmQxNg==;;Ryan Dahl;2010-03-03;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjAyMWE4NDVmN2QzNzEyYzZiODIxYTMwZWJmZTY5MTU2YzcwOGEyOA==;Move process.inherits to sys;Ryan Dahl;2010-03-01;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjAyMWE4NDVmN2QzNzEyYzZiODIxYTMwZWJmZTY5MTU2YzcwOGEyOA==;;Ryan Dahl;2010-03-01;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjFiODQ5NjBjZWRjYmMwMzNiMjhjMDY0NGJlYWRhNjE0YjAwNmE5Yg==;Rename writeHeader to writeHead;Benjamin Thomas;2010-02-25;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YjFiODQ5NjBjZWRjYmMwMzNiMjhjMDY0NGJlYWRhNjE0YjAwNmE5Yg==;;Benjamin Thomas;2010-02-25;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MTJkNzhjZDFkZjA4NGZkOWVkNjNkMTFmYWI5MjlhMWFmMGM0NmJjYQ==;"Rename sendHeader to writeHeader; allow reasonPhrase";Ryan Dahl;2010-02-22;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MTJkNzhjZDFkZjA4NGZkOWVkNjNkMTFmYWI5MjlhMWFmMGM0NmJjYQ==;;Ryan Dahl;2010-02-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzA5NGRkYTUzY2E4MmQxNGFkYmE0ZjYyMjFhZjFjMGQ1ZjcyNDgxMQ==;Move errors for readPause and readResume;Ryan Dahl;2010-02-22;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzA5NGRkYTUzY2E4MmQxNGFkYmE0ZjYyMjFhZjFjMGQ1ZjcyNDgxMQ==;;Ryan Dahl;2010-02-22;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDBmMmQ0NjVhYThlMDU3NTk1ZTk4YWY0MjY4NWQ4NDMzNzY0ODhhOA==;no longer uses Promise;Ryan Dahl;2010-02-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZDBmMmQ0NjVhYThlMDU3NTk1ZTk4YWY0MjY4NWQ4NDMzNzY0ODhhOA==;;Ryan Dahl;2010-02-20;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTAxM2JmMTc4MTk1ZjkxYzM2ODE0NjU4OTM4YTcxOTMzMTBlYTkzMw==;API: OutgoingMessage.prototype.finish() renamed to close();Ryan Dahl;2010-02-17;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTAxM2JmMTc4MTk1ZjkxYzM2ODE0NjU4OTM4YTcxOTMzMTBlYTkzMw==;;Ryan Dahl;2010-02-17;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWU4NWQ5YWY5N2I0ZGFlNDBlNmIwNGFkZGQ0NmRkMTI4MDk5ZGRiNw==;API: Make request/response object closer to stream interface;Ryan Dahl;2010-02-17;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWU4NWQ5YWY5N2I0ZGFlNDBlNmIwNGFkZGQ0NmRkMTI4MDk5ZGRiNw==;"- sendBody() renamed to write()
+- 'body' event renamed to 'data'
+- 'complete' event renamed to 'end'";Ryan Dahl;2010-02-17;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjNjZjUwMmRiNzc5ZTU3NDgzNDEwMDkyYTk5MWE3NzRiMzBlZGM2Ng==;API: connection.send() renamed to connection.write();Ryan Dahl;2010-02-16;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MjNjZjUwMmRiNzc5ZTU3NDgzNDEwMDkyYTk5MWE3NzRiMzBlZGM2Ng==;;Ryan Dahl;2010-02-16;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmMxN2Q5NGEwYTVkMWU4ZDJiNDMyYzQyNGI3ZGVmNjU1NmZjMWFiZQ==;API: tcp events 'receive' to 'data', 'eof' to 'end';Ryan Dahl;2010-02-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmMxN2Q5NGEwYTVkMWU4ZDJiNDMyYzQyNGI3ZGVmNjU1NmZjMWFiZQ==;No deprecation messages;Ryan Dahl;2010-02-12;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmMxN2Q5NGEwYTVkMWU4ZDJiNDMyYzQyNGI3ZGVmNjU1NmZjMWFiZQ==;Not sure how...;Ryan Dahl;2010-02-12;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWJiNTI5NDdlMDZkNTA0N2Q0ZDllOTk0NTEzN2ZjYjhjMTg2ZDU4MQ==;Forgot to include fix from HTTP client bug (30b0522);Ryan Dahl;2010-01-27;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWJiNTI5NDdlMDZkNTA0N2Q0ZDllOTk0NTEzN2ZjYjhjMTg2ZDU4MQ==;;Ryan Dahl;2010-01-27;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGUxNmUzODZmZWM2NzViNTc2NjY5ZTY3ZjI1ZWZlNDc4NTRmZmVmNg==;set default encoding in sendBody;Michaeljohn Clement;2010-01-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NGUxNmUzODZmZWM2NzViNTc2NjY5ZTY3ZjI1ZWZlNDc4NTRmZmVmNg==;;Michaeljohn Clement;2010-01-19;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzAyOTNhNDNjOWQ0MDc1MTY1ZTJmN2Y2MjNmYTg2MzM5ZWI5ZDI3Zg==;API: Move Promise and EventEmitter into 'events' module;Ryan Dahl;2010-01-15;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzAyOTNhNDNjOWQ0MDc1MTY1ZTJmN2Y2MjNmYTg2MzM5ZWI5ZDI3Zg==;;Ryan Dahl;2010-01-15;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmIzZDllNGFkMDc3MzkzZWEyYWYwZjRkNDVkNGMwMGMwMDA3MWRjZA==;"Use ""url"" module instead of ""uri"" module in ";isaacs;2010-01-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmIzZDllNGFkMDc3MzkzZWEyYWYwZjRkNDVkNGMwMGMwMDA3MWRjZA==;Deprecate the URI module and remove tests for it;isaacs;2010-01-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmIzZDllNGFkMDc3MzkzZWEyYWYwZjRkNDVkNGMwMGMwMDA3MWRjZA==;"- Rename ""uri"" to ""url""";isaacs;2010-01-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmIzZDllNGFkMDc3MzkzZWEyYWYwZjRkNDVkNGMwMGMwMDA3MWRjZA==;"- Use the ""url"" module instead of the ""uri"" module";isaacs;2010-01-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmIzZDllNGFkMDc3MzkzZWEyYWYwZjRkNDVkNGMwMGMwMDA3MWRjZA==;- Remove the url parsing from - Update with the changed field names;isaacs;2010-01-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MmIzZDllNGFkMDc3MzkzZWEyYWYwZjRkNDVkNGMwMGMwMDA3MWRjZA==;- Update tests for changes to - Update documentation for changes in http.js;isaacs;2010-01-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6M2QyNGUxMTllMDZmZTIzMzg2ZTA2OGI1YjgzODA2ZDkxNzM1Y2M5Nw==;don't chunk responses to HTTP/1.0 clients, even if they send Connection: Keep-Alive (e.g. wget);Michaeljohn Clement;2009-12-23;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6M2QyNGUxMTllMDZmZTIzMzg2ZTA2OGI1YjgzODA2ZDkxNzM1Y2M5Nw==;;Michaeljohn Clement;2009-12-23;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjY1YjM2ZWVjMWUzYmYwNzMwN2U5MjY5ODFiM2VjNTdhMDE0NWMxZg==;Use the new uri parser.;isaacs;2009-12-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjY1YjM2ZWVjMWUzYmYwNzMwN2U5MjY5ODFiM2VjNTdhMDE0NWMxZg==;;isaacs;2009-12-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTAxYjRhNTRiZTUxODhlMDYxOTQ1OTcwMTBiNWYxMzA2N2RhMWNhZg==;Export STATUS_CODES;visionmedia;2009-12-08;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTAxYjRhNTRiZTUxODhlMDYxOTQ1OTcwMTBiNWYxMzA2N2RhMWNhZg==;"Express (my framework) uses them as a default
+response body when non is present";visionmedia;2009-12-08;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTAxYjRhNTRiZTUxODhlMDYxOTQ1OTcwMTBiNWYxMzA2N2RhMWNhZg==;"Others
+might use them for something as well";visionmedia;2009-12-08;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTAxYjRhNTRiZTUxODhlMDYxOTQ1OTcwMTBiNWYxMzA2N2RhMWNhZg==;Beats duplicating the list :D;visionmedia;2009-12-08;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjhiYTljM2JjOWZiYWI2YjgyMmE4YmI1MzFjN2EzYzA5MDM1MTAwYQ==;Add ;Christopher Lenz;2009-12-02;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjhiYTljM2JjOWZiYWI2YjgyMmE4YmI1MzFjN2EzYzA5MDM1MTAwYQ==;"Change the API so that it provides a single request() method
+taking an optional parameter to specify the HTTP method (defaulting to
+""GET""), instead of the five methods get(), head(), post(), del() and put().";Christopher Lenz;2009-12-02;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YzVkODIzODBmNDZlZDBjOTkyZmY1NmE5ZTlkZGZlNmFiMjU0MGU2Mg==;Bugfix: Don't use chunked encoding for 1.0 requests.;Ryan Dahl;2009-12-05;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YzVkODIzODBmNDZlZDBjOTkyZmY1NmE5ZTlkZGZlNmFiMjU0MGU2Mg==;http://groups.google.com/group/nodejs/browse_thread/thread/b2edb76691b1848c;Ryan Dahl;2009-12-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzUzOGU3MDc2NzdiMjliMjc2YTU0M2E0ZTFkYjlkNGMzODkzYzBjNg==;Expose versionMajor versionMinor to messages;Ryan Dahl;2009-12-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzUzOGU3MDc2NzdiMjliMjc2YTU0M2E0ZTFkYjlkNGMzODkzYzBjNg==;;Ryan Dahl;2009-12-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDg1ODIzZjNlNDQwMTNjNGM4M2ZjYmJhYmQzYTIzNGY2ODBlYmIzYw==;fixed HTTP duplicated header bug;Michaeljohn Clement;2009-12-02;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NDg1ODIzZjNlNDQwMTNjNGM4M2ZjYmJhYmQzYTIzNGY2ODBlYmIzYw==;added test case for HTTP duplicated header bug on keepalive;Michaeljohn Clement;2009-12-02;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWIxYTUzNWNkODk2MjRhMDIxYjRiZDE4M2NmYWFjY2VmNWI2M2RkOQ==;Add HTTP client TLS support;Rhys Jones;2009-11-30;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NWIxYTUzNWNkODk2MjRhMDIxYjRiZDE4M2NmYWFjY2VmNWI2M2RkOQ==;;Rhys Jones;2009-11-30;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YTllYTIxZmViNDMxODg5MjJmODIzZGRjOWE3ZjJlNjdiZWE5NWFlYQ==;fixed check on header type, to check member instead of object.;jed;2009-11-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YTllYTIxZmViNDMxODg5MjJmODIzZGRjOWE3ZjJlNjdiZWE5NWFlYQ==;;jed;2009-11-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzcxOWNlMzNkYjJhNjhmNjVmMWJlZDU4ZmFlY2U4M2EyMzQyYzdjMw==;New ;Ryan Dahl;2009-11-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzcxOWNlMzNkYjJhNjhmNjVmMWJlZDU4ZmFlY2U4M2EyMzQyYzdjMw==;No longer based on Ragel, but hand-written;Ryan Dahl;2009-11-21;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NzcxOWNlMzNkYjJhNjhmNjVmMWJlZDU4ZmFlY2U4M2EyMzQyYzdjMw==;"Had to add HTTPConnection.resetParser() because the parser is stricter and
+will error out when you try to give it a message after the previous had
+""Connection: close""";Ryan Dahl;2009-11-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzcxOWNlMzNkYjJhNjhmNjVmMWJlZDU4ZmFlY2U4M2EyMzQyYzdjMw==;The HTTP client was doing that;Ryan Dahl;2009-11-21;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NzcxOWNlMzNkYjJhNjhmNjVmMWJlZDU4ZmFlY2U4M2EyMzQyYzdjMw==;"Thus we reset the
+parser manually after each new connection.";Ryan Dahl;2009-11-21;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MWViYTBjYWRjMTViZWIyZjRhNDVmMThjMzFhYjJjN2Q4MGZjMjgwNw==;"Revert ""Normalize HTTP headers.""";Ryan Dahl;2009-11-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWViYTBjYWRjMTViZWIyZjRhNDVmMThjMzFhYjJjN2Q4MGZjMjgwNw==;This reverts commit f623fd765813bba7d542e9ac9a8e2a8c2c16cba5;Ryan Dahl;2009-11-18;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6MWViYTBjYWRjMTViZWIyZjRhNDVmMThjMzFhYjJjN2Q4MGZjMjgwNw==;"But only the changes made in lib/ they were falsely detecting outgoing
+headers.";Ryan Dahl;2009-11-18;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZmZWU1ZWRhNDRiOTg5OTE3NzRkNjY5OThlNzA2NTM1NWFhNDYxZg==;Bugfix for sendBody() and chunked utf8 strings;Felix Geisendörfer;2009-11-11;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZmZWU1ZWRhNDRiOTg5OTE3NzRkNjY5OThlNzA2NTM1NWFhNDYxZg==;"Http expects chunked byte offsets and ignores the encoding specified in the
+header";Felix Geisendörfer;2009-11-11;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZmZWU1ZWRhNDRiOTg5OTE3NzRkNjY5OThlNzA2NTM1NWFhNDYxZg==;This patch makes node behave accordingly;Felix Geisendörfer;2009-11-11;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZmZWU1ZWRhNDRiOTg5OTE3NzRkNjY5OThlNzA2NTM1NWFhNDYxZg==;Bug report;Felix Geisendörfer;2009-11-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YmZmZWU1ZWRhNDRiOTg5OTE3NzRkNjY5OThlNzA2NTM1NWFhNDYxZg==;http://groups.google.com/group/nodejs/browse_thread/thread/ab701d49cb059317;Felix Geisendörfer;2009-11-11;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDMxMjFjMTViZTdmYTZjYTgwYmIxYzA0NDhlOGE2NDNhYjU4M2MwOA==;API: rename process.inherits to sys.inherits;Ryan Dahl;2009-11-07;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDMxMjFjMTViZTdmYTZjYTgwYmIxYzA0NDhlOGE2NDNhYjU4M2MwOA==;;Ryan Dahl;2009-11-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NTFjMTUyNmI2YTAwYmQ0NTZkNzE4MDQxYzY0NDU1MjdjODkzNTlmMQ==;"Revert ""Upgrade parser, change node as needed.""";Ryan Dahl;2009-11-06;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTFjMTUyNmI2YTAwYmQ0NTZkNzE4MDQxYzY0NDU1MjdjODkzNTlmMQ==;Something is broken in how keep-alive is working;Ryan Dahl;2009-11-06;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTFjMTUyNmI2YTAwYmQ0NTZkNzE4MDQxYzY0NDU1MjdjODkzNTlmMQ==;"Reverting until I can fix
+This reverts commit b893859c34f05db5c45f416949ebc0eee665cca6.";Ryan Dahl;2009-11-06;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGFkNDdjOGRlNzYwOWY2YjhmNzI5ZjFiMjEyMjcxYTM5ZmRkMDNmOQ==;Expose and http.OutgoingMessage;Ryan Dahl;2009-11-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OGFkNDdjOGRlNzYwOWY2YjhmNzI5ZjFiMjEyMjcxYTM5ZmRkMDNmOQ==;;Ryan Dahl;2009-11-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NjAxMzFmYzg4YzE2NWIzYjU1NmExNmJjMjVmMjQ0YzZkNjNhMDQ4Mg==;Expose and http.ServerResponse;Ryan Dahl;2009-11-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NjAxMzFmYzg4YzE2NWIzYjU1NmExNmJjMjVmMjQ0YzZkNjNhMDQ4Mg==;;Ryan Dahl;2009-11-04;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6N2EyZTc4NGFkNzM4Njc3MWQxNTI0OWQ0NDZjOTE0ZmJhMTY3NTA2OA==;Module refactor - almost CommonJS compatible now;Ryan Dahl;2009-10-31;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2EyZTc4NGFkNzM4Njc3MWQxNTI0OWQ0NDZjOTE0ZmJhMTY3NTA2OA==;API change summary:;Ryan Dahl;2009-10-31;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWQwYTRjZWZiOGI0YmY0NjliYjFjYWE2ZTY3MWExMDA5ZTQwYTgxZg==;"Namespace EVERYTHING under process; introduce GLOBAL";Ryan Dahl;2009-10-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6YWQwYTRjZWZiOGI0YmY0NjliYjFjYWE2ZTY3MWExMDA5ZTQwYTgxZg==;http://groups.google.com/group/nodejs/browse_thread/thread/1034fd2ad2cd93e8;Ryan Dahl;2009-10-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTEwYzYyN2ZjNjQ3YmRjNmU1NzQ3YjgxMzVmODllYmZkYzk0ZDQwZQ==;"Revert ""Change HTTP back to a 1.1 client.""";Ryan Dahl;2009-10-28;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OTEwYzYyN2ZjNjQ3YmRjNmU1NzQ3YjgxMzVmODllYmZkYzk0ZDQwZQ==;This reverts commit 9a70abbf1378060d1b46240eed0dcd0dffd526ff.;Ryan Dahl;2009-10-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWE3MGFiYmYxMzc4MDYwZDFiNDYyNDBlZWQwZGNkMGRmZmQ1MjZmZg==;Change HTTP back to a 1.1 client.;Ryan Dahl;2009-10-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6OWE3MGFiYmYxMzc4MDYwZDFiNDYyNDBlZWQwZGNkMGRmZmQ1MjZmZg==;"This was modified in b893859c34f05db5c45f416949ebc0eee665cca6 even though it
+wasn't really required";Ryan Dahl;2009-10-26;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6OWE3MGFiYmYxMzc4MDYwZDFiNDYyNDBlZWQwZGNkMGRmZmQ1MjZmZg==;"Some users are experiencing problems after changing
+to 1.0 - once those are identified the client will returned to 1.0.";Ryan Dahl;2009-10-26;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Yjg5Mzg1OWMzNGYwNWRiNWM0NWY0MTY5NDllYmMwZWVlNjY1Y2NhNg==;Upgrade parser, change node as needed.;Ryan Dahl;2009-10-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Yjg5Mzg1OWMzNGYwNWRiNWM0NWY0MTY5NDllYmMwZWVlNjY1Y2NhNg==;The latest version of is a bit more stringent EOF semantics.;Ryan Dahl;2009-10-15;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmI4YWI3ZTI0ZjJhYmM5MjQ3NGY0NGFhZDc5NmIyNjM1ODJhYjVkNA==;utils.js links to sys.js instead of other way around;Ryan Dahl;2009-10-13;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6MmI4YWI3ZTI0ZjJhYmM5MjQ3NGY0NGFhZDc5NmIyNjM1ODJhYjVkNA==;;Ryan Dahl;2009-10-13;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjYyM2ZkNzY1ODEzYmJhN2Q1NDJlOWFjOWE4ZTJhOGMyYzE2Y2JhNQ==;Normalize HTTP headers.;Ryan Dahl;2009-10-07;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjYyM2ZkNzY1ODEzYmJhN2Q1NDJlOWFjOWE4ZTJhOGMyYzE2Y2JhNQ==;"""Content-Length"" becomes ""content-length"".";Ryan Dahl;2009-10-07;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTIyOTA5YmNiZjZmZjU3N2RkZjY2YjhjMDcxNDhjZjU4MTYxNTE1Nw==;Parse queryString into req.uri.params;Ryan Dahl;2009-10-05;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6NTIyOTA5YmNiZjZmZjU3N2RkZjY2YjhjMDcxNDhjZjU4MTYxNTE1Nw==;;Ryan Dahl;2009-10-05;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTJiNzkwMjQ2OTljM2YxMTcxZWYyZjMxMjA2N2IwZjA1MzQ4ZTk2MQ==;Don't use parseUri for HTTP server;Ryan Dahl;2009-10-04;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6ZTJiNzkwMjQ2OTljM2YxMTcxZWYyZjMxMjA2N2IwZjA1MzQ4ZTk2MQ==;"The big parseUri RE was showing up often in profiles - this is simpler and
+yields better performance by taking advantage of the C parser.";Ryan Dahl;2009-10-04;0;1
+MDY6Q29tbWl0MjcxOTM3Nzk6N2IzMzcwOTZjOWQzNzM2MTdkODk4OWM3YWZkNjdhNGY0NTczY2E5Yg==;Add a third argument to to specify req headers.;Ryan Dahl;2009-09-30;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6N2IzMzcwOTZjOWQzNzM2MTdkODk4OWM3YWZkNjdhNGY0NTczY2E5Yg==;;Ryan Dahl;2009-09-30;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDVmNTQwMjQ0NjYwYWVkMzFkMjZlYmEzOGY4ZWRhNDM1MTk1MjhlMA==;Pass the Host header in calls, if it was specified in the URL passed to http.cat.;isaacs;2009-09-29;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6NDVmNTQwMjQ0NjYwYWVkMzFkMjZlYmEzOGY4ZWRhNDM1MTk1MjhlMA==;;isaacs;2009-09-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2RhNjU5YThjODQ2MmYxMTJkNDZjNDcwMjllZWZhYWVhZTg4YjliNg==;Camel-case all events;Ryan Dahl;2009-09-29;1;1
+MDY6Q29tbWl0MjcxOTM3Nzk6Y2RhNjU5YThjODQ2MmYxMTJkNDZjNDcwMjllZWZhYWVhZTg4YjliNg==;;Ryan Dahl;2009-09-29;0;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjY2NTdjM2M5ZGQzZTQxZGY3MTQ3YWRjODZlYmM2NDY5NTM4ZTFlZA==;Move library to /http.js;Ryan Dahl;2009-09-28;1;0
+MDY6Q29tbWl0MjcxOTM3Nzk6ZjY2NTdjM2M5ZGQzZTQxZGY3MTQ3YWRjODZlYmM2NDY5NTM4ZTFlZA==;;Ryan Dahl;2009-09-28;0;0

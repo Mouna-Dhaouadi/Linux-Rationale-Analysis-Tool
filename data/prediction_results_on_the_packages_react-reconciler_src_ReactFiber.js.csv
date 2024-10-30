@@ -1,0 +1,1998 @@
+commit ID;text;author name;commit date;predicted_decision;predicted_rationale
+C_kwDOAJy2KtoAKDk0ZTRhY2FhMTQ3N2U2NWNhYzAyYmE4NjA1OGNkZTBhZmU0YzhmMWY;[Fiber] Set profiler values to doubles (#30942);Sebastian Markbåge;2024-09-13;0;0
+C_kwDOAJy2KtoAKDk0ZTRhY2FhMTQ3N2U2NWNhYzAyYmE4NjA1OGNkZTBhZmU0YzhmMWY;"At some point this trick was added to initialize the value first to NaN
+and then replace them with zeros and negative ones";Sebastian Markbåge;2024-09-13;1;0
+C_kwDOAJy2KtoAKDk0ZTRhY2FhMTQ3N2U2NWNhYzAyYmE4NjA1OGNkZTBhZmU0YzhmMWY;"
+This is to address the issue noted in
+where these hidden
+classes can be initialized to SMIs at first and then deopt when we
+realize they're actually doubles";Sebastian Markbåge;2024-09-13;0;1
+C_kwDOAJy2KtoAKDk0ZTRhY2FhMTQ3N2U2NWNhYzAyYmE4NjA1OGNkZTBhZmU0YzhmMWY;"
+However, this fix has been long broken and has deopted the profiling
+build for years because closure compiler optimizes out the first write";Sebastian Markbåge;2024-09-13;0;1
+C_kwDOAJy2KtoAKDk0ZTRhY2FhMTQ3N2U2NWNhYzAyYmE4NjA1OGNkZTBhZmU0YzhmMWY;"
+I'm not sure because I haven't A/B-tested this in the JIT yet but I
+think we can use negative zero and -1.1 as the initial values instead
+since they're not simple integers";Sebastian Markbåge;2024-09-13;1;1
+C_kwDOAJy2KtoAKDk0ZTRhY2FhMTQ3N2U2NWNhYzAyYmE4NjA1OGNkZTBhZmU0YzhmMWY;"Negative zero `===` zero (but not
+Object.is) so is the same as far as our code is concerned";Sebastian Markbåge;2024-09-13;1;1
+C_kwDOAJy2KtoAKDk0ZTRhY2FhMTQ3N2U2NWNhYzAyYmE4NjA1OGNkZTBhZmU0YzhmMWY;"The negative
+value is just `< 0` comparisons.";Sebastian Markbåge;2024-09-13;1;1
+C_kwDOAJy2KtoAKDhkNjhkYTNmNzM5NjA2NDYxNGYzNGI4NDg4MWZlODgzM2I2MDM5YWM;[Fiber] Stash ThenableState on the Dependencies Object for Use By DevTools (#30866);Sebastian Markbåge;2024-09-03;0;0
+C_kwDOAJy2KtoAKDhkNjhkYTNmNzM5NjA2NDYxNGYzNGI4NDg4MWZlODgzM2I2MDM5YWM;This lets us track what a Component might suspend on from DevTools;Sebastian Markbåge;2024-09-03;1;1
+C_kwDOAJy2KtoAKDhkNjhkYTNmNzM5NjA2NDYxNGYzNGI4NDg4MWZlODgzM2I2MDM5YWM;"We
+could already collect this by replaying a component's Hooks but that
+would be expensive to collect from a whole tree";Sebastian Markbåge;2024-09-03;0;0
+C_kwDOAJy2KtoAKDhkNjhkYTNmNzM5NjA2NDYxNGYzNGI4NDg4MWZlODgzM2I2MDM5YWM;"
+The thenables themselves might contain useful information but mainly
+we'd want access to the `_debugInfo` on the thenables which might
+contain additional information from the server";Sebastian Markbåge;2024-09-03;0;1
+C_kwDOAJy2KtoAKDhkNjhkYTNmNzM5NjA2NDYxNGYzNGI4NDg4MWZlODgzM2I2MDM5YWM;"
+In a follow up we should really do something similar in Flight to
+transfer `use()` on the debugInfo of that Server Component.";Sebastian Markbåge;2024-09-03;1;1
+C_kwDOAJy2KtoAKDE0YTQ2OTlmZjE3MzkzNmEzMGVjNDUzZjdiOTRkNDcxMDViYmIyNTI;Remove allowConcurrentByDefault flag (#30445);Jack Pope;2024-07-25;1;1
+C_kwDOAJy2KtoAKDE0YTQ2OTlmZjE3MzkzNmEzMGVjNDUzZjdiOTRkNDcxMDViYmIyNTI;"Following 
+Concurrent by default strategy has been unshipped";Jack Pope;2024-07-25;0;0
+C_kwDOAJy2KtoAKDE0YTQ2OTlmZjE3MzkzNmEzMGVjNDUzZjdiOTRkNDcxMDViYmIyNTI;"Here we clean up the
+`allowConcurrentByDefault` path and related logic/tests";Jack Pope;2024-07-25;1;1
+C_kwDOAJy2KtoAKDE0YTQ2OTlmZjE3MzkzNmEzMGVjNDUzZjdiOTRkNDcxMDViYmIyNTI;"
+For now, this keeps the `concurrentUpdatesByDefaultOverride` argument in
+`createContainer` and `createHydrationContainer` and ignores the value
+to prevent more breaking changes to `react-reconciler` in the RC stage.";Jack Pope;2024-07-25;1;0
+C_kwDOAJy2KtoAKGU5MDJjNDVjYWY3Y2E2NzgxMGQzZTUzNzQ4YTU0OWJkY2MzNjA2M2I;Remove forceConcurrentByDefaultForTesting flag (#30436);Jack Pope;2024-07-24;1;1
+C_kwDOAJy2KtoAKGU5MDJjNDVjYWY3Y2E2NzgxMGQzZTUzNzQ4YTU0OWJkY2MzNjA2M2I;Concurrent by default has been unshipped! Let's clean it up;Jack Pope;2024-07-24;1;0
+C_kwDOAJy2KtoAKGU5MDJjNDVjYWY3Y2E2NzgxMGQzZTUzNzQ4YTU0OWJkY2MzNjA2M2I;"
+Here we remove `forceConcurrentByDefaultForTesting`, which allows us to
+run tests against both concurrent strategies";Jack Pope;2024-07-24;0;1
+C_kwDOAJy2KtoAKGU5MDJjNDVjYWY3Y2E2NzgxMGQzZTUzNzQ4YTU0OWJkY2MzNjA2M2I;"In the next PR, we'll
+remove the actual concurrent by default code path.";Jack Pope;2024-07-24;0;1
+C_kwDOAJy2KtoAKGI3ZTdmMWEzZmFiODdlOGZjMTllODZhODA4OGE5ZTBmZTQ3MTA5NzM;[BE] upgrade prettier to 3.3.3 (#30420);Jan Kassens;2024-07-22;0;0
+C_kwDOAJy2KtoAKGI3ZTdmMWEzZmFiODdlOGZjMTllODZhODA4OGE5ZTBmZTQ3MTA5NzM;Mostly just changes in ternary formatting.;Jan Kassens;2024-07-22;1;1
+C_kwDOAJy2KtoAKGQ3YzQzMzRjZTkxNzI2ZGRmZjRiNmJhODRmZjZiZDgxZWIzYTkxZDU;Add _debugStack and _debugTask under enableObjectFiber flag (#30337);Jan Kassens;2024-07-22;1;1
+C_kwDOAJy2KtoAKGQ3YzQzMzRjZTkxNzI2ZGRmZjRiNmJhODRmZjZiZDgxZWIzYTkxZDU;;Jan Kassens;2024-07-22;0;0
+C_kwDOAJy2KtoAKGZlOTgyODk1NGFkY2M1MWFhMmJkMjFmZTUzZDk2OWE0NGRkM2M5ZDI;Experiment with using an object literal for Fiber creation (#28734);Jan Kassens;2024-07-10;0;0
+C_kwDOAJy2KtoAKGZlOTgyODk1NGFkY2M1MWFhMmJkMjFmZTUzZDk2OWE0NGRkM2M5ZDI;"Object literals should be faster at least on React Native with Hermes as
+the JS engine";Jan Kassens;2024-07-10;1;1
+C_kwDOAJy2KtoAKGZlOTgyODk1NGFkY2M1MWFhMmJkMjFmZTUzZDk2OWE0NGRkM2M5ZDI;"
+It might also be interesting to confirm the old comments in this file
+from years ago are even still valid";Jan Kassens;2024-07-10;1;1
+C_kwDOAJy2KtoAKGZlOTgyODk1NGFkY2M1MWFhMmJkMjFmZTUzZDk2OWE0NGRkM2M5ZDI;"Creating an object from a literal
+should be a simpler operation";Jan Kassens;2024-07-10;0;1
+C_kwDOAJy2KtoAKGZlOTgyODk1NGFkY2M1MWFhMmJkMjFmZTUzZDk2OWE0NGRkM2M5ZDI;"
+It's a bit unfortunate that this introduces a bunch of copied code, but
+since we rearely update the fields on fibers, this seems like an okay
+tradeoff for a hot code path";Jan Kassens;2024-07-10;1;1
+C_kwDOAJy2KtoAKGZlOTgyODk1NGFkY2M1MWFhMmJkMjFmZTUzZDk2OWE0NGRkM2M5ZDI;"An alternative would be some sort of macro
+system, but that doesn't seem worth the extra complexity.";Jan Kassens;2024-07-10;0;1
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;Warn for invalid type in renderer with the correct RSC stack (#30102);Sebastian Markbåge;2024-06-27;1;0
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;This is all behind the `enableOwnerStacks` flag;Sebastian Markbåge;2024-06-27;1;0
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"
+This is a follow up to #29088";Sebastian Markbåge;2024-06-27;0;1
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"In that I moved type validation into the
+renderer since that's the one that knows what types are allowed";Sebastian Markbåge;2024-06-27;1;1
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"
+However, I only removed it from `React.createElement` and not the JSX
+which was an oversight";Sebastian Markbåge;2024-06-27;1;1
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"
+However, I also noticed that for invalid types we don't have the right
+stack trace for throws because we're not yet inside the JSX element that
+itself is invalid";Sebastian Markbåge;2024-06-27;0;0
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;We should use its stack for the stack trace;Sebastian Markbåge;2024-06-27;1;0
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"That's
+the reason it's enough to just use the throw now because we can get a
+good stack trace from the owner stack";Sebastian Markbåge;2024-06-27;0;1
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"This is fixed by creating a fake
+Throw Fiber that gets assigned the right stack";Sebastian Markbåge;2024-06-27;0;1
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"
+Additionally, I noticed that for certain invalid types like the most
+common one `undefined` we error in Flight so a missing import in RSC
+leads to a generic error";Sebastian Markbåge;2024-06-27;1;0
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"Instead of erroring on the Flight side we
+should just let anything that's not a Server Component through to the
+client and then let the Client renderer determine whether it's a valid
+type or not";Sebastian Markbåge;2024-06-27;1;1
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"Since we now have owner stacks through the server too, this
+will still be able to provide a good stack trace on the client that
+points to the server in that case";Sebastian Markbåge;2024-06-27;0;0
+C_kwDOAJy2KtoAKGUwMmJhZjZjOTI4MzNhMGQ0NWE3N2ZiMmU3NDE2NzZmMzkzYzI0Zjc;"
+<img width=""571"" alt=""Screenshot 2024-06-25 at 6 46 35 PM""
+src=""
+To get the best stack you have to expand the little icon and the regular
+stack is noisy [due to this Chrome
+bug](which makes it a
+little harder to find but once that's fixed it might be easier.";Sebastian Markbåge;2024-06-27;1;1
+C_kwDOAJy2KtoAKGI1NjUzNzNhZmQwY2MxOTg4NDk3ZTExMDcxMDZlODUxZThjZmIyNjE;lint: enable reportUnusedDisableDirectives and remove unused suppressions (#28721);Jan Kassens;2024-06-21;1;1
+C_kwDOAJy2KtoAKGI1NjUzNzNhZmQwY2MxOTg4NDk3ZTExMDcxMDZlODUxZThjZmIyNjE;"This enables linting against unused suppressions and removes the ones
+that were unused.";Jan Kassens;2024-06-21;1;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;[Fiber] Create virtual Fiber when an error occurs during reconcilation (#29804);Sebastian Markbåge;2024-06-11;1;0
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;This lets us rethrow it in the conceptual place of the child;Sebastian Markbåge;2024-06-11;1;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"
+There's currently a problem when we suspend or throw in the child fiber
+reconciliation phase";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"This work is done by the parent component, so if
+it suspends or errors it is as if that component errored or suspended";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"
+However, conceptually it's like a child suspended or errored";Sebastian Markbåge;2024-06-11;0;0
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"
+In theory any thing can throw but it is really mainly due to either
+`React.lazy` (both in the element.type position and node position),
+`Thenable`s or the `Thenable`s that make up `AsyncIterable`s";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"
+Mainly this happens because a Server Component that errors turns into a
+`React.lazy`";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"In practice this means that if you have a Server Component
+as the direct child of an Error Boundary";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"Errors inside of it won't be
+caught";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"
+We used to have the same problem with Thenables and Suspense but because
+it's now always nested inside an inner Offscreen boundary that shields
+it by being one level nested";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"However, when we have raw Offscreen
+(Activity) boundaries they should also be able to catch the suspense if
+it's in a hidden state so the problem returns";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"This fixes it for thrown
+promises but it doesn't fix it for SuspenseException";Sebastian Markbåge;2024-06-11;1;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"I'm not sure this
+is even the right strategy for Suspense though";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"It kind of relies on the
+node never actually mounting/committing";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"
+It's conceptually a little tricky because the current component can
+inspect the children and make decisions based on them";Sebastian Markbåge;2024-06-11;0;0
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"Such as
+SuspenseList";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"
+The other thing that this PR tries to address is that it sets the
+foundation for dealing with error reporting for Server Components that
+errored";Sebastian Markbåge;2024-06-11;0;1
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"If something client side errors it'll be a stack like Server
+(DebugInfo) -> Fiber -> Fiber -> Server -> (DebugInfo) -> Fiber";Sebastian Markbåge;2024-06-11;1;0
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"
+However, all error reporting relies on it eventually terminating into a
+Fiber that is responsible for the error";Sebastian Markbåge;2024-06-11;0;0
+C_kwDOAJy2KtoAKDI3MDIyOWYwYzMzN2RjNjUyZjA3ZWYyN2QyMjU0YmI5MjJiZmFhOWU;"To avoid having to fork too
+much it would be nice if I could create a Fiber to associate with the
+error so that even a Server component error in this case ultimately
+terminates in a Fiber.";Sebastian Markbåge;2024-06-11;1;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;[Fiber] Use Owner/JSX Stack When Appending Stacks to Console (#29206);Sebastian Markbåge;2024-05-25;0;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;This one should be fully behind the `enableOwnerStacks` flag;Sebastian Markbåge;2024-05-25;1;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"
+Instead of printing the parent Component stack all the way to the root,
+this now prints the owner stack of every JSX callsite";Sebastian Markbåge;2024-05-25;1;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"It also includes
+intermediate callsites between the Component and the JSX call so it has
+potentially more frames";Sebastian Markbåge;2024-05-25;1;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"Mainly it provides the line number of the JSX
+callsite";Sebastian Markbåge;2024-05-25;0;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"In terms of the number of components is a subset of the parent
+component stack so it's less information in that regard";Sebastian Markbåge;2024-05-25;0;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"This is usually
+better since it's more focused on components that might affect the
+output but if it's contextual based on rendering it's still good to have
+parent stack";Sebastian Markbåge;2024-05-25;0;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"Therefore, I still use the parent stack when printing DOM
+nesting warnings but I plan on switching that format to a diff view
+format instead (Next.js already reformats the parent stack like this)";Sebastian Markbåge;2024-05-25;1;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"
+__Follow ups__
+- Server Components show up in the owner stack for client logs but logs
+done by Server Components don't yet get their owner stack printed as
+they're replayed";Sebastian Markbåge;2024-05-25;1;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"They're also not yet printed in the server logs of the
+RSC server";Sebastian Markbåge;2024-05-25;1;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"
+- Server Component stack frames are formatted as the server and added to
+the end but this might be a different format than the browser";Sebastian Markbåge;2024-05-25;1;0
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;E.g;Sebastian Markbåge;2024-05-25;0;0
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"if
+server is running V8 and browser is running JSC or vice versa";Sebastian Markbåge;2024-05-25;0;0
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"Ideally
+we can reformat them in terms of the client formatting";Sebastian Markbåge;2024-05-25;0;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"
+- This doesn't yet update Fizz or DevTools";Sebastian Markbåge;2024-05-25;1;0
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;Those will be follow ups;Sebastian Markbåge;2024-05-25;0;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"
+Fizz still prints parent stacks in the server side logs";Sebastian Markbåge;2024-05-25;1;0
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"The stacks
+added to user space `console.error` calls by DevTools still get the
+parent stacks instead";Sebastian Markbåge;2024-05-25;0;0
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"
+- It also doesn't yet expose these to user space so there's no way to
+get them inside `onCaughtError` for example or inside a custom
+`console.error` override";Sebastian Markbåge;2024-05-25;0;1
+C_kwDOAJy2KtoAKGQ2Y2ZhMGYyOTVmNGM4YjM2NmFmMTVmZDIwYzg0ZTI3Y2RkMWZhYjc;"
+- In another follow up I'll use `console.createTask` instead and
+completely remove these stacks if it's available.";Sebastian Markbåge;2024-05-25;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;Move createElement/JSX Warnings into the Renderer (#29088);Sebastian Markbåge;2024-05-23;1;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"This is necessary to simplify the component stack handling to make way
+for owner stacks";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"It also solves some hacks that we used to have but
+don't quite make sense";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"It also solves the problem where things like key
+warnings get silenced in RSC because they get deduped";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"It also surfaces
+areas where we were missing key warnings to begin with";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+Almost every type of warning is issued from the renderer";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"React Elements
+are really not anything special themselves";Sebastian Markbåge;2024-05-23;0;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"They're just lazily invoked
+functions and its really the renderer that determines there semantics";Sebastian Markbåge;2024-05-23;0;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+We have three types of warnings that previously fired in
+JSX/createElement:
+- Fragment props validation";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+- Type validation";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+- Key warning";Sebastian Markbåge;2024-05-23;1;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+It's nice to be able to do some validation in the JSX/createElement
+because it has a more specific stack frame at the callsite";Sebastian Markbåge;2024-05-23;0;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"However,
+that's the case for every type of component and validation";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"That's the
+whole point of enableOwnerStacks";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"It's also not sufficient to do it in
+JSX/createElement so we also have validation in the renderers too";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"So
+this validation is really just an eager validation but also happens
+again later";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+The problem with these is that we don't really know what types are valid
+until we get to the renderer";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"Additionally, by placing it in the
+isomorphic code it becomes harder to do deduping of warnings in a way
+that makes sense for that renderer";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"It also means we can't reuse logic
+for managing stacks etc";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+Fragment props validation really should just be part of the renderer
+like any other component type";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"This also matters once we add Fragment
+refs and other fragment features";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;So I moved this into Fiber;Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"However,
+since some Fragments don't have Fibers, I do the validation in
+ChildFiber instead of beginWork where it would normally happen";Sebastian Markbåge;2024-05-23;1;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+For `type` validation we already do validation when rendering";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"By
+leaving it to the renderer we don't have to hard code an extra list";Sebastian Markbåge;2024-05-23;0;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+This list also varies by context";Sebastian Markbåge;2024-05-23;1;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;E.g;Sebastian Markbåge;2024-05-23;0;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"class components aren't allowed
+in RSC but client references are but we don't have an isomorphic way to
+identify client references because they're defined by the host config so
+the current logic is flawed anyway";Sebastian Markbåge;2024-05-23;1;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"I kept the early validation for now
+without the `enableOwnerStacks` since it does provide a nicer stack
+frame but with that flag on it'll be handled with nice stacks anyway";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"I
+normalized some of the errors to ensure tests pass";Sebastian Markbåge;2024-05-23;0;0
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+For `key` validation it's the same principle";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"The mechanism for the
+heuristic is still the same - if it passes statically through a parent
+JSX/createElement call then it's considered validated";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"We already did
+print the error later from the renderer so this also disables the early
+log in the `enableOwnerStacks` flag";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+I also added logging to Fizz so that key warnings can print in SSR logs";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+Flight is a bit more complex";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"For elements that end up on the client we
+just pass the `validated` flag along to the client and let the client
+renderer print the error once rendered";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"For server components we log the
+error from Flight with the server component as the owner on the stack
+which will allow us to print the right stack for context";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"The factoring
+of this is a little tricky because we only want to warn if it's in an
+array parent but we want to log the error later to get the right debug
+info";Sebastian Markbåge;2024-05-23;1;1
+C_kwDOAJy2KtoAKDg0MjM5ZGE4OTZmZDczOTVhNjY3YWIxZTdlZjFlZjMzOGEzMmRlOGY;"
+Fiber/Fizz has a similar factoring problem that causes us to create a
+fake Fiber for the owner which means the logs won't be associated with
+the right place in DevTools.";Sebastian Markbåge;2024-05-23;0;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;Track Owner for Server Components in DEV (#28753);Sebastian Markbåge;2024-04-05;0;0
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"This implements the concept of a DEV-only ""owner"" for Server Components";Sebastian Markbåge;2024-04-05;1;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"
+The owner concept isn't really super useful";Sebastian Markbåge;2024-04-05;0;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"We barely use it anymore,
+but we do have it as a concept in DevTools in a couple of cases so this
+adds it for parity";Sebastian Markbåge;2024-04-05;1;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"However, this is mainly interesting because it could
+be used to wire up future owner-based stacks";Sebastian Markbåge;2024-04-05;0;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"
+I do this by outlining the DebugInfo for a Server Component
+(ReactComponentInfo)";Sebastian Markbåge;2024-04-05;1;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"Then I just rely on Flight deduping to refer to
+that";Sebastian Markbåge;2024-04-05;0;0
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"I refer to the same thing by referential equality so that we can
+associate a Server Component parent in DebugInfo with an owner";Sebastian Markbåge;2024-04-05;0;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"
+If you suspend and replay a Server Component, we have to restore the
+same owner";Sebastian Markbåge;2024-04-05;0;0
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"To do that, I did a little ugly hack and stashed it on the
+thenable state object";Sebastian Markbåge;2024-04-05;1;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"Felt unnecessarily complicated to add a stateful
+wrapper for this one dev-only case";Sebastian Markbåge;2024-04-05;1;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"
+The owner could really be anything since it could be coming from a
+different implementation";Sebastian Markbåge;2024-04-05;0;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"Because this is the first time we have an
+owner other than Fiber, I have to fix up a bunch of places that assumes
+Fiber";Sebastian Markbåge;2024-04-05;1;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"I mainly did the `typeof owner.tag === 'number'` to assume it's a
+Fiber for now";Sebastian Markbåge;2024-04-05;0;0
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"
+This also doesn't actually add it to DevTools / RN Inspector yet";Sebastian Markbåge;2024-04-05;1;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"I just
+ignore them there for now";Sebastian Markbåge;2024-04-05;1;0
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"
+Because Server Components can be async the owner isn't tracked after an
+await";Sebastian Markbåge;2024-04-05;0;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;We need per-component AsyncLocalStorage for that;Sebastian Markbåge;2024-04-05;0;1
+C_kwDOAJy2KtoAKGYzM2E2YjY5YzZjYjQwNmVhMGNjNTFkMDdiYzRkM2ZkMmQ4ZDg3NDQ;"This can be
+done in a follow up.";Sebastian Markbåge;2024-04-05;1;1
+C_kwDOAJy2KtoAKDVkZTg3MDM2NDZjZGQzODM4Y2IxNjg2Zjc2MWIxMGMwNjkyNzQzYWE;Use the disableLegacyMode where ever we check the ConcurrentMode mode (#28657);Sebastian Markbåge;2024-04-03;1;1
+C_kwDOAJy2KtoAKDVkZTg3MDM2NDZjZGQzODM4Y2IxNjg2Zjc2MWIxMGMwNjkyNzQzYWE;Saves some bytes and ensures that we're actually disabling it;Sebastian Markbåge;2024-04-03;1;1
+C_kwDOAJy2KtoAKDVkZTg3MDM2NDZjZGQzODM4Y2IxNjg2Zjc2MWIxMGMwNjkyNzQzYWE;"
+Turns out this flag wasn't disabling React Native/Fabric, React Noop and
+React ART legacy modes so those are updated too";Sebastian Markbåge;2024-04-03;1;1
+C_kwDOAJy2KtoAKDVkZTg3MDM2NDZjZGQzODM4Y2IxNjg2Zjc2MWIxMGMwNjkyNzQzYWE;"
+Should be rebased on #28681.";Sebastian Markbåge;2024-04-03;1;1
+C_kwDOAJy2KtoAKDU5OThhNzc1MTk0ZjQ5MWFmYTVkM2JhZGQ5YWZlOWNlYWYxMjg0NWU;Reland #28672: Remove IndeterminateComponent (#28681);Josh Story;2024-04-03;1;1
+C_kwDOAJy2KtoAKDU5OThhNzc1MTk0ZjQ5MWFmYTVkM2JhZGQ5YWZlOWNlYWYxMjg0NWU;"This PR relands #28672 on top of the flag removal and the test
+demonstrating a breakage in Suspense for legacy mode";Josh Story;2024-04-03;1;1
+C_kwDOAJy2KtoAKDU5OThhNzc1MTk0ZjQ5MWFmYTVkM2JhZGQ5YWZlOWNlYWYxMjg0NWU;"
+React has deprecated module pattern Function Components for many years
+at this point";Josh Story;2024-04-03;0;0
+C_kwDOAJy2KtoAKDU5OThhNzc1MTk0ZjQ5MWFmYTVkM2JhZGQ5YWZlOWNlYWYxMjg0NWU;"Supporting this pattern required React to have a concept
+of an indeterminate component so that when a component first renders it
+can turn into either a ClassComponent or a FunctionComponent depending
+on what it returns";Josh Story;2024-04-03;1;0
+C_kwDOAJy2KtoAKDU5OThhNzc1MTk0ZjQ5MWFmYTVkM2JhZGQ5YWZlOWNlYWYxMjg0NWU;"While this feature was deprecated and put behind a
+flag it is still in stable";Josh Story;2024-04-03;1;1
+C_kwDOAJy2KtoAKDU5OThhNzc1MTk0ZjQ5MWFmYTVkM2JhZGQ5YWZlOWNlYWYxMjg0NWU;"This change remvoes the flag, removes the
+warnings, and removes the concept of IndeterminateComponent from the
+React codebase";Josh Story;2024-04-03;1;1
+C_kwDOAJy2KtoAKDU5OThhNzc1MTk0ZjQ5MWFmYTVkM2JhZGQ5YWZlOWNlYWYxMjg0NWU;"
+While removing IndeterminateComponent type Seb and I discovered that we
+needed a concept of IncompleteFunctionComponent to support Suspense in
+legacy mode";Josh Story;2024-04-03;0;1
+C_kwDOAJy2KtoAKDU5OThhNzc1MTk0ZjQ5MWFmYTVkM2JhZGQ5YWZlOWNlYWYxMjg0NWU;"This new work tag is only needed as long as legacy mode is
+around and ideally any code that considers this tag will be excludable
+from OSS builds once we land extra gates using `disableLegacyMode` flag.";Josh Story;2024-04-03;1;1
+C_kwDOAJy2KtoAKDczMTljNjFiMTgyNzRlZTdlN2MyMGJkMmU1MzNiOTNjOTIyZDhmZTA;[be] Remove unshipped experimental <Cache> element type (#28698);Joseph Savona;2024-04-02;1;1
+C_kwDOAJy2KtoAKDczMTljNjFiMTgyNzRlZTdlN2MyMGJkMmU1MzNiOTNjOTIyZDhmZTA;"Removes the `<Cache />` element type since we're going with a simpler
+caching strategy.";Joseph Savona;2024-04-02;1;1
+C_kwDOAJy2KtoAKGYyNjkwNzQ3MjM5NTMzZmEyNjY2MTJkMmQ0ZGQ5YWU4OGVhOTJmYmM;"Revert ""Remove module pattern function component support"" (#28670)";Ricky;2024-03-29;1;1
+C_kwDOAJy2KtoAKGYyNjkwNzQ3MjM5NTMzZmEyNjY2MTJkMmQ0ZGQ5YWU4OGVhOTJmYmM;This breaks internal tests, so must be something in the refactor;Ricky;2024-03-29;1;1
+C_kwDOAJy2KtoAKGYyNjkwNzQ3MjM5NTMzZmEyNjY2MTJkMmQ0ZGQ5YWU4OGVhOTJmYmM;"Since
+it's the top commit let's revert and split into two PRs, one that
+removes the flag and one that does the refactor, so we can find the bug.";Ricky;2024-03-29;1;1
+C_kwDOAJy2KtoAKGNjNTZiZWQzOGNiZTVhNWM3NmRmZGM0ZTljNjQyZmFiNDg4NGEzZmM;Remove module pattern function component support (#27742);Josh Story;2024-03-28;1;1
+C_kwDOAJy2KtoAKGNjNTZiZWQzOGNiZTVhNWM3NmRmZGM0ZTljNjQyZmFiNDg4NGEzZmM;"The module pattern
+  return {
+      return this.state.foo
+has been deprecated for approximately 5 years now";Josh Story;2024-03-28;0;0
+C_kwDOAJy2KtoAKGNjNTZiZWQzOGNiZTVhNWM3NmRmZGM0ZTljNjQyZmFiNDg4NGEzZmM;"This PR removes
+support for this pattern";Josh Story;2024-03-28;1;1
+C_kwDOAJy2KtoAKGNjNTZiZWQzOGNiZTVhNWM3NmRmZGM0ZTljNjQyZmFiNDg4NGEzZmM;"It also simplifies a number of code paths in
+particular related to the concept of `IndeterminateComponent` types.";Josh Story;2024-03-28;0;1
+C_kwDOAJy2KtoAKDY3MGQ2MWJlYTIzNDcwZTk4MGJhMTNjMWM4NDQxZTM3NTc3OWIwYjg;Remove legacy hydration mode (#28440);Sebastian Markbåge;2024-03-26;1;1
+C_kwDOAJy2KtoAKDY3MGQ2MWJlYTIzNDcwZTk4MGJhMTNjMWM4NDQxZTM3NTc3OWIwYjg;"While Meta is still using legacy mode and we can't remove completely,
+Meta is not using legacy hydration so we should be able to remove that";Sebastian Markbåge;2024-03-26;1;1
+C_kwDOAJy2KtoAKDY3MGQ2MWJlYTIzNDcwZTk4MGJhMTNjMWM4NDQxZTM3NTc3OWIwYjg;"
+This is just the first step";Sebastian Markbåge;2024-03-26;1;1
+C_kwDOAJy2KtoAKDY3MGQ2MWJlYTIzNDcwZTk4MGJhMTNjMWM4NDQxZTM3NTc3OWIwYjg;"Once removed, we can vastly simplify the
+DOMConfig for hydration";Sebastian Markbåge;2024-03-26;1;1
+C_kwDOAJy2KtoAKDY3MGQ2MWJlYTIzNDcwZTk4MGJhMTNjMWM4NDQxZTM3NTc3OWIwYjg;"
+This will have to be rebased when tests are upgraded.";Sebastian Markbåge;2024-03-26;0;1
+C_kwDOAJy2KtoAKDIwOGNlZWI0NmNhMjgzOGM5YmYyNGNkMzQxNDM1Zjg3YjJkNTA1Njk;Cleanup enableFloat flag (#28613);Jan Kassens;2024-03-22;1;1
+C_kwDOAJy2KtoAKDIwOGNlZWI0NmNhMjgzOGM5YmYyNGNkMzQxNDM1Zjg3YjJkNTA1Njk;Cleanup enableFloat flag;Jan Kassens;2024-03-22;1;1
+C_kwDOAJy2KtoAKDg5MDIxZmI0ZWM5YWE4MjE5NGIwNzg4NTY2ZTczNmE0Y2VkZmMwZTQ;Remove invokeGuardedCallback and replay trick (#28515);Sebastian Markbåge;2024-03-12;1;1
+C_kwDOAJy2KtoAKDg5MDIxZmI0ZWM5YWE4MjE5NGIwNzg4NTY2ZTczNmE0Y2VkZmMwZTQ;"We broke the ability to ""break on uncaught exceptions"" by adding a
+try/catch higher up in the scheduling";Sebastian Markbåge;2024-03-12;0;1
+C_kwDOAJy2KtoAKDg5MDIxZmI0ZWM5YWE4MjE5NGIwNzg4NTY2ZTczNmE0Y2VkZmMwZTQ;"We're giving up on fixing that so
+we can remove the replay trick inside an event handler";Sebastian Markbåge;2024-03-12;0;1
+C_kwDOAJy2KtoAKDg5MDIxZmI0ZWM5YWE4MjE5NGIwNzg4NTY2ZTczNmE0Y2VkZmMwZTQ;"
+The issue with that approach is that we end up double logging a lot of
+errors in DEV since they get reported to the page";Sebastian Markbåge;2024-03-12;0;1
+C_kwDOAJy2KtoAKDg5MDIxZmI0ZWM5YWE4MjE5NGIwNzg4NTY2ZTczNmE0Y2VkZmMwZTQ;"
+It's also a lot of complexity around this feature.";Sebastian Markbåge;2024-03-12;0;1
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;Switch <Context> to mean <Context.Provider> (#28226);dan;2024-02-13;0;1
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;Previously, `<Context>` was equivalent to `<Context.Consumer>`;dan;2024-02-13;0;1
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;"However,
+since the introduction of Hooks, the `<Context.Consumer>` API is rarely
+used";dan;2024-02-13;0;1
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;"The goal here is to make the common case cleaner:
+```js
+const ThemeContext = createContext('light')
+  return (
+    <ThemeContext value=""dark"">
+    </ThemeContext>
+  const theme = use(ThemeContext)
+This is technically a breaking change, but we've been warning about
+rendering `<Context>` directly for several years by now, so it's
+unlikely much code in the wild depends on the old behavior";dan;2024-02-13;1;1
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;"[Proof that
+it warns today (check
+console).](
+switches `createContext` implementation so that `Context.Provider ===
+Context`";dan;2024-02-13;1;1
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;"
+The main assumption that changed is that a Provider's fiber type is now
+the context itself (rather than an intermediate object)";dan;2024-02-13;0;0
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;"Whereas a
+Consumer's fiber type is now always an intermediate object (rather than
+it being sometimes the context itself and sometimes an intermediate
+object)";dan;2024-02-13;0;0
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;"
+My methodology was to start with the relevant symbols, work tags, and
+types, and work my way backwards to all usages";dan;2024-02-13;0;0
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;"
+This might break tooling that depends on inspecting React's internal
+fields";dan;2024-02-13;0;1
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;I've added DevTools support in the second commit;dan;2024-02-13;1;0
+C_kwDOAJy2KtoAKDE0ZmQ5NjMwZWUwNDM4N2Y0MzYxZGEyODkzOTMyMzRlMmI3ZDkzYjY;"This didn't
+need explicit versioning—the structure tells us enough.";dan;2024-02-13;0;1
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;[Fiber] Transfer `_debugInfo` from Arrays, Lazy, Thenables and Elements to the inner Fibers. (#28286);Sebastian Markbåge;2024-02-12;0;0
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"That way we can use it for debug information like component stacks and
+DevTools";Sebastian Markbåge;2024-02-12;1;1
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"I used an extra stack argument in Child Fiber to track this as
+it's flowing down since it's not just elements where we have this info
+readily available but parent arrays and lazy can merge this into the
+Fiber too";Sebastian Markbåge;2024-02-12;0;1
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"It's not great that this is a dev-only argument and I could
+track it globally but seems more likely to make mistakes";Sebastian Markbåge;2024-02-12;1;0
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"
+It is possible for the same debug info to appear for multiple child
+fibers like when it's attached to a fragment or a lazy that resolves to
+a fragment at the root";Sebastian Markbåge;2024-02-12;0;0
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"The object identity could be used in these
+scenarios to infer if that's really one server component that's a parent
+of all children or if each child has a server component with the same
+name";Sebastian Markbåge;2024-02-12;1;0
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"
+This is effectively a public API because you can use it to stash
+information on Promises from a third-party service - not just Server
+Components";Sebastian Markbåge;2024-02-12;0;1
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"I started outline the types for this for some things I was
+planning to add but it's not final";Sebastian Markbåge;2024-02-12;1;1
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"
+I was also planning on storing it from `use(thenable)` for when you
+suspend on a Promise";Sebastian Markbåge;2024-02-12;1;0
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"However, I realized that there's no Hook instance
+for those to stash it on";Sebastian Markbåge;2024-02-12;0;1
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"So it might need a separate data structure to
+stash the previous pass over of `use()` that resets each render";Sebastian Markbåge;2024-02-12;1;1
+C_kwDOAJy2KtoAKDNmOTNjYTFjOGRlYzFmZDg1ZGY0ZGJiNzQ4YTJkZjk0MzhmYzY5OWY;"
+No tests yet since I didn't want to test internals but it'll be covered
+once we have debugging features like component stacks.";Sebastian Markbåge;2024-02-12;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;Remove __self and __source location from elements (#28265);Sebastian Markbåge;2024-02-07;1;0
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;Along with all the places using it like the `_debugSource` on Fiber;Sebastian Markbåge;2024-02-07;1;0
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+This still lets them be passed into `createElement` (and JSX dev
+runtime) since those can still be used in existing already compiled code
+and we don't want that to start spreading to DOM attributes";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+We used to have a DEV mode that compiles the source location of JSX into
+the compiled output";Sebastian Markbåge;2024-02-07;0;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"This was nice because we could get the actual call
+site of the JSX (instead of just somewhere in the component)";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"It had a
+bunch of issues though:
+- It only works with JSX";Sebastian Markbåge;2024-02-07;0;0
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+- The way this source location is compiled is different in all the
+pipelines along the way";Sebastian Markbåge;2024-02-07;1;0
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"It relies on this transform being first and the
+source location we want to extract but it doesn't get preserved along
+source maps and don't have a way to be connected to the source hosted by
+the source maps";Sebastian Markbåge;2024-02-07;0;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"Ideally it should just use the mechanism other source
+maps use";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+- Since it's expensive it only works in DEV so if it's used for
+component stacks it would vary between dev and prod";Sebastian Markbåge;2024-02-07;0;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+- It only captures the callsite of the JSX and not the stack between the
+component and that callsite";Sebastian Markbåge;2024-02-07;1;0
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"In the happy case it's in the component but
+not always";Sebastian Markbåge;2024-02-07;0;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+Instead, we have another zero-cost trick to extract the call site of
+each component lazily only if it's needed";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"This ensures that component
+stacks are the same in DEV and PROD";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"At the cost of worse line number
+information";Sebastian Markbåge;2024-02-07;0;0
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+The better way to get the JSX call site would be to get it from `new
+Error()` or `console.createTask()` inside the JSX runtime which can
+capture the whole stack in a consistent way with other source mappings";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+We might explore that in the future";Sebastian Markbåge;2024-02-07;0;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+This removes source location info from React DevTools and React Native
+Inspector";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"The ""jump to source code"" feature or inspection can be made
+lazy instead by invoking the lazy component stack frame generation";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"That
+way it can be made to work in prod too";Sebastian Markbåge;2024-02-07;0;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"The filtering based on file path
+is a bit trickier";Sebastian Markbåge;2024-02-07;0;0
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+When redesigned this UI should ideally also account for more than one
+stack frame";Sebastian Markbåge;2024-02-07;1;1
+C_kwDOAJy2KtoAKDM3ZDkwMWUyYjgxZTEyZDQwZGY3MDEyYzZmODY4MWI4MjcyZDI1NTU;"
+With this change the DEV only Babel transforms are effectively
+deprecated since they're not necessary for anything.";Sebastian Markbåge;2024-02-07;1;0
+C_kwDOAJy2KtoAKDNkMWRhMWY5YWI3ZDU0OTg0YzA5NmU2YTA0Yzg3MjlmM2E1MGZkOGE;Remove createRootStrictEffectsByDefault flag (#28102);Ricky;2024-02-01;1;1
+C_kwDOAJy2KtoAKDNkMWRhMWY5YWI3ZDU0OTg0YzA5NmU2YTA0Yzg3MjlmM2E1MGZkOGE;"There's no need to separate strict mode from strict effects mode any
+more";Ricky;2024-02-01;1;1
+C_kwDOAJy2KtoAKDNkMWRhMWY5YWI3ZDU0OTg0YzA5NmU2YTA0Yzg3MjlmM2E1MGZkOGE;"
+I didn't clean up the `StrictEffectMode` fiber flag, because it's used
+to prevent strict effects in legacy mode";Ricky;2024-02-01;1;1
+C_kwDOAJy2KtoAKDNkMWRhMWY5YWI3ZDU0OTg0YzA5NmU2YTA0Yzg3MjlmM2E1MGZkOGE;"I could replace those checks
+with `LegacyMode` checks, but when we remove legacy mode, we can remove
+that flag and condense them into one StrictMode flag away.";Ricky;2024-02-01;1;1
+C_kwDOAJy2KtoAKDFhNjVkMDM2ZWYwNTdiMDdhNmIxNWY1NjA0ZTM5OWY5MWJjNWVkNzM;[cleanup] remove enableHostSingletons feature flag (#27583);Jan Kassens;2023-11-16;1;1
+C_kwDOAJy2KtoAKDFhNjVkMDM2ZWYwNTdiMDdhNmIxNWY1NjA0ZTM5OWY5MWJjNWVkNzM;The flag is enabled everywhere, I think we can remove it now.;Jan Kassens;2023-11-16;1;1
+C_kwDOAJy2KtoAKGNlMmJjNThhOWY2ZjNiMGJmYzhjNzM4YTBkOGUyYTVmM2EzMzJmZjU;[activity] rename unstable_Offscreen to unstable_Activity (#27640);Jan Kassens;2023-11-02;1;1
+C_kwDOAJy2KtoAKGNlMmJjNThhOWY2ZjNiMGJmYzhjNzM4YTBkOGUyYTVmM2EzMzJmZjU;`Activity` is the current candidate name;Jan Kassens;2023-11-02;0;1
+C_kwDOAJy2KtoAKGNlMmJjNThhOWY2ZjNiMGJmYzhjNzM4YTBkOGUyYTVmM2EzMzJmZjU;"This PR starts the rename work
+by renaming the exported unstable component name";Jan Kassens;2023-11-02;1;1
+C_kwDOAJy2KtoAKGNlMmJjNThhOWY2ZjNiMGJmYzhjNzM4YTBkOGUyYTVmM2EzMzJmZjU;"
+NOTE: downstream consumers need to rename the import when updating to
+this commit.";Jan Kassens;2023-11-02;1;0
+C_kwDOAJy2KtoAKGVhYTY5Njg3NmVlNDBiYjA0ODcyN2FlZmU5OTViZTFiYmI3Mzg0YTg;fix: devtools source field disappears after component remount (#27297);idango10;2023-08-29;1;1
+C_kwDOAJy2KtoAKGVhYTY5Njg3NmVlNDBiYjA0ODcyN2FlZmU5OTViZTFiYmI3Mzg0YTg;"## Summary
+Fixes: 
+On actions that cause a component to change its signature, and therefore
+to remount, the `_debugSource` property of the fiber updates in delay
+and causes the `devtools` source field to vanish";idango10;2023-08-29;0;1
+C_kwDOAJy2KtoAKGVhYTY5Njg3NmVlNDBiYjA0ODcyN2FlZmU5OTViZTFiYmI3Mzg0YTg;"
+This issue happens in
+```js
+function beginWork(
+  current: Fiber | null,
+  workInProgress: Fiber,
+  renderLanes: Lanes,
+): Fiber | null {
+      // This will restart the begin phase with a new fiber";idango10;2023-08-29;0;0
+C_kwDOAJy2KtoAKGVhYTY5Njg3NmVlNDBiYjA0ODcyN2FlZmU5OTViZTFiYmI3Mzg0YTg;"
+      return remountFiber(
+        current,
+        workInProgress,
+        createFiberFromTypeAndProps(
+          workInProgress.type,
+          workInProgress.key,
+          workInProgress.pendingProps,
+          workInProgress._debugOwner || null,
+          workInProgress.mode,
+          workInProgress.lanes,
+`remountFiber` uses the 3rd parameter as the new fiber
+(`createFiberFromTypeAndProps(...)`), but this parameter doesn’t contain
+a `_debugSource`";idango10;2023-08-29;1;1
+C_kwDOAJy2KtoAKGVhYTY5Njg3NmVlNDBiYjA0ODcyN2FlZmU5OTViZTFiYmI3Mzg0YTg;"
+## How did you test this change?
+Tested by monkey patching
+`./node_modules/react-dom/cjs/react-dom.development.js`:
+<img width=""1749"" alt=""image""
+src=""
+https://github.com/facebook/react/assets/75563024/0650ae5c-b277-44d1-acbb-a08d98bd38e0";idango10;2023-08-29;0;1
+C_kwDOAJy2KtoAKDcwZTk5OGExMDY0Y2MxZThlOGY5MTAzZTBjMDBkMzdmYmJjZjcxYzE;Fix disableStrictPassiveEffect not working under Suspense (#26989);Tianyu Yao;2023-06-22;1;1
+C_kwDOAJy2KtoAKDcwZTk5OGExMDY0Y2MxZThlOGY5MTAzZTBjMDBkMzdmYmJjZjcxYzE;"In I added an extra logic
+to turn off double useEffect if there is an `Offscreen`
+tag";Tianyu Yao;2023-06-22;1;0
+C_kwDOAJy2KtoAKDcwZTk5OGExMDY0Y2MxZThlOGY5MTAzZTBjMDBkMzdmYmJjZjcxYzE;"But `Suspense` uses `Offscreen` tag internally and that turns off
+`disableStrictPassiveEffect` for everything.";Tianyu Yao;2023-06-22;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;Add a temporary internal option to disable double useEffect in legacy strict mode (#26914);Tianyu Yao;2023-06-21;1;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"  Thanks for submitting a pull request!
+We appreciate you spending the time to work on these changes";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"Please
+provide enough information so that others can review your pull request";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+The three fields below are mandatory";Tianyu Yao;2023-06-21;1;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+Before submitting a pull request, please make sure the following is
+done:
+1";Tianyu Yao;2023-06-21;1;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"Fork [the repository](and create
+your branch from `main`";Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+  2";Tianyu Yao;2023-06-21;1;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;Run `yarn` in the repository root;Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+3";Tianyu Yao;2023-06-21;1;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"If you've fixed a bug or added code that should be tested, add tests!
+4";Tianyu Yao;2023-06-21;1;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;Ensure the test suite passes (`yarn test`);Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"Tip: `yarn test --watch
+TestName` is helpful in development";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+5";Tianyu Yao;2023-06-21;1;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;Run `yarn test --prod` to test in the production environment;Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"It
+supports the same options as `yarn test`";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+6";Tianyu Yao;2023-06-21;1;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"If you need a debugger, run `yarn test --debug --watch TestName`,
+open `chrome://inspect`, and press ""Inspect""";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+7";Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"Format your code with
+[prettier]((`yarn prettier`)";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+8";Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;Make sure your code lints (`yarn lint`);Tianyu Yao;2023-06-21;1;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"Tip: `yarn linc` to only
+check changed files";Tianyu Yao;2023-06-21;1;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+  9";Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;Run the [Flow](type checks (`yarn flow`);Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+  10";Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;If you haven't already, complete the CLA;Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+Learn more about contributing:
+## Summary
+Explain the **motivation** for making this change";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"What existing problem
+does the pull request solve?
+We are upgrading React 17 codebase to React18, and `StrictMode` has been
+great for surfacing potential production bugs on React18 for class
+components";Tianyu Yao;2023-06-21;1;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"There are non-trivial number of test failures caused by
+double `useEffect` in StrictMode";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"To prioritize surfacing and fixing
+issues that will break in production now, we need a flag to turn off
+double `useEffect` for now in StrictMode temporarily";Tianyu Yao;2023-06-21;1;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"This is a
+Meta-only hack for rolling out `createRoot` and we will fast follow to
+remove it and use full strict mode";Tianyu Yao;2023-06-21;1;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+## How did you test this change?
+Demonstrate the code is solid";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"Example: The exact commands you ran and
+their output, screenshots / videos if the pull request changes the user
+interface";Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+How exactly did you verify that your PR solves the issue you wanted to
+solve?
+  If you leave this empty, your PR will very likely be closed";Tianyu Yao;2023-06-21;0;1
+C_kwDOAJy2KtoAKDI1NGNiZGJkNmQ4NTFhMzBiZjNiNjQ5YTZjYjdjNTI3ODY3NjZmYTQ;"
+jest";Tianyu Yao;2023-06-21;0;0
+C_kwDOAJy2KtoAKDAxOGM1OGM5YzY1NDUyY2ZmMjVhYWYxZjM4Zjc4YTliOTBkOGU1YzE;Clean up enableSyncDefaultUpdates flag a bit (#26858);Ricky;2023-06-01;1;1
+C_kwDOAJy2KtoAKDAxOGM1OGM5YzY1NDUyY2ZmMjVhYWYxZjM4Zjc4YTliOTBkOGU1YzE;"## Overview
+Does a few things:
+- Renames `enableSyncDefaultUpdates` to
+`forceConcurrentByDefaultForTesting`
+- Changes the way it's used so it's dead-code eliminated separate from
+`allowConcurrentByDefault`
+- Deletes a bunch of the gated code
+The gates that are deleted are unnecessary now";Ricky;2023-06-01;0;1
+C_kwDOAJy2KtoAKDAxOGM1OGM5YzY1NDUyY2ZmMjVhYWYxZjM4Zjc4YTliOTBkOGU1YzE;"We were keeping them
+when we originally thought we would come back to being concurrent by
+default";Ricky;2023-06-01;0;0
+C_kwDOAJy2KtoAKDAxOGM1OGM5YzY1NDUyY2ZmMjVhYWYxZjM4Zjc4YTliOTBkOGU1YzE;"But we've shifted and now sync-by default is the desired
+behavior long term, so there's no need to keep all these forked tests
+around";Ricky;2023-06-01;1;1
+C_kwDOAJy2KtoAKDAxOGM1OGM5YzY1NDUyY2ZmMjVhYWYxZjM4Zjc4YTliOTBkOGU1YzE;"
+I'll follow up to delete more of the forked behavior if possible";Ricky;2023-06-01;1;1
+C_kwDOAJy2KtoAKDAxOGM1OGM5YzY1NDUyY2ZmMjVhYWYxZjM4Zjc4YTliOTBkOGU1YzE;"
+Ideally we wouldn't need this flag even if we're still using
+`allowConcurrentByDefault`.";Ricky;2023-06-01;1;1
+C_kwDOAJy2KtoAKGI1NWQzMTk1NTk4Mjg1MTI4NGJiNDM3YTUxODdhNmM1NmUzNjY1Mzk;Rename HostConfig files to FiberConfig to clarify they are configs fo… (#26592);Josh Story;2023-04-10;1;1
+C_kwDOAJy2KtoAKGI1NWQzMTk1NTk4Mjg1MTI4NGJiNDM3YTUxODdhNmM1NmUzNjY1Mzk;"part of 
+merging separately to improve tracking of files renames in git
+Rename HostConfig files to FiberConfig to clarify they are configs for
+Fiber and not Fizz/Flight";Josh Story;2023-04-10;1;1
+C_kwDOAJy2KtoAKGI1NWQzMTk1NTk4Mjg1MTI4NGJiNDM3YTUxODdhNmM1NmUzNjY1Mzk;"This better conforms to the naming used in
+Flight and now Fizz of `ReactFlightServerConfig` and `ReactFizzConfig`";Josh Story;2023-04-10;1;1
+C_kwDOAJy2KtoAKDc5MGViYzk2MmRlNTczYTM3ZTQ3NTUyMDdlYmE5MWIwN2EwZmExNzI;Remove no-fallthrough lint suppressions (#26553);Sophie Alpert;2023-04-05;1;1
+C_kwDOAJy2KtoAKDc5MGViYzk2MmRlNTczYTM3ZTQ3NTUyMDdlYmE5MWIwN2EwZmExNzI;The lint rule already understands a normal comment;Sophie Alpert;2023-04-05;0;1
+C_kwDOAJy2KtoAKDc5MGViYzk2MmRlNTczYTM3ZTQ3NTUyMDdlYmE5MWIwN2EwZmExNzI;"Also a bunch of
+these were unnecessary.";Sophie Alpert;2023-04-05;1;1
+C_kwDOAJy2KtoAKGRhOTRlOGIyNGEzZjMxYTNlODA1ZjliZjZiYmE3MzA1NWFhZDlkNDE;"Revert ""Cleanup enableSyncDefaultUpdate flag (#26236)"" (#26528)";Jan Kassens;2023-04-04;1;1
+C_kwDOAJy2KtoAKGRhOTRlOGIyNGEzZjMxYTNlODA1ZjliZjZiYmE3MzA1NWFhZDlkNDE;This reverts commit b2ae9ddb3b497d16a7c27c051da1827d08871138;Jan Kassens;2023-04-04;1;0
+C_kwDOAJy2KtoAKGRhOTRlOGIyNGEzZjMxYTNlODA1ZjliZjZiYmE3MzA1NWFhZDlkNDE;"
+While the feature flag is fully rolled out, these tests are also testing
+behavior set with an unstable flag on root, which for now we want to
+preserve";Jan Kassens;2023-04-04;1;1
+C_kwDOAJy2KtoAKGRhOTRlOGIyNGEzZjMxYTNlODA1ZjliZjZiYmE3MzA1NWFhZDlkNDE;"
+Not sure if there's a better way then adding a dynamic feature flag to
+the www build?";Jan Kassens;2023-04-04;1;1
+C_kwDOAJy2KtoAKGFmZWExZDBjNTM2ZTAzMzY3MzViMGVhNWM3NGY2MzU1MjdiNjU3ODU;[flow] make Flow suppressions explicit on the error (#26487);Jan Kassens;2023-03-27;1;1
+C_kwDOAJy2KtoAKGFmZWExZDBjNTM2ZTAzMzY3MzViMGVhNWM3NGY2MzU1MjdiNjU3ODU;"Added an explicit type to all $FlowFixMe suppressions to reduce
+over-suppressions of new errors that might be caused on the same lines";Jan Kassens;2023-03-27;0;1
+C_kwDOAJy2KtoAKGFmZWExZDBjNTM2ZTAzMzY3MzViMGVhNWM3NGY2MzU1MjdiNjU3ODU;"
+Also removes suppressions that aren't used (e.g";Jan Kassens;2023-03-27;1;1
+C_kwDOAJy2KtoAKGFmZWExZDBjNTM2ZTAzMzY3MzViMGVhNWM3NGY2MzU1MjdiNjU3ODU;"in a `@noflow` file as
+they're purely misleading)
+Test Plan:
+yarn flow-ci";Jan Kassens;2023-03-27;1;1
+C_kwDOAJy2KtoAKGQzMTBkNjU0YTdjN2FhYjZjODIxM2RhODRlZjM2ZGZiYTgyNzExYjA;Avoid meta programming to initialize functions in module scope  (#26388);Sebastian Markbåge;2023-03-15;1;1
+C_kwDOAJy2KtoAKGQzMTBkNjU0YTdjN2FhYjZjODIxM2RhODRlZjM2ZGZiYTgyNzExYjA;"I'm trying to get rid of all meta programming in the module scope so
+that closure can do a better job figuring out cyclic dependencies and
+ability to reorder";Sebastian Markbåge;2023-03-15;1;1
+C_kwDOAJy2KtoAKGQzMTBkNjU0YTdjN2FhYjZjODIxM2RhODRlZjM2ZGZiYTgyNzExYjA;"
+This is converting a lot of the patterns that assign functions
+conditionally to using function declarations instead";Sebastian Markbåge;2023-03-15;0;0
+C_kwDOAJy2KtoAKGQzMTBkNjU0YTdjN2FhYjZjODIxM2RhODRlZjM2ZGZiYTgyNzExYjA;"
+let fn;";Sebastian Markbåge;2023-03-15;1;0
+C_kwDOAJy2KtoAKGIyYWU5ZGRiM2I0OTdkMTZhN2MyN2MwNTFkYTE4MjdkMDg4NzExMzg;Cleanup enableSyncDefaultUpdate flag (#26236);Jan Kassens;2023-02-27;1;1
+C_kwDOAJy2KtoAKGIyYWU5ZGRiM2I0OTdkMTZhN2MyN2MwNTFkYTE4MjdkMDg4NzExMzg;This feature flag is enabled everywhere.;Jan Kassens;2023-02-27;1;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;Model Float on Hoistables semantics (#26106);Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"## Hoistables
+In the original implementation of Float, all hoisted elements were
+treated like Resources";Josh Story;2023-02-10;1;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"They had deduplication semantics and hydrated
+based on a key";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"This made certain kinds of hoists very challenging such
+as sequences of meta tags for `og:image:...` metadata";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"The reason is
+each tag along is not dedupable based on only it's intrinsic properties";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+two identical tags may need to be included and hoisted together with
+preceding meta tags that describe a semantic object with a linear set of
+html nodes";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+It was clear that the concept of Browser Resources (stylesheets /
+scripts / preloads) did not extend universally to all hositable tags
+(title, meta, other links, etc...)
+Additionally while Resources benefit from deduping they suffer an
+inability to update because while we may have multiple rendered elements
+that refer to a single Resource it isn't unambiguous which element owns
+the props on the underlying resource";Josh Story;2023-02-10;1;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"We could try merging props, but
+that is still really hard to reason about for authors";Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"Instead we
+restrict Resource semantics to freezing the props at the time the
+Resource is first constructed and warn if you attempt to render the same
+Resource with different props via another rendered element or by
+updating an existing element for that Resource";Josh Story;2023-02-10;1;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+This lack of updating restriction is however way more extreme than
+necessary for instances that get hoisted but otherwise do not dedupe;
+where there is a well defined DOM instance for each rendered element";Josh Story;2023-02-10;1;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"We
+should be able to update props on these instances";Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+Hoistable is a generalization of what Float tries to model for hoisting";Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+Instead of assuming every hoistable element is a Resource we now have
+two distinct categories, hoistable elements and hoistable resources";Josh Story;2023-02-10;1;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"As
+one might guess the former has semantics that match regular Host
+Components except the placement of the node is usually in the <head>";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+The latter continues to behave how the original implementation of
+HostResource behaved with the first iteration of Float
+### Hoistable Element
+On the server hoistable elements render just like regular tags except
+the output is stored in special queues that can be emitted in the stream
+earlier than they otherwise would be if rendered in place";Josh Story;2023-02-10;1;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"This also
+allow for instance the ability to render a hoistable before even
+rendering the <html> tag because the queues for hoistable elements won't
+flush until after we have flushed the preamble (`<DOCTYPE
+html><html><head>`)";Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+On the client, hoistable elements largely operate like HostComponents";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+The most notable difference is in the hydration strategy";Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"If we are
+hydrating and encounter a hoistable element we will look for all tags in
+the document that could potentially be a match and we check whether the
+attributes match the props for this particular instance";Josh Story;2023-02-10;1;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"We also do this
+in the commit phase rather than the render phase";Josh Story;2023-02-10;1;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"The reason hydration
+can be done for HostComponents in render is the instance will be removed
+from the document if hydration fails so mutating it in render is safe";Josh Story;2023-02-10;1;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+For hoistables the nodes are not in a hydration boundary (Root or
+SuspenseBoundary at time of writing) and thus if hydration fails and we
+may have an instance marked as bound to some Fiber when that Fiber never
+commits";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"Moving the hydration matching to commit ensures we will always
+succeed in pairing the hoisted DOM instance with a Fiber that has
+committed";Josh Story;2023-02-10;1;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+### Hoistable Resource
+On the server and client the semantics of Resources are largely the same
+they just don't apply to title, meta, and most link tags anymore";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+Resources hoist and dedupe via an `href` key and are ref counted";Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"In a
+future update we will add a garbage collector so we can clean up
+Resources that no longer have any references
+## `<style>` support
+In earlier implementations there was no support for <style> tags";Josh Story;2023-02-10;1;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"This
+PR adds support for treating `<style href=""...""
+precedence=""..."">...</style>` as a Resource analagous to `<link
+rel=""stylesheet"" href=""..."" precedence=""..."" />`
+It may seem odd at first to require an href to get Resource semantics
+for a style tag";Josh Story;2023-02-10;1;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"The rationale is that these are for inlining of actual
+external stylesheets as an optimization and for URI like scoping of
+inline styles for css-in-js libraries";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"The href indicates that the key
+space for `<style>` and `<link rel=""stylesheet"" />` Resources is shared";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+and the precedence is there to allow for interleaving of both kinds of
+Style resources";Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"This is an advanced feature that we do not expect most
+app developers to use directly but will be quite handy for various
+styling libraries and for folks who want to inline as much as possible
+once Fizz supports this feature";Josh Story;2023-02-10;0;1
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"
+## refactor notes
+generalization of the concept
+checks and to use less memory overall
+Fiber has a memoizedState";Josh Story;2023-02-10;0;0
+C_kwDOAJy2KtoAKDYzOTZiNjY0MTE4NDQyZjNjMmVhZTdiZjEzNzMyZmNiMjdiZGE5OGY;"If it does, it will use resource semantics,
+otherwise element semantics
+should be improved";Josh Story;2023-02-10;1;1
+C_kwDOAJy2KtoAKDZiMzA4MzI2NjY4NmY2MmIyOTQ2MmQzMmRlNzVjNmU3MWY3YmEzZTM;Upgrade prettier (#26081);Jan Kassens;2023-01-31;0;1
+C_kwDOAJy2KtoAKDZiMzA4MzI2NjY4NmY2MmIyOTQ2MmQzMmRlNzVjNmU3MWY3YmEzZTM;"The old version of prettier we were using didn't support the Flow syntax
+to access properties in a type using `SomeType['prop']`";Jan Kassens;2023-01-31;0;0
+C_kwDOAJy2KtoAKDZiMzA4MzI2NjY4NmY2MmIyOTQ2MmQzMmRlNzVjNmU3MWY3YmEzZTM;"This updates
+`prettier` and `rollup-plugin-prettier` to the latest versions";Jan Kassens;2023-01-31;0;1
+C_kwDOAJy2KtoAKDZiMzA4MzI2NjY4NmY2MmIyOTQ2MmQzMmRlNzVjNmU3MWY3YmEzZTM;"
+I added the prettier config `arrowParens: ""avoid""` to reduce the diff
+size as the default has changed in Prettier 2.0";Jan Kassens;2023-01-31;1;1
+C_kwDOAJy2KtoAKDZiMzA4MzI2NjY4NmY2MmIyOTQ2MmQzMmRlNzVjNmU3MWY3YmEzZTM;"The largest amount of
+changes comes from function expressions now having a space";Jan Kassens;2023-01-31;0;0
+C_kwDOAJy2KtoAKDZiMzA4MzI2NjY4NmY2MmIyOTQ2MmQzMmRlNzVjNmU3MWY3YmEzZTM;"This doesn't
+have an option to preserve the old behavior, so we have to update this.";Jan Kassens;2023-01-31;0;0
+C_kwDOAJy2KtoAKDBiNGY0NDMwMjBhZjM4NmYyYjQ4YzQ3YzA3NGNiNTA0ZWQ2NzJkYzg;[flow] enable enforce_local_inference_annotations (#25921);Jan Kassens;2023-01-09;1;0
+C_kwDOAJy2KtoAKDBiNGY0NDMwMjBhZjM4NmYyYjQ4YzQ3YzA3NGNiNTA0ZWQ2NzJkYzg;"This setting is an incremental path to the next Flow version enforcing
+type annotations on most functions (except some inline callbacks)";Jan Kassens;2023-01-09;0;1
+C_kwDOAJy2KtoAKDBiNGY0NDMwMjBhZjM4NmYyYjQ4YzQ3YzA3NGNiNTA0ZWQ2NzJkYzg;"
+Used
+node_modules/.bin/flow codemod annotate-functions-and-classes --write ";Jan Kassens;2023-01-09;0;0
+C_kwDOAJy2KtoAKDBiNGY0NDMwMjBhZjM4NmYyYjQ4YzQ3YzA3NGNiNTA0ZWQ2NzJkYzg;"
+to add a majority of the types with some hand cleanup when for large
+inferred objects that should just be `Fiber` or weird constructs
+including `any`";Jan Kassens;2023-01-09;1;1
+C_kwDOAJy2KtoAKDBiNGY0NDMwMjBhZjM4NmYyYjQ4YzQ3YzA3NGNiNTA0ZWQ2NzJkYzg;"
+Suppressed the remaining issues";Jan Kassens;2023-01-09;1;1
+C_kwDOAJy2KtoAKDBiNGY0NDMwMjBhZjM4NmYyYjQ4YzQ3YzA3NGNiNTA0ZWQ2NzJkYzg;"
+Builds on #25918";Jan Kassens;2023-01-09;1;0
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;Offscreen add attach (#25603);Samuel Susla;2022-12-12;1;0
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;"`Offscreen.attach` is imperative API to signal to Offscreen that its
+updates should be high priority and effects should be mounted";Samuel Susla;2022-12-12;1;0
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;"Coupled
+with `Offscreen.detach` it gives ability to manually control Offscreen";Samuel Susla;2022-12-12;0;0
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;"
+Unlike with mode `visible` and `hidden`, it is developers job to make
+sure contents of Offscreen are not visible to users";Samuel Susla;2022-12-12;0;1
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;"
+`Offscreen.attach` only works if mode is `manual`";Samuel Susla;2022-12-12;1;0
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;"
+Example uses:
+```jsx
+let offscreenRef = useRef(null);
+<Offscreen mode={'manual'} ref={offscreenRef)}>
+  <Child />
+</Offscreen>
+// Offscreen is attached by default";Samuel Susla;2022-12-12;0;1
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;"
+// For example user scrolls away and Offscreen subtree is not visible anymore";Samuel Susla;2022-12-12;0;1
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;"
+offscreenRef.current.detach();
+// User scrolls back and Offscreen subtree is visible again";Samuel Susla;2022-12-12;0;0
+C_kwDOAJy2KtoAKDk5NmU0YzBkNTZkYWJhYjM4MmNhOTMyY2Q1Yjg1MTdlNjMwMjA5OTk;"
+offscreenRef.current.attach();
+Co-authored-by: Andrew Clark <git@andrewclark.io>";Samuel Susla;2022-12-12;0;0
+C_kwDOAJy2KtoAKGYxMDFjMmQwZDNhNmNiNWE3ODhhM2Q5MWZhZWY0ODQ2MmU0NWY1MTU;Remove Reconciler fork (2/2) (#25775);Jan Kassens;2022-12-02;1;0
+C_kwDOAJy2KtoAKGYxMDFjMmQwZDNhNmNiNWE3ODhhM2Q5MWZhZWY0ODQ2MmU0NWY1MTU;"We've heard from multiple contributors that the Reconciler forking
+mechanism was confusing and/or annoying to deal with";Jan Kassens;2022-12-02;0;0
+C_kwDOAJy2KtoAKGYxMDFjMmQwZDNhNmNiNWE3ODhhM2Q5MWZhZWY0ODQ2MmU0NWY1MTU;"Since it's
+currently unused and there's no immediate plans to start using it again,
+this removes the forking";Jan Kassens;2022-12-02;1;1
+C_kwDOAJy2KtoAKGYxMDFjMmQwZDNhNmNiNWE3ODhhM2Q5MWZhZWY0ODQ2MmU0NWY1MTU;"
+Fully removing the fork is split into 2 steps to preserve file history:
+- remove `enableNewReconciler` feature flag";Jan Kassens;2022-12-02;0;1
+C_kwDOAJy2KtoAKGYxMDFjMmQwZDNhNmNiNWE3ODhhM2Q5MWZhZWY0ODQ2MmU0NWY1MTU;"
+- remove `unstable_isNewReconciler` export
+- remove eslint rules for cross fork imports
+- remove `*.new.js` files and update imports
+- merge non-suffixed files into `*.old` files where both exist
+(sometimes types were defined there)
+- rename `*.old` files";Jan Kassens;2022-12-02;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDY4NmYzZjE2YTc5NjAyNWNlMzJjZmI0MzFiNzBlZWY2ZGUxOTM0ZQ==;Add `.old` prefix to reconciler modules;Andrew Clark;2020-04-09;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDY4NmYzZjE2YTc5NjAyNWNlMzJjZmI0MzFiNzBlZWY2ZGUxOTM0ZQ==;;Andrew Clark;2020-04-09;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6M2U5NGJjZTc2NWQzNTVkNzRmNmE2MGZlYjRhZGRiNmQxOTZlMzQ4Mg==;Enable prefer-const lint rules (#18451);Sebastian Markbåge;2020-04-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6M2U5NGJjZTc2NWQzNTVkNzRmNmE2MGZlYjRhZGRiNmQxOTZlMzQ4Mg==;"Stylistically I don't like this but Closure Compiler takes advantage of
+this information";Sebastian Markbåge;2020-04-01;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6M2U5NGJjZTc2NWQzNTVkNzRmNmE2MGZlYjRhZGRiNmQxOTZlMzQ4Mg==;;Sebastian Markbåge;2020-04-01;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZTJjNjcwMmZjYWFlZTM1Y2EwODk1N2JlNzY0NTgyMDE5MmQwZGFmMw==;Remove ConcurrentMode and AsyncMode symbols (#18450);Sebastian Markbåge;2020-04-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZTJjNjcwMmZjYWFlZTM1Y2EwODk1N2JlNzY0NTgyMDE5MmQwZGFmMw==;This API was never released.;Sebastian Markbåge;2020-04-01;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MGYzMzQ1NTNjOTU1OGE1NjAzN2I0ODFmZWRjOWI5ZmNhZDM2NDNlNw==;Reset stateNode in resetWorkInProgress (#18448);Sebastian Markbåge;2020-04-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MGYzMzQ1NTNjOTU1OGE1NjAzN2I0ODFmZWRjOWI5ZmNhZDM2NDNlNw==;"This is supposed to put the Fiber into the same state as if it was just
+created by child fiber reconciliation";Sebastian Markbåge;2020-04-01;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MGYzMzQ1NTNjOTU1OGE1NjAzN2I0ODFmZWRjOWI5ZmNhZDM2NDNlNw==;"For newly created fibers, that means
+that stateNode is null";Sebastian Markbåge;2020-04-01;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MGYzMzQ1NTNjOTU1OGE1NjAzN2I0ODFmZWRjOWI5ZmNhZDM2NDNlNw==;"
+Co-authored-by: Sebastian Silbermann <silbermann.sebastian@gmail.com>";Sebastian Markbåge;2020-04-01;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YmYzMGUzNzBhNTAzY2M1Nzg3YTBiMjBlOWQ1MGVjZTZhMTQ4ZDZjOQ==;Remove User Timings (#18417);Dan Abramov;2020-03-30;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YmYzMGUzNzBhNTAzY2M1Nzg3YTBiMjBlOWQ1MGVjZTZhMTQ4ZDZjOQ==;;Dan Abramov;2020-03-30;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzFhOWUzOTFmNzU3ZDM3NGNlMDA2NWRhNjczNWYwODEzNzE1MTUwNw==;Remove unnecessary lines for `hasBadMapPolyfill` issue for rollup (#16231);Mohammad Aziz;2020-03-22;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzFhOWUzOTFmNzU3ZDM3NGNlMDA2NWRhNjczNWYwODEzNzE1MTUwNw==;;Mohammad Aziz;2020-03-22;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;Move some files out of /shared and rename to upper case (#18363);Sebastian Markbåge;2020-03-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;We're somewhat inconsistent here between e.g;Sebastian Markbåge;2020-03-21;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;ReactLazy and memo;Sebastian Markbåge;2020-03-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;"
+Let's pick one";Sebastian Markbåge;2020-03-21;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;"
+This also moves the responder, fundamental, scope creators from shared
+since they're isomorphic and same as the other creators";Sebastian Markbåge;2020-03-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;"
+Individual renderers are allowed to deep require into the reconciler";Sebastian Markbåge;2020-03-21;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;"
+react-interactions is right now dom specific (it wasn't before) so we can
+type check it together with other dom stuff";Sebastian Markbåge;2020-03-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;"Avoids the need for
+a shared ReactDOMTypes to be checked by RN for example";Sebastian Markbåge;2020-03-21;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YzVkMmZjNzEyNzY1NGU0M2RlNTlmZmY4NjViNzQ3NjVhMTAzYzRhNQ==;"
+Otherwise Noop can't access it since it's not allowed deep requires.";Sebastian Markbåge;2020-03-21;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;Add test run that uses www feature flags (#18234);Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;In CI, we run our test suite against multiple build configurations;Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"For
+example, we run our tests in both dev and prod, and in both the
+experimental and stable release channels";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"This is to prevent accidental
+deviations in behavior between the different builds";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"If there's an
+intentional deviation in behavior, the test author must account
+for them";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+However, we currently don't run tests against the www builds";Andrew Clark;2020-03-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"That's
+a problem, because it's common for features to land in www before they
+land anywhere else, including the experimental release channel";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+Typically we do this so we can gradually roll out the feature behind
+a flag before deciding to enable it";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+The way we test those features today is by mutating the
+`shared/ReactFeatureFlags` module";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"There are a few downsides to this
+approach, though";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"The flag is only overridden for the specific tests or
+test suites where you apply the override";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"But usually what you want is
+to run *all* tests with the flag enabled, to protect against unexpected
+regressions";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+Also, mutating the feature flags module only works when running the
+tests against source, not against the final build artifacts, because the
+ReactFeatureFlags module is inlined by the build script";Andrew Clark;2020-03-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+Instead, we should run the test suite against the www configuration,
+just like we do for prod, experimental, and so on";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"I've added a new
+command, `yarn test-www`";Andrew Clark;2020-03-06;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;It automatically runs in CI;Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+Some of the www feature flags are dynamic; that is, they depend on
+a runtime condition (i.e";Andrew Clark;2020-03-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;a GK);Andrew Clark;2020-03-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"These flags are imported from an
+external module that lives in www";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"Those flags will be enabled for some
+clients and disabled for others, so we should run the tests against
+So I've added a new global `__VARIANT__`, and a new test command `yarn
+test-www-variant`";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"`__VARIANT__` is set to false by default; when
+running `test-www-variant`, it's set to true";Andrew Clark;2020-03-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+If we were going for *really* comprehensive coverage, we would run the
+tests against every possible configuration of feature flags: 2 ^
+numberOfFlags total combinations";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"That's not practical, though, so
+instead we only run against two combinations: once with `__VARIANT__`
+set to `true`, and once with it set to `false`";Andrew Clark;2020-03-06;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"We generally assume that
+flags can be toggled independently, so in practice this should
+be enough";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+You can also refer to `__VARIANT__` in tests to detect which mode you're
+running in";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"Or, you can import `shared/ReactFeatureFlags` and read the
+specific flag you can about";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"However, we should stop mutating that
+module going forward";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;Treat it as read-only;Andrew Clark;2020-03-06;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+In this commit, I have only setup the www tests to run against source";Andrew Clark;2020-03-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+I'll leave running against build for a follow up";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"
+Many of our tests currently assume they run only in the default
+configuration, and break when certain flags are toggled";Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;"Rather than fix
+these all up front, I've hard-coded the relevant flags to the default
+values";Andrew Clark;2020-03-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTE1Y2QxMmQ5YmJiMmJmZjMwM2U1MmZlYjEzOTRlM2EyY2VmMjBjYQ==;We can incrementally migrate those tests later.;Andrew Clark;2020-03-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MDI0YTc2NDMxMGU2NGVmMzg5NjNkZjE2OTcwMzY0Yjk5NDJhNjBjZA==;Implemented Profiler onCommit() and onPostCommit() hooks (#17910);Brian Vaughn;2020-03-05;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MDI0YTc2NDMxMGU2NGVmMzg5NjNkZjE2OTcwMzY0Yjk5NDJhNjBjZA==;;Brian Vaughn;2020-03-05;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NGVlNTkyZTk1YTVmNzhkYWVkNTc1YTA0N2Q0N2Y3NGYwNDY5NDBmMw==;Add an early invariant to debug a mystery crash (#18159);Dan Abramov;2020-02-28;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NGVlNTkyZTk1YTVmNzhkYWVkNTc1YTA0N2Q0N2Y3NGYwNDY5NDBmMw==;;Dan Abramov;2020-02-28;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjViYmRhN2YxNjkzOTQwMDUyNTJiNDZhNTk5MmVjZTVhMmZmYWRhZA==;Rename Chunks API to Blocks (#18086);Sebastian Markbåge;2020-02-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjViYmRhN2YxNjkzOTQwMDUyNTJiNDZhNTk5MmVjZTVhMmZmYWRhZA==;Sounds like this is the name we're going with;Sebastian Markbåge;2020-02-21;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjViYmRhN2YxNjkzOTQwMDUyNTJiNDZhNTk5MmVjZTVhMmZmYWRhZA==;"This also helps us
+distinguish it from other ""chunking"" implementation details.";Sebastian Markbåge;2020-02-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OGI1OTZlMDBhNGZmZmQ2YmI1ZTY5OTBmNGRkNTllNDBlODBhNWVhMA==;Remove unused arguments in the reconciler (#18092);Dan Abramov;2020-02-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OGI1OTZlMDBhNGZmZmQ2YmI1ZTY5OTBmNGRkNTllNDBlODBhNWVhMA==;;Dan Abramov;2020-02-21;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODc3N2I0NGU5ODJlN2RkZWRkYTYyYWVlMDJmMWZkMzcwNzk1ZGI0NA==;Add Modern WWW build (#18028);Dan Abramov;2020-02-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODc3N2I0NGU5ODJlN2RkZWRkYTYyYWVlMDJmMWZkMzcwNzk1ZGI0NA==;We think we're not going to need these;Dan Abramov;2020-02-13;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODc3N2I0NGU5ODJlN2RkZWRkYTYyYWVlMDJmMWZkMzcwNzk1ZGI0NA==;"
+We need it because WWW has a different meaning of experimental now.";Dan Abramov;2020-02-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZTcwNjcyMTQ5MGU1MGQwYmQ2YWYyY2Q5MzNkYmY4NTdmZDhiNjFlZA==;Update Flow to 0.84 (#17805);Dan Abramov;2020-01-09;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZTcwNjcyMTQ5MGU1MGQwYmQ2YWYyY2Q5MzNkYmY4NTdmZDhiNjFlZA==;;Dan Abramov;2020-01-09;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6N2RjOTc0NTQyNzA0NmQ0NjI1MDZlOTc4ODg3OGJhMzg5ZTE3NmI4YQ==;[Flight] Chunks API (#17398);Sebastian Markbåge;2019-12-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6N2RjOTc0NTQyNzA0NmQ0NjI1MDZlOTc4ODg3OGJhMzg5ZTE3NmI4YQ==;This allows the query and args to be updated;Sebastian Markbåge;2019-12-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6N2RjOTc0NTQyNzA0NmQ0NjI1MDZlOTc4ODg3OGJhMzg5ZTE3NmI4YQ==;"
+Not really a supported use case but for consistency I guess";Sebastian Markbåge;2019-12-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6N2RjOTc0NTQyNzA0NmQ0NjI1MDZlOTc4ODg3OGJhMzg5ZTE3NmI4YQ==;;Sebastian Markbåge;2019-12-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MGNmMjJhNTZhMTg3OTBlZjM0YzcxYmVmMTRmNjQ2OTVjMDQ5ODYxOQ==;Use console directly instead of warning() modules (#17599);Dan Abramov;2019-12-14;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MGNmMjJhNTZhMTg3OTBlZjM0YzcxYmVmMTRmNjQ2OTVjMDQ5ODYxOQ==;;Dan Abramov;2019-12-14;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjE1YmYzNjc1MGNhNGM0YTVhMDlmMmRlNzZjNTMxNWRlZDEyNThkMA==;Add component stacks to (almost) all warnings (#17586);Dan Abramov;2019-12-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjE1YmYzNjc1MGNhNGM0YTVhMDlmMmRlNzZjNTMxNWRlZDEyNThkMA==;;Dan Abramov;2019-12-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OWFjNDJkZDA3NGM0MmI2NmVjYzAzMzRiNzUyMDBiMWQyOTg5Zjg5Mg==;Remove the condition argument from warning() (#17568);Laura buns;2019-12-11;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6OWFjNDJkZDA3NGM0MmI2NmVjYzAzMzRiNzUyMDBiMWQyOTg5Zjg5Mg==;;Laura buns;2019-12-11;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjhmODI1ODc3NTIxMWQyZDNiMWIxNDRjYzZjNzUxNDhlY2Q0YjhkOA==;Split ReactDOM entry point (#17331);Dan Abramov;2019-11-10;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjhmODI1ODc3NTIxMWQyZDNiMWIxNDRjYzZjNzUxNDhlY2Q0YjhkOA==;;Dan Abramov;2019-11-10;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZjZiOGQzMWE3NmNiYmNiYmViMmYxZDU5MDc0ZGZlNzJlMGM4MjgwNg==;Rename createSyncRoot to createBlockingRoot (#17165);Dan Abramov;2019-10-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZjZiOGQzMWE3NmNiYmNiYmViMmYxZDU5MDc0ZGZlNzJlMGM4MjgwNg==;;Dan Abramov;2019-10-23;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzA3NTRmMTBkNDExOWE5OTlhYzlhNDZiNmVhOGMxMWExMmExYTcyZA==;[react-interaction] Tweak Focus Table component (#16862);Dominic Gannaway;2019-09-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzA3NTRmMTBkNDExOWE5OTlhYzlhNDZiNmVhOGMxMWExMmExYTcyZA==;;Dominic Gannaway;2019-09-23;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YmQ3OWJlOWI2ODcxNTYwNjc0MTZmZmU1MjE5ZTQ5YTExYmQwZjFlNw==;[react-core] Add experimental React Scope component API (#16587);Dominic Gannaway;2019-08-29;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YmQ3OWJlOWI2ODcxNTYwNjc0MTZmZmU1MjE5ZTQ5YTExYmQwZjFlNw==;;Dominic Gannaway;2019-08-29;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MWZkMzkwNmU5MmVhMjMxODQ4YzViNTBhOTkzMDNkNGFjM2RjNzk3Nw==;"Remove ""Waiting for async callback"" User Timing measurement (#16379)";Dan Abramov;2019-08-13;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MWZkMzkwNmU5MmVhMjMxODQ4YzViNTBhOTkzMDNkNGFjM2RjNzk3Nw==;;Dan Abramov;2019-08-13;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;Refactor Partial Hydration (#16346);Sebastian Markbåge;2019-08-12;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"We now store the comment node on SuspenseState instead and that indicates
+that this SuspenseComponent is still dehydrated";Sebastian Markbåge;2019-08-12;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+We also store a child but that is only used to represent the DOM node for
+deletions and getNextHostSibling";Sebastian Markbåge;2019-08-12;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+Forked based on SuspenseState.dehydrated instead";Sebastian Markbåge;2019-08-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+We can now simplify the logic for retrying dehydrated boundaries without
+hydrating";Sebastian Markbåge;2019-08-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"This is becomes simply a reconciliation against the dehydrated
+fragment which gets deleted, and the new children gets inserted";Sebastian Markbåge;2019-08-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+Instead we use the regular Suspense path";Sebastian Markbåge;2019-08-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"To save code, we attach retry
+listeners in the commit phase even though technically we don't have to";Sebastian Markbåge;2019-08-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+I think this is right...?
+The DidCapture flag isn't used consistently in the same way";Sebastian Markbåge;2019-08-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"We need
+further refactor for this";Sebastian Markbåge;2019-08-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+If we remove the dehydration status in the first pass and then do a second
+pass because we suspended, then we need to continue as if it didn't
+previously suspend";Sebastian Markbåge;2019-08-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;Since there is no fragment child etc;Sebastian Markbåge;2019-08-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+However, we must readd the deletion";Sebastian Markbåge;2019-08-12;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+It does a two pass render that client renders the content";Sebastian Markbåge;2019-08-12;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+This now doesn't represent a suspense boundary itself";Sebastian Markbåge;2019-08-12;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;Its parent does;Sebastian Markbåge;2019-08-12;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+This Fiber represents the fragment around the dehydrated content";Sebastian Markbåge;2019-08-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+Avoids the temporary mutable variables";Sebastian Markbåge;2019-08-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;I kept losing track of them;Sebastian Markbåge;2019-08-12;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTBhZGRmNGMwZTQxMWUzNTFkZTcyOTBjOGM2MGVjNzc1YzI1YzhjNA==;"
+Placing it in the type since that's the central point as opposed to spread
+out.";Sebastian Markbåge;2019-08-12;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NDI3OTQ1NTdjYTQ0YThjMDVjNzFhYWI2OThkNDRkMTI5NDIzNjUzOA==;[Flare] Tweaks to Flare system design and API (#16264);Dominic Gannaway;2019-08-01;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NDI3OTQ1NTdjYTQ0YThjMDVjNzFhYWI2OThkNDRkMTI5NDIzNjUzOA==;;Dominic Gannaway;2019-08-01;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTA5ODg5MTE5MzYwZWQ4M2NhNmVmM2Y4M2JjZjAxZTVhYTdkY2Q4MQ==;[Flare] Redesign core event system (#16163);Dominic Gannaway;2019-07-23;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTA5ODg5MTE5MzYwZWQ4M2NhNmVmM2Y4M2JjZjAxZTVhYTdkY2Q4MQ==;;Dominic Gannaway;2019-07-23;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmM0ZDYxZTEwMjJhZTM4M2RkMTFmZTIzN2Y2ZGY4NDUxZTZmMDMxMA==;Adds experimental fundamental interface (#16049);Dominic Gannaway;2019-07-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmM0ZDYxZTEwMjJhZTM4M2RkMTFmZTIzN2Y2ZGY4NDUxZTZmMDMxMA==;;Dominic Gannaway;2019-07-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZmNmZjljNTdiYzQxZjU4ZTg4MDIwMTZiNGRiYzBhN2I3MmNjNjNhZA==;"Add tail=""hidden"" option to SuspenseList (#16024)";Sebastian Markbåge;2019-07-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZmNmZjljNTdiYzQxZjU4ZTg4MDIwMTZiNGRiYzBhN2I3MmNjNjNhZA==;;Sebastian Markbåge;2019-07-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjdlM2YzZmI2ZTM0MmY5NWYwMDIxNWM4NGQ1ZDAxM2Q3YjBlMWIzMw==;[Flare] Revise responder event types (#16081);Dominic Gannaway;2019-07-08;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjdlM2YzZmI2ZTM0MmY5NWYwMDIxNWM4NGQ1ZDAxM2Q3YjBlMWIzMw==;;Dominic Gannaway;2019-07-08;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmEwZjYzOTBlZDY1N2ZhOGUyYzE0YzFjZjZkOWZhYTJmN2I0MjUyNQ==;Fix typos (#16076);Min ho Kim;2019-07-08;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmEwZjYzOTBlZDY1N2ZhOGUyYzE0YzFjZjZkOWZhYTJmN2I0MjUyNQ==;;Min ho Kim;2019-07-08;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;SuspenseList Optimizations (#16005);Sebastian Markbåge;2019-07-01;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"We now are able to bail out of reconciliation and splitting out the tail
+during deep updates that hasn't changed the child props";Sebastian Markbåge;2019-07-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"This only
+works while the list wasn't suspended before";Sebastian Markbåge;2019-07-01;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+I also moved the second render of the ""head"" to the complete phase";Sebastian Markbåge;2019-07-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"This
+cleans it up a bit for the tail collapsing PR";Sebastian Markbåge;2019-07-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+For this second pass I also use a new technique of resetting the child
+Fibers for the second pass";Sebastian Markbåge;2019-07-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"This is effectively a fast path to avoid
+reconciling the children against props again";Sebastian Markbåge;2019-07-01;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+The effectTag now tracks whether the previous commit was suspended";Sebastian Markbåge;2019-07-01;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+This frees up SuspenseListState to be render-phase only state";Sebastian Markbåge;2019-07-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+We use null to mean the default ""independent"" mode";Sebastian Markbåge;2019-07-01;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+This optimized the deep update case or initial render without anything
+suspending";Sebastian Markbåge;2019-07-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+We have some information available to us that tell us if nothing has
+suspended in the past and nothing has suspended this render pass";Sebastian Markbåge;2019-07-01;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+This also fixes a bug where we didn't tag the previous render as having
+suspended boundaries if we didn't need to force a rerender";Sebastian Markbåge;2019-07-01;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTMzYzY2NGFkNjE3M2FkZGExMDIxZWUxY2MyZDkyMzNjM2MxM2UyMg==;"
+oops";Sebastian Markbåge;2019-07-01;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OWIwYmQ0MzU1MDIwNmUwNGJmZTljYTY5NWU1OTgxZWZmMGUyZDAzZg==;[Flare] Re-label Flare flag (#16014);Dominic Gannaway;2019-06-28;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OWIwYmQ0MzU1MDIwNmUwNGJmZTljYTY5NWU1OTgxZWZmMGUyZDAzZg==;;Dominic Gannaway;2019-06-28;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OGI4OGFjMjU5MmM1ZjU1NWYzMTVmOTQ0MGNiYjY2NWRkMWU3NDU3YQ==;[Flare] Remove event targets including TouchHitTarget (#16011);Dominic Gannaway;2019-06-27;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OGI4OGFjMjU5MmM1ZjU1NWYzMTVmOTQ0MGNiYjY2NWRkMWU3NDU3YQ==;;Dominic Gannaway;2019-06-27;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzRjZTU3YWU3NTFlMDk1MmZkMTJhYjUzMmEzZTU2OTQ0NDU4OTdlYQ==;[Flare] Refine flow type annotations (#15950);Dominic Gannaway;2019-06-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzRjZTU3YWU3NTFlMDk1MmZkMTJhYjUzMmEzZTU2OTQ0NDU4OTdlYQ==;;Dominic Gannaway;2019-06-21;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTc1MTExZGU3MjM5NzkxNjFiNzNjMjc1MWMzMzk2ZDIyZjQwNWRmYQ==;Lazily initialize dependencies object (#15944);Andrew Clark;2019-06-21;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTc1MTExZGU3MjM5NzkxNjFiNzNjMjc1MWMzMzk2ZDIyZjQwNWRmYQ==;"Most fibers do not have events or context, so we save memory lazily
+initializing this container node";Andrew Clark;2019-06-21;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTc1MTExZGU3MjM5NzkxNjFiNzNjMjc1MWMzMzk2ZDIyZjQwNWRmYQ==;"
+Follow-up from #15927";Andrew Clark;2019-06-21;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzIwZGI0Y2JlNjc1ZTgwODIwZWM4MWFiYWI0OTk0OTIzMDliOTI1Mg==;[Flare] Add useEvent hook implementation (#15927);Dominic Gannaway;2019-06-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzIwZGI0Y2JlNjc1ZTgwODIwZWM4MWFiYWI0OTk0OTIzMDliOTI1Mg==;"Validate hooks have decendent event components
+Few fixes and displayName changes
+Fix more responder bugs
+Update error codes";Dominic Gannaway;2019-06-21;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzY4NjRmN2ZmNzI5ZjgyOTNlOGU3NzJkYTdhZDg0MTZkN2RlZjZiMw==;Add SuspenseList Component (#15902);Sebastian Markbåge;2019-06-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzY4NjRmN2ZmNzI5ZjgyOTNlOGU3NzJkYTdhZDg0MTZkN2RlZjZiMw==;"In the ""together"" mode, we do a second render pass that forces the
+fallbacks to stay in place, if not all can unsuspend at once";Sebastian Markbåge;2019-06-20;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzY4NjRmN2ZmNzI5ZjgyOTNlOGU3NzJkYTdhZDg0MTZkN2RlZjZiMw==;"
+This way, we end up retrying the SuspenseList in case the nested boundary
+that just suspended doesn't actually get mounted with this set of
+thennables";Sebastian Markbåge;2019-06-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzY4NjRmN2ZmNzI5ZjgyOTNlOGU3NzJkYTdhZDg0MTZkN2RlZjZiMw==;"This happens when the second pass renders the fallback
+directly without first attempting to render the content";Sebastian Markbåge;2019-06-20;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzY4NjRmN2ZmNzI5ZjgyOTNlOGU3NzJkYTdhZDg0MTZkN2RlZjZiMw==;"
+Display order has some ""display list"" connotations making it sound like
+a z-index thing";Sebastian Markbåge;2019-06-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzY4NjRmN2ZmNzI5ZjgyOTNlOGU3NzJkYTdhZDg0MTZkN2RlZjZiMw==;"
+Reveal indicates that this isn't really about when something gets rendered
+or is ready to be rendered";Sebastian Markbåge;2019-06-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzY4NjRmN2ZmNzI5ZjgyOTNlOGU3NzJkYTdhZDg0MTZkN2RlZjZiMw==;"It's about when content that is already there
+gets to be revealed";Sebastian Markbåge;2019-06-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzY4NjRmN2ZmNzI5ZjgyOTNlOGU3NzJkYTdhZDg0MTZkN2RlZjZiMw==;"
+This will be used for more things in the directional case.";Sebastian Markbåge;2019-06-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDBlMDQxYWVlODNiNTBlNTQxNzZkMmRjOTU3ZDg2YzBmNTcxMjU3ZQ==;[Fresh] Support classes by force-remounting them on edit (#15801);Dan Abramov;2019-06-05;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDBlMDQxYWVlODNiNTBlNTQxNzZkMmRjOTU3ZDg2YzBmNTcxMjU3ZQ==;This hides the implementation a little bit and reduces how much React knows about the underlying mechanism;Dan Abramov;2019-06-05;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDBlMDQxYWVlODNiNTBlNTQxNzZkMmRjOTU3ZDg2YzBmNTcxMjU3ZQ==;"
+We already have the logic to reset a component, so let's just reuse it instead of that special case.";Dan Abramov;2019-06-05;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;[Fresh] Set up initial scaffolding (#15619);Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;Rendering an element with stale type should not cause it to remount;Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+We only do this for FunctionComponent tag since checking is unnecessary for classes or host components";Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+Initially I thought I would compare families of inner .render functions";Dan Abramov;2019-05-18;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+However, there is a corner case where this can create false positives";Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;Such as when you forwardRef(X) the same X twice;Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;Those are supposed to be distinct;Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;But if we compare .render functions, we wouldn't be able to distinguish them after first reload;Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+It seems safer to rely on explicit registration for those";Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;This should be easy when forwardRef() call is in the same file, and usually it would be;Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"For cases like HOCs and style.div`...` factories that return forwardRef(), we could have the __register__ helper itself ""dig deeper"" and register the inner function";Dan Abramov;2019-05-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+The __register__ implementation can read the inner identity itself";Dan Abramov;2019-05-18;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This adds rudimentary support for memo components";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;However, we don't actually skip bailouts yet, so this is not very useful by itself alone;Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;Tests have TODOs that we need to remove after bailout skipping is done;Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+My code had a bug where it checked for a wrong thing in a wrong set, leading us to always re-render";Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This fixes the checks so that we only schedule updates for things that were actually edited";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This forces even memo() with shallow comparison to re-render on hot update";Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+It's unnecessary because if they haven't been edited, there's no special reconciliation logic";Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+Signatures let us force a remount of a type even if from React's point of view, type is the same";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+A type has one current signature";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;If that signature changes during next hot update, all Fibers with that type should be deleted and remounted;Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+We do this by mutating elementType scheduling a parent";Dan Abramov;2019-05-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This will be handy to force remount of mismatching Hooks, as well as failed error boundaries";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+For this to fully work, we'll need to add a way to skip built-in bailouts for all Fiber types";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;This will be the most invasive and annoying change;Dan Abramov;2019-05-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;I did it for HostRoot in this PR but there's more;Dan Abramov;2019-05-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;I'll add an automated test case that catches the missing bailout bailouts;Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This teaches all parent component types to remount their child if necessary";Dan Abramov;2019-05-18;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+It also adds tests for them";Dan Abramov;2019-05-18;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This makes sure that changes to *code* always propagate";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+It can break components that aren't resilient to useEffect over-firing, but that seems like a good constraint since you might need to add a dependency later anyway, and this helps avoid coding yourself into the corner";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This also makes the bailouts more targeted--no need to remount useEffect for a parent component of remounted fiber";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This moves resolving to set up the right .type early instead of doing this before render";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+A bit more future-proof in case we want to restructure the begin phase later";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+ForwardRef is special because its type is a wrapper but it can be hot reloaded by itself";Dan Abramov;2019-05-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+So we have a special overload for it that reconstucts the wrapper type if needed";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This gets rid of one of the sets";Dan Abramov;2019-05-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+We still use a set for forced remount though";Dan Abramov;2019-05-18;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This also disables the remounting tests";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;They need a separate approach;Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+It has a TODO because it seems like offscreen updates are incorrectly applied too soon";Dan Abramov;2019-05-18;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;"
+This test is manual so I don't actually want act here";Dan Abramov;2019-05-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzE0ODdkZDgyZTgyZWY2MjI0MzgwNmIyZTc2YjIzYTZmYjIxZDBiYw==;;Dan Abramov;2019-05-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;Add Batched Mode (#15502);Andrew Clark;2019-05-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"React has an unfortunate quirk where updates are sometimes synchronous
+-- where React starts rendering immediately within the call stack of
+`setState` — and sometimes batched, where updates are flushed at the
+end of the current event";Andrew Clark;2019-05-13;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"Any update that originates within the call
+stack of the React event system is batched";Andrew Clark;2019-05-13;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"This encompasses most
+updates, since most updates originate from an event handler like
+`onClick` or `onChange`";Andrew Clark;2019-05-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"It also includes updates triggered by lifecycle
+methods or effects";Andrew Clark;2019-05-13;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"But there are also updates that originate outside
+React's event system, like timer events, network events, and microtasks
+(promise resolution handlers)";Andrew Clark;2019-05-13;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"These are not batched, which results in
+both worse performance (multiple render passes instead of single one)
+and confusing semantics";Andrew Clark;2019-05-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+Ideally all updates would be batched by default";Andrew Clark;2019-05-13;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"Unfortunately, it's
+easy for components to accidentally rely on this behavior, so changing
+it could break existing apps in subtle ways";Andrew Clark;2019-05-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+One way to move to a batched-by-default model is to opt into Concurrent
+Mode (still experimental)";Andrew Clark;2019-05-13;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"But Concurrent Mode introduces additional
+semantic changes that apps may not be ready to adopt";Andrew Clark;2019-05-13;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+This commit introduces an additional mode called Batched Mode";Andrew Clark;2019-05-13;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"Batched
+Mode enables a batched-by-default model that defers all updates to the
+next React event";Andrew Clark;2019-05-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"Once it begins rendering, React will not yield to
+the browser until the entire render is finished";Andrew Clark;2019-05-13;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+Batched Mode is superset of Strict Mode";Andrew Clark;2019-05-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;It fires all the same warnings;Andrew Clark;2019-05-13;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+It also drops the forked Suspense behavior used by Legacy Mode, in favor
+of the proper semantics used by Concurrent Mode";Andrew Clark;2019-05-13;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+I have not added any public APIs that expose the new mode yet";Andrew Clark;2019-05-13;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"I'll do
+that in subsequent commits";Andrew Clark;2019-05-13;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+Should have same semantics as Concurrent Mode";Andrew Clark;2019-05-13;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+There are three types of roots: Legacy, Batched, and Concurrent";Andrew Clark;2019-05-13;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+Treat Sync and Batched expiration times separately";Andrew Clark;2019-05-13;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"Only Sync updates
+are pushed to our internal queue of synchronous callbacks";Andrew Clark;2019-05-13;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODYyZjQ5OWZhY2ZiYTk2MzVmMjFjMjViMTczNjhjYjk4MGIxN2M3ZQ==;"
+Renamed `flushImmediateQueue` to `flushSyncCallbackQueue` for clarity.";Andrew Clark;2019-05-13;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZGQ5Y2VmOWZjMDAxZTE3NGUxNzdiYWM0N2Q4OGZkMjhmZjhkZTMxNg==;Experimental Event API: Add targets and responder utility method for finding targets (#15372);Dominic Gannaway;2019-04-10;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZGQ5Y2VmOWZjMDAxZTE3NGUxNzdiYWM0N2Q4OGZkMjhmZjhkZTMxNg==;;Dominic Gannaway;2019-04-10;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YWVjZTgxMTljZjgyYTZlZmYwMmQ5YWQ4MTk3NThiN2FjMmM5YjMyOQ==;Refactor EventComponent logic + add onOwnershipChange callback (#15354);Dominic Gannaway;2019-04-09;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YWVjZTgxMTljZjgyYTZlZmYwMmQ5YWQ4MTk3NThiN2FjMmM5YjMyOQ==;;Dominic Gannaway;2019-04-09;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NDA2NGVhOWZhNjM4N2M5MmE5ODViNTJiZmM2Njc0NmY4MWNjZDRmZA==;Experimental event API: Support EventComponent onUnmount responder callback (#15335);Dominic Gannaway;2019-04-06;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NDA2NGVhOWZhNjM4N2M5MmE5ODViNTJiZmM2Njc0NmY4MWNjZDRmZA==;;Dominic Gannaway;2019-04-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjkzYThhOWJiODQ2MGEzZDU4MjA3MmQzYjI1MmVjYzE1YzZlYTBmNQ==;Experimental event API: refactor responder modules for lifecycle inclusion (#15322);Dominic Gannaway;2019-04-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjkzYThhOWJiODQ2MGEzZDU4MjA3MmQzYjI1MmVjYzE1YzZlYTBmNQ==;;Dominic Gannaway;2019-04-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODBmOGIwZDUxMjM5ODE5Njk5OTdlMDdjMDcxYmRjNmUzODg0ZWY1OA==;Add part of the event responder system for experimental event API (#15179);Dominic Gannaway;2019-03-26;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODBmOGIwZDUxMjM5ODE5Njk5OTdlMDdjMDcxYmRjNmUzODg0ZWY1OA==;;Dominic Gannaway;2019-03-26;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjgzZTAxY2FkZTZmODZiOWExMjdiZGZkZGE2MGY2MjVmZDE0ZmRjZA==;Adds more scaffolding for experimental event API (#15112);Dominic Gannaway;2019-03-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjgzZTAxY2FkZTZmODZiOWExMjdiZGZkZGE2MGY2MjVmZDE0ZmRjZA==;;Dominic Gannaway;2019-03-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NDE4Njk1MmE2ZjM1NThlYjRmYWU5ZjZjNWY2NjliZDg5OGRjMWQ5Nw==;Fixed incompatibility between react-debug-tools and useContext() (#14940);Brian Vaughn;2019-02-26;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NDE4Njk1MmE2ZjM1NThlYjRmYWU5ZjZjNWY2NjliZDg5OGRjMWQ5Nw==;;Brian Vaughn;2019-02-26;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;Allow useReducer to bail out of rendering by returning previous state (#14569);Andrew Clark;2019-01-17;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;"This is conceptually similar to `shouldComponentUpdate`, except because
+there could be multiple useReducer (or useState) Hooks in a single
+component, we can only bail out if none of the Hooks produce a new
+value";Andrew Clark;2019-01-17;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;"We also can't bail out if any the other types of inputs — state
+and context — have changed";Andrew Clark;2019-01-17;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;"
+These optimizations rely on the constraint that components are pure
+functions of props, state, and context";Andrew Clark;2019-01-17;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;"
+In some cases, we can bail out without entering the render phase by
+eagerly computing the next state and comparing it to the current one";Andrew Clark;2019-01-17;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;"
+This only works if we are absolutely certain that the queue is empty at
+the time of the update";Andrew Clark;2019-01-17;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;"In concurrent mode, this is difficult to
+determine, because there could be multiple copies of the queue and we
+don't know which one is current without doing lots of extra work, which
+would defeat the purpose of the optimization";Andrew Clark;2019-01-17;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;"However, in our
+implementation, there are at most only two copies of the queue, and if
+Should not bail out during subsequent update";Andrew Clark;2019-01-17;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzkwYzhlZjA0MTk1ZjBmYzExY2EzZmIwOGU2M2Y4NzBmODE0ODNhYw==;"(This isn't directly
+related to this PR because we should have had this test, anyway.)";Andrew Clark;2019-01-17;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWRjMTA4ZTU4MjliYjhkODRmZmQzOWUyZTkzMmQ3OThlZGQ3Y2E4Yg==;"Tweaked wording for v8 ""performance cliff"" issue";Brian Vaughn;2018-12-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MWRjMTA4ZTU4MjliYjhkODRmZmQzOWUyZTkzMmQ3OThlZGQ3Y2E4Yg==;;Brian Vaughn;2018-12-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6N2E0OGM5MDBiN2Q4Yzk3NTgwZDYyYWRmYTM2MjVhN2I3NTY3Yzk5OA==;Prevent a v8 deopt when profiling (#14383);Brian Vaughn;2018-12-03;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6N2E0OGM5MDBiN2Q4Yzk3NTgwZDYyYWRmYTM2MjVhN2I3NTY3Yzk5OA==;;Brian Vaughn;2018-12-03;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NzY5YjFmMjcwZTEyNTFkOWRiZGNlMGZjYmQ5ZTkyZTUwMmQwNTliOA==;pure -> memo (#13905);Dan Abramov;2018-10-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NzY5YjFmMjcwZTEyNTFkOWRiZGNlMGZjYmQ5ZTkyZTUwMmQwNTliOA==;;Dan Abramov;2018-10-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTViMTFkMjNmOTYwYzE1OGE3ZTk5Njc5YmY2MjA0MWNlMTZhZWQ3ZQ==;Allow arbitrary types to be wrapped in pure (#13903);Sebastian Markbåge;2018-10-20;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTViMTFkMjNmOTYwYzE1OGE3ZTk5Njc5YmY2MjA0MWNlMTZhZWQ3ZQ==;"This creates an outer fiber that container the pure check and an inner
+fiber that represents which ever type of component";Sebastian Markbåge;2018-10-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTViMTFkMjNmOTYwYzE1OGE3ZTk5Njc5YmY2MjA0MWNlMTZhZWQ3ZQ==;"
+Special cased when there are no defaultProps and it's a simple function
+component instead of class";Sebastian Markbåge;2018-10-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTViMTFkMjNmOTYwYzE1OGE3ZTk5Njc5YmY2MjA0MWNlMTZhZWQ3ZQ==;This doesn't require an extra fiber;Sebastian Markbåge;2018-10-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTViMTFkMjNmOTYwYzE1OGE3ZTk5Njc5YmY2MjA0MWNlMTZhZWQ3ZQ==;"
+We could make it so that this also works with custom comparer but that
+means we have to go through one extra indirection to get to it";Sebastian Markbåge;2018-10-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTViMTFkMjNmOTYwYzE1OGE3ZTk5Njc5YmY2MjA0MWNlMTZhZWQ3ZQ==;"
+Maybe it's worth it, donno.";Sebastian Markbåge;2018-10-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;Unfork Lazy Component Branches (#13902);Sebastian Markbåge;2018-10-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;This will be used to store the wrapped type of an element;Sebastian Markbåge;2018-10-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;E.g;Sebastian Markbåge;2018-10-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;"pure and
+lazy";Sebastian Markbåge;2018-10-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;"
+The existing type field will be used for the unwrapped type within them";Sebastian Markbåge;2018-10-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;"
+Instead, we check if the elementType and type are equal to test if
+we need to resolve props";Sebastian Markbåge;2018-10-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;"This is slightly slower in the normal case
+but will yield less code and branching";Sebastian Markbåge;2018-10-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;"
+This way we don't have to check the type in a hacky way in the
+indeterminate path";Sebastian Markbåge;2018-10-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;"Also, lets us deal with lazy that resolves to
+indeterminate and such";Sebastian Markbåge;2018-10-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTVhMzEzZWMwYjk1N2Y3MTc5OGE2OWQ4ZTgzNDA4ZjQwZTc2NzY1Yg==;;Sebastian Markbåge;2018-10-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;Lazy components must use React.lazy (#13885);Andrew Clark;2018-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;"Removes support for using arbitrary promises as the type of a React
+element";Andrew Clark;2018-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;Instead, promises must be wrapped in React.lazy;Andrew Clark;2018-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;"This gives us
+flexibility later if we need to change the protocol";Andrew Clark;2018-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;"
+The reason is that promises do not provide a way to call their
+constructor multiple times";Andrew Clark;2018-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;"For example:
+const promiseForA = new Promise(resolve => {
+  fetchA(a => resolve(a));
+Given a reference to `promiseForA`, there's no way to call `fetchA`
+again";Andrew Clark;2018-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;"Calling `then` on the promise doesn't run the constructor again;
+it only attaches another listener";Andrew Clark;2018-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;"
+In the future we will likely introduce an API like `React.eager` that
+is similar to `lazy` but eagerly calls the constructor";Andrew Clark;2018-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;"That gives us
+the ability to call the constructor multiple times";Andrew Clark;2018-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;E.g;Andrew Clark;2018-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDk2NTllNDk5ZWJhMzA4OWIwOThjMzJjZjExMmI3YTA2N2JkZGRmMQ==;"to increase
+the priority, or to retry if the first operation failed.";Andrew Clark;2018-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6OGFmNjcyOGM2ZjEwNWQzN2Y5YzAwMDYyODhhNmQxYWMzOTAzZGM3MQ==;Enable Suspense + rename Placeholder (#13799);Dan Abramov;2018-10-10;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6OGFmNjcyOGM2ZjEwNWQzN2Y5YzAwMDYyODhhNmQxYWMzOTAzZGM3MQ==;;Dan Abramov;2018-10-10;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NDBhNTIxYWE3MjQ3ODcyZDAwODBkNWE1ODExMjBiNjQ5OTgxNTJkYQ==;Terminology: Functional -> Function Component (#13775);Dan Abramov;2018-10-04;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NDBhNTIxYWE3MjQ3ODcyZDAwODBkNWE1ODExMjBiNjQ5OTgxNTJkYQ==;;Dan Abramov;2018-10-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;pure (#13748);Andrew Clark;2018-09-27;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;A higher-order component version of the `React.PureComponent` class;Andrew Clark;2018-09-27;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;"
+During an update, the previous props are compared to the new props";Andrew Clark;2018-09-27;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;"If
+they are the same, React will skip rendering the component and
+its children";Andrew Clark;2018-09-27;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;"
+Unlike userspace implementations, `pure` will not add an additional
+fiber to the tree";Andrew Clark;2018-09-27;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;"
+The first argument must be a functional component; it does not work
+with classes";Andrew Clark;2018-09-27;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;"
+`pure` uses shallow comparison by default, like `React.PureComponent`";Andrew Clark;2018-09-27;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;"
+A custom comparison can be passed as the second argument";Andrew Clark;2018-09-27;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YTA3MzNmZTEzZDU5ODMwM2Y0NWI5ZDI3Yzg0Y2UwZWM0MGQwOTAyMQ==;"
+Co-authored-by: Andrew Clark <acdlite@fb.com>
+Co-authored-by: Sophie Alpert <sophiebits@fb.com>";Andrew Clark;2018-09-27;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MGRjMGRkYzFlZjVmOTBmZTQ4YjU4ZjFhMWJhNzUzNzU3OTYxZmM3NA==;Rename AsyncMode -> ConcurrentMode (#13732);Dominic Gannaway;2018-09-26;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MGRjMGRkYzFlZjVmOTBmZTQ4YjU4ZjFhMWJhNzUzNzU3OTYxZmM3NA==;;Dominic Gannaway;2018-09-26;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NGE0MGQ3NjI0NTc1ZDAzMGUyZDJhYTk4YjI0MDAwZTU5YTllNGYwMg==;Fix a regression related to isReactComponent prototype check (#13608);Dan Abramov;2018-09-10;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NGE0MGQ3NjI0NTc1ZDAzMGUyZDJhYTk4YjI0MDAwZTU5YTllNGYwMg==;;Dan Abramov;2018-09-10;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6Yjg3YWFiZGZlMWI3NDYxZTczMzFhYmIzNjAxZDllNmJiMjc1NDRiYw==;Drop the year from Facebook copyright headers and the LICENSE file. (#13593);Héctor Ramos;2018-09-07;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6Yjg3YWFiZGZlMWI3NDYxZTczMzFhYmIzNjAxZDllNmJiMjc1NDRiYw==;;Héctor Ramos;2018-09-07;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NmU0ZjdjNzg4NjAzZGFjN2ZjY2QyMjdhNDg1MmMxMTBiMDcyZmUxNg==;Profiler integration with interaction-tracking package (#13253);Brian Vaughn;2018-08-29;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NmU0ZjdjNzg4NjAzZGFjN2ZjY2QyMjdhNDg1MmMxMTBiMDcyZmUxNg==;"Reverted try/finally change to ReactTestRendererScheduling";Brian Vaughn;2018-08-29;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzQwYmZkOTM5M2U4MTczYWRjYTUzODBlNjU4N2UxZWExYTIzY2VmYQ==;Rename ReactTypeOfWork to ReactWorkTags, ReactTypeOfSideEffect to ReactSideEffectTags (#13476);Sophie Alpert;2018-08-26;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzQwYmZkOTM5M2U4MTczYWRjYTUzODBlNjU4N2UxZWExYTIzY2VmYQ==;And `type TypeOfWork` to `type WorkTag`;Sophie Alpert;2018-08-26;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzQwYmZkOTM5M2U4MTczYWRjYTUzODBlNjU4N2UxZWExYTIzY2VmYQ==;;Sophie Alpert;2018-08-26;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmIzMDgyODAwMGE1OGVhZjZhZGZjM2JhMmNiZWRkNGJmZjRkMDc3Yg==;Fix wrong Flow return type;Andrew Clark;2018-08-16;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmIzMDgyODAwMGE1OGVhZjZhZGZjM2JhMmNiZWRkNGJmZjRkMDc3Yg==;;Andrew Clark;2018-08-16;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;Accept promise as element type (#13397);Andrew Clark;2018-08-16;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"On the initial render, the element will suspend as if a promise were
+thrown from inside the body of the unresolved component";Andrew Clark;2018-08-16;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"Siblings should
+continue rendering and if the parent is a Placeholder, the promise
+should be captured by that Placeholder";Andrew Clark;2018-08-16;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"
+When the promise resolves, rendering resumes";Andrew Clark;2018-08-16;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"If the resolved value
+has a `default` property, it is assumed to be the default export of
+an ES module, and we use that as the component type";Andrew Clark;2018-08-16;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"If it does not have
+a `default` property, we use the resolved value itself";Andrew Clark;2018-08-16;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"
+The resolved value is stored as an expando on the promise/thenable";Andrew Clark;2018-08-16;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"
+Because reconciliation is a hot path, this adds ClassComponentLazy,
+FunctionalComponentLazy, and ForwardRefLazy as special types of work";Andrew Clark;2018-08-16;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"
+The other types are not supported, but wouldn't be placed into a
+separate module regardless";Andrew Clark;2018-08-16;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"
+isContextProvider checks the fiber tag, but it's typically called after
+we've already refined the type of work";Andrew Clark;2018-08-16;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;We should get rid of it;Andrew Clark;2018-08-16;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"I
+removed some of them in the previous commit, and deleted a few more
+in this one";Andrew Clark;2018-08-16;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"I left a few behind because the remaining ones would
+require additional refactoring that feels outside the scope of this PR";Andrew Clark;2018-08-16;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"
+The caller compares the result to baseProps to see if anything changed";Andrew Clark;2018-08-16;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"
+We should do this with all types of work in the future";Andrew Clark;2018-08-16;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;"
+Removes unnecessary checks";Andrew Clark;2018-08-16;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTAzMWViZjZiZWRkZjg4Y2FjMTVmNGQyYzllOTFmOGRiYjkxZDU5ZA==;;Andrew Clark;2018-08-16;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MDY3Y2MyNGY1NWVmMDFhMjMzYmU5ZTc1NjRiMzM3ZTM1ZmVkNzJlYQ==;Profiler actualDuration bugfix (#13313);Brian Vaughn;2018-08-08;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MDY3Y2MyNGY1NWVmMDFhMjMzYmU5ZTc1NjRiMzM3ZTM1ZmVkNzJlYQ==;While testing the new DevTools profiler, I noticed that sometimes– in larger, more complicated applications– the actualDuration value was incorrect (either too large, or sometimes negative);Brian Vaughn;2018-08-08;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MDY3Y2MyNGY1NWVmMDFhMjMzYmU5ZTc1NjRiMzM3ZTM1ZmVkNzJlYQ==;I was not able to reproduce this in a smaller application or test (which sucks) but I assume it has something to do with the way I was tracking render times across priorities/roots;Brian Vaughn;2018-08-08;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MDY3Y2MyNGY1NWVmMDFhMjMzYmU5ZTc1NjRiMzM3ZTM1ZmVkNzJlYQ==;So this PR replaces the previous approach with a simpler one;Brian Vaughn;2018-08-08;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MDY3Y2MyNGY1NWVmMDFhMjMzYmU5ZTc1NjRiMzM3ZTM1ZmVkNzJlYQ==;;Brian Vaughn;2018-08-08;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;[Experimental] API for reading context from within any render phase function (#13139);Andrew Clark;2018-07-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"Currently, context can only be read by a special type of component,
+ContextConsumer";Andrew Clark;2018-07-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"We want to add support to all fibers, including
+classes and functional components";Andrew Clark;2018-07-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+Each fiber may read from one or more contexts";Andrew Clark;2018-07-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"To enable quick, mono-
+morphic access of this list, we'll store them on a fiber property";Andrew Clark;2018-07-20;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+unstable_read can be called anywhere within the render phase";Andrew Clark;2018-07-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"That
+includes the render method, getDerivedStateFromProps, constructors,
+functional components, and context consumer render props";Andrew Clark;2018-07-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+If it's called outside the render phase, an error is thrown";Andrew Clark;2018-07-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+Wasn't being used";Andrew Clark;2018-07-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+Currently, the `expirationTime` field represents the pending work of
+both the fiber itself — including new props, state, and context — and of
+any updates in that fiber's subtree";Andrew Clark;2018-07-20;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+This commit adds a second field called `childExpirationTime`";Andrew Clark;2018-07-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"Now
+`expirationTime` only represents the pending work of the fiber itself";Andrew Clark;2018-07-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+The subtree's pending work is represented by `childExpirationTime`";Andrew Clark;2018-07-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+The biggest advantage is it requires fewer checks to bailout on already
+finished work";Andrew Clark;2018-07-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"For most types of work, if the `expirationTime` does not
+match the render expiration time, we can bailout immediately without
+any further checks";Andrew Clark;2018-07-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"This won't work for fibers that have
+`shouldComponentUpdate` semantics (class components), for which we still
+need to check for props and state changes explicitly";Andrew Clark;2018-07-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmI1MDllMmM4YzhjMWZiYzMzYWU1OWNlN2M3ZGNhMDEwNzczMmZmNA==;"
+Optimize `readContext` for most common case";Andrew Clark;2018-07-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZTYwNzZlY2Y0OGY1ZTQ5MmU4OTRhNWJjM2Y2MDliMDQ3ODM4OGI4MA==;Remove ad-hoc forks of getComponentName() and fix it (#13197);Dan Abramov;2018-07-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZTYwNzZlY2Y0OGY1ZTQ5MmU4OTRhNWJjM2Y2MDliMDQ3ODM4OGI4MA==;It doesn't actually need the whole Fiber;Dan Abramov;2018-07-12;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZTYwNzZlY2Y0OGY1ZTQ5MmU4OTRhNWJjM2Y2MDliMDQ3ODM4OGI4MA==;;Dan Abramov;2018-07-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NmY2YjU2MGE2NDVhZGI1OTViYTFlNDA2MzBhMzkxNWQ4YWJkZjAzOA==;Renamed selfBaseTime/treeBaseTime Fiber attributes to selfBaseDuration/treeBaseDuration (#13156);Brian Vaughn;2018-07-06;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NmY2YjU2MGE2NDVhZGI1OTViYTFlNDA2MzBhMzkxNWQ4YWJkZjAzOA==;This is an unobservable change to all but the (under development) DevTools Profiler plugin;Brian Vaughn;2018-07-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NmY2YjU2MGE2NDVhZGI1OTViYTFlNDA2MzBhMzkxNWQ4YWJkZjAzOA==;It is being done so that the plugin can safely feature detect a version of React that supports it;Brian Vaughn;2018-07-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NmY2YjU2MGE2NDVhZGI1OTViYTFlNDA2MzBhMzkxNWQ4YWJkZjAzOA==;The profiler API has existed since the 16.4.0 release, but it did not support the DevTools plugin prior to PR #13058;Brian Vaughn;2018-07-06;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NmY2YjU2MGE2NDVhZGI1OTViYTFlNDA2MzBhMzkxNWQ4YWJkZjAzOA==;"
+Side note: I am not a big fan of the term ""base duration""";Brian Vaughn;2018-07-06;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NmY2YjU2MGE2NDVhZGI1OTViYTFlNDA2MzBhMzkxNWQ4YWJkZjAzOA==;"Both it and ""actual duration"" are kind of awkward and vague";Brian Vaughn;2018-07-06;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NmY2YjU2MGE2NDVhZGI1OTViYTFlNDA2MzBhMzkxNWQ4YWJkZjAzOA==;If anyone has suggestions for better names– this is the best time to bikeshed about them.;Brian Vaughn;2018-07-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODhkN2VkOGJmYmNjZDg2MGMzZTMwOWRhMzlkMzU2ZDBhMzEyN2FhNw==;React.Timeout -> React.Placeholder (#13105);Andrew Clark;2018-07-04;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODhkN2VkOGJmYmNjZDg2MGMzZTMwOWRhMzlkMzU2ZDBhMzEyN2FhNw==;Changed the API to match what we've been using in our latest discussions;Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODhkN2VkOGJmYmNjZDg2MGMzZTMwOWRhMzlkMzU2ZDBhMzEyN2FhNw==;"
+Our tentative plans are for <Placeholder> to automatically hide the timed-out
+children, instead of removing them, so their state is not lost";Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODhkN2VkOGJmYmNjZDg2MGMzZTMwOWRhMzlkMzU2ZDBhMzEyN2FhNw==;"This part is
+not yet implemented";Andrew Clark;2018-07-04;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODhkN2VkOGJmYmNjZDg2MGMzZTMwOWRhMzlkMzU2ZDBhMzEyN2FhNw==;"We'll likely have a lower level API that does not include
+the hiding behavior";Andrew Clark;2018-07-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODhkN2VkOGJmYmNjZDg2MGMzZTMwOWRhMzlkMzU2ZDBhMzEyN2FhNw==;This is also not yet implemented.;Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;Suspending outside of strict trees and async trees (#13098);Andrew Clark;2018-07-04;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"We can support components that suspend outside of an async mode tree
+by immediately committing their placeholders";Andrew Clark;2018-07-04;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"
+In strict mode, the Timeout acts effectively like an error boundary";Andrew Clark;2018-07-04;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"
+Within a single render pass, we unwind to the nearest Timeout and
+re-render the placeholder view";Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"
+Outside of strict mode, it's not safe to unwind and re-render the
+siblings without committing";Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"(Technically, this is true of error
+boundaries, too, though probably not a huge deal, since we don't support
+using error boundaries for control flow (yet, at least))";Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"We need to be
+clever";Andrew Clark;2018-07-04;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"What we do is pretend the suspended component rendered null.*
+There's no unwinding";Andrew Clark;2018-07-04;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;The siblings commit like normal;Andrew Clark;2018-07-04;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"
+Then, in the commit phase, schedule an update on the Timeout to
+synchronously re-render the placeholder";Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"Although this requires an extra
+commit, it will not be observable";Andrew Clark;2018-07-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"And because the siblings were not
+blocked from committing, they don't have to be strict mode compatible";Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"
+Another caveat is that if a component suspends during an async render,
+but it's captured by a non-async Timeout, we need to revert to sync
+mode";Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"In other words, if any non-async component renders, the entire
+tree must complete and commit without yielding";Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;"
+deleted";Andrew Clark;2018-07-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;We should hide them instead;Andrew Clark;2018-07-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZjEyOGZkZWE0ODQwZjQ5NDk5MTA1NGY2MDhiOTk3NTdhNWNlNTc2NA==;I'll work on this in a follow-up.;Andrew Clark;2018-07-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjBmNjA4OTVmNzU5MjUzZDQxODBkZmE3ZTE5MDFmZTM2ZDRhYmQzYQ==;Automatically Profile roots when DevTools is present (#13058);Brian Vaughn;2018-06-20;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjBmNjA4OTVmNzU5MjUzZDQxODBkZmE3ZTE5MDFmZTM2ZDRhYmQzYQ==;;Brian Vaughn;2018-06-20;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YWVkYTdiNzQ1ZDljMDgwMTUwNzA0ZmViMjBlYTU3NjIzOGExYjlhMQ==;Remove fbjs dependency (#13069);Dan Abramov;2018-06-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YWVkYTdiNzQ1ZDljMDgwMTUwNzA0ZmViMjBlYTU3NjIzOGExYjlhMQ==;;Dan Abramov;2018-06-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTU3ODcwMDY3MTBiZDhlZjg5YTAxZDYwYzRhOWNmYTU4YzcxMDM1ZA==;"Record ""actual"" times for all Fibers within a Profiler tree (alt) (#12910)";Brian Vaughn;2018-05-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTU3ODcwMDY3MTBiZDhlZjg5YTAxZDYwYzRhOWNmYTU4YzcxMDM1ZA==;This change gives up on accumulating time across renders of different priority, but in exchange- simplifies how the commit phase (reset) code works, and perhaps also makes the profiling code more compatible with future resuming behavior;Brian Vaughn;2018-05-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MTMwMDM2NTRlNzlmOWZhNjVlZTgzM2FmZWVjODZkNjY4ZjM1ZDMxZA==;"Pass ""start time"" and ""commit time"" to Profiler callback (#12852)";Brian Vaughn;2018-05-21;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MTMwMDM2NTRlNzlmOWZhNjVlZTgzM2FmZWVjODZkNjY4ZjM1ZDMxZA==;;Brian Vaughn;2018-05-21;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjI0NTc5NWRlMzczY2E4ZjRhNmM0OTYyYjU5NzczZTJmMWJiMmYxZA==;Re-enable Flow for ReactFiber and fix Flow issues (#12842);Dan Abramov;2018-05-17;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjI0NTc5NWRlMzczY2E4ZjRhNmM0OTYyYjU5NzczZTJmMWJiMmYxZA==;I just introduced it, but on a second thought, it's better to keep it as a warning;Dan Abramov;2018-05-17;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjI0NTc5NWRlMzczY2E4ZjRhNmM0OTYyYjU5NzczZTJmMWJiMmYxZA==;;Dan Abramov;2018-05-17;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OTA5N2YzY2RmMDg5YTM0ZDg3M2YzZDM0OWUzYmZiZWQ5MDg1MmZhZA==;Delete React Call/Return experiment (#12820);Dan Abramov;2018-05-15;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6OTA5N2YzY2RmMDg5YTM0ZDg3M2YzZDM0OWUzYmZiZWQ5MDg1MmZhZA==;;Dan Abramov;2018-05-15;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;Suspense (#12279);Andrew Clark;2018-05-11;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;Adds Timeout component;Andrew Clark;2018-05-11;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"If a promise is thrown from inside a Timeout component,
+React will suspend the in-progress render from committing";Andrew Clark;2018-05-11;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"When the promise
+resolves, React will retry";Andrew Clark;2018-05-11;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"If the render is suspended for longer than the
+maximum threshold, the Timeout switches to a placeholder state";Andrew Clark;2018-05-11;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+The timeout threshold is defined as the minimum of:
+- The expiration time of the current render
+- The `ms` prop given to each Timeout component in the ancestor path of the
+thrown promise";Andrew Clark;2018-05-11;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+Co-authored-by: Andrew Clark <acdlite@fb.com>
+React should resume rendering regardless of whether it resolves
+or rejects";Andrew Clark;2018-05-11;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+Async is not required for Suspense, but strict mode is";Andrew Clark;2018-05-11;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+Some of this was added with ""soft expiration"" in mind, but now with our revised
+model for how soft expiration will work, this isn't necessary";Andrew Clark;2018-05-11;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+It would be nice to remove more of this, but I think the list itself is inherent
+because we need a way to track the start times, for <Timeout ms={ms} />";Andrew Clark;2018-05-11;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+It already worked this way in practice";Andrew Clark;2018-05-11;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+Instead of waiting for commit phase";Andrew Clark;2018-05-11;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+We can replicate almost all the functionality by tracking just five
+separate levels: the highest/lowest priority pending levels, the
+highest/lowest priority suspended levels, and the lowest pinged level";Andrew Clark;2018-05-11;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+We lose a bit of granularity, in that if there are multiple levels of
+pending updates, only the first and last ones are known";Andrew Clark;2018-05-11;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"But in practice
+this likely isn't a big deal";Andrew Clark;2018-05-11;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+These heuristics are almost entirely isolated to a single module and
+can be adjusted later, without API changes, if necessary";Andrew Clark;2018-05-11;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+Non-IO-bound work is not affected at all";Andrew Clark;2018-05-11;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+Idk why I thought this was neccessary
+This means you have to account for the start time approximation
+heuristic when writing Suspense tests, but that's going to be
+true regardless";Andrew Clark;2018-05-11;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;"
+When updating the tests, I also made a fix related to offscreen
+priority";Andrew Clark;2018-05-11;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;We should never timeout inside a hidden tree;Andrew Clark;2018-05-11;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6NjU2NTc5NTM3N2QxZDJjNzlhNzcwODc2NmYxYWY5ZTFhODc1MTdkZQ==;;Andrew Clark;2018-05-11;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZmMzNzc3YjFmZTI5NWZkMjY2MWYxOTc0ZjU1ODdkMjE0NzkxZjA0Yg==;Add Profiler component for collecting new render timing info (#12745);Brian Vaughn;2018-05-10;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZmMzNzc3YjFmZTI5NWZkMjY2MWYxOTc0ZjU1ODdkMjE0NzkxZjA0Yg==;Add a new component type, Profiler, that can be used to collect new render time metrics;Brian Vaughn;2018-05-10;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZmMzNzc3YjFmZTI5NWZkMjY2MWYxOTc0ZjU1ODdkMjE0NzkxZjA0Yg==;Since this is a new, experimental API, it will be exported as React.unstable_Profiler initially;Brian Vaughn;2018-05-10;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZmMzNzc3YjFmZTI5NWZkMjY2MWYxOTc0ZjU1ODdkMjE0NzkxZjA0Yg==;"
+Most of the functionality for this component has been added behind a feature flag, enableProfileModeMetrics";Brian Vaughn;2018-05-10;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZmMzNzc3YjFmZTI5NWZkMjY2MWYxOTc0ZjU1ODdkMjE0NzkxZjA0Yg==;When the feature flag is disabled, the component will just render its children with no additional behavior;Brian Vaughn;2018-05-10;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZmMzNzc3YjFmZTI5NWZkMjY2MWYxOTc0ZjU1ODdkMjE0NzkxZjA0Yg==;When the flag is enabled, React will also collect timing information and pass it to the onRender function (as described below).;Brian Vaughn;2018-05-10;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;Decouple update queue from Fiber type (#12600);Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;The update queue is in need of a refactor;Andrew Clark;2018-04-23;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"Recent bugfixes (#12528) have
+exposed some flaws in how it's modeled";Andrew Clark;2018-04-23;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"Upcoming features like Suspense
+and [redacted] also rely on the update queue in ways that weren't
+anticipated in the original design";Andrew Clark;2018-04-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+Major changes:
+- Instead of boolean flags for `isReplace` and `isForceUpdate`, updates
+have a `tag` field (like Fiber)";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"This lowers the cost for adding new
+types of updates";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+- Render phase updates are special cased";Andrew Clark;2018-04-23;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"Updates scheduled during
+the render phase are dropped if the work-in-progress does not commit";Andrew Clark;2018-04-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+This is used for `getDerivedStateFrom{Props,Catch}`";Andrew Clark;2018-04-23;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+- `callbackList` has been replaced with a generic effect list";Andrew Clark;2018-04-23;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"Aside
+from callbacks, this is also used for `componentDidCatch`";Andrew Clark;2018-04-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+I tried to avoid this at first, since we avoid it everywhere else in the Fiber
+codebase, but since updates are not in a hot path, the trade off with file size
+seems worth it";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+This way they can be reused independently of updates like
+getDerivedStateFromProps";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;This will be important for resuming;Andrew Clark;2018-04-23;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+Instead of using the effect tag";Andrew Clark;2018-04-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"Ideally, this would be part of the
+return type of processUpdateQueue";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+I don't love this name either, but it's less confusing than UpdateQueue
+I suppose";Andrew Clark;2018-04-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"Conceptually, this is usually a callback: setState callbacks,
+componentDidCatch";Andrew Clark;2018-04-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"The only case that feels a bit weird is Timeouts,
+which use this effect to attach a promise listener";Andrew Clark;2018-04-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"I guess that kinda
+fits, too";Andrew Clark;2018-04-23;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+Rather than enqueue a new setState updater for every props change, we
+can skip the update queue entirely and merge the result into state at
+the end";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"This makes more sense, since ""receiving props"" is not an event
+that should be observed";Andrew Clark;2018-04-23;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"It's still a bit weird, since eventually we do
+persist the derived state (in other words, it accumulates)";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+For resuming, we need the ability to discard the ""own"" effects while
+reusing the captured effects";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"
+Change `process` and `callback` to match the expected payload types
+for class components";Andrew Clark;2018-04-23;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;"I had intended for the update queue to be reusable
+for both class components and a future React API, but we'll likely have
+to fork anyway";Andrew Clark;2018-04-23;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjU0OGIzY2Q2NDBkYmQ1MTVmNWQ2N2RhZmMwMjE2YmI3ZWUwZDc5Ng==;;Andrew Clark;2018-04-23;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NTlkYWM5ZDdhNmEyZjBiNjYwMDNjZjcxN2Q3MWI1NTg3MjY1NDIzZg==;Fix DEV performance regression by avoiding Object.assign on Fibers (#12510);Dan Abramov;2018-04-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NTlkYWM5ZDdhNmEyZjBiNjYwMDNjZjcxN2Q3MWI1NTg3MjY1NDIzZg==;Since performUnitOfWork() is not reentrant, it should be safe to reuse the same stash every time instead of creating a new object.;Dan Abramov;2018-04-01;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YmM3MDQ0MWM4YjNmYTg1MzM4MjgzYWYzZWViNDdiNWQxNWU5ZGJmZQ==;RFC #30: React.forwardRef implementation (#12346);Brian Vaughn;2018-03-14;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YmM3MDQ0MWM4YjNmYTg1MzM4MjgzYWYzZWViNDdiNWQxNWU5ZGJmZQ==;Added React.forwardRef support to react-reconciler based renders and the SSR partial renderer.;Brian Vaughn;2018-03-14;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MDQ5ZmU3ZDZmZDc5ODRjNGE3MjA1MTAzZDNhYWZjNDZiY2VjYTFmNg==;annotation typo (#12272);Kiho · Cham;2018-03-04;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MDQ5ZmU3ZDZmZDc5ODRjNGE3MjA1MTAzZDNhYWZjNDZiY2VjYTFmNg==;;Kiho · Cham;2018-03-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OGRjOGY4OGQ1YWU5ZmI5NjkzNGJhNDNlMzg0MmI1ZGNmNDA3NGFmZA==;Adds createRef() as per RFC (#12162);Dominic Gannaway;2018-02-06;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OGRjOGY4OGQ1YWU5ZmI5NjkzNGJhNDNlMzg0MmI1ZGNmNDA3NGFmZA==;;Dominic Gannaway;2018-02-06;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6OWVhNTU1MTZlNjc0YzJkZTYzYjlmNzgyOWUzYzQ1OWYzY2IzY2Y3OA==;Replace unstable_AsyncComponent with unstable_AsyncMode (#12117);Andrew Clark;2018-01-30;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6OWVhNTU1MTZlNjc0YzJkZTYzYjlmNzgyOWUzYzQ1OWYzY2IzY2Y3OA==;Mirrors the StrictMode API and uses the new Mode type of work;Andrew Clark;2018-01-30;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6OWVhNTU1MTZlNjc0YzJkZTYzYjlmNzgyOWUzYzQ1OWYzY2IzY2Y3OA==;"
+Change this now that we have a better name";Andrew Clark;2018-01-30;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;New context API (#11818);Andrew Clark;2018-01-25;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"Introduces a declarative context API that propagates updates even when
+shouldComponentUpdate returns false";Andrew Clark;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+Same semantics as PureComponent/shallowEqual";Andrew Clark;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+Rather than using a linked list stored on the context type";Andrew Clark;2018-01-25;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"The global
+stack can be reset in case of an interruption or error, whereas with the
+linked list implementation, you'd need to keep track of every
+context type";Andrew Clark;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+We'll enable this in www only for now";Andrew Clark;2018-01-25;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+Context stack should be per server renderer instance";Andrew Clark;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+The context type defines an optional function that compares two context
+values, returning a bitfield";Andrew Clark;2018-01-25;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"A consumer may specify the bits it needs
+for rendering";Andrew Clark;2018-01-25;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"If a provider's context changes, and the consumer's bits
+do not intersect with the changed bits, we can skip the consumer";Andrew Clark;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+This is similar to how selectors are used in Redux but fast enough to do
+while scanning the tree";Andrew Clark;2018-01-25;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"The only user code involved is the function
+that computes the changed bits";Andrew Clark;2018-01-25;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"But that's only called once per provider
+update, not for every consumer";Andrew Clark;2018-01-25;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+There are fewer providers than consumers, so better to do this work
+at the provider";Andrew Clark;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+This is the largest integer size in V8 on 32-bit systems";Andrew Clark;2018-01-25;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"Warn in
+development if too large a number is used";Andrew Clark;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"
+Let's see if we can get away with not supporting this for now";Andrew Clark;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;"If it
+turns out that it's needed, we can fall back to backtracking the
+fiber return path";Andrew Clark;2018-01-25;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ODdhZTIxMWNjZDhkNjE3OTZjZmRlZjEzOGQxZTEyZmI3YTc0Zjg1ZA==;;Andrew Clark;2018-01-25;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YmU1MWU2YTQxYzA5NmYzM2FjZjkyYTY5MzAyNmI4MGM5OGU3ZGRlYg==;Opt into unsafe lifecycle warnings without async tree (#12083);Brian Vaughn;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YmU1MWU2YTQxYzA5NmYzM2FjZjkyYTY5MzAyNmI4MGM5OGU3ZGRlYg==;Added new StrictMode component for enabling async warnings (without enabling async rendering);Brian Vaughn;2018-01-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YmU1MWU2YTQxYzA5NmYzM2FjZjkyYTY5MzAyNmI4MGM5OGU3ZGRlYg==;This component can be used in the future to help with other warnings (eg compilation, Fabric).;Brian Vaughn;2018-01-25;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;Call and Return components should use ReactElement (#11834);Andrew Clark;2017-12-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;"ReactChildFiber contains lots of branches that do the same thing for
+different child types";Andrew Clark;2017-12-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;"We can unify them by having more child types be
+ReactElements";Andrew Clark;2017-12-12;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;"This requires that the `type` and `key` fields are
+sufficient to determine the identity of the child";Andrew Clark;2017-12-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;"
+The main benefit is decreased file size, especially as we add more
+component types, like context providers and consumers";Andrew Clark;2017-12-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;"
+This updates Call and Return components to use ReactElement";Andrew Clark;2017-12-12;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;"Portals are
+left alone for now because their identity includes the host instance";Andrew Clark;2017-12-12;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;"
+Don't think these were intentionally omitted from the blacklist of
+component types";Andrew Clark;2017-12-12;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;"
+I went ahead and updated getComponentName to include special types, even
+though I don't think they're used anywhere right now";Andrew Clark;2017-12-12;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6Yjc3YjEyMzExZjBjNjZhYWQ5YjUwZjgwNWM1M2RjYzA1ZDJlYTc1Yw==;;Andrew Clark;2017-12-12;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzdlNDMyOWJjODFkZWY0Njk1MjExZDZlMzc5NWE2NTRlZjRkODRmNQ==;Remove vars (#11766);Raphael Amorim;2017-12-05;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzdlNDMyOWJjODFkZWY0Njk1MjExZDZlMzc5NWE2NTRlZjRkODRmNQ==;;Raphael Amorim;2017-12-05;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NGQwZThmYzQ4Nzg1NjllN2I3YTcwZTkyNjFhN2M5NDVjYjBmZjFkOA==;ReactDOM.createRoot creates an async root (#11769);Andrew Clark;2017-12-04;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NGQwZThmYzQ4Nzg1NjllN2I3YTcwZTkyNjFhN2M5NDVjYjBmZjFkOA==;Makes createRoot the opt-in API for async updates;Andrew Clark;2017-12-04;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NGQwZThmYzQ4Nzg1NjllN2I3YTcwZTkyNjFhN2M5NDVjYjBmZjFkOA==;"Now we don't have
+to check the top-level element to see if it's an async container.";Andrew Clark;2017-12-04;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MzFlYTBhYTZkNzAxZGY4MTFmYjU4NmZhNzU0NWEzNzZlNTEzNTQ0MA==;Add a test for bad Map polyfill, and work around Rollup bug (#11745);Dan Abramov;2017-12-02;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MzFlYTBhYTZkNzAxZGY4MTFmYjU4NmZhNzU0NWEzNzZlNTEzNTQ0MA==;;Dan Abramov;2017-12-02;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjA3NDY2NGY3M2M2YjFlYTFmNzc0ZjJiYzY5ODIyNGUzNjc3Y2VmMA==;react-reconciler: convert vars into let/const (#11729);Raphael Amorim;2017-11-30;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NjA3NDY2NGY3M2M2YjFlYTFmNzc0ZjJiYzY5ODIyNGUzNjc3Y2VmMA==;;Raphael Amorim;2017-11-30;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmFlNGM2MjE1ODkxYzY3YWVkMTdjMjIyNjFkYjc0YzFmMDc4ZjY2Mw==;Always set pendingProps to the next props (#11580);Andrew Clark;2017-11-29;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmFlNGM2MjE1ODkxYzY3YWVkMTdjMjIyNjFkYjc0YzFmMDc4ZjY2Mw==;"In the current implementation, pendingProps is null if there are no new
+props since the last commit";Andrew Clark;2017-11-29;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmFlNGM2MjE1ODkxYzY3YWVkMTdjMjIyNjFkYjc0YzFmMDc4ZjY2Mw==;"When that happens, we bail out and reuse
+the current props";Andrew Clark;2017-11-29;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmFlNGM2MjE1ODkxYzY3YWVkMTdjMjIyNjFkYjc0YzFmMDc4ZjY2Mw==;"
+But it makes more sense to always set pendingProps to whatever the next
+props will be";Andrew Clark;2017-11-29;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmFlNGM2MjE1ODkxYzY3YWVkMTdjMjIyNjFkYjc0YzFmMDc4ZjY2Mw==;"In other words, pendingProps is never null: it points to
+either new props, or to the current props";Andrew Clark;2017-11-29;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmFlNGM2MjE1ODkxYzY3YWVkMTdjMjIyNjFkYjc0YzFmMDc4ZjY2Mw==;"Modeling it this way lets us
+delete lots of code branches and is easier to reason about bail outs:
+just compare the pending props to the current props.";Andrew Clark;2017-11-29;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NWJmYjg3ODc0MzkxZTYzNWNiMjQ1OGEyOWE3Yzg3OGNiNGRlYzg5Yw==;Add note about mistaken named / default export (#11505);Kristofer Selbekk;2017-11-09;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NWJmYjg3ODc0MzkxZTYzNWNiMjQ1OGEyOWE3Yzg3OGNiNGRlYzg5Yw==;"This commit adds a note about the possibility of erroneously
+mistaking named and default exports to an existing error message.";Kristofer Selbekk;2017-11-09;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NDVjMWZmMzQ4ZTFjN2QwMzU2N2Y1YmJhNmNiMzJjZmZhOTIyMjk3Mg==;Remove unnecessary 'use strict' in the source (#11433);Dan Abramov;2017-11-02;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6NDVjMWZmMzQ4ZTFjN2QwMzU2N2Y1YmJhNmNiMzJjZmZhOTIyMjk3Mg==;This was unused since Stack.;Dan Abramov;2017-11-02;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MjFkMGMxMTUyMzhiNGYzODgzNzAyMGNmODNlMGM2NTdkOGMwMWM5Zg==;Convert the Source to ES Modules (#11389);Dan Abramov;2017-11-02;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MjFkMGMxMTUyMzhiNGYzODgzNzAyMGNmODNlMGM2NTdkOGMwMWM5Zg==;This is clearer because we can use ES imports in it;Dan Abramov;2017-11-02;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MjFkMGMxMTUyMzhiNGYzODgzNzAyMGNmODNlMGM2NTdkOGMwMWM5Zg==;;Dan Abramov;2017-11-02;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmIzNTkyMzMxZWZkNGI0MWYxOWRlNTIxNTI4ZjY2NGI4NzAzOTNlNQ==;Pass `pendingProps` as argument in `createWorkInProgress` (#11296);zombieJ;2017-10-31;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MmIzNTkyMzMxZWZkNGI0MWYxOWRlNTIxNTI4ZjY2NGI4NzAzOTNlNQ==;;zombieJ;2017-10-31;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6NGNlNWRhN2FlZTkwYTM3M2YyZjM2ZDFiZWI1NTkwOTdhZjMwOTUyZQ==;Add Fragment as a named export to React (#10783);Clement Hoang;2017-10-31;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6NGNlNWRhN2FlZTkwYTM3M2YyZjM2ZDFiZWI1NTkwOTdhZjMwOTUyZQ==;"- Add more coverage to fragment tests
+- Use better names
+- Remove useless Fragment component inside tests
+- Remove useless tests so that tests are more concise";Clement Hoang;2017-10-31;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmMwYThmYjk5ZTk0NTMxNWM5ZGNlN2ExNWM4NTc3NWQ1MWY1NzU1ZA==;Add react-call-return package (#11364);Dan Abramov;2017-10-25;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MmMwYThmYjk5ZTk0NTMxNWM5ZGNlN2ExNWM4NTc3NWQ1MWY1NzU1ZA==;;Dan Abramov;2017-10-25;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MDg3YzQ4YmIzNmI4OGVmMGI1YmJjYTJiOWI3MGE1MmQ4ZDQxMzEwMg==;Reorder imports (#11359);Dan Abramov;2017-10-25;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MDg3YzQ4YmIzNmI4OGVmMGI1YmJjYTJiOWI3MGE1MmQ4ZDQxMzEwMg==;;Dan Abramov;2017-10-25;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;Drop Haste (#11303);Dan Abramov;2017-10-24;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;This uncovered an interesting problem where ./b from package/src/a would resolve to a different instantiation of package/src/b in Jest;Dan Abramov;2017-10-24;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;"
+Either this is a showstopper or we can solve it by completely fobbidding remaining /src/";Dan Abramov;2017-10-24;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;"
+It seems we can't use relative requires in tests anymore";Dan Abramov;2017-10-24;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;Otherwise Jest becomes confused between real file and symlink;Dan Abramov;2017-10-24;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;"
+This seems bad..";Dan Abramov;2017-10-24;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;Except that we already *don't* want people to create tests that import individual source files;Dan Abramov;2017-10-24;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;"
+All existing cases of us doing so are actually TODOs waiting to be fixed";Dan Abramov;2017-10-24;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;"
+So perhaps this requirement isn't too bad because it makes bad code looks bad";Dan Abramov;2017-10-24;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;"
+Of course, if we go with this, we'll have to lint against relative requires in tests";Dan Abramov;2017-10-24;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;"
+It also makes moving things more painful";Dan Abramov;2017-10-24;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;"
+Shouldn't affect correctness (they were ignored) but fixes DEV size regression";Dan Abramov;2017-10-24;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6MWVlZDMwMmQzNDZiZmI4ZjVkYjhkODhiMGU3MDk2ZDg5OTlkMzU0OA==;;Dan Abramov;2017-10-24;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;[CS] Persistent Updates (#11260);Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"The extra ""root"" concept is kind of unnecessary";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"Instead of having a
+mutable container even in the persistent mode, I'll instead make the
+container be immutable too and be cloned";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"Then the ""commit"" just becomes
+swapping the previous container for the new one";Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+We may need to clone without any updates, e.g";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;when the children are changed;Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+Passing in the previous node is not enough to recycle since it won't have the
+up-to-date props and children";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;It's really only useful to for allocation pooling;Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+This forks the update path for host fibers";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"For mutation mode we mark
+them as having an effect";Sebastian Markbåge;2017-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"For persistence mode, we clone the stateNode with
+new props/children";Sebastian Markbåge;2017-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+Next I'll do HostRoot and HostPortal";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+finalizeContainerChildren will get called at the complete phase";Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+replaceContainer will get called at commit";Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+Also, drop the keepChildren flag";Sebastian Markbåge;2017-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"We'll never keep children as we'll never
+update a container if none of the children has changed";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+These are both ""containers""";Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"Normally we rely on placement/deletion effects
+to deal with insertions into the containers";Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"In the persistent mode we need
+to clone the container and append all the changed children to it";Sebastian Markbåge;2017-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+I needed somewhere to store these new containers before they're committed
+so I added another field";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+Originally I tried to make the recyclable instance nullable but Flow didn't
+like that and it's kind of sketchy since the instance type might not be
+nullable";Sebastian Markbåge;2017-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+However, the real difference which one we call is depending on whether they
+are equal";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;We can just offload that to the renderer;Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"Most of them won't
+need to know about this at all since they'll always clone or just create
+new";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+The ones that do know now have to be careful to compare them so they don't
+reuse an existing instance but that's probably fine to simplify the
+implementation and API";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+This adds a test for bailouts";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;This revealed a subtle bug;Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"We don't set the
+return pointer when stepping into newly created fibers because there
+can only be one";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"However, since I'm reusing this mechanism for persistent
+updates, I'll need to set the return pointer because a bailed out tree
+won't have the right return pointer";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+Found another bug";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+This creates a bit of an unfortunate feature testing in the unmount
+branch";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+That's because we want to trigger nested host deletions in portals in the
+mutation mode";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+Basically, we can't use the container to determine if we should keep
+identity and update an existing portal instead of recreate it";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"Because
+for persistent containers, there is no permanent identity";Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+This makes it kind of strange to even use portals in this mode";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"It's
+probably more ideal to have another concept that has permanent identity
+rather than trying to swap out containers";Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+When a portal gets deleted we need to create a new empty container and
+replace the current one with the empty one";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+We need container to stay as the persistent identity of the root atom";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+So that we can refer to portals over time";Sebastian Markbåge;2017-10-19;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+Instead, I'll introduce a new type just to temporarily hold the children
+of a container until they're ready to be committed into the permanent
+container";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"Essentially, this is just a fancy array that is not an array
+so that the host can choose data structure/allocation for it";Sebastian Markbåge;2017-10-19;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"
+Now containers are singletons and instead their children swap";Sebastian Markbåge;2017-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;"That way
+portals can use the container as part of their identity again";Sebastian Markbåge;2017-10-19;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6YjUyYTU2MjRlOTVmNzcxNjZmZmE1MjA0NzZkNjgyMzE2NDA2OTJmOQ==;;Sebastian Markbåge;2017-10-19;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;Use Yarn Workspaces (#11252);Dan Abramov;2017-10-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;This makes the test pass again, but breaks the build because npm/ folders aren't used yet;Dan Abramov;2017-10-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+I'm not sure if we'll keep this structure--I'll just keep working and fix the build after it settles down";Dan Abramov;2017-10-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+Note that this is currently broken because Jest ignores node_modules,
+and so Yarn linking makes Jest skip React source when transforming";Dan Abramov;2017-10-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+It is now unnecessary";Dan Abramov;2017-10-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;Some tests fail though;Dan Abramov;2017-10-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+Jest sees node_modules and thinks it's third party code";Dan Abramov;2017-10-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+This is a hacky way to teach Jest to still transform anything in node_modules/react*
+if it resolves outside of node_modules (such as to our packages/*) folder";Dan Abramov;2017-10-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+I'm not very happy with this and we should revisit";Dan Abramov;2017-10-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+It's not super clear how to organize this properly yet";Dan Abramov;2017-10-18;0;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+I didn't change this file but Flow started complaining";Dan Abramov;2017-10-18;1;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+Caleb said this annotation was unnecessarily using $Abstract though so I removed it";Dan Abramov;2017-10-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+Use file: instead of NODE_PATH since NODE_PATH";Dan Abramov;2017-10-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+NODE_PATH trick only worked because we had no react/react-dom in root node_modules, but now we do";Dan Abramov;2017-10-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+file: dependency only works as I expect in Yarn, so I moved the packaging fixtures to use Yarn and committed lockfiles";Dan Abramov;2017-10-18;1;1
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;"
+Verified that the page shows up";Dan Abramov;2017-10-18;0;0
+MDY6Q29tbWl0MTAyNzAyNTA6ZDljMWRiZDYxNzcyZjhmOGFiMGNkZjM4OWU3MDQ2M2Q3MDRjNDgwYg==;;Dan Abramov;2017-10-18;0;0
