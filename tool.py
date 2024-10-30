@@ -113,11 +113,23 @@ async def main():
   url = st.text_input("Enter the API URL of the module", "")
 
   st.markdown(""" API URL examples: \n 
+    Linux Kernel \n 
     http://api.github.com/repos/torvalds/linux/commits?path=mm/oom_kill.c \n
     https://api.github.com/repos/torvalds/linux/commits?path=mm/migrate.c \n 
     https://api.github.com/repos/torvalds/linux/commits?path=mm/slob.c \n 
     https://api.github.com/repos/torvalds/linux/commits?path=fs/fsopen.c \n 
     https://api.github.com/repos/torvalds/linux/commits?path=drivers/acpi/button.c \n 
+
+    Django \n
+    https://api.github.com/repos/django/django/commits?path=django/forms/forms.py \n 
+
+    React \n
+    https://api.github.com/repos/facebook/react/commits?path=packages/react-reconciler/src/ReactFiber.js \n
+
+    Node.js \n
+    https://api.github.com/repos/nodejs/node/commits?path=lib/http.js \n
+    https://api.github.com/repos/nodejs/node/commits?path=lib/stream.js \n
+
     """ ) 
 
   credentials = st.radio(
