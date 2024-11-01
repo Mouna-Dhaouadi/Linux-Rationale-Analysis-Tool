@@ -292,10 +292,11 @@ def distribution_categories(df_current):
 
 
 async def word_clouds(df_current, text_list, system_name, L):
-    more_stopwords = set({"kernel", "linux", "task", "thread", "process", "system", "patch"})
+    #more_stopwords = set({"kernel", "linux", "task", "thread", "process", "system", "patch"})
     fig = plt.figure(figsize=(4,4))
     cloud_im = WordCloud(
-                          stopwords=STOPWORDS.union(more_stopwords),
+                          #stopwords=STOPWORDS.union(more_stopwords),
+                          stopwords=STOPWORDS,
                           background_color='white',
                           collocations=False,
                           width=2500,
