@@ -93,7 +93,7 @@ async def user_commit_page():
             st.write( f"Your commit message's decision density: {user_commit_decision_density:.2f}")
 
             if user_commit_rationale_density < 0.5 : 
-                st.error('Low Rationale! Please justify more explicitly your changes.', icon="🚨")
+                st.error('Low Rationale! Please add justification for your changes.', icon="🚨")
             else:
                 st.success('High Rationale! Your commit message is well justified!', icon="✅")
 
